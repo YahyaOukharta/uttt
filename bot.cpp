@@ -22,12 +22,16 @@ typedef uint8_t u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
 typedef uint64_t u64;
+#ifndef EXPWIN
+#define EXPWIN 1   // expansion keeps only a game-winning move when there is one
+#endif
 
 // ------------------------------------------------------------------------------------------
 // Parameters (overridable locally through UT_PARAMS="C=0.6,...")
 // ------------------------------------------------------------------------------------------
 static float P_C = 0.55f;         // UCT exploration constant (values in [0,1])
-static int P_ROLL = 0;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
+static float P_FPU = -1.f;        // value of unvisited children (< 0: visit every child first)
+static int P_ROLL = 1;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
 static float P_MS = 95.0f;        // per-turn budget, ms
 static float P_FIRST_MS = 960.0f; // first-turn budget, ms
 
@@ -222,7 +226,7 @@ struct Node {
     u8 pad;
 };
 
-static const int POOL = 1 << 23;
+static int POOL = 1 << 23;
 static Node* pool[2] = {nullptr, nullptr};
 static int cur = 0;      // active pool
 static int used = 0;     // nodes used in the active pool
@@ -243,6 +247,27 @@ static inline int newRoot() {
 
 static inline bool expand(int idx, const State& s) {
     u8 mv[81];
+#if EXPWIN
+    {   // a move that wins the game: keep only that child, the node is proven
+        const int p = s.side;
+        u16 tb = (u16)(TW[s.macro[p]] & ~s.closed & 0x1FF);
+        if (s.next >= 0) tb &= (u16)(1u << s.next);
+        while (tb) {
+            const int x = __builtin_ctz(tb);
+            tb &= tb - 1;
+            const u16 wc = TW[s.b[p][x]] & s.empty(x);
+            if (wc) {
+                if (used + 1 > POOL) return false;
+                Node* P = pool[cur];
+                P[used] = Node{-1, 0, 0.f, 0, (u8)(x * 9 + __builtin_ctz(wc)), PR_WIN, 0};
+                P[idx].first = used++;
+                P[idx].n = 1;
+                P[idx].proven = PR_LOSS;
+                return true;
+            }
+        }
+    }
+#endif
     const int n = s.gen(mv);
     if (used + n > POOL) return false;
     Node* P = pool[cur];
@@ -282,7 +307,11 @@ static inline int selectChild(int idx) {
     for (int i = 0; i < nd.n; i++) {
         const int ch = nd.first + i;
         const Node& x = P[ch];
-        if (x.N == 0) return ch;
+        if (x.N == 0) {
+            if (P_FPU < 0) return ch;
+            if (P_FPU + c > bv) { bv = P_FPU + c; best = ch; }
+            continue;
+        }
         if (x.proven == PR_LOSS) continue;
         if (x.proven == PR_WIN) return ch;
         const float v = x.W / x.N + c / sqrtf((float)x.N);
@@ -304,6 +333,7 @@ static void iterate() {
         if (nd.first < 0) {
             if (nd.N == 0 && idx != root) break;
             if (!expand(idx, s)) break;
+            if (nd.proven) break;
         }
         idx = selectChild(idx);
         s.play(P[idx].move);
@@ -330,6 +360,178 @@ static void iterate() {
         v = 1.f - v;
         if (proof && i < depth - 1) proof = tryProve(pathBuf[i]);
     }
+}
+
+// ------------------------------------------------------------------------------------------
+// Value network (NNUE style): 189 one-hot inputs per perspective -> NN_H, SCReLU, both
+// perspectives (side to move first) -> 10 heads chosen by the next board.
+// ------------------------------------------------------------------------------------------
+#ifndef NN_H
+#define NN_H 0
+#endif
+static bool netOn = false;
+#if NN_H
+static const int NQA = 255, NQB = 64, NIN = 189;
+alignas(32) static int16_t NW[NIN][NN_H];
+alignas(32) static int16_t NBIAS[NN_H];
+alignas(32) static int16_t NO[10][2 * NN_H];
+static int32_t NOB[10];
+struct Acc { alignas(32) int16_t v[2][NN_H]; };
+static Acc rootAcc;
+
+static inline void addF(int16_t* __restrict a, int f) {
+    const int16_t* __restrict w = NW[f];
+    for (int i = 0; i < NN_H; i++) a[i] += w[i];
+}
+static inline void addF2(int16_t* __restrict a, int f, int g) {
+    const int16_t* __restrict w = NW[f];
+    const int16_t* __restrict x = NW[g];
+    for (int i = 0; i < NN_H; i++) a[i] += w[i] + x[i];
+}
+// Update A for move m that took `before` to `after`.
+static inline void accMove(Acc& A, const State& before, const State& after, int m) {
+    const int p = before.side, bd = MB[m];
+    if ((after.closed ^ before.closed) >> bd & 1) {
+        if (after.macro[p] >> bd & 1) { addF2(A.v[p], m, 162 + bd); addF2(A.v[p ^ 1], 81 + m, 171 + bd); }
+        else { addF2(A.v[p], m, 180 + bd); addF2(A.v[p ^ 1], 81 + m, 180 + bd); }
+    } else {
+        addF(A.v[p], m);
+        addF(A.v[p ^ 1], 81 + m);
+    }
+}
+static void accRefresh(Acc& A, const State& s) {
+    for (int P = 0; P < 2; P++) {
+        memcpy(A.v[P], NBIAS, sizeof NBIAS);
+        for (int bd = 0; bd < 9; bd++) {
+            for (int q = 0; q < 2; q++) {
+                u16 x = s.b[q][bd];
+                while (x) { const int c = __builtin_ctz(x); x &= x - 1; addF(A.v[P], (q == P ? 0 : 81) + bd * 9 + c); }
+                if (s.macro[q] >> bd & 1) addF(A.v[P], (q == P ? 162 : 171) + bd);
+            }
+            if ((s.closed >> bd & 1) && !((s.macro[0] | s.macro[1]) >> bd & 1)) addF(A.v[P], 180 + bd);
+        }
+    }
+}
+// Value of the position for the side to move, in [0, 1].
+static inline float nnEval(const Acc& A, const State& s) {
+    const int stm = s.side, bk = s.next < 0 ? 9 : s.next;
+    const int16_t* __restrict o = NO[bk];
+    const int16_t* __restrict a = A.v[stm];
+    const int16_t* __restrict b = A.v[stm ^ 1];
+    int32_t sum = 0;
+    for (int i = 0; i < NN_H; i++) {
+        const int16_t c = (int16_t)min(max((int)a[i], 0), NQA);
+        sum += (int32_t)(int16_t)(c * o[i]) * c;
+    }
+    for (int i = 0; i < NN_H; i++) {
+        const int16_t c = (int16_t)min(max((int)b[i], 0), NQA);
+        sum += (int32_t)(int16_t)(c * o[NN_H + i]) * c;
+    }
+    const float logit = ((float)sum / NQA + (float)NOB[bk]) / (float)(NQA * NQB);
+    return 1.f / (1.f + expf(-logit));
+}
+//@NET_DATA@
+#ifdef NN_EMBED
+// Embedded net: a bit stream at 15 bits per character; first layer and biases int8, output int16.
+static void loadEmbedded() {
+    const char16_t* p = NN_DATA;
+    u32 acc = 0;
+    int nb = 0;
+    auto byte = [&]() -> int {
+        while (nb < 8) { acc |= (u32)(*p++ - NN_OFF) << nb; nb += 15; }
+        const int b = (int)(acc & 255);
+        acc >>= 8;
+        nb -= 8;
+        return b;
+    };
+    auto word = [&]() -> int { const int lo = byte(); return lo | byte() << 8; };
+    for (int f = 0; f < NIN; f++)
+        for (int i = 0; i < NN_H; i++) NW[f][i] = (int8_t)byte();
+    for (int i = 0; i < NN_H; i++) NBIAS[i] = (int8_t)byte();
+    for (int k = 0; k < 10; k++)
+        for (int i = 0; i < 2 * NN_H; i++) NO[k][i] = (int16_t)word();
+    for (int k = 0; k < 10; k++) { const u32 hi = (u32)word(); NOB[k] = (int32_t)(hi << 16 | (u32)word()); }
+}
+#endif
+static bool loadNet(const char* path) {
+    FILE* f = fopen(path, "rb");
+    if (!f) return false;
+    bool ok = fread(NW, sizeof NW, 1, f) == 1 && fread(NBIAS, sizeof NBIAS, 1, f) == 1 &&
+              fread(NO, sizeof NO, 1, f) == 1 && fread(NOB, sizeof NOB, 1, f) == 1;
+    fclose(f);
+    return ok;
+}
+
+// One iteration with the net: descend by UCT, expand every child of the leaf and score each
+// with the net; the leaf's value is the best child's (one ply of minimax), backed up as an average.
+static void iterateNN() {
+    Node* P = pool[cur];
+    State s = rootState;
+    Acc A = rootAcc;
+    int depth = 0, idx = root;
+    pathBuf[depth++] = idx;
+    while (P[idx].first >= 0 && !P[idx].proven) {
+        idx = selectChild(idx);
+        const State b = s;
+        s.play(P[idx].move);
+        accMove(A, b, s, P[idx].move);
+        pathBuf[depth++] = idx;
+    }
+    float v;
+    bool proof = false;
+    Node& L = P[idx];
+    if (!L.proven && !s.result && expand(idx, s) && !L.proven) {
+        float best = -1.f;
+        for (int i = 0; i < L.n; i++) {
+            Node& ch = P[L.first + i];
+            State cs = s;
+            cs.play(ch.move);
+            float cv;  // value for the player who made the move (s.side)
+            if (cs.result) {
+                ch.proven = cs.result == DRAW ? PR_DRAW : (cs.result == WIN0 + s.side ? PR_WIN : PR_LOSS);
+                cv = provenValue(ch.proven);
+            } else {
+                Acc C = A;
+                accMove(C, s, cs, ch.move);
+                cv = 1.f - nnEval(C, cs);
+            }
+            ch.N = 1;
+            ch.W = cv;
+            if (cv > best) best = cv;
+        }
+        tryProve(idx);
+        v = L.proven ? provenValue(L.proven) : 1.f - best;
+        proof = L.proven && depth > 1;
+    } else if (L.proven || s.result) {
+        if (!L.proven) {
+            const int mover = s.side ^ 1;
+            L.proven = s.result == DRAW ? PR_DRAW : (s.result == WIN0 + mover ? PR_WIN : PR_LOSS);
+        }
+        v = provenValue(L.proven);
+        proof = depth > 1;
+    } else {  // pool full: score the leaf itself
+        v = 1.f - nnEval(A, s);
+    }
+    for (int i = depth - 1; i >= 0; i--) {
+        Node& nd = P[pathBuf[i]];
+        nd.N++;
+        nd.W += v;
+        v = 1.f - v;
+        if (proof && i < depth - 1) proof = tryProve(pathBuf[i]);
+    }
+}
+#endif
+
+static inline void searchStep() {
+#if NN_H
+    if (netOn) { iterateNN(); return; }
+#endif
+    iterate();
+}
+static inline void turnStart() {
+#if NN_H
+    if (netOn) accRefresh(rootAcc, rootState);
+#endif
 }
 
 // Copy the subtree under `root` into the other pool (breadth first, children stay contiguous).
@@ -408,6 +610,7 @@ static void parseParams(const char* p) {
             float v = (float)atof(kv.c_str() + e + 1);
             if (k == "C") P_C = v;
             else if (k == "ROLL") P_ROLL = (int)v;
+            else if (k == "FPU") P_FPU = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
             else fprintf(stderr, "unknown param %s\n", k.c_str());
@@ -428,8 +631,96 @@ static u64 perft(const State& s, int d) {
 }
 #endif
 
+#ifdef LOCAL
+// Self-play data: UT_GEN="games:iters:seed:outfile". Each game starts with 0..6 random plies,
+// samples moves by visit count for the next 10 plies, then plays the most visited move.
+// Record (44 bytes, side-to-move frame): own/opp cells per small board, root value, next
+// board, result for the side to move (0 loss, 1 draw, 2 win), ply, best move, flags (1 = root proven).
+#pragma pack(push, 1)
+struct GenRec { u16 own[9], opp[9]; int16_t q; int8_t next; u8 result, ply, best, flags, side; };
+#pragma pack(pop)
+static_assert(sizeof(GenRec) == 44, "record size");
+
+static int runGen(const char* spec) {
+    long games = 0, iters = 0;
+    unsigned long long seed = 0;
+    char out[512];
+    if (sscanf(spec, "%ld:%ld:%llu:%511s", &games, &iters, &seed, out) != 4) { fprintf(stderr, "bad UT_GEN\n"); return 1; }
+    rng = Rng(seed * 0x9E3779B97F4A7C15ULL + 12345);
+    POOL = 1 << 21;
+    pool[0] = (Node*)malloc(sizeof(Node) * POOL);
+    pool[1] = (Node*)malloc(sizeof(Node) * POOL);
+    FILE* f = fopen(out, "ab");
+    if (!f) return 1;
+    long positions = 0;
+    auto t0 = Clock::now();
+    for (long g = 0; g < games; g++) {
+        rootState.reset();
+        root = newRoot();
+        const int open = (int)rng.below(7);
+        u8 mv[81];
+        for (int k = 0; k < open && !rootState.result; k++) {
+            int n = rootState.gen(mv);
+            advance(mv[rng.below((u32)n)]);
+        }
+        if (rootState.result) continue;
+        vector<GenRec> recs;
+        const int sampleUntil = rootState.ply + 10;
+        while (!rootState.result) {
+            if (used > POOL / 2) compact();
+            turnStart();
+            for (long it = 0; it < iters && !pool[cur][root].proven; it++) searchStep();
+            if (pool[cur][root].first < 0) expand(root, rootState);
+            const Node& rn = pool[cur][root];
+            GenRec r;
+            memset(&r, 0, sizeof r);
+            const int p = rootState.side;
+            for (int i = 0; i < 9; i++) { r.own[i] = rootState.b[p][i]; r.opp[i] = rootState.b[p ^ 1][i]; }
+            float q = rn.N ? 1.f - rn.W / rn.N : 0.5f;
+            if (rn.proven) q = 1.f - provenValue(rn.proven);
+            r.q = (int16_t)lrintf(q * 20000.f - 10000.f);
+            r.next = rootState.next;
+            r.ply = rootState.ply;
+            r.side = (u8)p;
+            r.flags = rn.proven ? 1 : 0;
+            int m = bestMove();
+            r.best = (u8)m;
+            recs.push_back(r);
+            if (rootState.ply < sampleUntil && !rn.proven) {  // sample proportionally to visits
+                Node* P = pool[cur];
+                long tot = 0;
+                for (int i = 0; i < rn.n; i++) if (P[rn.first + i].proven != PR_LOSS) tot += P[rn.first + i].N;
+                if (tot > 0) {
+                    long k = (long)(((u64)rng.next() * (u64)tot) >> 32);
+                    for (int i = 0; i < rn.n; i++) {
+                        const Node& x = P[rn.first + i];
+                        if (x.proven == PR_LOSS) continue;
+                        if (k < x.N) { m = x.move; break; }
+                        k -= x.N;
+                    }
+                }
+            }
+            advance(m);
+        }
+        const int res = rootState.result;
+        for (auto& r : recs) r.result = res == DRAW ? 1 : ((res == WIN0 + r.side) ? 2 : 0);
+        fwrite(recs.data(), sizeof(GenRec), recs.size(), f);
+        fflush(f);
+        positions += (long)recs.size();
+        if ((g + 1) % 50 == 0)
+            fprintf(stderr, "gen %ld games %ld positions %.0f/s\n", g + 1, positions, positions / (msSince(t0) / 1000.0));
+    }
+    fclose(f);
+    return 0;
+}
+#endif
+
 int main() {
     initTables();
+#ifdef NN_EMBED
+    loadEmbedded();
+    netOn = true;
+#endif
     for (int i = 1; i < (1 << 16); i++) LOGT[i] = logf((float)i);
     LOGT[0] = 0;
     rootState.reset();
@@ -450,6 +741,35 @@ int main() {
         }
         return 0;
     }
+#if NN_H
+    if (getenv("UT_NET")) {
+        netOn = loadNet(getenv("UT_NET"));
+        if (!netOn) { fprintf(stderr, "cannot load net %s\n", getenv("UT_NET")); return 1; }
+    }
+#endif
+#if NN_H
+    if (getenv("UT_EVAL")) {  // print the net's value of the first records of a data file
+        FILE* f = fopen(getenv("UT_EVAL"), "rb");
+        GenRec r;
+        for (int k = 0; k < 20 && f && fread(&r, sizeof r, 1, f) == 1; k++) {
+            State s;
+            s.reset();
+            s.side = r.side;
+            s.next = r.next;
+            for (int bd = 0; bd < 9; bd++) {
+                s.b[r.side][bd] = r.own[bd];
+                s.b[r.side ^ 1][bd] = r.opp[bd];
+                for (int q = 0; q < 2; q++) if (WIN[s.b[q][bd]]) { s.macro[q] |= (u16)(1u << bd); s.closed |= (u16)(1u << bd); }
+                if ((r.own[bd] | r.opp[bd]) == 0x1FF) s.closed |= (u16)(1u << bd);
+            }
+            Acc A;
+            accRefresh(A, s);
+            printf("%.5f\n", nnEval(A, s));
+        }
+        return 0;
+    }
+#endif
+    if (getenv("UT_GEN")) return runGen(getenv("UT_GEN"));
     if (getenv("UT_BENCH")) {
         auto t0 = Clock::now();
         long long n = 0, plies = 0;
@@ -505,14 +825,15 @@ int main() {
             }
         }
         if (used > POOL / 2) compact();
+        turnStart();
         const double budget = first ? P_FIRST_MS : P_MS;
         const long long iters = first ? fixedFirstIters : fixedIters;
         long long it = 0;
         if (iters > 0) {
-            for (; it < iters && !pool[cur][root].proven; it++) iterate();
+            for (; it < iters && !pool[cur][root].proven; it++) searchStep();
         } else {
             while (!pool[cur][root].proven) {
-                for (int k = 0; k < 16; k++) iterate();
+                for (int k = 0; k < 16; k++) searchStep();
                 it += 16;
                 if (msSince(t0) >= budget) break;
             }
