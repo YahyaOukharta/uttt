@@ -13,7 +13,7 @@ app = modal.App("ut-match")
 image = modal.Image.debian_slim().apt_install("g++").add_local_file(os.path.join(ROOT, "tools", "referee.cpp"), "/src/referee.cpp")
 
 
-@app.function(image=image, cpu=8, memory=8192, timeout=3 * 3600)
+@app.function(image=image, cpu=8, memory=16384, timeout=3 * 3600)
 def match(a_src: str, b_src: str, fa: str, fb: str, pa: str, pb: str, games: int, ms: int, iters: int, opn: int, jobs: int, seed: int):
     import subprocess
     open("/tmp/a.cpp", "w").write(a_src)

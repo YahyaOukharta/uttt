@@ -614,16 +614,14 @@ static inline void turnStart() {
 static void compact() {
     Node* S = pool[cur];
     Node* D = pool[cur ^ 1];
-    vector<int> q;
-    q.reserve(used);
+    // BFS copy; D[h] is the copy of S[cq[h]], so the queue is implicit in the copy order
     D[0] = S[root];
-    q.push_back(root);
     int n = 1;
-    for (size_t h = 0; h < q.size(); h++) {
+    for (int h = 0; h < n; h++) {
         Node& d = D[h];
         if (d.first >= 0) {
             const int f = d.first;
-            for (int i = 0; i < d.n; i++) { D[n + i] = S[f + i]; q.push_back(f + i); }
+            memcpy(D + n, S + f, sizeof(Node) * d.n);
             d.first = n;
             n += d.n;
         }
@@ -860,6 +858,7 @@ int main() {
         printf("ROLL=%d rollouts/s %.0f\n", P_ROLL, n / (msSince(t0) / 1000.0));
         return 0;
     }
+    if (getenv("UT_POOL")) POOL = atoi(getenv("UT_POOL"));  // small pools exercise compaction
 #endif
     pool[0] = (Node*)malloc(sizeof(Node) * POOL);
     pool[1] = (Node*)malloc(sizeof(Node) * POOL);
@@ -902,6 +901,9 @@ int main() {
 #endif
             }
         }
+        // Fault in the spare pool during the long first turn: compaction on a later turn would
+        // otherwise pay for first-touch page faults inside a 100 ms budget.
+        if (first) memset((void*)pool[cur ^ 1], 0, sizeof(Node) * POOL);
         if (used > POOL / 2) compact();
         turnStart();
         const double budget = first ? P_FIRST_MS : P_MS;
