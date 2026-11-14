@@ -10,7 +10,8 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | legacy | 2025 MCTS (UCT c = 1.2, partial solver, tree reuse) | | 20.23 | 195 / 490 Legend |
 | v0.1 | from scratch: bitboards, UCT c = 0.7, MCTS-Solver (win / loss / draw), tree reuse | = legacy at 100 ms (+3 ± 34) | | |
 | v0.2 | c = 0.55, rollouts take a game-winning move | vs legacy at 100 ms: +166 =56 −78, +105 ± 37 | (not submitted) | |
-| v0.3 | + expansion keeps only a game-winning child, FPU 0.8 | vs legacy at 100 ms: +197 =54 −49, +187 ± 40 | submission 41716558 | |
+| v0.3 | + expansion keeps only a game-winning child, FPU 0.8 | vs legacy at 100 ms: +197 =54 −49, +187 ± 40 | 22.6 at 84% (stopped) | ~92 |
+| v1.0 | value net n1a (189→256×2, 10 buckets, 5.2M positions of 4k-iteration rollout self-play), expand-all search, c = 0.3 | vs v0.3 at 100 ms: +194 =46 −60, +166 ± 40 | submission 41716756 | |
 
 ## Measurements
 
@@ -25,4 +26,6 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | all four | +63 |
 | Expansion keeps only a game-winning child (node proven) | +33 ± 29 |
 | FPU 0.4 / 0.6 vs "visit every child first" | +15 / +29 (noise) |
+| n1a search c 0.3 / 0.55 vs v0.3 (100 ms, Modal) | **+166** / +62 |
+| Modal gate tool check: v0.3 vs legacy (100 ms) | +155 ± 39 (Kaggle: +187 ± 40) |
 | Pilot net: 128 hidden, 443k positions (4k-iteration rollout self-play), expand-all search | 9 −84 =7 vs v0.3 at 100 ms (net too weak; 75k vs 60k iterations per turn) |
