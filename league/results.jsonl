@@ -1,0 +1,1 @@
+{"a": "v0.1", "b": "legacy", "wins_a": 70, "wins_b": 79, "draws": 51, "faults_a": 2, "faults_b": 3, "first_wins": 98, "games": 200, "iters": 0, "ms": 100, "avg_plies": 52.2, "max_ms_a": 1016.1, "max_ms_b": 1016.0, "open": 2, "time": 1794695138}

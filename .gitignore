@@ -1,0 +1,11 @@
+build/
+data/
+out/
+kaggle/
+league/bots/
+arena/logs/
+arena/battle_logs/
+__pycache__/
+*.pyc
+.DS_Store
+.claude/
