@@ -10,7 +10,7 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | legacy | 2025 MCTS (UCT c = 1.2, partial solver, tree reuse) | | 20.23 | 195 / 490 Legend |
 | v0.1 | from scratch: bitboards, UCT c = 0.7, MCTS-Solver (win / loss / draw), tree reuse | = legacy at 100 ms (+3 ± 34) | | |
 | v0.2 | c = 0.55, rollouts take a game-winning move | vs legacy at 100 ms: +166 =56 −78, +105 ± 37 | (not submitted) | |
-| v0.3 | + expansion keeps only a game-winning child, FPU 0.8 | | submission 41716558 | |
+| v0.3 | + expansion keeps only a game-winning child, FPU 0.8 | vs legacy at 100 ms: +197 =54 −49, +187 ± 40 | submission 41716558 | |
 
 ## Measurements
 
