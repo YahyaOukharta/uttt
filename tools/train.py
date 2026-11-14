@@ -82,7 +82,10 @@ def main():
     t0 = time.time()
 
     paths = sorted(set(p for f in a.files for p in glob.glob(f, recursive=True)))
-    data = np.concatenate([np.fromfile(p, dtype=REC) for p in paths])
+    def load(p):   # files may still be growing: drop a partial trailing record
+        b = np.fromfile(p, dtype=np.uint8)
+        return b[: len(b) // REC.itemsize * REC.itemsize].view(REC)
+    data = np.concatenate([load(p) for p in paths])
     np.random.default_rng(1).shuffle(data)
     if a.max:
         data = data[:a.max]

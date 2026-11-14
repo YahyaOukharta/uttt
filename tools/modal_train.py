@@ -16,7 +16,7 @@ image = (modal.Image.debian_slim().pip_install("torch", "numpy")
 vol = modal.Volume.from_name("ut-data", create_if_missing=True)
 
 
-@app.function(image=image, gpu="A10G", memory=32768, timeout=3 * 3600, volumes={"/data": vol})
+@app.function(image=image, gpu="A10G", memory=65536, timeout=3 * 3600, volumes={"/data": vol})
 def train(name: str, data: str, args: str):
     import shlex, subprocess
     os.makedirs("/data/nets", exist_ok=True)

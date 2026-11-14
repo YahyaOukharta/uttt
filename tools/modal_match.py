@@ -22,13 +22,14 @@ def match(a_src: str, b_src: str, fa: str, fb: str, pa: str, pb: str, games: int
     subprocess.check_call(cc + ["-pthread", "-o", "/tmp/referee", "/src/referee.cpp"])
     subprocess.check_call(cc + fa.split() + ["-o", "/tmp/a", "/tmp/a.cpp"])
     subprocess.check_call(cc + fb.split() + ["-o", "/tmp/b", "/tmp/b.cpp"])
-    cmd = ["/tmp/referee", "/tmp/a", "/tmp/b", "-g", str(games), "-s", str(seed), "-o", str(opn), "-j", str(jobs)]
+    cmd = ["/tmp/referee", "/tmp/a", "/tmp/b", "-g", str(games), "-s", str(seed), "-o", str(opn), "-j", str(jobs), "-v"]
     cmd += ["-n", str(iters)] if iters else ["-n", "0", "-t", str(ms), "-x", "20"]
     if pa: cmd += ["-pa", pa]
     if pb: cmd += ["-pb", pb]
     out = subprocess.check_output(cmd, text=True)
+    bad = [l for l in out.splitlines() if '"reason"' in l and '"reason":"end"' not in l]
     cpu = subprocess.run("grep -m1 'model name' /proc/cpuinfo", shell=True, capture_output=True, text=True).stdout.strip()
-    return json.loads(out.strip().splitlines()[-1]) | {"cpu": cpu, "threads": len(os.sched_getaffinity(0))}
+    return json.loads(out.strip().splitlines()[-1]) | {"bad": bad, "cpu": cpu, "threads": len(os.sched_getaffinity(0))}
 
 
 @app.local_entrypoint()
@@ -48,6 +49,8 @@ def main(a: str, b: str, games: int = 300, ms: int = 100, iters: int = 0, fa: st
         for k in ("wins_a", "wins_b", "draws", "faults_a", "faults_b"):
             t[k] += r[k]
         t["mx"] = [max(t["mx"][0], r["max_ms_a"]), max(t["mx"][1], r["max_ms_b"])]
+        for l in r.get("bad", []):
+            print("FAULT", c, l, flush=True)
     for c in cfgs:
         t = tot[c]
         w, l, d = t["wins_a"], t["wins_b"], t["draws"]

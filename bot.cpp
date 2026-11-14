@@ -32,7 +32,7 @@ typedef uint64_t u64;
 // ------------------------------------------------------------------------------------------
 static float P_C = 0.55f;         // UCT exploration constant (values in [0,1])
 static bool netOn = false;        // a value net is loaded
-static float P_CN = 0.3f;         // exploration constant with the net
+static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNMODE = 0;          // 0: expand all children and score them, leaf = best child; 1: one eval per leaf
 static float P_FPU = 0.8f;        // value of unvisited children (< 0: visit every child first)
 static int P_ROLL = 1;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
@@ -377,6 +377,7 @@ static void iterate() {
 static const int NQA = 255, NQB = 64, NIN = 189;
 alignas(32) static int16_t NW[NIN][NN_H];
 alignas(32) static int16_t NBIAS[NN_H];
+alignas(32) static int16_t NNZ[NN_H];
 alignas(32) static int16_t NO[10][2 * NN_H];
 static int32_t NOB[10];
 struct Acc { alignas(32) int16_t v[2][NN_H]; };
@@ -482,6 +483,53 @@ static bool loadNet(const char* path) {
 
 // One iteration with the net: descend by UCT, expand every child of the leaf and score each
 // with the net; the leaf's value is the best child's (one ply of minimax), backed up as an average.
+// Value (side to move after m) of the position reached by move m from `before`, computed from
+// the accumulator of `before` without materialising the child accumulator. Same arithmetic as
+// accMove + nnEval.
+static inline float nnEvalMove(const Acc& A, const State& before, const State& after, int m) {
+    const int p = before.side, bd = MB[m];
+    const int16_t *wp1 = NW[m], *wq1 = NW[81 + m], *wp2 = NNZ, *wq2 = NNZ;
+    if ((after.closed ^ before.closed) >> bd & 1) {
+        if (after.macro[p] >> bd & 1) { wp2 = NW[162 + bd]; wq2 = NW[171 + bd]; }
+        else { wp2 = NW[180 + bd]; wq2 = NW[180 + bd]; }
+    }
+    const int bk = after.next < 0 ? 9 : after.next;
+    const int16_t* __restrict o = NO[bk];
+    const int16_t* __restrict a = A.v[p ^ 1];   // side to move after m
+    const int16_t* __restrict b = A.v[p];
+    int32_t sum = 0;
+#if defined(__x86_64__) && NN_H % 16 == 0
+    const __m256i zero = _mm256_setzero_si256(), qa = _mm256_set1_epi16(NQA);
+    __m256i acc = zero;
+    for (int i = 0; i < NN_H; i += 16) {
+        __m256i c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(a + i)),
+                    _mm256_add_epi16(_mm256_load_si256((const __m256i*)(wq1 + i)), _mm256_load_si256((const __m256i*)(wq2 + i))));
+        c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
+        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + i))), c));
+        c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(b + i)),
+            _mm256_add_epi16(_mm256_load_si256((const __m256i*)(wp1 + i)), _mm256_load_si256((const __m256i*)(wp2 + i))));
+        c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
+        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + NN_H + i))), c));
+    }
+    __m128i x = _mm_add_epi32(_mm256_castsi256_si128(acc), _mm256_extracti128_si256(acc, 1));
+    x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0x4E));
+    x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0xB1));
+    sum = _mm_cvtsi128_si32(x);
+#else
+    for (int i = 0; i < NN_H; i++) {
+        const int16_t v = (int16_t)(a[i] + (int16_t)(wq1[i] + wq2[i]));
+        const int16_t c = (int16_t)min(max((int)v, 0), NQA);
+        sum += (int32_t)(int16_t)(c * o[i]) * c;
+    }
+    for (int i = 0; i < NN_H; i++) {
+        const int16_t v = (int16_t)(b[i] + (int16_t)(wp1[i] + wp2[i]));
+        const int16_t c = (int16_t)min(max((int)v, 0), NQA);
+        sum += (int32_t)(int16_t)(c * o[NN_H + i]) * c;
+    }
+#endif
+    const float logit = ((float)sum / NQA + (float)NOB[bk]) / (float)(NQA * NQB);
+    return 1.f / (1.f + expf(-logit));
+}
 static void iterateNN() {
     Node* P = pool[cur];
     State s = rootState;
@@ -521,9 +569,7 @@ static void iterateNN() {
                 ch.proven = cs.result == DRAW ? PR_DRAW : (cs.result == WIN0 + s.side ? PR_WIN : PR_LOSS);
                 cv = provenValue(ch.proven);
             } else {
-                Acc C = A;
-                accMove(C, s, cs, ch.move);
-                cv = 1.f - nnEval(C, cs);
+                cv = 1.f - nnEvalMove(A, s, cs, ch.move);
             }
             ch.N = 1;
             ch.W = cv;
