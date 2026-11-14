@@ -7,6 +7,7 @@
 #pragma GCC optimize("O3,inline,omit-frame-pointer,unroll-loops")
 #if defined(__x86_64__) || defined(__i386__)
 #pragma GCC target("avx2,bmi,bmi2,popcnt,lzcnt")
+#include <immintrin.h>
 #endif
 #include <algorithm>
 #include <chrono>
@@ -30,6 +31,9 @@ typedef uint64_t u64;
 // Parameters (overridable locally through UT_PARAMS="C=0.6,...")
 // ------------------------------------------------------------------------------------------
 static float P_C = 0.55f;         // UCT exploration constant (values in [0,1])
+static bool netOn = false;        // a value net is loaded
+static float P_CN = 0.55f;        // exploration constant with the net
+static int P_NNMODE = 0;          // 0: expand all children and score them, leaf = best child; 1: one eval per leaf
 static float P_FPU = 0.8f;        // value of unvisited children (< 0: visit every child first)
 static int P_ROLL = 1;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
 static float P_MS = 95.0f;        // per-turn budget, ms
@@ -301,7 +305,7 @@ static inline bool tryProve(int idx) {
 static inline int selectChild(int idx) {
     Node* P = pool[cur];
     const Node& nd = P[idx];
-    const float c = P_C * sqrtf(fastlog(nd.N));
+    const float c = (netOn ? P_CN : P_C) * sqrtf(fastlog(nd.N));
     int best = -1;
     float bv = -1e30f;
     for (int i = 0; i < nd.n; i++) {
@@ -369,7 +373,6 @@ static void iterate() {
 #ifndef NN_H
 #define NN_H 0
 #endif
-static bool netOn = false;
 #if NN_H
 static const int NQA = 255, NQB = 64, NIN = 189;
 alignas(32) static int16_t NW[NIN][NN_H];
@@ -419,6 +422,20 @@ static inline float nnEval(const Acc& A, const State& s) {
     const int16_t* __restrict a = A.v[stm];
     const int16_t* __restrict b = A.v[stm ^ 1];
     int32_t sum = 0;
+#if defined(__x86_64__) && NN_H % 16 == 0
+    const __m256i zero = _mm256_setzero_si256(), qa = _mm256_set1_epi16(NQA);
+    __m256i acc = zero;
+    for (int i = 0; i < NN_H; i += 16) {
+        __m256i c = _mm256_min_epi16(_mm256_max_epi16(_mm256_load_si256((const __m256i*)(a + i)), zero), qa);
+        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + i))), c));
+        c = _mm256_min_epi16(_mm256_max_epi16(_mm256_load_si256((const __m256i*)(b + i)), zero), qa);
+        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + NN_H + i))), c));
+    }
+    __m128i x = _mm_add_epi32(_mm256_castsi256_si128(acc), _mm256_extracti128_si256(acc, 1));
+    x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0x4E));
+    x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0xB1));
+    sum = _mm_cvtsi128_si32(x);
+#else
     for (int i = 0; i < NN_H; i++) {
         const int16_t c = (int16_t)min(max((int)a[i], 0), NQA);
         sum += (int32_t)(int16_t)(c * o[i]) * c;
@@ -427,6 +444,7 @@ static inline float nnEval(const Acc& A, const State& s) {
         const int16_t c = (int16_t)min(max((int)b[i], 0), NQA);
         sum += (int32_t)(int16_t)(c * o[NN_H + i]) * c;
     }
+#endif
     const float logit = ((float)sum / NQA + (float)NOB[bk]) / (float)(NQA * NQB);
     return 1.f / (1.f + expf(-logit));
 }
@@ -479,8 +497,20 @@ static void iterateNN() {
     }
     float v;
     bool proof = false;
+    if (P_NNMODE == 1 && !P[idx].proven && !s.result && (P[idx].N > 0 || idx == root)) {
+        // classic value-net MCTS: expand without scoring, step into one child, score it
+        if (expand(idx, s) && !P[idx].proven) {
+            idx = selectChild(idx);
+            const State b = s;
+            s.play(P[idx].move);
+            accMove(A, b, s, P[idx].move);
+            pathBuf[depth++] = idx;
+        }
+    }
     Node& L = P[idx];
-    if (!L.proven && !s.result && expand(idx, s) && !L.proven) {
+    if (P_NNMODE == 1 && !L.proven && !s.result) {
+        v = 1.f - nnEval(A, s);
+    } else if (!L.proven && !s.result && expand(idx, s) && !L.proven) {
         float best = -1.f;
         for (int i = 0; i < L.n; i++) {
             Node& ch = P[L.first + i];
@@ -611,6 +641,8 @@ static void parseParams(const char* p) {
             if (k == "C") P_C = v;
             else if (k == "ROLL") P_ROLL = (int)v;
             else if (k == "FPU") P_FPU = v;
+            else if (k == "CN") P_CN = v;
+            else if (k == "NNMODE") P_NNMODE = (int)v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
             else fprintf(stderr, "unknown param %s\n", k.c_str());
