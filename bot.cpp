@@ -30,7 +30,7 @@ typedef uint64_t u64;
 // Parameters (overridable locally through UT_PARAMS="C=0.6,...")
 // ------------------------------------------------------------------------------------------
 static float P_C = 0.55f;         // UCT exploration constant (values in [0,1])
-static float P_FPU = -1.f;        // value of unvisited children (< 0: visit every child first)
+static float P_FPU = 0.8f;        // value of unvisited children (< 0: visit every child first)
 static int P_ROLL = 1;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
 static float P_MS = 95.0f;        // per-turn budget, ms
 static float P_FIRST_MS = 960.0f; // first-turn budget, ms
