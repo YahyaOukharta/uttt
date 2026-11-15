@@ -22,6 +22,7 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.8 | v1.7 engine (n7t) + opening book: 156 positions of non-won v1.7 arena games answered by 4M-iteration searches (won lines and second-player draws untouched) | replays of the 33 non-won top-25 games: 36% (first 83%, second 19%) vs v1.7 26% (50%, 17%); where a book move was played: 3 losses → draws, 1 draw → loss | 32.77 (final); vs the top 25: first 82%, second 11% | 10 |
 | v1.9 | v1.8 + book grown to 386 positions: non-won games of v1.7 and v1.8 plus test games, 843 new positions searched (4M iterations, n8t) | local sanity only (book changes only positions of non-won lines) | 32.52 (final); vs the top 25: first 89%, second 11% (v1.8 on the same top 25: 84%, 14%) | 11 |
 | v1.10 | book 572 entries: + v1.9 arena games and two book-loop cycles; **record entries**: where our own move varied and one move has the better record (≥ 3 games, or the others score ≤ 25%), replay it unless the long search rates it >0.05 worse (23 entries) | local sanity only | **34.04 (final)** | **5** |
+| v1.11 | book 676 entries: + all v1.10 arena games (v1.10 vs the top 25: first 88%, second 16%; SupSon as second 10 / 10 draws, was all losses) and 16M searches of the new frequent positions | local sanity only | submission 41719978 | |
 
 ## Measurements
 
