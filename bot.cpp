@@ -36,6 +36,7 @@ static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
+static float P_FK = 0.02f;         // final move: 0 = most visits; > 0: value + FK * ln(visits)
 static int P_CT = 32;             // cache the accumulator of nodes with at least this many visits (0: off)
 static int P_VN = 4;              // virtual visits given to a child's first net value
 static float P_LEAF = 1.f;        // leaf value: LEAF * best child + (1 - LEAF) * prior-weighted mean
@@ -722,6 +723,7 @@ static int bestMove() {
         float s;
         if (x.proven == PR_WIN) s = 1e20f;
         else if (x.proven == PR_LOSS) s = -1e10f + x.N;
+        else if (P_FK > 0.f) s = (x.N ? x.W / x.N : 0.f) + P_FK * logf((float)x.N + 1.f);
         else s = (float)x.N + (x.N ? x.W / x.N : 0.f) * 0.5f;
         if (s > bs) { bs = s; best = i; }
     }
@@ -761,6 +763,7 @@ static void parseParams(const char* p) {
             else if (k == "VN") P_VN = (int)v;
             else if (k == "CLIM") P_CLIM = (int)v;
             else if (k == "CT") P_CT = (int)v;
+            else if (k == "FK") P_FK = v;
             else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
