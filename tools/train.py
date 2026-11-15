@@ -86,33 +86,39 @@ def main():
         b = np.fromfile(p, dtype=np.uint8)
         return b[: len(b) // REC.itemsize * REC.itemsize].view(REC)
     data = np.concatenate([load(p) for p in paths])
-    np.random.default_rng(1).shuffle(data)
     if a.max:
-        data = data[:a.max]
+        data = data[np.random.default_rng(1).permutation(len(data))[:a.max]]
     n = len(data)
     result = data["result"].astype(np.float32) / 2
     q = (data["q"].astype(np.float32) + 10000) / 20000
     target = (a.lam * result + (1 - a.lam) * q).astype(np.float32)
-    raw = np.empty((n, 19), dtype=np.int32)
+    raw = np.empty((n, 19), dtype=np.int16)        # own[9], opp[9] (9-bit masks), next board (9 = any)
     raw[:, :9] = data["own"]
     raw[:, 9:18] = data["opp"]
     raw[:, 18] = np.where(data["next"] < 0, 9, data["next"])
     print(f"{n} positions from {len(paths)} files; stm result: win {np.mean(data['result'] == 2):.3f} "
-          f"draw {np.mean(data['result'] == 1):.3f}; mean q {q.mean():.3f}", flush=True)
+          f"draw {np.mean(data['result'] == 1):.3f}; mean q {q.mean():.3f} ({time.time() - t0:.0f}s)", flush=True)
     del data
-    if a.dedup:
-        keys = np.ascontiguousarray(raw).view([("k", "V76")]).reshape(-1)
+    if a.dedup:   # merge identical positions (64-bit hash of the 19 fields), averaging their targets
+        keys = np.zeros(n, dtype=np.uint64)
+        mul = np.uint64(0x9E3779B97F4A7C15)
+        for j in range(19):
+            keys ^= (raw[:, j].astype(np.uint64) + np.uint64(j * 1021 + 7)) * np.uint64((0xD6E8FEB86659FD93 + 2 * j * 0x632BE5AB) & 0xFFFFFFFFFFFFFFFF | 1)
+            keys = (keys ^ (keys >> np.uint64(31))) * mul
         _, first, inv, cnt = np.unique(keys, return_index=True, return_inverse=True, return_counts=True)
+        del keys
         target = (np.bincount(inv, weights=target) / cnt).astype(np.float32)
         result = (np.bincount(inv, weights=result) / cnt).astype(np.float32)
         raw = raw[first]
-        perm0 = np.random.default_rng(2).permutation(len(raw))
-        raw, target, result = raw[perm0], target[perm0], result[perm0]
-        print(f"dedup: {n} -> {len(raw)} unique ({100 * len(raw) / n:.1f}%)", flush=True)
+        print(f"dedup: {n} -> {len(raw)} unique ({100 * len(raw) / n:.1f}%) ({time.time() - t0:.0f}s)", flush=True)
         n = len(raw)
+    perm0 = np.random.default_rng(2).permutation(n)
+    raw, target, result = raw[perm0], target[perm0], result[perm0]
     nval = min(200000, n // 20)
 
     dev = torch.device(a.device)
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
     X = torch.from_numpy(raw).to(dev)
     Y = torch.from_numpy(target).to(dev)
     R = torch.from_numpy(result).to(dev)
