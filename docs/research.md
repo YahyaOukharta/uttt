@@ -72,3 +72,22 @@ opponent to a board they can win, or to a closed board, unless the move wins.
   margin. CodinGame compiles with g++ (no -O flag) → pragmas.
 - Engine tricks: 512-entry win table, k-th set bit table, 2^18 tables over (mine, theirs) for
   "cells that win now", fill or mask closed boards.
+
+## Second pass (2026-11-15)
+
+- **TomAlard** (blog, Sept 2026): 1024 hidden ×2 perspectives, 10 buckets, SCReLU, hard-sigmoid output, ~215k
+  parameters, 300M+ self-play positions. Search: expand all children, accumulator built once at the leaf,
+  **accumulator checkpoints at nodes above a visit threshold**; selection on the plain average (the minimax
+  mix weight drifted to 0). Alpha-beta with the same net: 40% against it. Ships a clang + PGO binary
+  (+20% sims/s, UPX, zigzag-quantized weights) through a Python stub at 15.875 bits per character.
+- **jacek** inputs: 81 squares × 15 states — won/drawn board, X, O, empty, and for empty squares
+  "X would win the board here" / "O would" / "both", each split by whether the board is the active one.
+- **Pondering is not possible**: processes are frozen outside their turn (Magus 2018, RoboStac 2021);
+  ~10 ms of work survives after printing (Vingte).
+- jacek's UBFM: final move = argmax(value + ln(visits)); wins scored 10000 − 10·plies.
+- Implicit minimax backups (Lanctot 2014): Q = (1−α)·avg + α·minimax, α 0.15–0.4 safe in other games.
+- Athénan (Cohen-Solal): train on the minimax values of all internal tree nodes ("tree learning"),
+  completion (resolved wins first), ordinal move sampling for self-play.
+
+Measured here: accumulator cache +9% speed at 512 hidden; final move by value + 0.02·ln(visits)
+**+39 Elo** over most-visits.
