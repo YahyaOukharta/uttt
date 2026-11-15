@@ -208,3 +208,9 @@
 {"label": "loop2", "opponent": "zasmu", "seat": 1, "result": "L", "log": "test-921988404.log", "game_id": 921850056, "t": 1794759149}
 {"label": "loop2", "opponent": "Fancheng", "seat": 0, "result": "D", "log": "test-921988622.log", "game_id": 921843920, "t": 1794759183}
 {"label": "loop2", "opponent": "reCurse", "seat": 1, "result": "D", "log": "test-921988849.log", "game_id": 921844056, "t": 1794759222}
+{"label": "loop1", "opponent": "Daporan", "seat": 0, "result": "W", "log": "test-922006684.log", "game_id": 921851558, "t": 1794762595}
+{"label": "loop1", "opponent": "Daporan", "seat": 1, "result": "L", "log": "test-922006883.log", "game_id": 921851557, "t": 1794762635}
+{"label": "loop1", "opponent": "Vingte", "seat": 0, "result": "L", "log": "test-922007118.log", "game_id": 921849337, "t": 1794762674}
+{"label": "loop1", "opponent": "Vingte", "seat": 1, "result": "L", "log": "test-922007296.log", "game_id": 921849338, "t": 1794762713}
+{"label": "loop1", "opponent": "Apostolique", "seat": 0, "result": "W", "log": "test-922007491.log", "game_id": 921848705, "t": 1794762750}
+{"label": "loop1", "opponent": "Apostolique", "seat": 1, "result": "L", "log": "test-922022450.log", "game_id": 921851267, "t": 1794765214}
