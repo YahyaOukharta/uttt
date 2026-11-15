@@ -17,7 +17,8 @@ import collections, glob, json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POS = os.path.join(ROOT, "arena", "book_pos.json")
 AN = os.path.join(ROOT, "arena", "book_an.jsonl")
-AN_DEEP = os.path.join(ROOT, "arena", "book_an_deep.jsonl")   # longer searches of frequent positions, preferred
+AN_DEEP = os.path.join(ROOT, "arena", "book_an_deep.jsonl")
+PRE = os.path.join(ROOT, "arena", "book_pre.jsonl")   # likely replies to book moves (tools/modal_pre.py)   # longer searches of frequent positions, preferred
 BOOK = os.path.join(ROOT, "tools", "book.txt")
 GAMES = os.path.join(ROOT, "arena", "book_games.json")   # the games behind book_pos.json (moves, seat, result)
 
@@ -99,6 +100,7 @@ def positions(subs, logs):
 
 LOST_Q = 0.1   # below this long-search value a position counts as lost
 MIXED_GAIN = 0.03   # positions that also occur in won games / second-player draws
+PRE_GAIN = 0.03     # pre-emptive entries (book_pre.jsonl)
 
 
 def losing_moves(an, lost_q):
@@ -183,8 +185,25 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
         n["book"] += 1
         r, c = best.split()
         out.append(f"{a['hash']} {r} {c}  # ply {a['ply']} played {played} gain {g:+.3f} L{e['L']} D{e['D']} {','.join(e['opps'][:3])}")
+    # Pre-emptive entries: positions after the opponent's likely replies to our book moves, where a short
+    # search (about one of our turns) picks a move clearly worse than the long search's best.
+    have = {l.split()[0] for l in out}
+    if os.path.exists(PRE):
+        for l in open(PRE):
+            a = json.loads(l)
+            if a["hash"] in have or a.get("proven") or not a["children"] or not a.get("fast_best"):
+                continue
+            ch = {c["move"]: c["q"] for c in a["children"]}
+            fb, b = a["fast_best"], a["best"]
+            if fb == b or fb not in ch or b not in ch or ch[b] - ch[fb] < PRE_GAIN:
+                continue
+            have.add(a["hash"])
+            n["pre"] += 1
+            r, c = b.split()
+            out.append(f"{a['hash']} {r} {c}  # ply {a['ply']} pre: short search {fb} {ch[fb]:.3f} vs {ch[b]:.3f}")
     open(BOOK, "w").write("\n".join(out) + "\n")
-    print(f"{n['book'] + n['record'] + n['refuted']} entries ({n['record']} by record, {n['refuted']} refuted) -> {BOOK} "
+    print(f"{n['book'] + n['record'] + n['refuted'] + n['pre']} entries ({n['record']} by record, {n['refuted']} refuted, "
+          f"{n['pre']} pre-emptive) -> {BOOK} "
           f"(same move {n['same']}, gain too small {n['small']})")
 
 
