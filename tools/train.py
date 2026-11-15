@@ -15,7 +15,7 @@ then with --draw a second head predicting P(draw): int16 D[10][2H], int32 DB[10]
 
   train.py -o tools/nets/n0.bin 'data/g0*.bin' [--hidden 256] [--epochs 20] [--lam 0.5]
 """
-import argparse, glob, time
+import argparse, glob, os, time
 import numpy as np
 import torch
 import torch.nn as nn
@@ -160,6 +160,8 @@ def main():
         return stm, oth, nxt
 
     model = Net(a.hidden, a.draw > 0).to(dev)
+    if a.init and not os.path.exists(a.init):   # Kaggle: find the checkpoint wherever the dataset is mounted
+        a.init = glob.glob("/kaggle/input/**/" + os.path.basename(a.init), recursive=True)[0]
     if a.init:
         missing = model.load_state_dict(torch.load(a.init, map_location=dev), strict=False).missing_keys
         if missing:

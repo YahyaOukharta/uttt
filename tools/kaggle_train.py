@@ -4,6 +4,7 @@
   kaggle_train.py push NAME [--gen TAG:N ...] -- <train.py args, data given as /kaggle/input globs>
   kaggle_train.py status NAME
   kaggle_train.py fetch NAME          -> tools/nets/NAME.bin (+ log printed)
+  kaggle_train.py ds NAME FILE...     create / version the private dataset NAME with these files
 Data sources: outputs of generation kernels ut-TAG-1..N (--gen TAG:N) and datasets (--ds NAME).
 """
 import glob, json, os, re, shutil, subprocess, sys
@@ -61,6 +62,21 @@ def fetch(name):
         print("saved tools/nets/" + os.path.basename(f))
 
 
+def ds(name, files):
+    d = os.path.join(ROOT, "kaggle", f"ds{SFX}_{name}")
+    new = not os.path.isdir(d)
+    shutil.rmtree(d, ignore_errors=True)
+    os.makedirs(d)
+    json.dump({"title": name, "id": f"{USER}/{name}", "licenses": [{"name": "CC0-1.0"}]},
+              open(os.path.join(d, "dataset-metadata.json"), "w"))
+    for f in files:
+        os.link(f, os.path.join(d, os.path.basename(f))) if os.stat(f).st_dev == os.stat(d).st_dev else shutil.copy(f, d)
+    r = kg("datasets", "create", "-p", d) if new else kg("datasets", "version", "-p", d, "-m", "update")
+    if "already" in (r.stdout + r.stderr).lower():
+        r = kg("datasets", "version", "-p", d, "-m", "update")
+    print((r.stdout + r.stderr).strip().splitlines()[-1][:200])
+
+
 if __name__ == "__main__":
     c, name, rest = sys.argv[1], sys.argv[2], sys.argv[3:]
     if c == "push":
@@ -75,3 +91,4 @@ if __name__ == "__main__":
         push(name, gens, rest[i + 1:], extra)
     elif c == "status": status(name)
     elif c == "fetch": fetch(name)
+    elif c == "ds": ds(name, rest)
