@@ -62,7 +62,7 @@ def run(src: str, jobs: list, replies: int, iters: int, fast: int):
 
 
 @app.local_entrypoint()
-def main(src: str, replies: int = 2, iters: int = 4000000, fast: int = 35000, chunk: int = 16):
+def main(src: str, replies: int = 2, iters: int = 4000000, fast: int = 35000, chunk: int = 48):
     an = {}
     for f in ("book_an.jsonl", "book_an_deep.jsonl", "book_pre.jsonl"):
         p = os.path.join(ROOT, "arena", f)
