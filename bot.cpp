@@ -799,7 +799,19 @@ static int runGen(const char* spec) {
     long games = 0, iters = 0;
     unsigned long long seed = 0;
     char out[512];
-    if (sscanf(spec, "%ld:%ld:%llu:%511s", &games, &iters, &seed, out) != 4) { fprintf(stderr, "bad UT_GEN\n"); return 1; }
+    if (sscanf(spec, "%ld:%ld:%llu:%511[^:]", &games, &iters, &seed, out) != 4) { fprintf(stderr, "bad UT_GEN\n"); return 1; }
+    // optional ":fastIters:pFull": playout cap randomization (only fully searched moves are recorded)
+    long fastIters = iters;
+    float pFull = 1.f;
+    {
+        int colons = 0;
+        for (const char* c = spec; *c; c++) colons += *c == ':';
+        if (colons >= 5) {
+            const char* c = spec;
+            for (int k = 0; k < 4; k++) c = strchr(c, ':') + 1;
+            sscanf(c, "%ld:%f", &fastIters, &pFull);
+        }
+    }
     rng = Rng(seed * 0x9E3779B97F4A7C15ULL + 12345);
     POOL = 1 << 21;
     pool[0] = (Node*)malloc(sizeof(Node) * POOL);
@@ -823,7 +835,9 @@ static int runGen(const char* spec) {
         while (!rootState.result) {
             if (used > POOL / 2) compact();
             turnStart();
-            for (long it = 0; it < iters && !pool[cur][root].proven; it++) searchStep();
+            const bool full = pFull >= 1.f || rng.below(1 << 20) < (u32)(pFull * (1 << 20));
+            const long budget = full ? iters : fastIters;
+            for (long it = 0; it < budget && !pool[cur][root].proven; it++) searchStep();
             if (pool[cur][root].first < 0) expand(root, rootState);
             const Node& rn = pool[cur][root];
             GenRec r;
@@ -839,7 +853,7 @@ static int runGen(const char* spec) {
             r.flags = rn.proven ? 1 : 0;
             int m = bestMove();
             r.best = (u8)m;
-            recs.push_back(r);
+            if (full) recs.push_back(r);
             if (rootState.ply < sampleUntil && !rn.proven) {  // sample proportionally to visits
                 Node* P = pool[cur];
                 long tot = 0;
