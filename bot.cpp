@@ -488,7 +488,7 @@ static void loadEmbedded() {
         for (int i = 0; i < NN_H; i++) NW[f][i] = (int8_t)byte();
     for (int i = 0; i < NN_H; i++) NBIAS[i] = (int8_t)byte();
     for (int k = 0; k < 10; k++)
-        for (int i = 0; i < 2 * NN_H; i++) NO[k][i] = (int16_t)word();
+        for (int i = 0; i < 2 * NN_H; i++) NO[k][i] = (int8_t)byte();
     for (int k = 0; k < 10; k++) { const u32 hi = (u32)word(); NOB[k] = (int32_t)(hi << 16 | (u32)word()); }
 }
 #endif

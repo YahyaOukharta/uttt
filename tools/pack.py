@@ -5,8 +5,8 @@
 
 Strips `#ifdef LOCAL ... #endif` blocks (unless --keep-local), comments, blank lines and
 indentation, bakes -D overrides in as #defines, and embeds the net as a UTF-16 string literal:
-a bit stream at 15 bits per character, first-layer weights and biases as int8, the output layer
-as int16 (CodinGame's 100k limit counts characters, not bytes).
+a bit stream at 15 bits per character, all weights as int8 (the output layer is clipped to
+[-127, 127] in training), output biases as int32 (CodinGame's 100k limit counts characters, not bytes).
 """
 import argparse, os, re
 import numpy as np
@@ -48,11 +48,11 @@ if a.net:
     assert len(raw) == n16 * 2 + 4 * NB, f"net size mismatch for hidden={h}"
     v = np.frombuffer(raw[:n16 * 2], dtype="<i2").astype(np.int64)
     ob = np.frombuffer(raw[n16 * 2:], dtype="<i4").astype(np.int64)
-    w8 = v[:NIN * h + h]                        # feature weights + biases -> int8
-    rest = np.concatenate([v[NIN * h + h:], np.stack([ob >> 16, ob & 0xFFFF], axis=1).reshape(-1)])
+    w8 = v[:NIN * h + h + NB * 2 * h]           # feature weights, biases and output weights -> int8
+    rest = np.stack([ob >> 16, ob & 0xFFFF], axis=1).reshape(-1)
     clipped = int((np.abs(w8) > 127).sum())
     if clipped:
-        print(f"warning: {clipped} first-layer weights outside int8, clipped (train with --wclip)")
+        print(f"warning: {clipped} weights outside int8, clipped (train with --wclip)")
     data = np.clip(w8, -127, 127).astype(np.int8).tobytes() + (rest & 0xFFFF).astype("<u2").tobytes()
     bits = np.unpackbits(np.frombuffer(data, dtype=np.uint8), bitorder="little")
     bits = np.concatenate([bits, np.zeros((-len(bits)) % 15, dtype=np.uint8)]).reshape(-1, 15)
