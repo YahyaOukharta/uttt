@@ -36,7 +36,8 @@ static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
-static float P_DX = 0.3f, P_DO = 0.7f;  // value of a proven draw for us as first / second player
+static float P_DX = 0.3f, P_DO = 0.7f;
+static float P_DE = 1.f;   // scale of the draw-head contempt in evaluations (needs a net with a draw head)  // value of a proven draw for us as first / second player
 static float P_FK = 0.02f;         // final move: 0 = most visits; > 0: value + FK * ln(visits)
 static int P_CT = 32;             // cache the accumulator of nodes with at least this many visits (0: off)
 static int P_VN = 4;              // virtual visits given to a child's first net value
@@ -413,6 +414,10 @@ alignas(32) static int16_t NBIAS[NN_H];
 alignas(32) static int16_t NNZ[NN_H];
 alignas(32) static int16_t NO[10][2 * NN_H];
 static int32_t NOB[10];
+alignas(32) static int16_t ND[10][2 * NN_H];  // optional second head: P(draw)
+static int32_t NDB[10];
+static bool hasDraw = false, useDraw = false;
+static float drawK[2] = {0.f, 0.f};  // eval contempt: value += drawK[side to move] * P(draw)
 struct Acc { alignas(32) int16_t v[2][NN_H]; };
 static Acc rootAcc;
 
@@ -470,37 +475,62 @@ static void accRefresh(Acc& A, const State& s) {
     }
 }
 // Value of the position for the side to move, in [0, 1].
-static inline float nnEval(const Acc& A, const State& s) {
-    const int stm = s.side, bk = s.next < 0 ? 9 : s.next;
-    const int16_t* __restrict o = NO[bk];
-    const int16_t* __restrict a = A.v[stm];
-    const int16_t* __restrict b = A.v[stm ^ 1];
-    int32_t sum = 0;
 #if defined(__x86_64__) && NN_H % 16 == 0
-    const __m256i zero = _mm256_setzero_si256(), qa = _mm256_set1_epi16(NQA);
-    __m256i acc = zero;
-    for (int i = 0; i < NN_H; i += 16) {
-        __m256i c = _mm256_min_epi16(_mm256_max_epi16(_mm256_load_si256((const __m256i*)(a + i)), zero), qa);
-        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + i))), c));
-        c = _mm256_min_epi16(_mm256_max_epi16(_mm256_load_si256((const __m256i*)(b + i)), zero), qa);
-        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + NN_H + i))), c));
-    }
+static inline int32_t hsum8(__m256i acc) {
     __m128i x = _mm_add_epi32(_mm256_castsi256_si128(acc), _mm256_extracti128_si256(acc, 1));
     x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0x4E));
     x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0xB1));
-    sum = _mm_cvtsi128_si32(x);
+    return _mm_cvtsi128_si32(x);
+}
+#define UT_LD(p) _mm256_load_si256((const __m256i*)(p))
+// clipped activation c of 16 neurons -> acc += c*c*o (and accd += c*c*od for the draw head)
+#define UT_STEP(C, OFF) { const __m256i c_ = _mm256_min_epi16(_mm256_max_epi16(C, zero), qa); \
+        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c_, UT_LD(o + (OFF))), c_)); \
+        if (D) accd = _mm256_add_epi32(accd, _mm256_madd_epi16(_mm256_mullo_epi16(c_, UT_LD(od + (OFF))), c_)); }
+#endif
+template <bool D>
+static inline float nnOut(int32_t sum, int32_t sumd, int bk, int stm) {
+    const float logit = ((float)sum / NQA + (float)NOB[bk]) / (float)(NQA * NQB);
+    float v = 1.f / (1.f + expf(-logit));
+    if (D) {
+        const float ld = ((float)sumd / NQA + (float)NDB[bk]) / (float)(NQA * NQB);
+        v += drawK[stm] / (1.f + expf(-ld));
+    }
+    return v;
+}
+template <bool D>
+static inline float nnEvalT(const Acc& A, const State& s) {
+    const int stm = s.side, bk = s.next < 0 ? 9 : s.next;
+    const int16_t* __restrict o = NO[bk];
+    const int16_t* __restrict od = ND[bk];
+    const int16_t* __restrict a = A.v[stm];
+    const int16_t* __restrict b = A.v[stm ^ 1];
+    int32_t sum = 0, sumd = 0;
+#if defined(__x86_64__) && NN_H % 16 == 0
+    const __m256i zero = _mm256_setzero_si256(), qa = _mm256_set1_epi16(NQA);
+    __m256i acc = zero, accd = zero;
+    for (int i = 0; i < NN_H; i += 16) {
+        UT_STEP(UT_LD(a + i), i)
+        UT_STEP(UT_LD(b + i), NN_H + i)
+    }
+    sum = hsum8(acc);
+    if (D) sumd = hsum8(accd);
 #else
     for (int i = 0; i < NN_H; i++) {
         const int16_t c = (int16_t)min(max((int)a[i], 0), NQA);
         sum += (int32_t)(int16_t)(c * o[i]) * c;
+        if (D) sumd += (int32_t)(int16_t)(c * od[i]) * c;
     }
     for (int i = 0; i < NN_H; i++) {
         const int16_t c = (int16_t)min(max((int)b[i], 0), NQA);
         sum += (int32_t)(int16_t)(c * o[NN_H + i]) * c;
+        if (D) sumd += (int32_t)(int16_t)(c * od[NN_H + i]) * c;
     }
 #endif
-    const float logit = ((float)sum / NQA + (float)NOB[bk]) / (float)(NQA * NQB);
-    return 1.f / (1.f + expf(-logit));
+    return nnOut<D>(sum, sumd, bk, stm);
+}
+static inline float nnEval(const Acc& A, const State& s) {
+    return useDraw ? nnEvalT<true>(A, s) : nnEvalT<false>(A, s);
 }
 //@NET_DATA@
 #ifdef NN_EMBED
@@ -519,6 +549,10 @@ static void loadEmbedded() {  // canonical Huffman-coded int8 weights (see tools
     };
     auto bits = [&](int n) { int v = 0; for (int i = 0; i < n; i++) v |= bit() << i; return v; };
     for (int k = 0; k < 10; k++) { const u32 hi = (u32)bits(16); NOB[k] = (int32_t)(hi << 16 | (u32)bits(16)); }
+#ifdef NN_DRAW
+    for (int k = 0; k < 10; k++) { const u32 hi = (u32)bits(16); NDB[k] = (int32_t)(hi << 16 | (u32)bits(16)); }
+    hasDraw = true;
+#endif
     int len[256], cnt[32] = {0}, pos[33] = {0}, sym[256];
     for (int i = 0; i < 256; i++) cnt[len[i] = bits(5)]++;
     cnt[0] = 0;
@@ -540,6 +574,10 @@ static void loadEmbedded() {  // canonical Huffman-coded int8 weights (see tools
     for (int i = 0; i < NN_H; i++) NBIAS[i] = dec();
     for (int k = 0; k < 10; k++)
         for (int i = 0; i < 2 * NN_H; i++) NO[k][i] = dec();
+#ifdef NN_DRAW
+    for (int k = 0; k < 10; k++)
+        for (int i = 0; i < 2 * NN_H; i++) ND[k][i] = dec();
+#endif
 }
 #else
 static void loadEmbedded() {
@@ -568,6 +606,7 @@ static bool loadNet(const char* path) {
     if (!f) return false;
     bool ok = fread(NW, sizeof NW, 1, f) == 1 && fread(NBIAS, sizeof NBIAS, 1, f) == 1 &&
               fread(NO, sizeof NO, 1, f) == 1 && fread(NOB, sizeof NOB, 1, f) == 1;
+    hasDraw = ok && fread(ND, sizeof ND, 1, f) == 1 && fread(NDB, sizeof NDB, 1, f) == 1;
     fclose(f);
     return ok;
 }
@@ -577,7 +616,8 @@ static bool loadNet(const char* path) {
 // Value (side to move after m) of the position reached by move m from `before`, computed from
 // the accumulator of `before` without materialising the child accumulator. Same arithmetic as
 // accMove + nnEval.
-static inline float nnEvalMove(const Acc& A, const State& before, const State& after, int m) {
+template <bool D>
+static inline float nnEvalMoveT(const Acc& A, const State& before, const State& after, int m) {
     const int p = before.side, bd = MB[m];
     const int16_t *wp1 = NW[m], *wq1 = NW[81 + m], *wp2 = NNZ, *wq2 = NNZ;
     if ((after.closed ^ before.closed) >> bd & 1) {
@@ -586,50 +626,44 @@ static inline float nnEvalMove(const Acc& A, const State& before, const State& a
     }
     const int bk = after.next < 0 ? 9 : after.next;
     const int16_t* __restrict o = NO[bk];
+    const int16_t* __restrict od = ND[bk];
     const int16_t* __restrict a = A.v[p ^ 1];   // side to move after m
     const int16_t* __restrict b = A.v[p];
-    int32_t sum = 0;
+    int32_t sum = 0, sumd = 0;
 #if defined(__x86_64__) && NN_H % 16 == 0
     const __m256i zero = _mm256_setzero_si256(), qa = _mm256_set1_epi16(NQA);
-    __m256i acc = zero;
+    __m256i acc = zero, accd = zero;
     if (wq2 == NNZ) {  // no board closed (most moves): skip the zero rows
         for (int i = 0; i < NN_H; i += 16) {
-            __m256i c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(a + i)), _mm256_load_si256((const __m256i*)(wq1 + i)));
-            c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
-            acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + i))), c));
-            c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(b + i)), _mm256_load_si256((const __m256i*)(wp1 + i)));
-            c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
-            acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + NN_H + i))), c));
+            UT_STEP(_mm256_add_epi16(UT_LD(a + i), UT_LD(wq1 + i)), i)
+            UT_STEP(_mm256_add_epi16(UT_LD(b + i), UT_LD(wp1 + i)), NN_H + i)
         }
-    } else
-    for (int i = 0; i < NN_H; i += 16) {
-        __m256i c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(a + i)),
-                    _mm256_add_epi16(_mm256_load_si256((const __m256i*)(wq1 + i)), _mm256_load_si256((const __m256i*)(wq2 + i))));
-        c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
-        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + i))), c));
-        c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(b + i)),
-            _mm256_add_epi16(_mm256_load_si256((const __m256i*)(wp1 + i)), _mm256_load_si256((const __m256i*)(wp2 + i))));
-        c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
-        acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + NN_H + i))), c));
+    } else {
+        for (int i = 0; i < NN_H; i += 16) {
+            UT_STEP(_mm256_add_epi16(UT_LD(a + i), _mm256_add_epi16(UT_LD(wq1 + i), UT_LD(wq2 + i))), i)
+            UT_STEP(_mm256_add_epi16(UT_LD(b + i), _mm256_add_epi16(UT_LD(wp1 + i), UT_LD(wp2 + i))), NN_H + i)
+        }
     }
-    __m128i x = _mm_add_epi32(_mm256_castsi256_si128(acc), _mm256_extracti128_si256(acc, 1));
-    x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0x4E));
-    x = _mm_add_epi32(x, _mm_shuffle_epi32(x, 0xB1));
-    sum = _mm_cvtsi128_si32(x);
+    sum = hsum8(acc);
+    if (D) sumd = hsum8(accd);
 #else
     for (int i = 0; i < NN_H; i++) {
         const int16_t v = (int16_t)(a[i] + (int16_t)(wq1[i] + wq2[i]));
         const int16_t c = (int16_t)min(max((int)v, 0), NQA);
         sum += (int32_t)(int16_t)(c * o[i]) * c;
+        if (D) sumd += (int32_t)(int16_t)(c * od[i]) * c;
     }
     for (int i = 0; i < NN_H; i++) {
         const int16_t v = (int16_t)(b[i] + (int16_t)(wp1[i] + wp2[i]));
         const int16_t c = (int16_t)min(max((int)v, 0), NQA);
         sum += (int32_t)(int16_t)(c * o[NN_H + i]) * c;
+        if (D) sumd += (int32_t)(int16_t)(c * od[NN_H + i]) * c;
     }
 #endif
-    const float logit = ((float)sum / NQA + (float)NOB[bk]) / (float)(NQA * NQB);
-    return 1.f / (1.f + expf(-logit));
+    return nnOut<D>(sum, sumd, bk, p ^ 1);
+}
+static inline float nnEvalMove(const Acc& A, const State& before, const State& after, int m) {
+    return useDraw ? nnEvalMoveT<true>(A, before, after, m) : nnEvalMoveT<false>(A, before, after, m);
 }
 // Accumulators of frequently visited nodes, direct-mapped by node index. The descent only
 // replays the plies below the deepest cached ancestor.
@@ -752,6 +786,9 @@ static inline void searchStep() {
 static inline void turnStart() {
 #if NN_H
     rootSide = rootState.side;
+    drawK[rootSide] = P_DE * ((rootSide == 0 ? P_DX : P_DO) - 0.5f);
+    drawK[rootSide ^ 1] = -drawK[rootSide];
+    useDraw = hasDraw && drawK[0] != 0.f;
     if (netOn) accRefresh(rootAcc, rootState);
 #endif
 }
@@ -847,6 +884,7 @@ static void parseParams(const char* p) {
             else if (k == "FK") P_FK = v;
             else if (k == "DX") P_DX = v;
             else if (k == "DO") P_DO = v;
+            else if (k == "DE") P_DE = v;
             else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;

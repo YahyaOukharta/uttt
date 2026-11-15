@@ -10,7 +10,8 @@ won boards, 9 drawn boards) -> H shared feature transformer, SCReLU, both perspe
 concatenated (side to move first) -> 10 output heads chosen by the next board (9 = any).
 Training uses the 8 symmetries of the board (the same 3x3 permutation on boards and cells).
 
-Output file: int16 W[189][H], int16 B[H], int16 O[10][2H], int32 OB[10] (QA=255, QB=64).
+Output file: int16 W[189][H], int16 B[H], int16 O[10][2H], int32 OB[10] (QA=255, QB=64),
+then with --draw a second head predicting P(draw): int16 D[10][2H], int32 DB[10].
 
   train.py -o tools/nets/n0.bin 'data/g0*.bin' [--hidden 256] [--epochs 20] [--lam 0.5]
 """
@@ -38,19 +39,23 @@ def syms():
 
 
 class Net(nn.Module):
-    def __init__(self, h):
+    def __init__(self, h, draw=False):
         super().__init__()
         self.h = h
         self.ft = nn.Linear(NIN, h)
         self.out = nn.Linear(2 * h, NB)
+        self.dout = nn.Linear(2 * h, NB) if draw else None
         nn.init.uniform_(self.ft.weight, -0.1, 0.1)
         nn.init.constant_(self.ft.bias, 0.05)
 
     def forward(self, a, b, bucket):
         ha = torch.clamp(self.ft(a), 0, 1) ** 2
         hb = torch.clamp(self.ft(b), 0, 1) ** 2
-        z = self.out(torch.cat([ha, hb], dim=1))
-        return z.gather(1, bucket[:, None]).squeeze(1)
+        hc = torch.cat([ha, hb], dim=1)
+        z = self.out(hc).gather(1, bucket[:, None]).squeeze(1)
+        if self.dout is None:
+            return z, None
+        return z, self.dout(hc).gather(1, bucket[:, None]).squeeze(1)
 
 
 def export(model, path):
@@ -60,6 +65,9 @@ def export(model, path):
     ob = np.round(model.out.bias.detach().cpu().numpy() * QA * QB).astype(np.int32)   # [10]
     with open(path, "wb") as f:
         f.write(w.tobytes()); f.write(b.tobytes()); f.write(o.tobytes()); f.write(ob.tobytes())
+        if model.dout is not None:
+            f.write(np.round(model.dout.weight.detach().cpu().numpy() * QB).astype(np.int16).tobytes())
+            f.write(np.round(model.dout.bias.detach().cpu().numpy() * QA * QB).astype(np.int32).tobytes())
     return int(np.abs(w).max()), int(np.abs(o).max())
 
 
@@ -75,6 +83,7 @@ def main():
     ap.add_argument("--dedup", action="store_true", help="merge identical positions, averaging their targets")
     ap.add_argument("--max", type=int, default=0, help="use at most this many positions")
     ap.add_argument("--init", help="float checkpoint (.pt) to continue from")
+    ap.add_argument("--draw", type=float, default=0, help="train a draw-probability head with this loss weight")
     ap.add_argument("--wclip", type=float, default=127 / 255, help="clip first-layer weights and biases (int8 at QA=255)")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else
                     ("mps" if torch.backends.mps.is_available() else "cpu"))
@@ -96,6 +105,7 @@ def main():
     raw[:, :9] = data["own"]
     raw[:, 9:18] = data["opp"]
     raw[:, 18] = np.where(data["next"] < 0, 9, data["next"])
+    drawt = (data["result"] == 1).astype(np.float32)
     print(f"{n} positions from {len(paths)} files; stm result: win {np.mean(data['result'] == 2):.3f} "
           f"draw {np.mean(data['result'] == 1):.3f}; mean q {q.mean():.3f} ({time.time() - t0:.0f}s)", flush=True)
     del data
@@ -109,11 +119,12 @@ def main():
         del keys
         target = (np.bincount(inv, weights=target) / cnt).astype(np.float32)
         result = (np.bincount(inv, weights=result) / cnt).astype(np.float32)
+        drawt = (np.bincount(inv, weights=drawt) / cnt).astype(np.float32)
         raw = raw[first]
         print(f"dedup: {n} -> {len(raw)} unique ({100 * len(raw) / n:.1f}%) ({time.time() - t0:.0f}s)", flush=True)
         n = len(raw)
     perm0 = np.random.default_rng(2).permutation(n)
-    raw, target, result = raw[perm0], target[perm0], result[perm0]
+    raw, target, result, drawt = raw[perm0], target[perm0], result[perm0], drawt[perm0]
     nval = min(200000, n // 20)
 
     dev = torch.device(a.device)
@@ -122,6 +133,7 @@ def main():
     X = torch.from_numpy(raw).to(dev)
     Y = torch.from_numpy(target).to(dev)
     R = torch.from_numpy(result).to(dev)
+    DT = torch.from_numpy(drawt).to(dev)
     bits = torch.tensor([[(v >> i) & 1 for i in range(9)] for v in range(512)], dtype=torch.float32, device=dev)
     win = torch.tensor([float(any((v & l) == l for l in LINES)) for v in range(512)], device=dev)
     S = torch.from_numpy(syms()).to(dev)                      # (8, 9)
@@ -147,9 +159,11 @@ def main():
         oth = torch.cat([cp, co, wp, wo, drawn], dim=1)
         return stm, oth, nxt
 
-    model = Net(a.hidden).to(dev)
+    model = Net(a.hidden, a.draw > 0).to(dev)
     if a.init:
-        model.load_state_dict(torch.load(a.init, map_location=dev))
+        missing = model.load_state_dict(torch.load(a.init, map_location=dev), strict=False).missing_keys
+        if missing:
+            print(f"init: new parameters {missing}", flush=True)
     opt = torch.optim.Adam(model.parameters(), lr=a.lr)
     nb = (n - nval) // a.batch
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=a.epochs * nb, eta_min=a.lr / 400)
@@ -157,16 +171,18 @@ def main():
 
     def evaluate():
         model.eval()
-        tot = tr = 0.0
+        tot = tr = td = 0.0
         with torch.no_grad():
             for i in range(0, nval, 65536):
                 idx = torch.arange(i, min(i + 65536, nval), device=dev)
                 s, o, k = feats(X[idx], None)
-                z = model(s, o, k)
+                z, zd = model(s, o, k)
                 tot += float(lossf(z, Y[idx])) * len(idx)
                 tr += float(lossf(z, R[idx])) * len(idx)
+                if zd is not None:
+                    td += float(lossf(zd, DT[idx])) * len(idx)
         model.train()
-        return tot / nval, tr / nval
+        return tot / nval, tr / nval, td / nval
 
     print(f"loaded in {time.time() - t0:.0f}s, training on {a.device}", flush=True)
     t0 = time.time()
@@ -177,18 +193,24 @@ def main():
             idx = perm[i * a.batch:(i + 1) * a.batch]
             sym = torch.randint(0, 8, (len(idx),), device=dev)
             s, o, k = feats(X[idx], sym)
-            loss = lossf(model(s, o, k), Y[idx])
+            z, zd = model(s, o, k)
+            loss = lossf(z, Y[idx])
+            if zd is not None:
+                loss = loss + a.draw * lossf(zd, DT[idx])
             opt.zero_grad(set_to_none=True)
             loss.backward()
             opt.step()
             sched.step()
             with torch.no_grad():
                 model.out.weight.clamp_(-1.98, 1.98)
+                if model.dout is not None:
+                    model.dout.weight.clamp_(-1.98, 1.98)
                 model.ft.weight.clamp_(-a.wclip, a.wclip)
                 model.ft.bias.clamp_(-a.wclip, a.wclip)
                 run += loss.detach()
-        vl, vr = evaluate()
+        vl, vr, vd = evaluate()
         print(f"epoch {ep + 1}/{a.epochs} train {float(run) / max(nb, 1):.4f} val {vl:.4f} val-result {vr:.4f} "
+              + (f"val-draw {vd:.4f} " if a.draw > 0 else "") +
               f"({time.time() - t0:.0f}s)", flush=True)
         torch.save(model.state_dict(), a.out + ".pt")
         mw, mo = export(model, a.out)

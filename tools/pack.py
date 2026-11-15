@@ -87,10 +87,16 @@ if a.net:
     h = a.hidden
     raw = open(a.net, "rb").read()
     n16 = NIN * h + h + NB * 2 * h
-    assert len(raw) == n16 * 2 + 4 * NB, f"net size mismatch for hidden={h}"
+    base, dsz = n16 * 2 + 4 * NB, NB * 2 * h * 2 + 4 * NB
+    assert len(raw) in (base, base + dsz), f"net size mismatch for hidden={h}"
+    draw = len(raw) == base + dsz               # second head: P(draw)
     v = np.frombuffer(raw[:n16 * 2], dtype="<i2").astype(np.int64)
-    ob = np.frombuffer(raw[n16 * 2:], dtype="<i4").astype(np.int64)
-    w8 = v[:NIN * h + h + NB * 2 * h]           # feature weights, biases and output weights -> int8
+    ob = np.frombuffer(raw[n16 * 2:base], dtype="<i4").astype(np.int64)
+    if draw:
+        assert a.huff, "the draw head needs --huff"
+        v = np.concatenate([v, np.frombuffer(raw[base:base + NB * 2 * h * 2], dtype="<i2").astype(np.int64)])
+        ob = np.concatenate([ob, np.frombuffer(raw[base + NB * 2 * h * 2:], dtype="<i4").astype(np.int64)])
+    w8 = v                                      # feature weights, biases and output weights -> int8
     rest = np.stack([ob >> 16, ob & 0xFFFF], axis=1).reshape(-1)
     clipped = int((np.abs(w8) > 127).sum())
     if clipped:
@@ -103,7 +109,7 @@ if a.net:
     bits = np.concatenate([bits, np.zeros((-len(bits)) % 15, dtype=np.uint8)]).reshape(-1, 15)
     codes = (bits * (1 << np.arange(15))).sum(1) + OFF
     text = "".join(map(chr, codes.tolist()))
-    net = (f'#define NN_EMBED 1\n' + ('#define NN_HUFF 1\n' if a.huff else '') +
+    net = (f'#define NN_EMBED 1\n' + ('#define NN_HUFF 1\n' if a.huff else '') + ('#define NN_DRAW 1\n' if draw else '') +
            f'#define NN_OFF {OFF}\nstatic const char16_t NN_DATA[] = u"{text}";\n')
     defs = f"#define NN_H {h}\n" + defs
 assert s.count("//@NET_DATA@") == 1
