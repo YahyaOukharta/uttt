@@ -2,86 +2,199 @@
  {
   "opponent": "Daporan",
   "seat": 0,
-  "game_id": 921731203
+  "game_id": 921756862,
+  "was": "D"
  },
  {
   "opponent": "Daporan",
   "seat": 1,
-  "game_id": 921731202
+  "game_id": 921756863,
+  "was": "L"
+ },
+ {
+  "opponent": "Vingte",
+  "seat": 0,
+  "game_id": 921756357,
+  "was": "D"
+ },
+ {
+  "opponent": "Vingte",
+  "seat": 1,
+  "game_id": 921756358,
+  "was": "L"
  },
  {
   "opponent": "AllanB",
   "seat": 1,
-  "game_id": 921732833
- },
- {
-  "opponent": "Apostolique",
-  "seat": 0,
-  "game_id": 921732849
+  "game_id": 921757079,
+  "was": "L"
  },
  {
   "opponent": "Apostolique",
   "seat": 1,
-  "game_id": 921732848
- },
- {
-  "opponent": "SupSon",
-  "seat": 0,
-  "game_id": 921742969
- },
- {
-  "opponent": "SupSon",
-  "seat": 1,
-  "game_id": 921742970
+  "game_id": 921756961,
+  "was": "L"
  },
  {
   "opponent": "sZoom",
   "seat": 0,
-  "game_id": 921743659
+  "game_id": 921756714,
+  "was": "D"
  },
  {
   "opponent": "sZoom",
   "seat": 1,
-  "game_id": 921743660
+  "game_id": 921757032,
+  "was": "L"
  },
  {
-  "opponent": "flawedaxioms",
-  "seat": 0,
-  "game_id": 921743571
- },
- {
-  "opponent": "flawedaxioms",
+  "opponent": "SupSon",
   "seat": 1,
-  "game_id": 921743572
+  "game_id": 921756635,
+  "was": "L"
  },
  {
   "opponent": "RoboStac",
   "seat": 0,
-  "game_id": 921743626
+  "game_id": 921756731,
+  "was": "D"
  },
  {
   "opponent": "RoboStac",
   "seat": 1,
-  "game_id": 921743627
+  "game_id": 921756730,
+  "was": "D"
  },
  {
-  "opponent": "zasmu",
+  "opponent": "Angecide",
   "seat": 0,
-  "game_id": 921742884
+  "game_id": 921818770,
+  "was": "D"
  },
  {
-  "opponent": "zasmu",
+  "opponent": "Angecide",
   "seat": 1,
-  "game_id": 921742883
+  "game_id": 921820518,
+  "was": "D"
  },
  {
   "opponent": "MrSubZero",
   "seat": 0,
-  "game_id": 921743103
+  "game_id": 921755424,
+  "was": "L"
  },
  {
   "opponent": "MrSubZero",
   "seat": 1,
-  "game_id": 921743480
+  "game_id": 921757010,
+  "was": "L"
+ },
+ {
+  "opponent": "flawedaxioms",
+  "seat": 1,
+  "game_id": 921757118,
+  "was": "L"
+ },
+ {
+  "opponent": "yoch",
+  "seat": 1,
+  "game_id": 921757132,
+  "was": "L"
+ },
+ {
+  "opponent": "zasmu",
+  "seat": 0,
+  "game_id": 921755894,
+  "was": "D"
+ },
+ {
+  "opponent": "zasmu",
+  "seat": 1,
+  "game_id": 921756650,
+  "was": "D"
+ },
+ {
+  "opponent": "NinjaDoggy",
+  "seat": 1,
+  "game_id": 921756684,
+  "was": "L"
+ },
+ {
+  "opponent": "Babebibobu",
+  "seat": 0,
+  "game_id": 921756475,
+  "was": "D"
+ },
+ {
+  "opponent": "Babebibobu",
+  "seat": 1,
+  "game_id": 921756476,
+  "was": "L"
+ },
+ {
+  "opponent": "TomAlard",
+  "seat": 1,
+  "game_id": 921756778,
+  "was": "L"
+ },
+ {
+  "opponent": "Fancheng",
+  "seat": 0,
+  "game_id": 921755680,
+  "was": "D"
+ },
+ {
+  "opponent": "Fancheng",
+  "seat": 1,
+  "game_id": 921755975,
+  "was": "L"
+ },
+ {
+  "opponent": "Leonard.",
+  "seat": 1,
+  "game_id": 921756618,
+  "was": "L"
+ },
+ {
+  "opponent": "karliso",
+  "seat": 1,
+  "game_id": 921755957,
+  "was": "L"
+ },
+ {
+  "opponent": "morph",
+  "seat": 1,
+  "game_id": 921755312,
+  "was": "D"
+ },
+ {
+  "opponent": "reCurse",
+  "seat": 1,
+  "game_id": 921755716,
+  "was": "L"
+ },
+ {
+  "opponent": "aCat",
+  "seat": 1,
+  "game_id": 921754436,
+  "was": "L"
+ },
+ {
+  "opponent": "JOiy",
+  "seat": 1,
+  "game_id": 921754857,
+  "was": "L"
+ },
+ {
+  "opponent": "Minuet",
+  "seat": 1,
+  "game_id": 921754829,
+  "was": "L"
+ },
+ {
+  "opponent": "jacek",
+  "seat": 1,
+  "game_id": 921754737,
+  "was": "L"
  }
 ]
