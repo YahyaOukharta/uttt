@@ -37,7 +37,7 @@ static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
-static float P_DX = 0.3f, P_DO = 0.7f;  // value of a proven draw for us as first / second player
+static float P_DX = 0.5f, P_DO = 0.5f;  // value of a proven draw for us as first / second player
 #ifdef LOCAL
 static bool checkAcc = false;     // debug: verify incremental accumulators against a refresh
 static long long checkCount = 0;

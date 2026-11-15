@@ -17,7 +17,7 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.3 | net n1f (91M positions, λ 0.75), 4 virtual visits per first net value, compaction bounded to 2M nodes (fixes rare second-turn timeouts), first turn 920 ms | vs v1.2 at 100 ms: +200 =287 −113, +51 ± 20; 0 timeouts in 600 games | 31.43 (final) | 13 |
 | v1.4 | net n3b: 640 hidden, 151M net self-play positions (v1.0–v1.3), λ 0.75, 20 epochs; accumulator cache; final move by value + 0.02·ln(visits); int8 output layer in the packed net | vs v1.3 at 100 ms: +252 =253 −95, +93 ± 21 (n3a 512: +80, n2c 512: +65) | 31.44 (final) | 14 |
 | v1.5 | net n4a: n3b fine-tuned 8 epochs on 139M unique positions (v1.2–v1.4 self-play); proven-draw contempt (draw worth 0.3 as first player, 0.7 as second); Huffman-coded weights (83.6k chars) | vs v1.4 at 100 ms: +204 =250 −146, +34 ± 21 (n4b from scratch on 186M: +33; no contempt: +25) | ~31.1 at 58% (replaced) | 15 |
-| v1.6 | v1.5 + pondering (search continues during the opponent's turn until its move arrives on stdin; on CG +2.5k–9k iterations per opponent turn vs the default bot) + 11% faster iterations | vs v1.5 at 100 ms (2 cores per game): +261 =229 −110, +89 ± 22 (speedups alone: +24) | submission 41717417 | |
+| v1.6 | v1.5 + pondering (search continues during the opponent's turn until its move arrives on stdin; on CG +2.5k–9k iterations per opponent turn vs the default bot) + 11% faster iterations | vs v1.5 at 100 ms (2 cores per game): +261 =229 −110, +89 ± 22 (speedups alone: +24) | 31.41 (final) | 16 |
 
 ## Measurements
 
@@ -55,5 +55,12 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | Search speed (x86, 300k first-turn iterations): fused accumulator copy + child eval without zero rows / + one division in PUCT | 0.531 s → 0.499 s → 0.473 s (−11%), same moves |
 | n4d (768 hidden, 194M unique, 16 epochs) vs n4b (640), same code | +6 ± 22 (no gain: capacity offset by speed) |
 | Draw head (n4a fine-tuned 4 epochs with draw loss 0.5) vs v1.5: eval contempt DE 0 / 1 / 2 | −13 / −54 / −104 (eval contempt hurts; draw loss also costs the value head) |
-| Arena, v1.2–v1.4 vs the top 16 | as first player 0 losses (~88% wins), as second player 0 wins (~10–19% draws): rank is decided by draw rates |
+| Arena seat split, v1.6, 120 games (seat read from the game logs; the battle records list players in finishing order, not seat order) | first player: W 54 D 2 L 4 (92%); second: W 17 D 7 L 36 (34%) |
+| Arena vs the top 25, v1.3 / v1.4 / v1.5 / v1.6 | 49% / 47% / 46% / 48%; Babebibobu 75% / 50% / 28% / 17%, MrSubZero 46% / 47% / 36% / 21% |
+| Proven-draw contempt in the arena (v1.5, v1.6) | as first player the search left proven draws (valued 0.3) for lines just above 0.3 and lost them: reverted to 0.5 / 0.5 |
 | Pondering vs v1.5 (Modal, 4 games on 8 CPUs) | +89 ± 22; without pondering +24 ± 21 |
+| n6k (n4a fine-tuned on 15M fresh Kaggle positions only) vs n4a | −26 ± 22 |
+| n6m (n4a fine-tuned on newest 137M) vs n4a | +14 ± 22 |
+| Threat features (18 inputs: small-board win threats), val loss at 128 hidden, 8M positions | 0.6014 → 0.5920 (val-result 0.5921 → 0.5819) |
+| n7t (n4a widened with threat inputs, same data and recipe as n6m) | val 0.5794 → 0.5769, val-result 0.5674 → 0.5647 |
+| CG CPU | one core per bot (threads give no extra work) |
