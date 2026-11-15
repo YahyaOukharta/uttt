@@ -71,6 +71,14 @@ def plan(subs, ntop, window, delta):
             lines.setdefault((g["opponent"], tuple(g["moves"])), g["game_id"])
     per_line = []
     seen = set()
+    reach = {}   # position (our turn) -> opponents that reached it in these submissions' games
+    for l in open(os.path.join(ROOT, "arena", "games.jsonl")):
+        g = json.loads(l)
+        if g["submission"] in subs:
+            for i in range(0 if g["me_first"] else 1, len(g["moves"]), 2):
+                # positions where some game scored (W/D) are protected: any opponent's lost games only are fair game
+                reach.setdefault(" ".join(g["moves"][:i]), set()).add(g["opponent"] if not (g["won"] or g["draw"]) else "*scored*")
+    json.dump({k: sorted(v) for k, v in reach.items()}, open(os.path.join(ROOT, "arena", "probe_reach.json"), "w"))
     book = {l.split()[0]: f"{l.split()[1]} {l.split()[2]}" for l in open(os.path.join(ROOT, "tools", "book.txt")) if l.strip() and not l.startswith("#")}
     for (opp, mt), gid in lines.items():
         ms, mv = list(mt), " ".join(mt)
@@ -100,6 +108,7 @@ def plan(subs, ntop, window, delta):
                 if c["move"] != ms[i] and q_of(c) >= best - delta and (mv, f"{i}:{c['move']}") not in done:
                     cands.append({"opp": opp, "game_id": gid, "line": mv, "moves": ms, "ply": i, "dev": f"{i}:{c['move']}",
                                   "move": c["move"], "q": round(q_of(c), 3), "best_q": round(best, 3)})
+        cands = [c for c in cands if "*scored*" not in reach.get(" ".join(ms[:c["ply"]]), set())]   # only lost games get here
         cands = [c for c in cands if book.get(an[" ".join(ms[:c["ply"]])]["hash"]) != c["move"]]   # the book plays it already
         cands = [c for c in cands if (opp, " ".join(ms[:c["ply"]]), c["move"]) not in seen and not seen.add((opp, " ".join(ms[:c["ply"]]), c["move"]))]
         cands.sort(key=lambda c: (-c["ply"], -c["q"]))   # late deviations first: the known line stays longest
@@ -155,7 +164,10 @@ def run(maxn, net):
         print(f"{p['opp']:<12} ply {p['ply']:>2} {p['move']} (q {p['q']:.2f}/{p['best_q']:.2f}): {r}"
               + ("" if follow else "  (line not followed)"), flush=True)
         if r in ("W", "D") and seat == 1 and follow:   # keep: force every move of ours in this game
-            keep = forced_entries(played, len(played) - 1 if (len(played) - 1) % 2 == 1 else len(played) - 2, False)
+            reach = json.load(open(os.path.join(ROOT, "arena", "probe_reach.json")))
+            last = len(played) - 1 if (len(played) - 1) % 2 == 1 else len(played) - 2
+            keep = [e for i, e in zip(range(1, last + 1, 2), forced_entries(played, last, False))
+                    if "*scored*" not in reach.get(" ".join(played[:i]), [])]
             with open(PBOOK, "a") as f:
                 f.write(f"# {p['opp']} {r} {p['dev']} {os.path.basename(path)}\n" + "\n".join(keep) + "\n")
             print(f"  KEPT {len(keep)} entries -> {PBOOK}", flush=True)
