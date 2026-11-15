@@ -46,6 +46,8 @@ def main(src: str, iters: int = 4000000, chunk: int = 64, min_games: int = 0, ou
             done.add(json.loads(l)["prefix"])
     todo = [e["prefix"] for e in pos if e["prefix"] not in done]
     print(f"{len(todo)} positions to analyze ({len(done)} done)")
+    if not todo:
+        return   # an empty map never returns
     s = open(src).read()
     chunks = [todo[i:i + chunk] for i in range(0, len(todo), chunk)]
     n = 0
