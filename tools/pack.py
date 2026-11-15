@@ -21,6 +21,7 @@ ap.add_argument("-D", action="append", default=[])
 ap.add_argument("-o", "--out", default="out/submission.cpp")
 ap.add_argument("--keep-comments", action="store_true")
 ap.add_argument("--keep-local", action="store_true", help="keep LOCAL blocks (test the embedded net locally)")
+ap.add_argument("--no-minify", action="store_true", help="keep line breaks, spaces and identifiers as written")
 ap.add_argument("--book", help="opening book: lines 'HASH_HEX ROW COL' (tools/book.py), most important first")
 ap.add_argument("--max-chars", type=int, default=99400, help="drop book entries from the end of the file to fit")
 ap.add_argument("--huff", action="store_true", help="Huffman-code the int8 weights (canonical code, ~6.7 bits each)")
@@ -67,6 +68,82 @@ def huff_stream(w, words):
     return np.concatenate([np.array(head, dtype=np.uint8), body])
 
 
+def minify(src):
+    """Smaller code, same token stream after preprocessing: whitespace between tokens is dropped where the
+    tokens stay apart, code lines are joined, and long identifiers that occur often are replaced by two-character
+    macros (#define Qx name, placed after the #includes; preprocessor lines themselves are left alone)."""
+    lines, pp, code = src.split("\n"), [], []
+    blocks = []   # ("pp", text) or ("code", text)
+    i = 0
+    while i < len(lines):
+        l = lines[i]
+        if l.startswith("#") or l.startswith("//@"):
+            t = l
+            while t.endswith("\\") and i + 1 < len(lines):
+                i += 1
+                t += "\n" + lines[i]
+            blocks.append(("pp", t))
+        else:
+            blocks.append(("code", l))
+        i += 1
+    tok = re.compile(r'(?:u8|u|U|L)?"(?:[^"\\\n]|\\.)*"|\'(?:[^\'\\\n]|\\.)*\'|[A-Za-z_]\w*|\d[\w.]*|\s+|.', re.S)
+    WORD = re.compile(r"\w")
+    JOIN = {"++", "--", "+=", "-=", "//", "/*", "*/", "<<", ">>", "&&", "||", "::", "->", "==", "!=", "<=", ">=",
+            "+-", "-+", "<:", "%:", "..", ".."}
+    def tokens(t):
+        return [m.group(0) for m in tok.finditer(t)]
+    # identifiers worth a macro: saving (len - 2) per use minus the #define line
+    import collections
+    cnt = collections.Counter()
+    for k, t in blocks:
+        if k == "code":
+            for x in tokens(t):
+                if re.fullmatch(r"[A-Za-z_]\w*", x):
+                    cnt[x] += 1
+    used = set(cnt)
+    for k, t in blocks:
+        if k == "pp":
+            used |= set(re.findall(r"[A-Za-z_]\w*", t))
+    names = (f"Q{c}" for c in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_")
+    names = [n for n in (f"{a}{b}" for a in "QZ" for b in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_") if n not in used]
+    gain = sorted(((len(x) - 2) * n - (len(x) + 12), x) for x, n in cnt.items() if len(x) > 2 and x not in ("u",))
+    ren = {}
+    for g, x in reversed(gain):
+        if g <= 0 or not names:
+            break
+        ren[x] = names.pop(0)
+    out, cur = [], []
+    def flush():
+        if cur:
+            out.append("".join(cur))
+            cur.clear()
+    prev = ""
+    for k, t in blocks:
+        if k == "pp":
+            flush()
+            out.append(t)
+            prev = ""
+            continue
+        pend_space = bool(cur)   # a line break counts as whitespace
+        for x in tokens(t):
+            if x.isspace():
+                pend_space = True
+                continue
+            x = ren.get(x, x)
+            if cur and pend_space:
+                a, b = prev[-1], x[0]
+                if (WORD.match(a) and WORD.match(b)) or (a + b) in JOIN or (a in "'\"" and WORD.match(b)) or (WORD.match(a) and b in "'\""):
+                    cur.append(" ")
+            cur.append(x)
+            prev = x
+            pend_space = False
+    flush()
+    defs = "".join(f"#define {v} {x}\n" for x, v in ren.items())
+    res = "\n".join(out)
+    last = max(m.end() for m in re.finditer(r"^#include.*$", res, re.M))
+    return res[:last] + "\n" + defs.rstrip("\n") + res[last:]
+
+
 s = open(a.src, encoding="utf-8").read()
 out, skip = [], 0
 for line in s.split("\n"):
@@ -83,6 +160,8 @@ if not a.keep_comments:
     out = [re.sub(r"\s*//(?!@NET_DATA@|@BOOK_DATA@).*$", "", l) for l in out]
     out = [l.strip() for l in out if l.strip()]
 s = "\n".join(out)
+if not a.no_minify and not a.keep_comments:
+    s = minify(s)
 defs = "".join(f"#define {d.replace('=', ' ', 1)}\n" for d in a.D)
 net = ""
 if a.net:

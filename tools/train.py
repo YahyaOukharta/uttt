@@ -43,7 +43,7 @@ class Net(nn.Module):
         super().__init__()
         self.h = h
         self.ft = nn.Linear(nin, h)
-        # deep > 0: a hidden layer of that width before the output (teacher nets only, not exportable)
+        # deep > 0: a hidden layer of that width before the output (CReLU; .pt only for now)
         self.l2 = nn.Linear(2 * h, deep) if deep else None
         self.out = nn.Linear(deep if deep else 2 * h, NB)
         self.dout = nn.Linear(2 * h, NB) if draw else None
@@ -92,7 +92,7 @@ def main():
     ap.add_argument("--threats", action="store_true", help="18 extra inputs (small-board win threats per player)")
     ap.add_argument("--mthreats", action="store_true", help="experimental: 18 more inputs (open boards whose capture wins the game, per player)")
     ap.add_argument("--alive", action="store_true", help="experimental: 27 more inputs (open boards each player can still win; dead open boards)")
-    ap.add_argument("--deep", type=int, default=0, help="teacher nets: hidden layer of this width before the output")
+    ap.add_argument("--deep", type=int, default=0, help="hidden layer of this width between the accumulator and the output buckets")
     ap.add_argument("--teacher", help="float checkpoint (.pt) of a teacher net trained on the same files and options: "
                     "train on its predictions (averaged over the 8 symmetries)")
     ap.add_argument("--mu", type=float, default=1.0, help="weight of the teacher prediction vs the original target")
@@ -232,6 +232,10 @@ def main():
         if w.shape[1] < model.ft.weight.shape[1]:   # widen: new inputs start with zero weights
             print(f"init: inputs {w.shape[1]} -> {model.ft.weight.shape[1]} (new weights 0)", flush=True)
             sd["ft.weight"] = torch.cat([w, torch.zeros(w.shape[0], model.ft.weight.shape[1] - w.shape[1], device=dev)], 1)
+        own = model.state_dict()
+        drop = [k for k in sd if k in own and sd[k].shape != own[k].shape]   # e.g. the output layer of a shallow net
+        for k in drop:
+            del sd[k]
         missing = model.load_state_dict(sd, strict=False).missing_keys
         if missing:
             print(f"init: new parameters {missing}", flush=True)
@@ -276,12 +280,15 @@ def main():
             opt.step()
             sched.step()
             with torch.no_grad():
-                if not a.deep:   # quantization ranges of the exported net
+                # quantization ranges of the exported net (deep nets: same first layer, int8 hidden layer)
+                model.ft.weight.clamp_(-a.wclip, a.wclip)
+                model.ft.bias.clamp_(-a.wclip, a.wclip)
+                if a.deep:
+                    model.l2.weight.clamp_(-1.98, 1.98)
+                else:
                     model.out.weight.clamp_(-1.98, 1.98)
                     if model.dout is not None:
                         model.dout.weight.clamp_(-1.98, 1.98)
-                    model.ft.weight.clamp_(-a.wclip, a.wclip)
-                    model.ft.bias.clamp_(-a.wclip, a.wclip)
                 run += loss.detach()
         vl, vr, vd = evaluate()
         print(f"epoch {ep + 1}/{a.epochs} train {float(run) / max(nb, 1):.4f} val {vl:.4f} val-result {vr:.4f} "
