@@ -438,66 +438,46 @@ static inline void addF(int16_t* __restrict a, int f) {
     const int16_t* __restrict w = NW[f];
     for (int i = 0; i < NN_H; i++) a[i] += w[i];
 }
-static inline void addF2(int16_t* __restrict a, int f, int g) {
-    const int16_t* __restrict w = NW[f];
-    const int16_t* __restrict x = NW[g];
-    for (int i = 0; i < NN_H; i++) a[i] += w[i] + x[i];
-}
 #ifdef NN_THR
 // Player q threatens board bd: two in a line with the third cell empty, board still open.
 static inline int thr(const State& s, int q, int bd) {
     return !(s.closed >> bd & 1) && (TW[s.b[q][bd]] & s.empty(bd)) ? 1 : 0;
 }
-static inline void subF(int16_t* __restrict a, int f) {
-    const int16_t* __restrict w = NW[f];
-    for (int i = 0; i < NN_H; i++) a[i] -= w[i];
-}
-// Threat changes on the board of move m (perspective P: 189 + bd = own threat, 198 + bd = opponent's).
-static inline void accThreats(Acc& A, const State& before, const State& after, int m) {
-    const int bd = MB[m];
-    for (int q = 0; q < 2; q++) {
-        const int d = thr(after, q, bd) - thr(before, q, bd);
-        if (d > 0) { addF(A.v[q], 189 + bd); addF(A.v[q ^ 1], 198 + bd); }
-        else if (d < 0) { subF(A.v[q], 189 + bd); subF(A.v[q ^ 1], 198 + bd); }
+#endif
+// d = s + the k rows r[0..k-1] (in place when d == s). One pass over the accumulator.
+static inline void addRows(int16_t* d, const int16_t* s, const int16_t* const* r, int k) {
+    const int16_t* __restrict r0 = r[0];
+    const int16_t* __restrict r1 = r[1];
+    const int16_t* __restrict r2 = r[2];
+    const int16_t* __restrict r3 = r[3];
+    switch (k) {
+        case 1: for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(s[i] + r0[i]); break;
+        case 2: for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(s[i] + r0[i] + r1[i]); break;
+        case 3: for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(s[i] + r0[i] + r1[i] + r2[i]); break;
+        default: for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(s[i] + r0[i] + r1[i] + r2[i] + r3[i]); break;
     }
 }
-#endif
-static inline void addFTo(int16_t* __restrict d, const int16_t* __restrict a, int f) {
-    const int16_t* __restrict w = NW[f];
-    for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(a[i] + w[i]);
-}
-static inline void addF2To(int16_t* __restrict d, const int16_t* __restrict a, int f, int g) {
-    const int16_t* __restrict w = NW[f];
-    const int16_t* __restrict x = NW[g];
-    for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(a[i] + w[i] + x[i]);
-}
-// D = S updated for move m (copy and update in one pass).
+// D = S updated for move m that took `before` to `after` (D may be S).
 static inline void accMoveTo(Acc& D, const Acc& S, const State& before, const State& after, int m) {
     const int p = before.side, bd = MB[m];
+    const int16_t* rp[4] = {NW[m], NNZ, NNZ, NNZ};
+    const int16_t* rq[4] = {NW[81 + m], NNZ, NNZ, NNZ};
+    int kp = 1, kq = 1;
     if ((after.closed ^ before.closed) >> bd & 1) {
-        if (after.macro[p] >> bd & 1) { addF2To(D.v[p], S.v[p], m, 162 + bd); addF2To(D.v[p ^ 1], S.v[p ^ 1], 81 + m, 171 + bd); }
-        else { addF2To(D.v[p], S.v[p], m, 180 + bd); addF2To(D.v[p ^ 1], S.v[p ^ 1], 81 + m, 180 + bd); }
-    } else {
-        addFTo(D.v[p], S.v[p], m);
-        addFTo(D.v[p ^ 1], S.v[p ^ 1], 81 + m);
+        if (after.macro[p] >> bd & 1) { rp[kp++] = NW[162 + bd]; rq[kq++] = NW[171 + bd]; }
+        else { rp[kp++] = NW[180 + bd]; rq[kq++] = NW[180 + bd]; }
     }
 #ifdef NN_THR
-    accThreats(D, before, after, m);
+    const int dp = thr(after, p, bd) - thr(before, p, bd), dq = thr(after, p ^ 1, bd) - thr(before, p ^ 1, bd);
+    if (dp) { rp[kp++] = dp > 0 ? NW[189 + bd] : NWN[bd]; rq[kq++] = dp > 0 ? NW[198 + bd] : NWN[9 + bd]; }
+    if (dq) { rq[kq++] = dq > 0 ? NW[189 + bd] : NWN[bd]; rp[kp++] = dq > 0 ? NW[198 + bd] : NWN[9 + bd]; }
 #endif
+    addRows(D.v[p], S.v[p], rp, kp);
+    addRows(D.v[p ^ 1], S.v[p ^ 1], rq, kq);
 }
 // Update A for move m that took `before` to `after`.
 static inline void accMove(Acc& A, const State& before, const State& after, int m) {
-    const int p = before.side, bd = MB[m];
-    if ((after.closed ^ before.closed) >> bd & 1) {
-        if (after.macro[p] >> bd & 1) { addF2(A.v[p], m, 162 + bd); addF2(A.v[p ^ 1], 81 + m, 171 + bd); }
-        else { addF2(A.v[p], m, 180 + bd); addF2(A.v[p ^ 1], 81 + m, 180 + bd); }
-    } else {
-        addF(A.v[p], m);
-        addF(A.v[p ^ 1], 81 + m);
-    }
-#ifdef NN_THR
-    accThreats(A, before, after, m);
-#endif
+    accMoveTo(A, A, before, after, m);
 }
 static void accRefresh(Acc& A, const State& s) {
     for (int P = 0; P < 2; P++) {
