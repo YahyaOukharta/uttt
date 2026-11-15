@@ -25,6 +25,8 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.11 | book 676 entries: + all v1.10 arena games (v1.10 vs the top 25: first 88%, second 16%; SupSon as second 10 / 10 draws, was all losses) and 16M searches of the new frequent positions | local sanity only | 33.55 (final); vs the top 25: first 90%, second 13% (v1.10 on the same top 25: 88%, 16%; overall 51.7% vs 52.2%: arena noise, Angecide resubmitted and played 40 of the games) | 7 |
 | v1.12 | book 754 entries; **refuted moves**: a move of ours whose every observed opponent reply led to a position the long search proves lost is marked losing, propagated from the deepest positions up; the book plays the best other move (216 entries, 193 as second player, plies 20–40) | local sanity only | 33.79 (final); vs the top 25: first 90%, second 10% | 7 |
 | v1.13 | book 1068 entries; positions that also occur in won games / second-player draws ("mixed") may change for a long-search gain ≥ 0.03 (e.g. vs Vingte as first player: 7 draws through a ply-24 move the search rates 0.08 worse) | local sanity only | submission 41720690 | |
+| v1.14 | book 1638 entries: + 456 pre-emptive (opponent's likely replies to book moves, where a 35k-iteration search misplays) | 34.42, rank 5 / Legend (submission 41720886) |
+| v1.15 | minified packing (90.6k chars); book 2549 entries (1279 pre-emptive from 4 rounds, 322 refuted, 47 by record) | placing (submission 41721094) |
 
 ## Measurements
 

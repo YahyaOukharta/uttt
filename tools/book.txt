@@ -1,35 +1,36 @@
 1f9a9da3 6 5  # ply 3 played 8 4 gain +0.024 L1 D0 NinjaDoggy
-3b1df99b 7 2  # ply 3 played 8 0 gain +0.036 L3 D0 zasmu
+3b1df99b 7 2  # ply 3 record 8,0:50x0.54 7,2:5x0.6 gain 3.0
 330f9238 0 8  # ply 5 played 1 6 gain +0.032 L1 D0 NinjaDoggy
 183680d8 4 8  # ply 5 played 5 7 gain +0.054 L3 D0 zasmu
 088a91c1 5 0  # ply 7 played 4 2 gain +0.034 L1 D0 NinjaDoggy
-0dbd0d8e 2 8  # ply 7 played 2 7 gain +0.043 L28 D0 Apostolique
 05ae1796 3 7  # ply 9 played 5 8 gain +0.034 L1 D0 NinjaDoggy
 0f79eea8 6 4  # ply 9 played 8 4 gain +0.033 L18 D0 Apostolique,Daporan,TomAlard
 1b720ed1 2 5  # ply 11 played 0 4 gain +0.021 L1 D0 NinjaDoggy
 10275a71 3 6  # ply 11 played 3 8 gain +0.022 L7 D0 Apostolique,TomAlard,Daporan
 3498ddee 1 2  # ply 13 played 0 0 gain +0.031 L1 D0 NinjaDoggy
 03314275 4 2  # ply 14 played 4 0 gain +0.057 L0 D8 Daporan,Vingte
-1c230f7c 8 8  # ply 14 played 6 6 gain +0.001 L2 D0 Daporan,RoboStac
+1c230f7c 8 8  # ply 14 played 6 6 gain +0.030 L4 D0 Daporan,RoboStac
 19b06fb8 6 8  # ply 15 played 8 7 gain +0.062 L3 D0 zasmu
-2fa3162c 1 8  # ply 16 played 0 8 gain +0.018 L1 D1 RoboStac
-3e528eab 8 6  # ply 16 played 7 6 gain +0.036 L2 D0 Daporan,RoboStac
-23998024 3 1  # ply 17 record 5,0:17x0.0 3,1:8x0.062 gain 1.1
+168e057b 0 1  # ply 16 played 2 0 gain +0.059 L1 D2 RoboStac,sZoom
+2fa3162c 1 8  # ply 16 played 0 8 gain +0.052 L1 D1 RoboStac
+3e528eab 8 6  # ply 16 played 7 6 gain +0.072 L2 D0 Daporan,RoboStac
+23998024 3 1  # ply 17 record 5,0:17x0.0 3,1:10x0.1 gain 1.7
 21d5bede 6 7  # ply 17 played 6 8 gain +0.009 L1 D0 MrSubZero
-1ce5131b 3 7  # ply 17 played 3 6 gain +0.031 L2 D0 MrSubZero
+1ce5131b 5 6  # ply 17 played 3 6 gain +0.070 L2 D0 MrSubZero
 044e9354 7 8  # ply 17 played 7 7 gain +0.026 L1 D0 MrSubZero
 3a1e3841 7 3  # ply 17 played 6 4 gain +0.040 L1 D0 sZoom
-053a7192 1 5  # ply 17 played 2 4 gain +0.036 L3 D0 Apostolique
+053a7192 1 5  # ply 17 played 2 4 gain +0.036 L4 D0 Apostolique
 26b289e6 0 3  # ply 18 played 0 5 gain +0.022 L1 D0 RoboStac
 0442780c 8 3  # ply 18 played 6 5 gain +0.052 L1 D0 Daporan
 1db0406a 2 7  # ply 19 played 1 8 gain +0.083 L1 D0 MrSubZero
-2204083e 5 2  # ply 19 played 3 0 gain +0.026 L27 D0 Vingte
+2204083e 5 2  # ply 19 played 3 0 gain +0.026 L35 D0 Vingte
 1e419955 2 3  # ply 19 played 2 5 gain +0.042 L7 D0 AllanB,RoboStac,flawedaxioms
 3f7611e2 6 7  # ply 19 played 6 6 gain +0.005 L1 D0 aCat
 36917d5b 6 6  # ply 19 played 7 8 gain +0.076 L1 D0 Daporan
 2f3e8571 2 5  # ply 19 played 1 5 gain +0.022 L1 D0 sZoom
 259b2832 0 3  # ply 19 played 2 3 gain +0.000 L3 D0 Apostolique
-39396485 6 3  # ply 19 record 6,3:35x0.371 8,5:12x0.0 gain 4.5
+39396485 6 3  # ply 19 record 6,3:48x0.406 8,5:12x0.0 gain 4.9
+3ceb9871 6 1  # ply 20 played 8 2 gain +0.070 L1 D2 RoboStac,sZoom
 2c70d5ca 5 8  # ply 20 played 3 8 gain +0.063 L1 D0 RoboStac
 288323ae 1 2  # ply 20 played 1 0 gain +0.079 L1 D0 Daporan
 14f3192c 5 5  # ply 20 played 4 3 gain +0.107 L0 D3 Angecide
@@ -41,8 +42,7 @@
 1edc7726 8 0  # ply 21 played 6 1 gain +0.000 L3 D0 Apostolique,TomAlard
 365e77a9 1 1  # ply 21 played 2 1 gain +0.039 L1 D0 sZoom
 072a7c0d 8 5  # ply 22 played 7 5 gain +0.039 L0 D1 Daporan
-0bc06e97 3 6  # ply 22 played 3 7 gain +0.031 L0 D2 RoboStac
-24a35305 5 1  # ply 22 played 5 0 gain +0.087 L0 D5 Vingte
+24a35305 5 1  # ply 22 played 5 0 gain +0.087 L0 D6 Vingte
 110d3df7 5 7  # ply 23 played 5 6 gain +0.001 L4 D0 Leonard.,TomAlard,sZoom
 3bec66f8 2 0  # ply 23 played 1 0 gain +0.015 L1 D0 reCurse
 3acabafb 0 1  # ply 23 played 1 0 gain +0.002 L1 D0 NinjaDoggy
@@ -50,20 +50,21 @@
 22507830 8 8  # ply 23 refuted 5 8 alt q 0.129
 0dc10bed 7 7  # ply 23 played 7 8 gain +0.003 L1 D0 MrSubZero
 2b6338c6 1 8  # ply 23 played 1 7 gain +0.015 L4 D0 yoch,Minuet
-0eb07724 2 5  # ply 23 played 1 5 gain +0.052 L2 D0 Fancheng
+0eb07724 2 5  # ply 23 played 1 5 gain +0.003 L2 D0 Fancheng
 2cd12340 1 3  # ply 23 record 0,3:5x0.0 1,3:5x0.2 gain 1.0
 3b1ca0ef 4 1  # ply 23 played 3 2 gain +0.001 L1 D0 MrSubZero
+0fba3011 2 3  # ply 23 played 1 5 gain +0.000 L2 D0 Daporan
 3f52bb08 4 2  # ply 23 played 3 1 gain +0.001 L1 D0 sZoom
 007ee461 6 8  # ply 23 played 6 7 gain +0.001 L3 D0 Apostolique
-2fb7120f 6 5  # ply 23 record 7,5:23x0.0 6,5:28x0.054 gain 1.2
+2fb7120f 6 5  # ply 23 record 7,5:23x0.0 6,5:42x0.107 gain 2.5
 3280a5ad 7 4  # ply 23 record 7,5:7x0.0 7,4:9x0.5 gain 3.5
-182c375e 6 6  # ply 23 record 7,8:15x0.0 6,7:3x0.0 6,6:21x0.357 gain 6.4
-06f0853f 2 6  # ply 23 record 2,8:5x0.0 1,8:1x0.0 2,6:29x0.448 gain 2.7
+182c375e 6 6  # ply 23 record 7,8:15x0.0 6,7:3x0.0 6,6:28x0.304 gain 5.5
+06f0853f 2 6  # ply 23 record 2,8:5x0.0 1,8:1x0.0 2,6:42x0.464 gain 2.8
 2e17cda1 0 7  # ply 24 played 1 7 gain +0.106 L0 D1 Daporan
 20b362c5 7 7  # ply 24 record 6,8:4x0.5 7,7:4x1.0 gain 2.0
 17faa66e 5 4  # ply 24 played 3 5 gain +0.000 L1 D0 Daporan
 004828a5 5 8  # ply 24 played 5 6 gain +0.166 L0 D12 zasmu
-26579c8e 7 0  # ply 25 played 8 1 gain +0.000 L2 D0 Leonard.,sZoom
+26579c8e 7 0  # ply 25 refuted 8 1 alt q 0.111
 172db566 3 4  # ply 25 refuted 5 5 alt q 0.107
 3cf3bd24 6 4  # ply 25 played 6 3 gain +0.000 L5 D0 NinjaDoggy
 06598bc0 1 5  # ply 25 played 0 3 gain +0.158 L1 D0 MrSubZero
@@ -75,29 +76,29 @@
 20abc259 1 2  # ply 25 refuted 2 1 alt q 0.149
 2c592148 7 0  # ply 25 refuted 6 0 alt q 0.128
 2ffb5d45 1 1  # ply 25 refuted 0 2 alt q 0.175
-3a375501 6 5  # ply 25 refuted 7 3 alt q 0.123
+3a375501 6 5  # ply 25 played 7 3 gain +0.025 L7 D0 Leonard.,RoboStac
 24ea187c 0 6  # ply 25 played 2 7 gain +0.001 L6 D0 Fancheng
 1c5d2422 6 5  # ply 25 refuted 7 5 alt q 0.243
 15c994f7 6 7  # ply 25 refuted 8 6 alt q 0.127
 255ed9e2 4 1  # ply 25 refuted 3 0,5 0 alt q 0.114
 1dd5175b 3 2  # ply 26 played 4 2 gain +0.049 L0 D1 Daporan
 25c19c1e 2 8  # ply 26 played 1 6 gain +0.000 L1 D0 RoboStac
-14570b54 6 0  # ply 27 refuted 7 0 alt q 0.109
+14570b54 6 0  # ply 27 played 7 0 gain +0.000 L2 D0 Leonard.,sZoom
 01397523 5 8  # ply 27 played 4 7 gain +0.001 L5 D0 NinjaDoggy
 2b61fa4a 8 4  # ply 27 refuted 7 5 alt q 0.120
+34216c5f 1 1  # ply 27 played 0 2 gain +0.230 L8 D0 Vingte
 20c6c1d5 6 6  # ply 27 played 7 7 gain +0.002 L1 D0 JOiy
 2a2bf640 5 2  # ply 27 played 4 1 gain +0.000 L4 D0 yoch,Minuet
 18ebafda 1 6  # ply 27 played 1 7 gain +0.002 L1 D0 Fancheng
-21a17669 4 1  # ply 27 played 3 1 gain +0.011 L2 D0 Babebibobu
 399bb699 2 7  # ply 27 played 0 8 gain +0.001 L1 D0 aCat
 24743544 0 6  # ply 27 played 1 7 gain +0.000 L1 D0 Daporan
 1c6258d6 2 2  # ply 27 refuted 1 2 alt q 0.109
-1c5775e5 8 8  # ply 27 record 8,8:4x0.5 6,7:2x0.0 gain 1.0
 0a3625d0 4 1  # ply 27 refuted 3 1 alt q 0.181
 238a5229 4 1  # ply 27 refuted 5 1 alt q 0.119
+00b4009d 0 1  # ply 27 refuted 2 0,2 1 alt q 0.115
 08d49e67 0 5  # ply 27 refuted 0 3 alt q 0.105
-36984b63 8 6  # ply 28 played 6 6 gain +0.084 L0 D2 RoboStac
-02330487 7 4  # ply 28 played 7 3 gain +0.122 L0 D2 Angecide
+36984b63 8 6  # ply 28 played 6 6 gain +0.173 L0 D2 RoboStac
+02330487 7 4  # ply 28 refuted 7 3 alt q 0.966
 29226a00 3 6  # ply 29 played 5 7 gain +0.000 L1 D0 reCurse
 2d81e3bc 7 0  # ply 29 played 7 1 gain +0.015 L1 D0 Vincent_L
 10e2348a 2 6  # ply 29 played 1 7 gain +0.002 L4 D0 RoboStac
@@ -105,19 +106,16 @@
 3530cc82 2 1  # ply 29 refuted 2 0 alt q 0.118
 247a279e 1 1  # ply 29 played 2 0 gain +0.000 L1 D0 Babebibobu
 1e859793 1 4  # ply 29 refuted 2 5 alt q 0.386
-19d4e84c 1 6  # ply 29 played 0 7 gain +0.001 L2 D0 Daporan
+19d4e84c 1 6  # ply 29 played 0 7 gain +0.000 L2 D0 Daporan
 2bd25d2f 1 3  # ply 29 played 2 4 gain +0.000 L15 D0 TomAlard
 3f393cf8 4 1  # ply 29 played 4 2 gain +0.001 L1 D0 jacek
-07b0a90f 4 7  # ply 29 record 4,7:91x0.104 3,7:24x0.042 gain 1.5
-06fb293a 4 2  # ply 29 refuted 4 1 alt q 0.130
 14432f1f 0 2  # ply 29 played 2 0 gain +0.000 L5 D0 sZoom
 151fb921 3 8  # ply 29 played 4 7 gain +0.000 L1 D0 SupSon
 3dd13911 6 2  # ply 29 played 7 1 gain +0.000 L4 D0 SupSon
-1e41e14b 1 5  # ply 30 played 2 3 gain +0.131 L0 D2 RoboStac
+1e41e14b 1 5  # ply 30 played 2 3 gain +0.194 L0 D2 RoboStac
 0ec3b1da 8 1  # ply 30 played 6 1 gain +0.000 L1 D0 RoboStac
 2f77685a 6 6  # ply 30 played 7 8 gain +0.166 L0 D1 RoboStac
 1c633fbd 3 3  # ply 30 record 5,5:4x0.0 3,3:1x1.0 gain 4.0
-2fa24add 0 1  # ply 30 refuted 1 2 alt q 0.180
 26b0d18a 3 7  # ply 31 played 5 7 gain +0.000 L1 D0 Leonard.
 30904194 7 2  # ply 31 played 6 1 gain +0.000 L1 D0 reCurse
 2ee73204 3 3  # ply 31 refuted 4 5 alt q 0.106
@@ -126,18 +124,18 @@
 02a24c62 4 1  # ply 31 refuted 4 2 alt q 0.116
 20098d46 3 7  # ply 31 played 5 8 gain +0.000 L1 D0 flawedaxioms
 162b45a5 6 4  # ply 31 played 6 5 gain +0.000 L1 D0 Babebibobu
-0626f88e 7 7  # ply 31 played 7 6 gain +0.006 L2 D0 Daporan
+0626f88e 7 7  # ply 31 refuted 7 6 alt q 0.129
 2aa7807a 0 6  # ply 31 refuted 1 7 alt q 0.156
 1e014bae 3 4  # ply 31 played 5 5 gain +0.000 L1 D0 jacek
 1f37c82b 3 4  # ply 31 played 1 2 gain +0.000 L5 D0 Leonard.
 1e4ad43c 4 2  # ply 31 played 3 1 gain +0.000 L6 D0 Fancheng
-074f026a 3 3  # ply 31 refuted 5 5 alt q 0.376
+074f026a 3 3  # ply 31 refuted 5 5 alt q 0.153
 240bdb59 5 3  # ply 31 played 3 5 gain +0.001 L2 D0 Babebibobu
-026be5c1 7 5  # ply 32 played 8 4 gain +0.170 L0 D2 RoboStac
+01af7bc9 0 3  # ply 31 played 2 3 gain +0.000 L2 D0 flawedaxioms
+026be5c1 6 4  # ply 32 played 8 4 gain +0.235 L0 D2 RoboStac
 24b18c57 6 0  # ply 32 played 7 0 gain +0.006 L1 D0 RoboStac
 3a01a292 7 6  # ply 33 refuted 6 7 alt q 0.168
 0e4da52c 4 2  # ply 33 refuted 3 2 alt q 0.472
-36f5a62d 3 8  # ply 33 played 5 6 gain +0.169 L2 D0 Vingte
 087fa338 7 6  # ply 33 played 8 7 gain +0.001 L1 D0 AllanB
 1025a29b 7 0  # ply 33 refuted 8 1 alt q 0.142
 02f24d9c 5 5  # ply 33 refuted 3 5 alt q 0.946
@@ -145,15 +143,15 @@
 01cf9098 7 0  # ply 33 played 6 0 gain +0.000 L6 D0 TomAlard
 36fee179 7 5  # ply 33 played 7 3 gain +0.231 L1 D0 RoboStac
 063fb486 2 1  # ply 33 played 1 1 gain +0.000 L15 D0 RoboStac
-39b9ce0d 3 0  # ply 33 refuted 0 6,1 2 alt q 0.192
+39b9ce0d 5 6  # ply 33 refuted 0 6,1 2,2 6,3 0 alt q 0.141
 1686fadc 4 2  # ply 33 played 3 0 gain +0.000 L6 D0 Fancheng
+31baca8e 1 7  # ply 33 played 2 6 gain +0.000 L2 D0 Babebibobu
 3fbf41be 4 1  # ply 33 refuted 3 2 alt q 0.160
 35351b0a 6 0  # ply 34 played 7 2 gain +0.006 L1 D0 RoboStac
 3604b72b 6 7  # ply 34 played 7 8 gain +0.104 L1 D0 Daporan
 302edfad 7 4  # ply 34 played 8 5 gain +0.460 L0 D1 Angecide
 1e2ac9de 5 3  # ply 35 refuted 3 4 alt q 0.106
 36656e5f 4 3  # ply 35 played 5 5 gain +0.001 L1 D0 AllanB
-091451be 1 3  # ply 35 refuted 1 4 alt q 0.110
 332dcf4c 6 2  # ply 35 played 6 1 gain +0.000 L6 D0 TomAlard
 2d009b2e 4 2  # ply 35 refuted 3 2 alt q 0.498
 004e63bb 7 5  # ply 35 played 6 3 gain +0.413 L1 D0 flawedaxioms
@@ -164,12 +162,14 @@
 10ed3f98 4 3  # ply 37 played 5 3 gain +0.001 L1 D0 AllanB
 20d1efb4 5 4  # ply 37 played 5 3 gain +0.218 L1 D0 flawedaxioms
 34f73b6d 7 3  # ply 37 refuted 7 5 alt q 0.497
+2dbb77a9 2 5  # ply 37 played 1 3 gain +0.000 L38 D0 AllanB
 2a1d2d2d 4 2  # ply 37 played 5 1 gain +0.002 L2 D0 Babebibobu
 2d6fdbe3 2 1  # ply 37 played 2 2 gain +0.051 L1 D0 flawedaxioms
 03647692 5 8  # ply 38 refuted 4 1 alt q 0.496
 381fba15 0 0  # ply 38 refuted 0 1 alt q 0.600
 29d30589 6 4  # ply 39 refuted 7 5 alt q 0.500
-105d0636 1 6  # ply 39 refuted 2 6 alt q 0.387
+2fc398dc 3 3  # ply 39 played 5 5 gain +0.000 L2 D0 Daporan
+105d0636 1 6  # ply 39 refuted 2 6 alt q 0.473
 006533fa 2 7  # ply 39 played 0 6 gain +0.125 L1 D0 flawedaxioms
 2370135e 4 2  # ply 41 refuted 5 2 alt q 0.106
 235f6424 5 1  # ply 41 record 3,2:2x0.0 5,1:4x0.625 gain 1.2
@@ -180,48 +180,49 @@
 133f3d79 1 0  # ply 5 played 0 1 gain +0.032 L12 D0 Apostolique,Daporan,zasmu
 27daa5e9 7 3  # ply 9 played 8 3 gain +0.035 L7 D0 SupSon,sZoom,RoboStac
 084a983f 5 7  # ply 11 played 5 8 gain +0.048 L1 D0 zasmu
-2afd454b 4 6  # ply 11 played 5 7 gain +0.040 L2 D0 Apostolique,zasmu
-014453c7 6 4  # ply 12 record 8,4:2x0.0 6,4:6x0.75 gain 1.5
+2afd454b 4 6  # ply 11 played 5 7 gain +0.024 L2 D0 Apostolique,zasmu
+014453c7 6 4  # ply 12 record 8,4:2x0.0 6,4:8x0.75 gain 1.5
+12b02be3 2 5  # ply 14 played 0 5 gain +0.069 L0 D2 Apostolique
 1dc4c9e8 2 2  # ply 15 played 0 0 gain +0.043 L1 D0 MrSubZero
 2e37c221 0 8  # ply 15 played 1 8 gain +0.013 L1 D0 Apostolique
 0549306c 6 3  # ply 17 played 6 4 gain +0.002 L1 D0 MrSubZero
+27c743d3 6 4  # ply 17 played 6 3 gain +0.003 L2 D0 SupSon
 13b41bb2 8 3  # ply 17 played 6 4 gain +0.024 L1 D0 Apostolique
 2ef6364a 8 5  # ply 19 played 8 3 gain +0.000 L1 D0 zasmu
 36adaa91 1 3  # ply 19 played 2 3 gain +0.000 L1 D0 MrSubZero
 143030cf 7 0  # ply 19 played 6 1 gain +0.023 L1 D0 Daporan
 12372ff4 5 0  # ply 19 played 3 1 gain +0.036 L1 D0 Daporan
-2c6659ae 3 0  # ply 19 played 4 0 gain +0.001 L2 D0 SupSon
+2c6659ae 3 2  # ply 19 played 4 0 gain +0.001 L2 D0 SupSon
 31575c86 2 6  # ply 19 played 2 7 gain +0.001 L4 D0 sZoom,RoboStac,flawedaxioms
 0ce38941 4 0  # ply 19 played 5 1 gain +0.011 L1 D0 zasmu
 2a2560df 8 6  # ply 19 played 6 8 gain +0.000 L1 D0 Apostolique
 1e5300ad 1 1  # ply 20 played 2 0 gain +0.092 L1 D0 RoboStac
 1e4cb415 0 4  # ply 21 played 0 3 gain +0.000 L1 D0 zasmu
+3f1f0951 1 4  # ply 21 played 1 5 gain +0.072 L7 D0 Apostolique
 1d8e86ac 4 1  # ply 21 played 5 1 gain +0.001 L4 D0 Daporan
 0863c92a 3 2  # ply 21 played 3 1 gain +0.012 L12 D0 SupSon
 04d695b9 0 5  # ply 21 played 1 3 gain +0.000 L1 D0 MrSubZero
 303d372c 6 8  # ply 21 played 8 6 gain +0.019 L1 D0 Daporan
-1c98ebf7 1 1  # ply 21 played 2 0 gain +0.004 L2 D0 SupSon
+1c98ebf7 1 1  # ply 21 refuted 2 0 alt q 0.137
 36fc2c52 1 5  # ply 21 played 2 3 gain +0.000 L4 D0 sZoom,RoboStac,flawedaxioms
-25132406 5 7  # ply 22 played 5 8 gain +0.014 L2 D0 Vingte
+25132406 5 7  # ply 22 played 5 8 gain +0.089 L2 D0 Vingte
 1d778e4b 3 4  # ply 22 played 3 5 gain +0.132 L1 D0 RoboStac
 15a28d1d 4 1  # ply 23 refuted 5 2 alt q 0.160
-25a95b2a 1 2  # ply 23 played 0 1 gain +0.177 L2 D0 flawedaxioms
+25a95b2a 1 2  # ply 23 played 0 1 gain +0.190 L2 D0 flawedaxioms
 009d0859 3 2  # ply 23 played 5 0 gain +0.000 L12 D0 SupSon
-2d10cc0c 7 5  # ply 23 played 7 4 gain +0.043 L21 D0 Vingte
+2d10cc0c 7 5  # ply 23 played 7 4 gain +0.043 L25 D0 Vingte
 387fa195 6 7  # ply 23 refuted 8 8 alt q 0.139
-1e49e836 7 6  # ply 23 refuted 6 8 alt q 0.114
+1e49e836 7 6  # ply 23 played 6 8 gain +0.001 L2 D0 SupSon
 30646118 3 8  # ply 23 played 5 6 gain +0.091 L1 D0 RoboStac
 1590e96b 6 7  # ply 23 refuted 1 1 alt q 0.118
-2afcdb34 6 2  # ply 24 played 6 0 gain +0.004 L2 D0 Vingte
-21d4ddc0 7 8  # ply 24 played 6 8 gain +0.052 L0 D1 Vingte
+2afcdb34 7 1  # ply 24 played 6 0 gain +0.161 L2 D0 Vingte
 3c5bfc4b 6 2  # ply 24 played 7 0 gain +0.119 L0 D1 Apostolique
 12f50aba 6 0  # ply 24 played 7 2 gain +0.130 L1 D0 RoboStac
 16f78604 5 7  # ply 25 refuted 3 6 alt q 0.125
 1e6cb37e 7 8  # ply 25 refuted 6 8 alt q 0.125
 2e881428 7 4  # ply 25 played 6 5 gain +0.000 L1 D0 MrSubZero
 21454f10 3 1  # ply 25 refuted 3 0 alt q 0.111
-04eef597 1 3  # ply 25 played 2 5 gain +0.051 L1 D0 Apostolique
-217664c0 0 0  # ply 25 record 2,1:5x0.0 0,0:2x0.25 gain 1.2
+217664c0 0 0  # ply 25 record 2,1:5x0.0 0,0:9x0.389 gain 1.9
 04729b70 5 5  # ply 25 played 3 5 gain +0.000 L1 D0 flawedaxioms
 08d5cdf0 8 2  # ply 25 refuted 7 2 alt q 0.130
 2099cc9c 0 1  # ply 25 played 2 2 gain +0.000 L1 D0 MrSubZero
@@ -233,14 +234,12 @@
 006a7d64 1 6  # ply 27 played 2 8 gain +0.000 L1 D0 TomAlard
 03aa23b4 4 5  # ply 27 played 5 5 gain +0.000 L1 D0 zasmu
 2e7e3d59 0 2  # ply 27 refuted 0 1 alt q 0.109
-2d8e7323 6 7  # ply 27 played 8 7 gain +0.000 L6 D0 Vingte
 1213f2dc 8 3  # ply 27 played 6 4 gain +0.001 L1 D0 Minuet
 157dad4d 1 7  # ply 27 played 1 8 gain +0.000 L1 D0 Fancheng
 26a6924b 8 5  # ply 27 refuted 6 5 alt q 0.140
 388e09c1 3 1  # ply 27 refuted 5 1 alt q 0.116
 15fd1075 3 3  # ply 27 record 3,3:3x1.0 3,4:1x0.0 gain 1.0
 1325a7d7 3 5  # ply 27 refuted 4 5 alt q 0.173
-146f6653 3 2  # ply 27 played 4 2 gain +0.001 L2 D0 SupSon
 3c90c773 4 8  # ply 27 refuted 5 7 alt q 0.103
 228f3c6c 7 1  # ply 27 refuted 6 2 alt q 0.118
 1d13f25c 4 6  # ply 27 refuted 3 6 alt q 0.446
@@ -254,18 +253,16 @@
 04abdc67 7 2  # ply 29 played 7 1 gain +0.000 L1 D0 Fancheng
 0e91578b 4 3  # ply 29 played 3 3 gain +0.000 L1 D0 Apostolique
 1767938b 0 0  # ply 29 played 1 1 gain +0.000 L5 D0 TomAlard
-2c361fce 6 6  # ply 29 played 7 7 gain +0.002 L20 D0 Daporan
 3f8fe630 1 6  # ply 29 played 1 7 gain +0.002 L1 D0 flawedaxioms
 1a1ec305 0 1  # ply 29 played 1 0 gain +0.000 L1 D0 MrSubZero
 240ce589 1 2  # ply 29 played 1 1 gain +0.002 L1 D0 Daporan
 10a96969 1 0  # ply 29 refuted 2 2 alt q 0.285
-15af21fa 6 2  # ply 29 played 7 2 gain +0.000 L2 D0 sZoom
+15af21fa 6 2  # ply 29 played 7 2 gain +0.001 L2 D0 sZoom
 3a216419 7 6  # ply 29 played 8 7 gain +0.001 L1 D0 flawedaxioms
 36e7fc5f 7 1  # ply 29 played 6 2 gain +0.001 L1 D0 Apostolique
 3c81bc9f 3 1  # ply 30 played 5 2 gain +0.001 L2 D0 Vingte
 0df048cc 3 6  # ply 30 played 4 6 gain +0.180 L0 D1 Vingte
 0e5e0ce0 1 1  # ply 30 played 1 0 gain +0.232 L1 D0 RoboStac
-21dca360 6 2  # ply 31 played 7 1 gain +0.000 L2 D0 RoboStac
 38f59647 5 1  # ply 31 played 5 0 gain +0.271 L4 D0 yoch
 0f2a5289 4 2  # ply 31 played 3 2 gain +0.000 L1 D0 Fancheng
 3e8cb63d 5 0  # ply 31 refuted 5 1 alt q 0.497
@@ -274,7 +271,6 @@
 3c6e2df5 7 5  # ply 31 refuted 8 5 alt q 0.110
 35f1b5a5 2 4  # ply 31 refuted 1 5 alt q 0.143
 0f0456a9 0 6  # ply 31 refuted 2 7 alt q 0.104
-23fb44f3 2 0  # ply 31 played 1 1 gain +0.000 L2 D0 sZoom
 2fe55767 4 5  # ply 31 played 3 4 gain +0.000 L1 D0 Apostolique
 1b058f2c 7 1  # ply 31 refuted 6 0 alt q 0.101
 185330af 6 5  # ply 32 played 7 5 gain +0.000 L2 D0 Vingte
@@ -288,7 +284,7 @@
 35975f2e 4 0  # ply 33 refuted 3 0,3 2 alt q 0.244
 2f85bced 3 4  # ply 33 played 4 5 gain +0.003 L1 D0 Daporan
 1540e1ac 8 7  # ply 33 played 7 6 gain +0.000 L1 D0 Apostolique
-3389aa4e 6 5  # ply 34 played 8 3 gain +0.002 L2 D0 Vingte
+3389aa4e 6 5  # ply 34 played 8 3 gain +0.000 L2 D0 Vingte
 34b9c087 6 2  # ply 34 refuted 6 1 alt q 0.500
 0cdc653a 8 2  # ply 35 refuted 3 8 alt q 0.159
 141ef05f 2 1  # ply 35 refuted 1 0 alt q 0.207
@@ -297,13 +293,11 @@
 3f18fe6a 3 7  # ply 35 refuted 3 6 alt q 0.489
 21aa0d7c 3 7  # ply 35 played 4 7 gain +0.002 L12 D0 SupSon
 2e51fc0d 4 1  # ply 35 played 4 3 gain +0.000 L1 D0 MrSubZero
-3583a12b 2 6  # ply 36 played 1 6 gain +0.002 L2 D0 Vingte
+3583a12b 2 6  # ply 36 refuted 1 6 alt q 0.501
 3a9341f6 8 6  # ply 37 played 8 7 gain +0.001 L1 D0 jacek
-3cff013d 1 7  # ply 38 refuted 2 6 alt q 0.480
-2a245a51 2 3  # ply 42 refuted 1 5 alt q 0.415
 151d4f76 7 6  # ply 46 played 7 8 gain +0.023 L0 D1 Apostolique
-066cc737 1 3  # ply 8 record 0,4:5x0.1 1,3:14x0.821 gain 3.6
-1bfb011c 0 2  # ply 9 record 2,0:6x0.083 0,2:2x0.25 gain 1.0
+066cc737 1 3  # ply 8 record 0,4:5x0.1 1,3:20x0.825 gain 3.6
+1bfb011c 0 2  # ply 9 played 2 0 gain +0.037 L8 D0 MrSubZero
 205fd63b 4 2  # ply 12 played 4 0 gain +0.026 L4 D1 Apostolique,Vingte,Daporan
 06c3a4da 6 5  # ply 13 played 8 4 gain +0.023 L1 D0 MrSubZero
 33c24c79 7 3  # ply 14 played 7 5 gain +0.001 L1 D0 Daporan
@@ -312,19 +306,19 @@
 0494da56 6 5  # ply 15 played 7 3 gain +0.001 L5 D0 Daporan
 134237e5 7 3  # ply 16 played 8 5 gain +0.023 L0 D1 Daporan
 129ef2d8 2 2  # ply 16 played 0 0 gain +0.015 L1 D0 Daporan
-2e679bd1 6 8  # ply 16 played 6 7 gain +0.031 L1 D0 Daporan
-2b08d229 3 2  # ply 17 played 5 1 gain +0.022 L2 D0 Apostolique
+2e679bd1 6 8  # ply 16 record 6,7:1x0.0 6,8:2x1.0 gain 1.0
+2b08d229 5 1  # ply 17 played 3 2 gain +0.022 L5 D0 Apostolique
 3ef5cdab 3 8  # ply 17 played 5 6 gain +0.005 L3 D0 Apostolique
-1dcf5c4b 8 1  # ply 18 played 8 0 gain +0.050 L2 D0 Apostolique
+1dcf5c4b 8 1  # ply 18 played 8 0 gain +0.096 L2 D0 Apostolique
 0e707c65 6 1  # ply 18 played 8 0 gain +0.006 L1 D0 Daporan
 1c727a4f 7 5  # ply 18 played 8 5 gain +0.035 L1 D0 MrSubZero
 0b3d9fbe 3 8  # ply 18 played 5 6 gain +0.060 L1 D0 Daporan
 07fd0e5e 0 4  # ply 19 refuted 1 4 alt q 0.127
-3722b85b 2 6  # ply 19 played 1 8 gain +0.041 L2 D0 Daporan
 211196ab 6 6  # ply 19 played 8 7 gain +0.007 L4 D0 Daporan
 3e563216 5 1  # ply 19 played 3 2 gain +0.053 L1 D0 MrSubZero
+1d37256f 3 4  # ply 20 played 4 5 gain +0.106 L0 D2 Daporan
 237f29fb 3 6  # ply 20 played 5 7 gain +0.023 L0 D1 Vingte
-30927eaf 5 1  # ply 20 played 3 0 gain +0.008 L2 D0 Apostolique
+30927eaf 5 1  # ply 20 played 3 0 gain +0.018 L2 D0 Apostolique
 00cafab0 8 8  # ply 20 played 6 6 gain +0.049 L1 D0 Daporan
 13036af3 8 7  # ply 20 played 6 7 gain +0.039 L1 D0 MrSubZero
 2a58f451 2 7  # ply 20 played 0 6 gain +0.036 L0 D1 RoboStac
@@ -335,11 +329,10 @@
 34a8da1c 8 5  # ply 21 played 6 3 gain +0.000 L3 D0 TomAlard
 36060ef4 3 5  # ply 21 played 3 3 gain +0.000 L1 D0 Daporan
 008c0003 4 2  # ply 21 played 3 0 gain +0.000 L1 D0 Apostolique
-3fc07e0d 0 0  # ply 21 played 2 1 gain +0.055 L25 D0 Apostolique
 154cb03e 1 1  # ply 21 played 2 0 gain +0.001 L1 D0 MrSubZero
-0bb86d45 1 2  # ply 21 played 0 0 gain +0.059 L3 D0 flawedaxioms
-25a229cf 5 8  # ply 22 played 5 7 gain +0.031 L0 D2 Daporan
-20600c9a 4 5  # ply 22 played 4 3 gain +0.050 L2 D0 Apostolique
+0bb86d45 1 2  # ply 21 played 0 0 gain +0.059 L4 D0 flawedaxioms
+25a229cf 5 8  # ply 22 played 5 7 gain +0.078 L0 D2 Daporan
+20600c9a 4 5  # ply 22 played 4 3 gain +0.107 L2 D0 Apostolique
 2ae47ed1 7 1  # ply 22 played 7 0 gain +0.082 L1 D0 MrSubZero
 238bfc92 4 1  # ply 23 played 5 1 gain +0.001 L3 D0 Babebibobu,RoboStac,Angecide
 1d32db6d 7 7  # ply 23 played 7 6 gain +0.000 L7 D0 Babebibobu,yoch,sZoom
@@ -356,34 +349,31 @@
 3741075a 8 5  # ply 24 played 7 3 gain +0.108 L0 D1 RoboStac
 0e23a393 3 1  # ply 24 played 5 2 gain +0.091 L0 D1 Angecide
 0213c1fb 7 5  # ply 24 played 8 3 gain +0.040 L1 D0 Daporan
-1174a6f3 3 1  # ply 25 played 4 2 gain +0.056 L2 D0 Babebibobu,RoboStac
-344052e3 3 7  # ply 25 refuted 5 6 alt q 0.111
+1174a6f3 5 0  # ply 25 refuted 4 2 alt q 0.159
+344052e3 5 8  # ply 25 refuted 3 7,5 6 alt q 0.111
 2eae8d8e 0 7  # ply 25 played 2 7 gain +0.047 L1 D0 Daporan
 329fcc1d 8 1  # ply 25 played 6 1 gain +0.000 L3 D0 TomAlard
 0ce5a41b 2 3  # ply 25 played 0 3 gain +0.000 L1 D0 Apostolique
 2c0dc3a6 1 2  # ply 25 refuted 0 0,2 0 alt q 0.138
 02447dbd 7 4  # ply 25 refuted 6 5 alt q 0.154
 0a1a04b7 1 1  # ply 26 played 2 0 gain +0.058 L0 D1 Daporan
-22b030b6 0 7  # ply 26 played 0 6 gain +0.047 L2 D0 Apostolique
 2432054d 6 2  # ply 26 played 8 1 gain +0.240 L1 D0 Daporan
 135ba278 2 7  # ply 26 played 2 8 gain +0.036 L1 D0 MrSubZero
-090976f0 2 2  # ply 26 played 0 1 gain +0.094 L1 D1 Daporan
+090976f0 2 2  # ply 26 played 0 1 gain +0.153 L1 D1 Daporan
 28055336 2 1  # ply 26 played 0 1 gain +0.122 L0 D1 Angecide
 2e421872 0 7  # ply 26 played 2 6 gain +0.216 L1 D0 Daporan
-038ae8ec 8 6  # ply 27 refuted 7 7 alt q 0.121
+038ae8ec 8 6  # ply 27 played 7 7 gain +0.000 L2 D0 Babebibobu,RoboStac
 366f290c 6 0  # ply 27 played 8 0 gain +0.007 L1 D0 flawedaxioms
 189ba0b3 0 6  # ply 27 played 1 8 gain +0.000 L3 D0 TomAlard
 2013c209 6 7  # ply 27 played 7 6 gain +0.000 L1 D0 Apostolique
 1970f623 6 1  # ply 27 played 6 0 gain +0.145 L1 D0 Apostolique
 0f2d17b5 7 0  # ply 27 refuted 7 2 alt q 0.164
 0d1ee5a2 5 3  # ply 27 played 3 3 gain +0.130 L1 D0 flawedaxioms
-367c82a9 2 4  # ply 28 played 2 5 gain +0.000 L2 D0 Apostolique
 32c87222 5 0  # ply 28 played 5 2 gain +0.015 L1 D0 Daporan
 0645e32d 6 3  # ply 28 played 6 4 gain +0.004 L1 D0 MrSubZero
 12ff60b6 1 8  # ply 28 played 1 6 gain +0.153 L1 D0 Daporan
 3514d735 3 7  # ply 29 played 3 6 gain +0.001 L1 D0 Babebibobu
 384ae9fe 7 8  # ply 29 played 8 7 gain +0.187 L1 D0 flawedaxioms
-3a286d30 2 7  # ply 29 refuted 1 7 alt q 0.111
 2b016a76 4 2  # ply 29 played 3 6 gain +0.000 L1 D0 Apostolique
 0ceb1bfb 8 1  # ply 29 played 6 1 gain +0.000 L1 D0 Apostolique
 3902937e 7 6  # ply 29 refuted 6 7 alt q 0.118
@@ -391,6 +381,7 @@
 31bb143d 3 3  # ply 29 played 0 3 gain +0.000 L1 D0 MrSubZero
 082a49d0 7 3  # ply 29 refuted 7 5 alt q 0.110
 385509d0 2 4  # ply 29 played 1 5 gain +0.054 L1 D0 flawedaxioms
+3454436f 3 1  # ply 30 played 5 1 gain +0.230 L0 D2 RoboStac,Daporan
 0c2e41ea 6 4  # ply 30 played 8 3 gain +0.161 L0 D1 Apostolique
 2926bb09 3 0  # ply 30 played 5 1 gain +0.000 L1 D0 Daporan
 054982e6 6 8  # ply 30 refuted 8 6 alt q 0.492
@@ -404,6 +395,7 @@
 120c9b2f 7 7  # ply 31 refuted 6 8 alt q 0.182
 2376b3ec 1 7  # ply 31 refuted 0 8 alt q 0.119
 349c0a7b 5 2  # ply 31 refuted 3 1 alt q 0.103
+227cdadf 0 1  # ply 31 played 1 2 gain +0.000 L6 D0 RoboStac
 08de0002 2 4  # ply 31 refuted 2 5 alt q 0.488
 3c42bc10 2 0  # ply 32 played 1 2 gain +0.231 L0 D1 Apostolique
 23dab584 8 3  # ply 32 played 7 3 gain +0.024 L0 D1 Vingte
@@ -414,7 +406,6 @@
 02e24837 7 7  # ply 33 played 8 7 gain +0.001 L1 D0 Apostolique
 14aa8cee 7 7  # ply 33 played 7 6 gain +0.000 L4 D0 Apostolique
 1f9bd3bf 5 2  # ply 33 played 3 2 gain +0.001 L1 D0 Daporan
-20ffc893 4 3  # ply 33 played 5 3 gain +0.000 L2 D0 RoboStac
 2ab28895 4 2  # ply 33 played 3 2 gain +0.206 L1 D0 flawedaxioms
 1d83cd3e 2 6  # ply 34 played 1 7 gain +0.271 L0 D1 Daporan
 3b85727d 2 7  # ply 34 played 0 7 gain +0.150 L0 D1 RoboStac
@@ -427,7 +418,6 @@
 2ee95d30 5 7  # ply 35 played 3 6 gain +0.000 L1 D0 flawedaxioms
 18751560 5 5  # ply 35 played 3 4 gain +0.000 L1 D0 Apostolique
 3644f7df 0 3  # ply 35 played 1 5 gain +0.000 L1 D0 Daporan
-1e28f6b6 8 5  # ply 35 played 8 3 gain +0.001 L1 D0 RoboStac
 011192a0 6 5  # ply 35 played 7 3 gain +0.187 L1 D0 flawedaxioms
 17f23ea2 2 2  # ply 36 played 2 0 gain +0.434 L0 D1 Daporan
 1767c7d8 1 6  # ply 37 played 2 8 gain +0.001 L3 D0 flawedaxioms,Angecide
@@ -443,36 +433,38 @@
 19326416 0 1  # ply 45 refuted 2 1 alt q 0.224
 3c97c1d3 4 7  # ply 47 refuted 3 6 alt q 0.332
 04dc00a9 3 1  # ply 47 played 4 1 gain +0.001 L1 D0 flawedaxioms
-11c048ea 2 6  # ply 49 refuted 1 8,2 7 alt q 0.285
+33538133 2 3  # ply 47 refuted 2 5 alt q 0.280
 154a22c8 8 1  # ply 13 played 6 0 gain +0.050 L1 D0 MrSubZero
 1a295de3 7 6  # ply 15 played 6 6 gain +0.042 L1 D0 Vingte
+21e3e443 0 2  # ply 16 played 0 0 gain +0.095 L0 D2 Vingte
 0b9b66c4 2 5  # ply 17 played 0 4 gain +0.044 L3 D0 MrSubZero
+218d7dc4 3 2  # ply 17 played 3 1 gain +0.021 L2 D0 Daporan
 065f0ea1 2 7  # ply 19 played 0 6 gain +0.054 L1 D0 Vingte
-05cae338 5 6  # ply 19 played 3 6 gain +0.053 L1 D0 MrSubZero
 35dd419b 6 8  # ply 19 played 6 7 gain +0.051 L3 D0 MrSubZero
 2f8e06a1 5 6  # ply 19 played 3 8 gain +0.011 L1 D0 MrSubZero
 3c5ca541 7 2  # ply 19 played 8 1 gain +0.032 L1 D0 MrSubZero
+35ac8be2 2 0  # ply 19 played 2 1 gain +0.093 L2 D0 Daporan
 32e7a8df 4 0  # ply 20 played 3 1 gain +0.123 L0 D6 Babebibobu
 29e5d963 2 2  # ply 21 played 1 0 gain +0.038 L1 D0 MrSubZero
 143e6de4 2 2  # ply 21 played 0 2 gain +0.000 L3 D0 MrSubZero
 3d2a1fa4 8 2  # ply 21 played 6 1 gain +0.080 L1 D0 MrSubZero
 151f2583 0 4  # ply 21 played 1 5 gain +0.012 L1 D0 MrSubZero
-39321963 7 5  # ply 21 played 6 3 gain +0.042 L2 D0 Daporan
-20cb5d00 2 2  # ply 23 played 2 0 gain +0.010 L2 D0 NinjaDoggy
+39321963 6 5  # ply 21 played 6 3 gain +0.009 L2 D0 Daporan
+20cb5d00 2 2  # ply 23 played 2 0 gain +0.000 L2 D0 NinjaDoggy
 160b42c5 5 8  # ply 23 played 5 6 gain +0.001 L1 D0 MrSubZero
 1fdfc877 2 6  # ply 23 played 0 8 gain +0.000 L1 D0 MrSubZero
-31639c80 4 2  # ply 23 played 3 2 gain +0.001 L2 D0 Daporan
-080dda3f 5 1  # ply 23 played 3 1 gain +0.000 L2 D0 Apostolique
-01a56055 6 5  # ply 23 played 8 3 gain +0.053 L11 D0 Apostolique
+31639c80 4 2  # ply 23 refuted 3 2 alt q 0.152
+080dda3f 4 2  # ply 23 played 3 1 gain +0.000 L2 D0 Apostolique
+01a56055 6 5  # ply 23 played 8 3 gain +0.053 L15 D0 Apostolique
 389145f1 3 6  # ply 24 played 3 7 gain +0.131 L0 D1 mires._.
 3273285f 5 0  # ply 25 played 3 1 gain +0.001 L1 D0 Vingte
-16f0e70d 5 4  # ply 25 refuted 3 5 alt q 0.193
+16f0e70d 5 4  # ply 25 refuted 3 5 alt q 0.139
 35cf6277 6 7  # ply 25 refuted 7 6 alt q 0.105
 0955ab68 8 0  # ply 25 played 7 1 gain +0.000 L1 D0 MrSubZero
-2cb6e7d2 2 8  # ply 25 refuted 2 6 alt q 0.133
+2cb6e7d2 2 7  # ply 25 played 2 6 gain +0.000 L2 D0 Daporan
 2a7f4741 2 1  # ply 25 refuted 0 0 alt q 0.115
-2712453a 4 1  # ply 25 played 3 0 gain +0.052 L8 D0 Apostolique
-203a8936 5 8  # ply 25 refuted 3 6 alt q 0.306
+2712453a 4 1  # ply 25 refuted 4 2 alt q 0.181
+203a8936 5 8  # ply 25 refuted 3 6 alt q 0.188
 1be00dea 0 0  # ply 25 played 1 1 gain +0.001 L1 D0 Shrimpster
 298b89de 7 8  # ply 26 played 6 6 gain +0.212 L0 D1 Babebibobu
 29198827 5 8  # ply 26 played 3 7 gain +0.086 L1 D0 Apostolique
@@ -480,36 +472,36 @@
 1ff3ea0d 4 1  # ply 27 played 3 2 gain +0.000 L3 D0 yoch,Vingte
 1c62c8e9 5 6  # ply 27 refuted 5 8 alt q 0.107
 04472f84 1 2  # ply 27 played 2 1 gain +0.000 L2 D0 NinjaDoggy
+2ce19865 5 1  # ply 27 refuted 3 0 alt q 0.146
 0782aa42 8 8  # ply 27 played 6 7 gain +0.000 L1 D0 MrSubZero
 11af14e1 7 4  # ply 27 played 8 3 gain +0.000 L1 D0 MrSubZero
 35ba9ba4 0 2  # ply 27 played 0 1 gain +0.001 L1 D0 MrSubZero
 352c3838 5 7  # ply 27 refuted 3 6 alt q 0.357
 388802c7 5 7  # ply 27 played 3 7 gain +0.000 L2 D0 Daporan
 1b442c4e 7 6  # ply 27 played 8 7 gain +0.001 L1 D0 Apostolique
-2be6b612 3 3  # ply 27 refuted 5 5 alt q 0.109
+2be6b612 3 3  # ply 27 played 5 5 gain +0.000 L2 D0 Apostolique
 2f726e8c 0 7  # ply 27 played 2 7 gain +0.001 L1 D0 flawedaxioms
 291282a2 2 8  # ply 28 played 1 8 gain +0.290 L0 D1 Babebibobu
 089d5b3e 6 5  # ply 28 played 7 3 gain +0.096 L1 D0 Apostolique
 159cf58a 4 3  # ply 28 played 5 4 gain +0.082 L0 D1 mires._.
-3fac8a5f 7 1  # ply 28 played 6 2 gain +0.221 L0 D2 Vingte
-3cf5e220 3 2  # ply 29 refuted 4 1 alt q 0.105
-36c7af5e 1 3  # ply 29 played 2 4 gain +0.001 L2 D0 NinjaDoggy
+3fac8a5f 7 1  # ply 28 played 6 2 gain +0.256 L0 D2 Vingte
+36c7af5e 1 3  # ply 29 played 2 4 gain +0.000 L2 D0 NinjaDoggy
 12f08763 1 6  # ply 29 refuted 1 8 alt q 0.125
 024b2450 7 0  # ply 29 refuted 7 1 alt q 0.132
 05a59aa1 7 7  # ply 29 played 8 7 gain +0.000 L1 D0 Angecide
 226b11fc 5 2  # ply 29 refuted 3 2 alt q 0.359
 0f81d53b 2 5  # ply 29 refuted 0 3 alt q 0.120
-38745707 5 5  # ply 29 record 3,5:3x0.0 5,5:4x0.5 gain 1.5
-3ea51a36 6 0  # ply 29 refuted 8 2 alt q 0.101
+38745707 5 5  # ply 29 record 3,5:3x0.0 5,5:9x0.5 gain 1.5
+3ea51a36 7 0  # ply 29 refuted 6 0,8 2 alt q 0.101
 03e5f2c1 6 6  # ply 29 played 6 7 gain +0.002 L1 D0 zasmu
 3ed678b1 7 6  # ply 30 played 6 6 gain +0.117 L0 D1 Daporan
 2dfae7f3 5 7  # ply 31 played 5 8 gain +0.000 L3 D0 yoch,Vingte
 168f4b55 7 4  # ply 31 played 6 5 gain +0.000 L1 D0 Vingte
 34fd2fc9 3 3  # ply 31 played 4 3 gain +0.000 L2 D0 NinjaDoggy
-17ac1e16 5 4  # ply 31 refuted 3 4 alt q 0.161
 15f444a0 1 0  # ply 31 refuted 2 1 alt q 0.499
 2f762051 8 6  # ply 31 played 6 8 gain +0.000 L1 D0 MrSubZero
 110ce211 3 4  # ply 31 played 3 5 gain +0.002 L1 D0 Angecide
+270acc96 1 6  # ply 31 played 1 7 gain +0.000 L2 D0 Daporan
 266129c3 7 4  # ply 31 played 7 5 gain +0.001 L1 D0 flawedaxioms
 0ae8f9bc 1 7  # ply 31 refuted 3 1,5 6 alt q 0.124
 02c8efa8 2 3  # ply 31 played 1 3 gain +0.001 L1 D0 flawedaxioms
@@ -517,21 +509,20 @@
 3285551a 2 5  # ply 31 refuted 1 5 alt q 0.500
 3183b6c2 1 3  # ply 31 played 2 5 gain +0.006 L3 D0 Vingte
 3974c432 1 1  # ply 31 refuted 1 0 alt q 0.102
+093bb3b6 8 6  # ply 33 played 7 7 gain +0.000 L2 D0 TomAlard
 29f7bb93 6 6  # ply 33 refuted 0 0 alt q 0.105
 18acbf3a 4 3  # ply 33 played 3 4 gain +0.001 L1 D0 MrSubZero
-0765be95 3 2  # ply 33 played 3 0 gain +0.000 L2 D0 Apostolique
 1330f40b 2 3  # ply 35 refuted 2 5 alt q 0.111
 23a1c087 8 5  # ply 35 played 6 3 gain +0.001 L1 D0 Leonard.
 0f794afc 8 6  # ply 35 played 8 8 gain +0.000 L1 D0 flawedaxioms
 2b655079 8 6  # ply 35 played 6 7 gain +0.000 L4 D0 RoboStac
 24b4746f 6 7  # ply 36 played 7 7 gain +0.000 L1 D0 Apostolique
-2ef8aaf5 8 7  # ply 37 played 7 7 gain +0.001 L2 D0 yoch
-3683d9bf 0 6  # ply 38 refuted 2 6 alt q 0.498
+3683d9bf 0 6  # ply 38 refuted 2 6 alt q 0.499
 2ac3a7aa 2 4  # ply 39 played 1 5 gain +0.000 L1 D0 Leonard.
 1fa1040a 2 0  # ply 40 refuted 0 2 alt q 0.499
 252b450d 6 5  # ply 45 refuted 7 5 alt q 0.185
 34dede93 3 0  # ply 13 played 5 1 gain +0.054 L1 D0 MrSubZero
-22ca390a 1 1  # ply 15 played 2 2 gain +0.031 L2 D0 MrSubZero
+22ca390a 1 1  # ply 15 played 2 2 gain +0.039 L2 D0 MrSubZero
 024da2a4 1 7  # ply 17 played 0 8 gain +0.017 L1 D0 MrSubZero
 2dfd3219 3 6  # ply 17 played 5 6 gain +0.024 L1 D0 MrSubZero
 21b58a6f 3 1  # ply 17 played 5 1 gain +0.037 L1 D0 Apostolique
@@ -545,9 +536,10 @@
 2cea4372 7 2  # ply 21 played 6 2 gain +0.006 L1 D0 Apostolique
 39a3b568 5 8  # ply 23 played 3 8 gain +0.016 L1 D0 SupSon
 2ad1abd7 1 1  # ply 23 played 0 1 gain +0.127 L1 D0 Angecide
+0c9533c3 0 5  # ply 23 played 2 3 gain +0.001 L3 D0 NinjaDoggy
 33eb14c5 6 6  # ply 23 played 7 7 gain +0.000 L1 D0 MrSubZero
 2017fb29 3 7  # ply 23 played 5 8 gain +0.001 L1 D0 MrSubZero
-1213a1c0 8 3  # ply 23 played 6 4 gain +0.063 L2 D0 Vingte
+1213a1c0 8 3  # ply 23 played 6 4 gain +0.001 L2 D0 Vingte
 22e84e0b 8 0  # ply 23 played 6 1 gain +0.000 L1 D0 Daporan
 22d82ded 0 3  # ply 23 played 2 4 gain +0.003 L1 D0 Vingte
 323f887a 2 8  # ply 24 played 0 8 gain +0.084 L0 D1 flawedaxioms
@@ -556,7 +548,8 @@
 3bef2b5a 0 3  # ply 25 refuted 2 3 alt q 0.107
 2760ae67 0 2  # ply 25 refuted 0 0 alt q 0.114
 1dd76c0e 5 7  # ply 25 played 3 7 gain +0.000 L1 D0 Apostolique
-2bceac06 5 5  # ply 25 played 3 5 gain +0.004 L3 D0 Apostolique
+2bceac06 5 5  # ply 25 refuted 3 5 alt q 0.159
+1ee07936 1 0  # ply 26 record 2,0:2x0.25 1,0:1x1.0 gain 1.5
 2729f578 2 3  # ply 26 played 2 4 gain +0.117 L0 D1 flawedaxioms
 21654b99 6 2  # ply 27 refuted 6 1 alt q 0.141
 3b07e83f 7 7  # ply 27 played 7 8 gain +0.001 L1 D0 zasmu
@@ -567,17 +560,16 @@
 2f18c448 6 8  # ply 27 played 6 7 gain +0.158 L1 D0 flawedaxioms
 23d421d1 6 0  # ply 27 refuted 6 1 alt q 0.122
 18b292b9 1 0  # ply 27 played 0 1 gain +0.000 L1 D0 Vingte
-11c793d8 2 6  # ply 28 played 2 7 gain +0.042 L1 D0 Vingte
+11c793d8 2 6  # ply 28 played 2 7 gain +0.128 L1 D1 Vingte
 2830f8e2 0 2  # ply 28 played 0 0 gain +0.293 L0 D3 Apostolique
 3428e3de 3 7  # ply 29 refuted 5 6 alt q 0.101
 0e7d6ce8 0 5  # ply 29 refuted 0 3 alt q 0.232
 0b637890 2 8  # ply 29 played 1 6 gain +0.017 L1 D0 Apostolique
 056981f5 2 3  # ply 29 refuted 0 5 alt q 0.100
 1bb4ed4c 3 7  # ply 29 played 4 7 gain +0.000 L1 D0 MrSubZero
-2e920427 8 3  # ply 29 refuted 7 3 alt q 0.192
+2e920427 6 4  # ply 29 refuted 7 3,8 3 alt q 0.190
 1cefaffd 7 1  # ply 29 refuted 6 2 alt q 0.500
 19e50a8c 1 6  # ply 29 played 0 8 gain +0.000 L1 D0 Daporan
-0eb67191 7 7  # ply 29 refuted 7 6,8 6 alt q 0.120
 36b17b83 3 3  # ply 29 played 5 5 gain +0.217 L1 D0 flawedaxioms
 1e7d9812 7 3  # ply 29 refuted 6 3 alt q 0.117
 255bba7c 4 1  # ply 30 played 5 1 gain +0.001 L1 D0 Vingte
@@ -589,25 +581,25 @@
 2e198653 4 1  # ply 31 refuted 5 1 alt q 0.175
 009461c3 1 1  # ply 31 refuted 2 0,2 2 alt q 0.233
 08de1d18 1 2  # ply 31 refuted 0 2 alt q 0.188
-3657e2a5 1 0  # ply 31 played 1 1 gain +0.001 L2 D0 zasmu
 1a88c45f 3 4  # ply 32 played 4 5 gain +0.010 L1 D0 Vingte
 33a8bfdd 5 5  # ply 32 refuted 5 4 alt q 0.498
 2db613df 7 0  # ply 33 played 6 1 gain +0.000 L1 D0 MrSubZero
 076eab33 2 8  # ply 33 played 1 8 gain +0.001 L1 D0 MrSubZero
 0101d623 4 7  # ply 33 refuted 5 7 alt q 0.491
 30467db5 6 5  # ply 33 played 7 3 gain +0.034 L1 D0 flawedaxioms
-33c675e5 7 4  # ply 33 played 5 3 gain +0.207 L2 D0 yoch
+33c675e5 7 4  # ply 33 refuted 5 3 alt q 0.333
 1806440c 1 4  # ply 33 refuted 2 4 alt q 0.118
 0c7430be 2 0  # ply 33 played 0 2 gain +0.000 L1 D0 Daporan
 399dd9f4 5 3  # ply 35 played 3 5 gain +0.000 L1 D0 MrSubZero
 0991f449 0 3  # ply 35 played 2 4 gain +0.000 L1 D0 MrSubZero
 30951f3e 3 8  # ply 35 played 4 7 gain +0.000 L3 D0 Vingte
 3b80cf33 3 6  # ply 35 played 4 7 gain +0.026 L1 D0 flawedaxioms
+318c8883 4 3  # ply 35 played 3 4 gain +0.000 L2 D0 yoch
 3d12a09f 6 3  # ply 35 refuted 7 3 alt q 0.120
 001c5777 7 6  # ply 35 played 6 7 gain +0.000 L1 D0 Daporan
 05a225da 7 0  # ply 35 played 6 1 gain +0.004 L1 D0 Daporan
 09c7686e 1 3  # ply 35 played 2 4 gain +0.128 L1 D0 RoboStac
-2831b526 6 0  # ply 35 refuted 6 1 alt q 0.136
+2831b526 6 0  # ply 35 played 6 1 gain +0.000 L2 D0 flawedaxioms
 1635b6cb 0 0  # ply 35 played 0 2 gain +0.001 L1 D0 Babebibobu
 0ee1ce4a 5 0  # ply 36 played 1 7 gain +0.000 L1 D0 Vingte
 06eeaad4 7 8  # ply 37 refuted 8 7 alt q 0.109
@@ -617,15 +609,13 @@
 3eadd605 2 2  # ply 37 refuted 0 0 alt q 0.146
 12bb4d0c 6 8  # ply 38 refuted 8 6 alt q 0.500
 1ba24fc8 2 3  # ply 39 refuted 5 4 alt q 0.145
-224e06ba 5 2  # ply 39 refuted 5 0 alt q 0.183
 26fca99a 2 4  # ply 39 refuted 1 3 alt q 0.113
 32746a4f 1 6  # ply 41 played 0 6 gain +0.000 L5 D0 TomAlard
 269e344b 3 2  # ply 50 refuted 1 7 alt q 0.500
-3b0b59ef 4 5  # ply 1 record 4,5:911x0.204 3,5:32x0.109 5,5:13x0.0 gain 5.7
-0b46b73f 7 3  # ply 4 record 7,3:85x0.971 8,4:47x0.83 gain 6.6
-021ab929 3 7  # ply 4 record 4,8:7x0.643 5,7:21x0.81 3,7:40x0.925 gain 4.4
-0c94a641 5 0  # ply 5 record 5,0:574x0.15 3,0:63x0.071 gain 5.0
-2170e4e8 4 2  # ply 8 record 4,0:87x0.914 4,2:14x0.929 gain 1.3
+3b0b59ef 4 5  # ply 1 record 4,5:1119x0.214 3,5:32x0.109 5,5:13x0.0 gain 6.1
+0b46b73f 7 3  # ply 4 record 7,3:106x0.967 8,4:47x0.83 gain 6.4
+021ab929 3 7  # ply 4 record 4,8:7x0.643 5,7:21x0.81 3,7:52x0.856 gain 2.5
+0c94a641 5 0  # ply 5 record 5,0:726x0.158 3,0:63x0.071 gain 5.5
 04e99962 5 7  # ply 10 record 5,7:79x0.93 4,8:8x0.75 gain 1.4
 23266097 6 7  # ply 16 record 6,7:4x1.0 7,8:1x0.0 6,6:1x0.5 gain 1.5
 1f2e51d9 1 5  # ply 17 played 2 3 gain +0.030 L1 D0 MrSubZero
@@ -640,27 +630,25 @@
 0cab3e2f 5 1  # ply 27 refuted 3 2 alt q 0.136
 1d01844f 3 5  # ply 27 played 5 5 gain +0.000 L1 D0 SupSon
 09a0e61c 0 3  # ply 29 played 1 3 gain +0.001 L1 D0 Vingte
-1ce69cf3 7 0  # ply 29 played 7 1 gain +0.000 L1 D0 Apostolique
 12261873 6 5  # ply 29 record 6,5:4x0.875 7,3:2x0.0 gain 1.8
 16a91be4 8 0  # ply 31 played 6 0 gain +0.000 L1 D0 Vingte
 0b535b9f 2 6  # ply 31 refuted 2 7 alt q 0.178
 12f760cb 5 2  # ply 31 refuted 3 1 alt q 0.111
 12bb13bc 6 6  # ply 32 record 6,6:6x1.0 6,8:10x0.5 gain 5.0
 2b3754ce 7 1  # ply 32 record 7,2:21x0.5 7,1:8x1.0 gain 10.5
-1f5969c4 7 0  # ply 35 played 6 0 gain +0.000 L1 D0 RoboStac
+26bf90c8 8 5  # ply 33 played 7 5 gain +0.000 L3 D0 RoboStac
 26036395 2 5  # ply 37 played 1 4 gain +0.000 L1 D0 Apostolique
-38294e76 6 4  # ply 23 record 8,5:6x0.0 6,4:2x0.25 gain 1.5
+38294e76 6 4  # ply 23 record 8,5:6x0.0 6,4:4x0.25 gain 1.5
 0f039e2b 8 5  # ply 24 played 7 3 gain +0.213 L0 D5 Babebibobu
-37468790 2 4  # ply 25 refuted 0 3 alt q 0.128
+37468790 2 4  # ply 25 refuted 0 3,1 3 alt q 0.128
 136c61f6 5 2  # ply 26 played 3 0 gain +0.363 L0 D5 Babebibobu
 23e0a5b5 3 7  # ply 27 refuted 4 6 alt q 0.141
-140f80ba 6 6  # ply 27 refuted 7 7 alt q 0.119
 23d3264e 2 1  # ply 29 played 1 2 gain +0.000 L2 D0 NinjaDoggy
 326617bb 0 3  # ply 29 refuted 1 3 alt q 0.162
 33a470ce 8 1  # ply 31 played 7 2 gain +0.001 L1 D0 Babebibobu
 01c6d4e0 8 8  # ply 32 played 8 6 gain +0.449 L0 D5 Babebibobu
 3bf3b16e 3 3  # ply 37 refuted 5 4 alt q 0.112
-27723527 2 2  # ply 12 record 0,0:1x0.0 2,2:2x1.0 gain 1.0
+27723527 2 2  # ply 12 record 0,0:1x0.0 2,2:3x1.0 gain 1.0
 3c8b32a7 0 4  # ply 13 played 1 5 gain +0.033 L6 D0 Apostolique
 088338a9 1 2  # ply 17 played 0 1 gain +0.004 L3 D0 Apostolique
 249de5bd 8 1  # ply 18 played 7 0 gain +0.031 L0 D1 Daporan
@@ -669,22 +657,21 @@
 21f3dbbf 4 2  # ply 20 played 3 0 gain +0.112 L0 D1 Daporan
 323fed8a 7 5  # ply 20 played 6 4 gain +0.044 L0 D1 Apostolique
 09c10783 8 5  # ply 20 played 6 4 gain +0.056 L1 D0 Apostolique
-0fd0fa44 3 6  # ply 20 record 3,6:3x1.0 5,7:1x0.0 gain 1.0
+0fd0fa44 3 6  # ply 20 record 3,6:4x1.0 5,7:1x0.0 gain 1.0
 04fc53d9 0 3  # ply 20 record 0,5:1x0.0 0,3:1x1.0 gain 1.0
 229793dd 2 7  # ply 22 played 1 8 gain +0.061 L0 D1 Daporan
 1f0d3911 4 3  # ply 22 played 3 4 gain +0.000 L1 D0 Daporan
-140a07ff 3 6  # ply 23 played 5 6 gain +0.000 L13 D0 Vingte
-0353aa05 2 8  # ply 23 played 0 7 gain +0.042 L2 D0 Daporan
+140a07ff 3 6  # ply 23 played 5 6 gain +0.000 L17 D0 Vingte
+0353aa05 2 8  # ply 23 played 0 7 gain +0.000 L2 D0 Daporan
 2d6ecce1 6 5  # ply 24 played 8 4 gain +0.172 L0 D1 Daporan
 2698b20f 3 0  # ply 24 played 5 0 gain +0.164 L0 D1 Apostolique
 373ea396 0 4  # ply 24 played 1 3 gain +0.061 L0 D1 Apostolique
 0f812ab0 2 7  # ply 24 played 1 7 gain +0.064 L0 D1 Apostolique
 094db4b0 6 5  # ply 24 played 6 3 gain +0.080 L1 D0 Apostolique
-02ef5e0a 2 0  # ply 24 played 2 2 gain +0.049 L0 D2 RoboStac
 33b9329b 2 4  # ply 25 played 1 5 gain +0.078 L1 D0 MrSubZero
 171f23b3 0 1  # ply 25 refuted 1 1 alt q 0.117
-3edd04fa 7 2  # ply 25 played 8 2 gain +0.001 L2 D0 Apostolique
-14b67253 7 0  # ply 25 played 8 0 gain +0.143 L2 D0 Apostolique
+3edd04fa 7 2  # ply 25 played 8 2 gain +0.000 L2 D0 Apostolique
+14b67253 7 0  # ply 25 played 8 0 gain +0.001 L2 D0 Apostolique
 332b74e1 3 1  # ply 25 played 4 1 gain +0.001 L1 D0 Daporan
 0d155492 1 4  # ply 25 played 0 5 gain +0.000 L1 D0 MrSubZero
 3460cfa6 4 1  # ply 26 played 5 2 gain +0.093 L0 D1 Vingte
@@ -703,7 +690,7 @@
 0c11a626 6 5  # ply 29 played 7 3 gain +0.000 L9 D0 Vingte
 0e2eaad7 6 0  # ply 29 refuted 8 0 alt q 0.104
 2cbd3d34 1 5  # ply 29 refuted 2 3 alt q 0.482
-09fbedd3 2 2  # ply 29 played 1 0 gain +0.023 L2 D0 Apostolique
+09fbedd3 2 2  # ply 29 refuted 1 0 alt q 0.107
 23137e37 7 8  # ply 29 played 7 6 gain +0.278 L1 D0 Apostolique
 1bc7884a 3 1  # ply 29 refuted 5 1 alt q 0.125
 006cd204 1 6  # ply 29 refuted 2 7 alt q 0.112
@@ -720,6 +707,7 @@
 00c07ecc 0 1  # ply 31 played 1 1 gain +0.000 L1 D0 MrSubZero
 05c8029c 3 6  # ply 31 refuted 5 6 alt q 0.134
 0d6e54bc 3 7  # ply 31 refuted 3 6 alt q 0.117
+34407407 5 2  # ply 31 played 4 1 gain +0.000 L5 D0 RoboStac
 3466c881 1 4  # ply 31 played 2 4 gain +0.152 L1 D0 Vingte
 3ea73aae 2 5  # ply 32 played 0 5 gain +0.227 L0 D1 Apostolique
 15d6458d 2 8  # ply 32 played 0 7 gain +0.107 L0 D1 Apostolique
@@ -727,32 +715,30 @@
 2cc67e5a 0 5  # ply 32 played 2 5 gain +0.001 L1 D0 Vingte
 07b03085 1 2  # ply 33 played 1 1 gain +0.002 L1 D0 Apostolique
 13be35a4 8 7  # ply 33 played 6 7 gain +0.000 L1 D0 Apostolique
-1f34b1d2 0 2  # ply 33 played 2 1 gain +0.000 L7 D0 Daporan
+1f34b1d2 0 2  # ply 33 played 2 1 gain +0.000 L10 D0 Daporan
 3995bdd6 6 3  # ply 33 played 8 5 gain +0.000 L1 D0 Daporan
 30dfd220 3 1  # ply 33 refuted 5 1 alt q 0.495
 22be6d1b 3 2  # ply 34 played 5 2 gain +0.297 L0 D1 Apostolique
 2ca38ca7 7 1  # ply 34 refuted 7 0 alt q 0.430
 35f4b83b 3 7  # ply 34 refuted 5 8 alt q 0.501
 258411bc 4 2  # ply 35 played 3 1 gain +0.000 L1 D0 Apostolique
-3274c5dd 3 2  # ply 35 refuted 5 2 alt q 0.102
 0fd8eb56 4 2  # ply 35 played 3 1 gain +0.000 L1 D0 Apostolique
 1a829365 8 6  # ply 35 played 8 7 gain +0.000 L4 D0 Daporan
-103cbab3 5 6  # ply 35 played 3 8 gain +0.000 L1 D0 RoboStac
-0ef3a24b 5 4  # ply 36 played 5 3 gain +0.369 L0 D2 RoboStac
+0ef3a24b 5 4  # ply 36 played 5 3 gain +0.390 L0 D2 RoboStac
 12ba60d2 5 3  # ply 36 refuted 4 3 alt q 0.508
 095ce8a6 3 2  # ply 37 refuted 4 2 alt q 0.131
+348933f7 7 2  # ply 37 played 8 2 gain +0.000 L3 D0 Daporan
 388e2694 7 2  # ply 37 played 7 0 gain +0.000 L3 D0 flawedaxioms
 118f2d68 8 5  # ply 38 refuted 7 4 alt q 0.500
-20af7c27 1 4  # ply 39 refuted 1 3 alt q 0.131
+20af7c27 1 4  # ply 39 refuted 1 3 alt q 0.102
 329a5e30 0 7  # ply 39 played 2 8 gain +0.000 L1 D0 Daporan
 27713800 6 1  # ply 39 refuted 6 0 alt q 0.139
 29692413 2 8  # ply 39 refuted 1 7 alt q 0.499
 1adcd09e 3 1  # ply 45 refuted 3 0 alt q 0.256
-251c5a39 2 7  # ply 47 refuted 0 7 alt q 0.179
-313119cc 1 3  # ply 17 played 2 4 gain +0.053 L2 D0 sZoom
 15f85f95 7 4  # ply 19 played 7 5 gain +0.041 L1 D0 sZoom
 1855291c 4 2  # ply 23 played 5 1 gain +0.007 L1 D0 sZoom
 172dd646 1 2  # ply 23 played 1 1 gain +0.095 L1 D0 MrSubZero
+00aff187 5 8  # ply 25 played 3 6 gain +0.000 L3 D0 flawedaxioms
 0d3b35fa 0 1  # ply 25 played 2 1 gain +0.058 L1 D0 Angecide
 10eb883f 1 2  # ply 25 played 0 0 gain +0.231 L1 D0 flawedaxioms
 118f4c22 1 8  # ply 27 refuted 0 6 alt q 0.126
@@ -768,7 +754,7 @@
 1fc4e830 5 8  # ply 31 played 5 6 gain +0.002 L1 D0 flawedaxioms
 03538301 6 0  # ply 31 played 7 2 gain +0.000 L1 D0 flawedaxioms
 356e90b7 4 2  # ply 31 played 4 0 gain +0.001 L1 D0 Vingte
-3cd19678 0 1  # ply 33 played 1 2 gain +0.005 L1 D0 NinjaDoggy
+3cd19678 1 1  # ply 33 record 0,1:1x0.0 1,1:1x0.5 1,2:1x0.0 gain 1.0
 32910bea 2 6  # ply 33 refuted 2 7 alt q 0.113
 1d948f9f 6 0  # ply 33 refuted 6 1 alt q 0.473
 0f752819 4 2  # ply 33 played 5 1 gain +0.001 L1 D0 Angecide
@@ -783,70 +769,77 @@
 15a436da 2 3  # ply 17 played 0 4 gain +0.034 L1 D0 ninnghazad
 0a67262f 1 8  # ply 35 refuted 2 7 alt q 0.500
 0f6e6bb7 4 0  # ply 9 played 3 1 gain +0.039 L1 D0 zasmu
-2f05bc59 6 4  # ply 9 played 6 3 gain +0.042 L5 D0 MrSubZero
-2544f40a 0 0  # ply 9 played 2 1 gain +0.031 L9 D0 MrSubZero,Apostolique
+2f05bc59 6 4  # ply 9 played 6 3 gain +0.042 L6 D0 MrSubZero
+2544f40a 0 0  # ply 9 played 2 1 gain +0.031 L12 D0 MrSubZero,Apostolique
 21042a18 6 2  # ply 9 played 6 0 gain +0.036 L1 D0 MrSubZero
-2bc3ffc8 4 2  # ply 10 played 5 2 gain +0.031 L1 D2 Daporan,Regulus136
+214f5c9b 5 0  # ply 10 record 5,2:52x0.962 5,0:3x1.0 gain 2.0
+2bc3ffc8 4 2  # ply 10 played 5 2 gain +0.031 L2 D2 Daporan,Regulus136,Apostolique
 39b8c100 6 4  # ply 11 played 6 3 gain +0.056 L4 D0 MrSubZero
 14f292f4 2 1  # ply 11 played 0 1 gain +0.036 L1 D0 Apostolique
 0f3c832d 6 0  # ply 11 played 6 1 gain +0.022 L1 D0 Apostolique
 315c1f26 0 6  # ply 11 played 2 7 gain +0.024 L1 D0 MrSubZero
+23efb8d9 6 2  # ply 12 played 8 2 gain +0.037 L0 D2 sZoom
+088b7aa6 8 6  # ply 12 played 7 6 gain +0.042 L1 D2 RoboStac,sZoom
 32a99b55 5 6  # ply 12 played 3 7 gain +0.016 L1 D0 Apostolique
+08db03ad 5 2  # ply 12 played 3 0 gain +0.072 L1 D2 Vingte
+3e3bde66 6 8  # ply 12 played 6 7 gain +0.064 L3 D2 RoboStac,MrSubZero
 06e905fe 8 5  # ply 13 played 7 5 gain +0.044 L1 D0 zasmu
 091cc1c8 2 4  # ply 13 played 0 3 gain +0.016 L1 D0 Apostolique
+2966d975 4 6  # ply 14 played 3 6 gain +0.075 L1 D1 Vingte
 28c95624 8 5  # ply 14 played 7 5 gain +0.050 L0 D12 zasmu
+0179479e 6 4  # ply 14 played 8 4 gain +0.041 L2 D0 Vingte
+2e789935 1 3  # ply 14 record 1,3:17x0.941 2,4:20x0.85 gain 1.8
 07a9ac41 5 0  # ply 14 played 4 2 gain +0.038 L0 D1 flawedaxioms
+1a2b2f77 5 7  # ply 15 played 5 6 gain +0.047 L2 D0 MrSubZero
 35c2a029 8 5  # ply 15 played 6 5 gain +0.043 L1 D0 MrSubZero
 130b5e79 2 6  # ply 15 played 0 7 gain +0.019 L1 D0 MrSubZero
 391c452d 3 8  # ply 16 played 5 8 gain +0.038 L0 D1 sZoom
 18d54f85 6 4  # ply 16 played 7 4 gain +0.042 L0 D10 sZoom
-2123035c 2 8  # ply 16 played 2 7 gain +0.033 L0 D2 RoboStac,Daporan
+2123035c 2 8  # ply 16 played 2 7 gain +0.070 L0 D2 RoboStac,Daporan
 3114902d 0 7  # ply 16 played 0 6 gain +0.044 L0 D11 Fancheng
-2d9bda88 2 7  # ply 17 played 1 6 gain +0.009 L2 D0 MrSubZero
+2d9bda88 2 7  # ply 17 played 1 6 gain +0.000 L2 D0 MrSubZero
 0e18184a 7 0  # ply 17 played 6 1 gain +0.074 L1 D0 MrSubZero
 2876e17a 0 1  # ply 17 played 0 2 gain +0.054 L1 D0 MrSubZero
-1842de79 1 2  # ply 17 played 0 0 gain +0.011 L5 D0 Apostolique
+1842de79 1 2  # ply 17 played 0 0 gain +0.011 L7 D0 Apostolique
 18fad51a 7 7  # ply 17 played 6 8 gain +0.049 L1 D0 MrSubZero
-3fc1542e 6 8  # ply 17 played 8 8 gain +0.047 L13 D0 Daporan,MrSubZero
+3fc1542e 6 8  # ply 17 record 8,8:15x0.1 6,8:3x0.167 gain 1.0
 18b7513d 1 0  # ply 17 played 2 2 gain +0.014 L1 D0 MrSubZero
-17ff1ad3 5 7  # ply 18 played 3 6 gain +0.054 L0 D2 RoboStac,Daporan
+17ff1ad3 5 7  # ply 18 played 3 6 gain +0.105 L0 D2 RoboStac,Daporan
 09affcd9 8 5  # ply 18 played 8 3 gain +0.035 L0 D1 Apostolique
-17436a20 5 6  # ply 18 played 5 8 gain +0.072 L1 D0 Vingte
-102d1cb6 1 4  # ply 18 played 0 4 gain +0.159 L4 D0 Daporan,RoboStac
+102d1cb6 1 4  # ply 18 played 0 4 gain +0.159 L5 D0 Daporan,RoboStac
 05e808b2 0 7  # ply 18 played 0 8 gain +0.052 L1 D0 Daporan
 0cabca54 5 8  # ply 18 played 4 8 gain +0.038 L0 D1 Fancheng
 25273c71 8 6  # ply 18 played 6 7 gain +0.082 L0 D11 Fancheng
-2c61015f 2 7  # ply 19 played 1 7 gain +0.000 L2 D0 MrSubZero
 34191c44 8 6  # ply 19 played 6 6 gain +0.004 L1 D0 MrSubZero
 24a70207 7 5  # ply 19 played 8 3 gain +0.017 L1 D0 Apostolique
 143545c6 7 2  # ply 19 played 6 0 gain +0.007 L5 D0 Apostolique
 0297b9b3 0 6  # ply 19 played 1 6 gain +0.021 L1 D0 MrSubZero
 2501ec50 1 8  # ply 19 played 2 6 gain +0.094 L1 D0 MrSubZero
-29890243 1 1  # ply 19 played 2 2 gain +0.097 L1 D0 Daporan
-1f500f7d 7 3  # ply 19 played 7 5 gain +0.045 L13 D0 flawedaxioms
-00d33b3e 0 6  # ply 19 played 2 6 gain +0.036 L10 D0 Fancheng,flawedaxioms,Angecide
+29890243 1 1  # ply 19 played 2 2 gain +0.048 L2 D0 Daporan
+1f500f7d 7 5  # ply 19 record 7,5:25x0.28 7,3:8x0.125 gain 1.2
+00d33b3e 2 6  # ply 19 record 2,6:25x0.52 0,6:6x0.333 gain 1.1
 024e09b4 2 0  # ply 19 played 2 1 gain +0.047 L1 D0 MrSubZero
 18aab845 3 1  # ply 20 played 5 2 gain +0.134 L0 D7 Vingte
-3d4ea2c7 6 1  # ply 20 played 8 2 gain +0.073 L0 D2 RoboStac,Daporan
-33513df3 8 5  # ply 20 played 6 5 gain +0.117 L0 D21 Babebibobu
-067a1d12 2 8  # ply 20 played 1 6 gain +0.044 L0 D2 RoboStac
+3d4ea2c7 6 1  # ply 20 played 8 2 gain +0.109 L0 D2 RoboStac,Daporan
+33513df3 8 5  # ply 20 record 6,5:48x0.781 8,5:9x1.0 gain 10.5
 1b03517c 5 5  # ply 20 played 3 4 gain +0.055 L4 D0 Daporan,RoboStac
 0f9aa75b 3 7  # ply 20 record 5,8:1x0.0 3,7:1x1.0 gain 1.0
 03acf31d 3 4  # ply 20 played 5 4 gain +0.102 L0 D12 zasmu
 071132b2 0 4  # ply 20 played 2 5 gain +0.063 L0 D1 flawedaxioms
 01422bfc 3 1  # ply 20 played 4 0 gain +0.001 L1 D0 Vingte
+133282fb 8 8  # ply 21 refuted 6 8 alt q 0.117
 1e603762 0 2  # ply 21 played 2 2 gain +0.001 L1 D0 MrSubZero
 18a14090 5 1  # ply 21 played 3 2 gain +0.000 L1 D0 MrSubZero
 28d023e8 3 7  # ply 21 played 3 6 gain +0.001 L1 D0 Apostolique
 121eb6a9 2 8  # ply 21 played 1 8 gain +0.078 L1 D0 MrSubZero
+1ebe1e6c 7 2  # ply 21 played 7 1 gain +0.019 L2 D0 Apostolique
 2d9a5799 7 2  # ply 21 played 7 1 gain +0.017 L3 D0 Apostolique
-175de2fa 2 3  # ply 21 played 1 5 gain +0.005 L1 D0 Apostolique
 296fcbff 6 7  # ply 21 played 6 6 gain +0.006 L5 D0 Apostolique
 1f6837ff 8 5  # ply 21 played 6 5 gain +0.001 L1 D0 MrSubZero
 0c8ade84 8 5  # ply 21 played 7 5 gain +0.058 L1 D0 MrSubZero
 1ba63293 2 2  # ply 21 played 0 2 gain +0.073 L1 D0 MrSubZero
 07ac7db0 4 2  # ply 21 played 5 1 gain +0.060 L1 D0 Daporan
-16d1fbac 0 6  # ply 21 played 2 7 gain +0.030 L89 D0 yoch,sZoom,Minuet
+16d1fbac 0 6  # ply 21 record 2,7:98x0.077 0,6:21x0.143 gain 6.5
 2c818061 2 3  # ply 21 played 1 3 gain +0.003 L1 D0 MrSubZero
 0aaea26f 7 5  # ply 22 played 8 5 gain +0.117 L0 D7 Vingte
 1ee9d920 1 7  # ply 22 played 2 8 gain +0.094 L0 D1 sZoom
@@ -854,9 +847,9 @@
 016d2ab0 5 2  # ply 22 played 3 2 gain +0.128 L0 D10 sZoom
 34d63b83 5 1  # ply 22 played 5 0 gain +0.100 L0 D1 Apostolique
 1094943d 8 7  # ply 22 played 8 8 gain +0.154 L0 D21 Babebibobu
-331c347a 3 7  # ply 22 record 3,7:3x1.0 3,8:2x0.0 gain 2.0
+331c347a 3 7  # ply 22 record 3,7:5x1.0 3,8:2x0.0 gain 2.0
 0ddaadd3 3 0  # ply 22 played 5 0 gain +0.147 L2 D6 Angecide
-0b88b838 5 7  # ply 23 refuted 3 8 alt q 0.112
+0b88b838 5 7  # ply 23 played 3 8 gain +0.001 L2 D0 MrSubZero
 3323c221 7 6  # ply 23 played 6 6 gain +0.000 L1 D0 MrSubZero
 2b3464ac 3 8  # ply 23 refuted 3 6 alt q 0.118
 094c7426 5 6  # ply 23 played 3 6 gain +0.000 L1 D0 MrSubZero
@@ -867,19 +860,18 @@
 067ec6c5 7 3  # ply 23 played 8 5 gain +0.002 L1 D0 MrSubZero
 119ee942 2 4  # ply 23 played 1 4 gain +0.001 L1 D0 MrSubZero
 11df7638 1 3  # ply 23 played 0 5 gain +0.048 L1 D0 Daporan
-336cff6c 2 6  # ply 23 played 2 8 gain +0.001 L2 D0 Daporan
+336cff6c 2 6  # ply 23 played 2 8 gain +0.002 L2 D0 Daporan
 34ba6a2b 6 5  # ply 23 played 7 3 gain +0.000 L1 D0 Daporan
 36d08772 5 2  # ply 23 played 4 1 gain +0.037 L1 D0 flawedaxioms
 3fbcc971 8 3  # ply 23 played 7 3 gain +0.082 L12 D0 flawedaxioms
-060339c3 5 2  # ply 23 played 3 0 gain +0.006 L1 D0 Fancheng
 168e3093 5 2  # ply 23 played 5 1 gain +0.012 L1 D0 flawedaxioms
 2530ff83 5 6  # ply 24 played 5 7 gain +0.119 L0 D1 Vingte
 058ab4e0 1 6  # ply 24 played 0 6 gain +0.080 L0 D7 Vingte
 3f393f36 5 2  # ply 24 played 3 2 gain +0.068 L0 D1 sZoom
 26318118 7 1  # ply 24 played 8 2 gain +0.165 L0 D10 sZoom
 2f3f348a 7 5  # ply 24 played 7 3 gain +0.108 L0 D21 Babebibobu
-175bace0 2 1  # ply 24 played 2 0 gain +0.066 L2 D0 Vingte
-365dd4bd 5 6  # ply 24 record 3,6:6x0.833 5,6:3x1.0 gain 1.0
+175bace0 2 1  # ply 24 played 2 0 gain +0.057 L2 D0 Vingte
+365dd4bd 5 6  # ply 24 record 3,6:6x0.833 5,6:11x1.0 gain 1.0
 2392371f 3 2  # ply 24 played 3 0 gain +0.073 L1 D0 Vingte
 256ec5b4 3 8  # ply 24 played 4 6 gain +0.052 L0 D1 flawedaxioms
 125010bf 8 2  # ply 25 played 6 2 gain +0.148 L1 D0 NinjaDoggy
@@ -897,6 +889,7 @@
 17291527 3 2  # ply 25 played 3 1 gain +0.001 L1 D0 MrSubZero
 18e7740a 1 3  # ply 25 refuted 2 4 alt q 0.135
 26699918 1 6  # ply 25 played 2 6 gain +0.001 L1 D0 MrSubZero
+211ea09f 7 4  # ply 25 refuted 7 3 alt q 0.110
 3782cdd2 6 6  # ply 25 played 7 8 gain +0.212 L1 D0 flawedaxioms
 0b2d3d52 6 6  # ply 25 played 7 7 gain +0.055 L1 D0 flawedaxioms
 1d7b35c3 1 4  # ply 25 played 1 5 gain +0.004 L1 D0 Fancheng
@@ -919,9 +912,9 @@
 368dfe4e 4 7  # ply 27 played 5 7 gain +0.000 L1 D0 MrSubZero
 2b51b124 1 4  # ply 27 played 1 2 gain +0.243 L1 D0 Apostolique
 1efc16b1 4 7  # ply 27 played 3 7 gain +0.000 L1 D0 Vingte
-3b1a3c53 5 1  # ply 27 played 4 2 gain +0.010 L2 D0 Apostolique
+3b1a3c53 5 1  # ply 27 played 4 2 gain +0.090 L2 D0 Apostolique
 177cd05f 3 8  # ply 27 played 3 7 gain +0.000 L1 D0 Apostolique
-01288b7d 2 7  # ply 27 played 1 8 gain +0.000 L2 D0 Apostolique
+01288b7d 2 6  # ply 27 played 1 8 gain +0.123 L2 D0 Apostolique
 2e009ad7 8 1  # ply 27 played 6 1 gain +0.001 L1 D0 Apostolique
 2a5051ef 0 8  # ply 27 played 0 7 gain +0.000 L5 D0 Apostolique
 20f33626 2 1  # ply 27 played 0 0 gain +0.001 L1 D0 Apostolique
@@ -931,7 +924,8 @@
 3e437954 8 6  # ply 27 refuted 7 7 alt q 0.112
 2b08aa66 5 4  # ply 27 played 3 5 gain +0.209 L1 D0 MrSubZero
 3c467083 6 7  # ply 27 played 8 7 gain +0.002 L1 D0 Daporan
-25c20040 7 3  # ply 27 refuted 6 3 alt q 0.111
+099889da 0 5  # ply 27 played 1 3 gain +0.000 L2 D0 Daporan
+25c20040 7 3  # ply 27 played 6 3 gain +0.001 L2 D0 Leonard.,RoboStac
 225c09a4 0 7  # ply 27 played 0 6 gain +0.161 L1 D0 flawedaxioms
 1b2eefc0 1 3  # ply 27 played 1 5 gain +0.001 L1 D0 flawedaxioms
 3b56de97 7 8  # ply 27 played 6 8 gain +0.000 L1 D0 Fancheng
@@ -942,26 +936,26 @@
 108504df 2 2  # ply 28 played 1 2 gain +0.138 L0 D1 Apostolique
 13474e26 7 4  # ply 28 played 8 5 gain +0.151 L1 D0 MrSubZero
 3790b08d 1 2  # ply 28 refuted 0 1 alt q 0.501
-12643918 7 5  # ply 28 played 8 5 gain +0.102 L0 D2 Angecide
+12643918 7 5  # ply 28 played 8 5 gain +0.176 L0 D2 Angecide
 12b7c557 7 5  # ply 29 played 8 3 gain +0.001 L1 D0 MrSubZero
 238452ef 7 5  # ply 29 refuted 7 3 alt q 0.111
 2a26c76a 8 3  # ply 29 played 6 5 gain +0.000 L1 D0 MrSubZero
 0854ca89 2 4  # ply 29 refuted 1 4 alt q 0.126
 0273b8db 7 2  # ply 29 played 8 1 gain +0.087 L1 D0 Apostolique
 0dee233a 8 7  # ply 29 played 7 6 gain +0.001 L3 D0 Apostolique
-0c430e80 7 0  # ply 29 played 7 2 gain +0.001 L2 D0 Apostolique
+0c430e80 7 0  # ply 29 refuted 7 2 alt q 0.143
 37f9f265 8 0  # ply 29 played 8 1 gain +0.000 L1 D0 Apostolique
 2e52aa1a 3 8  # ply 29 played 3 7 gain +0.000 L5 D0 Apostolique
 026c8465 2 2  # ply 29 played 1 0 gain +0.000 L1 D0 MrSubZero
 0344d2c6 1 7  # ply 29 played 0 6 gain +0.000 L3 D0 Apostolique
 09d2bdfc 8 6  # ply 29 played 7 6 gain +0.000 L3 D0 Apostolique
 027fc7aa 1 3  # ply 29 refuted 2 3 alt q 0.128
-1da59348 8 4  # ply 29 refuted 7 4 alt q 0.102
+1da59348 8 4  # ply 29 played 7 4 gain +0.000 L2 D0 Daporan
 34c7c8e8 2 7  # ply 29 played 1 8 gain +0.001 L1 D0 Daporan
 1ef089e1 3 1  # ply 29 played 5 2 gain +0.001 L1 D0 Leonard.
 09b4e22d 3 0  # ply 29 played 4 2 gain +0.128 L1 D0 flawedaxioms
-2b0f75ae 7 1  # ply 29 played 6 1 gain +0.000 L1 D0 flawedaxioms
-27c2cd4c 1 1  # ply 29 played 1 0 gain +0.022 L2 D0 flawedaxioms
+2b0f75ae 7 1  # ply 29 played 6 1 gain +0.000 L2 D0 flawedaxioms
+27c2cd4c 1 1  # ply 29 played 1 0 gain +0.001 L2 D0 flawedaxioms
 30c32859 3 0  # ply 29 refuted 3 1 alt q 0.487
 336f8e65 7 3  # ply 29 refuted 6 3 alt q 0.146
 36c3e91d 2 3  # ply 29 refuted 0 3 alt q 0.157
@@ -970,7 +964,6 @@
 03261949 1 3  # ply 30 played 2 5 gain +0.280 L0 D10 sZoom
 36319080 6 0  # ply 30 played 8 1 gain +0.168 L0 D1 Apostolique
 00bdea02 0 5  # ply 30 played 1 4 gain +0.259 L1 D0 MrSubZero
-216f03bf 4 8  # ply 30 played 3 8 gain +0.082 L0 D2 Angecide
 11d56876 2 5  # ply 30 played 0 5 gain +0.173 L0 D1 Fancheng
 178150f8 3 2  # ply 30 played 5 0 gain +0.144 L1 D0 Angecide
 025cca7f 3 8  # ply 30 played 5 7 gain +0.134 L0 D1 flawedaxioms
@@ -981,8 +974,7 @@
 006480fb 5 4  # ply 31 played 5 5 gain +0.000 L1 D0 Apostolique
 27f3451b 5 7  # ply 31 played 3 6 gain +0.000 L1 D0 Apostolique
 0018085c 2 3  # ply 31 played 2 4 gain +0.000 L4 D0 Vingte
-0f290c18 0 0  # ply 31 played 0 1 gain +0.126 L2 D0 Apostolique
-2c97c30c 4 3  # ply 31 refuted 3 3 alt q 0.115
+0f290c18 0 0  # ply 31 played 0 1 gain +0.001 L2 D0 Apostolique
 37b05058 2 4  # ply 31 refuted 0 4 alt q 0.129
 1be5baf4 8 6  # ply 31 played 6 6 gain +0.001 L1 D0 MrSubZero
 39c5fd7b 8 7  # ply 31 played 7 8 gain +0.000 L1 D0 MrSubZero
@@ -996,7 +988,7 @@
 12b66a98 0 7  # ply 32 played 2 6 gain +0.274 L0 D1 sZoom
 3fadfe14 1 1  # ply 32 played 0 1 gain +0.183 L0 D1 sZoom
 15cbb122 0 2  # ply 32 played 0 1 gain +0.279 L0 D1 Apostolique
-35c1f5ac 3 2  # ply 32 played 5 2 gain +0.002 L2 D0 Vingte
+35c1f5ac 3 2  # ply 32 played 5 2 gain +0.003 L2 D0 Vingte
 34193984 7 6  # ply 32 played 8 6 gain +0.241 L0 D1 Fancheng
 03436123 3 2  # ply 32 played 3 0 gain +0.164 L1 D0 Angecide
 1e131d9f 3 7  # ply 32 played 5 8 gain +0.162 L0 D1 flawedaxioms
@@ -1008,30 +1000,31 @@
 04514817 4 2  # ply 33 refuted 5 1 alt q 0.500
 082f4bdc 1 8  # ply 33 played 6 8 gain +0.015 L1 D0 MrSubZero
 3660433d 4 0  # ply 33 played 4 2 gain +0.000 L1 D0 Apostolique
-017f4320 3 6  # ply 33 refuted 5 7 alt q 0.105
-0076ef37 7 3  # ply 33 played 6 4 gain +0.000 L2 D0 Apostolique
 1509daf2 8 1  # ply 33 played 7 0 gain +0.000 L2 D0 Apostolique
 0f82b605 1 0  # ply 33 played 2 1 gain +0.001 L1 D0 Apostolique
 2f9af5f7 8 6  # ply 33 played 7 6 gain +0.000 L5 D0 Apostolique
 2182a09c 8 7  # ply 33 played 7 6 gain +0.000 L6 D0 Daporan
+30e8aca8 7 3  # ply 33 refuted 7 4 alt q 0.112
 30baecfe 7 3  # ply 33 played 7 4 gain +0.000 L1 D0 Daporan
 19e5b7b8 5 4  # ply 33 played 5 5 gain +0.003 L1 D0 Daporan
 24be9e32 4 3  # ply 33 refuted 5 3 alt q 0.119
+0116c58a 8 5  # ply 33 played 7 4 gain +0.000 L2 D0 flawedaxioms
 24980a4a 0 2  # ply 33 played 0 0 gain +0.000 L1 D0 BoatBuilder
+138357d3 2 5  # ply 33 refuted 2 3 alt q 0.145
 16532756 7 4  # ply 34 played 8 4 gain +0.307 L0 D1 RoboStac
 06862aeb 2 1  # ply 34 played 1 0 gain +0.177 L1 D0 Apostolique
 227a585b 7 6  # ply 34 played 7 8 gain +0.088 L0 D1 Apostolique
 38e7f74b 3 3  # ply 34 refuted 3 4 alt q 0.441
 0d128cf4 7 5  # ply 34 refuted 8 3 alt q 0.501
-0ab6a526 4 3  # ply 34 played 4 5 gain +0.007 L2 D0 Vingte
-118ec6e0 5 2  # ply 34 refuted 3 0 alt q 0.503
+118ec6e0 5 2  # ply 34 refuted 3 0 alt q 0.501
 06844dc0 6 6  # ply 34 played 6 8 gain +0.251 L1 D0 Angecide
 2917be36 5 6  # ply 34 played 3 7 gain +0.146 L0 D1 flawedaxioms
 08588cb1 8 3  # ply 35 refuted 7 4 alt q 0.136
+275a39a9 6 8  # ply 35 played 7 7 gain +0.000 L2 D0 Vingte
 1a633c9a 5 2  # ply 35 refuted 8 8 alt q 0.131
 24ae0d60 6 1  # ply 35 refuted 6 0 alt q 0.111
 1976f899 1 3  # ply 35 played 2 5 gain +0.000 L8 D0 Apostolique
-2b739ddd 2 6  # ply 35 refuted 1 7 alt q 0.105
+2b739ddd 2 6  # ply 35 played 1 7 gain +0.000 L2 D0 TomAlard
 28ae0c5a 5 1  # ply 35 played 3 1 gain +0.000 L3 D0 Daporan,TomAlard
 1f47730f 7 1  # ply 35 refuted 7 0 alt q 0.170
 207377be 3 6  # ply 35 refuted 5 6 alt q 0.108
@@ -1041,15 +1034,13 @@
 275e2c43 5 2  # ply 35 refuted 5 1 alt q 0.151
 17104380 2 3  # ply 35 played 2 5 gain +0.260 L1 D0 Angecide
 3a0d7f42 1 6  # ply 36 played 2 7 gain +0.022 L0 D1 Apostolique
-38886b49 6 3  # ply 36 refuted 7 5 alt q 0.502
+38886b49 6 3  # ply 36 refuted 7 5 alt q 0.500
 10b42e94 4 3  # ply 36 played 5 5 gain +0.119 L1 D0 Angecide
-1d14ddb1 7 2  # ply 37 refuted 7 1 alt q 0.417
+1d14ddb1 7 2  # ply 37 refuted 7 1 alt q 0.134
 088694e7 1 3  # ply 37 played 2 5 gain +0.000 L3 D0 Apostolique
-272ffac6 6 2  # ply 37 played 6 1 gain +0.001 L2 D0 TomAlard
 3097d0bf 5 3  # ply 37 played 5 5 gain +0.000 L1 D0 Daporan
 26c2005c 2 0  # ply 37 played 1 0 gain +0.000 L1 D0 TomAlard
 13e1fdbe 3 4  # ply 37 played 3 3 gain +0.000 L1 D0 flawedaxioms
-21f4f923 2 5  # ply 37 refuted 1 3 alt q 0.101
 213047eb 2 0  # ply 37 refuted 2 1 alt q 0.379
 20b326b9 3 8  # ply 38 played 5 6 gain +0.285 L0 D1 RoboStac
 36be96e7 1 4  # ply 38 refuted 2 3 alt q 0.504
@@ -1057,6 +1048,7 @@
 1adbfd9a 2 0  # ply 38 refuted 0 2 alt q 0.501
 36fe1c6d 7 3  # ply 39 played 8 4 gain +0.000 L1 D0 MrSubZero
 3e23f1a1 7 2  # ply 39 played 7 1 gain +0.000 L1 D0 flawedaxioms
+39695b02 4 7  # ply 39 played 3 8 gain +0.000 L2 D0 Angecide
 01ccc060 5 5  # ply 40 played 5 4 gain +0.082 L1 D0 Apostolique
 2b3f6a4c 6 1  # ply 40 played 6 0 gain +0.171 L0 D1 flawedaxioms
 03e5fc30 1 1  # ply 41 refuted 1 6 alt q 0.131
@@ -1066,3 +1058,1492 @@
 3ef0b7a1 2 1  # ply 44 refuted 2 0 alt q 0.744
 3c184481 4 3  # ply 48 played 4 5 gain +0.023 L0 D1 Apostolique
 338970a0 0 3  # ply 52 refuted 2 5 alt q 0.503
+2e4e3406 5 1  # ply 13 played 3 0 gain +0.028 L1 D0 MrSubZero
+25fc50d3 8 0  # ply 16 played 7 2 gain +0.031 L0 D1 MrSubZero
+26131d3b 8 3  # ply 16 played 6 3 gain +0.026 L2 D0 RoboStac
+34c1a419 0 4  # ply 17 played 1 5 gain +0.049 L1 D0 MrSubZero
+3fc7a2ab 2 4  # ply 18 played 1 4 gain +0.049 L0 D1 MrSubZero
+3186be2d 3 8  # ply 19 played 3 6 gain +0.021 L2 D0 MrSubZero
+04468c98 7 3  # ply 19 played 7 5 gain +0.099 L1 D0 MrSubZero
+35a55db1 6 5  # ply 19 played 6 3 gain +0.007 L1 D0 flawedaxioms
+3b59c840 4 7  # ply 20 played 5 8 gain +0.028 L1 D0 Apostolique
+3d4501de 7 8  # ply 20 played 7 7 gain +0.029 L0 D1 Vingte
+2f7844fb 1 2  # ply 20 played 1 0 gain +0.031 L0 D1 MrSubZero
+25c5d512 6 5  # ply 21 refuted 7 5 alt q 0.207
+24585c3d 1 1  # ply 21 played 1 0 gain +0.002 L2 D0 Apostolique
+2f6ea73b 7 1  # ply 21 played 6 1 gain +0.002 L1 D0 MrSubZero
+2cc53705 2 1  # ply 21 played 0 2 gain +0.054 L2 D0 Daporan
+35fae533 0 6  # ply 21 played 1 6 gain +0.062 L1 D0 zasmu
+23d6bac2 5 0  # ply 22 played 3 0 gain +0.101 L1 D0 MrSubZero
+0d112e05 7 2  # ply 22 played 8 2 gain +0.058 L1 D0 MrSubZero
+0d3fd224 3 4  # ply 22 played 3 3 gain +0.022 L1 D0 RoboStac
+12ccca50 1 6  # ply 23 refuted 2 7 alt q 0.100
+26857ec2 6 7  # ply 23 played 8 6 gain +0.000 L1 D0 MrSubZero
+08eb2383 3 7  # ply 23 refuted 5 6 alt q 0.132
+24002142 5 1  # ply 23 played 3 1 gain +0.007 L1 D0 MrSubZero
+158aa096 1 3  # ply 23 played 2 4 gain +0.000 L17 D0 yoch,sZoom
+356a569a 1 5  # ply 24 played 0 5 gain +0.041 L1 D0 sZoom
+29c7636c 8 1  # ply 24 played 7 1 gain +0.065 L0 D1 Apostolique
+31c9998f 8 0  # ply 24 played 7 1 gain +0.105 L0 D1 Vingte
+37879623 2 3  # ply 24 played 1 3 gain +0.170 L1 D0 MrSubZero
+2ac62c38 2 2  # ply 24 played 1 2 gain +0.072 L0 D1 MrSubZero
+1ad2a41e 7 2  # ply 24 played 7 0 gain +0.068 L1 D0 MrSubZero
+0defe33a 3 4  # ply 24 played 5 5 gain +0.027 L1 D0 RoboStac
+3a4b0d1a 2 5  # ply 25 played 0 5 gain +0.000 L2 D0 MrSubZero
+137a01ac 5 5  # ply 25 played 3 5 gain +0.000 L1 D0 MrSubZero
+0d7a633e 1 5  # ply 25 played 2 5 gain +0.001 L1 D0 flawedaxioms
+349e1531 7 8  # ply 25 played 7 7 gain +0.044 L3 D0 flawedaxioms
+1be07095 7 8  # ply 25 played 7 7 gain +0.001 L10 D0 yoch,sZoom
+09ec3922 6 1  # ply 25 played 7 2 gain +0.117 L1 D0 Fancheng
+2b82aff4 3 0  # ply 25 played 3 2 gain +0.000 L1 D0 zasmu
+08b83bea 0 1  # ply 26 played 0 2 gain +0.162 L0 D1 MrSubZero
+2137b6ef 2 8  # ply 26 played 2 6 gain +0.140 L1 D0 Apostolique
+303e6a6d 2 8  # ply 26 played 1 8 gain +0.187 L1 D0 MrSubZero
+086bfa23 2 7  # ply 26 played 1 6 gain +0.143 L0 D1 MrSubZero
+2c566218 0 8  # ply 26 played 2 6 gain +0.021 L1 D0 MrSubZero
+047425e3 5 7  # ply 26 played 3 8 gain +0.073 L1 D0 RoboStac
+36c96cf6 0 1  # ply 26 played 1 2 gain +0.059 L1 D0 RoboStac
+197c1680 8 4  # ply 27 refuted 7 3 alt q 0.149
+07287bc3 5 4  # ply 27 played 3 5 gain +0.000 L2 D0 MrSubZero
+1c4c475d 6 7  # ply 27 played 8 7 gain +0.000 L1 D0 MrSubZero
+3ea3d068 6 4  # ply 27 refuted 7 3 alt q 0.187
+21de4c76 2 8  # ply 27 refuted 1 8 alt q 0.179
+2bc74016 1 7  # ply 27 played 2 6 gain +0.001 L1 D0 flawedaxioms
+253bcec2 5 5  # ply 27 played 5 4 gain +0.128 L1 D0 flawedaxioms
+137d6b5c 0 0  # ply 27 played 6 7 gain +0.180 L10 D0 yoch,sZoom
+2aeae498 3 4  # ply 27 played 3 3 gain +0.117 L1 D0 Fancheng
+140f27bb 6 1  # ply 28 record 6,1:2x1.0 8,0:1x0.0 gain 1.0
+3e888da5 3 2  # ply 28 played 4 1 gain +0.011 L1 D0 Apostolique
+1032d4c0 3 4  # ply 28 played 5 5 gain +0.130 L0 D1 Apostolique
+0de6ed46 8 4  # ply 29 played 8 3 gain +0.000 L1 D0 MrSubZero
+0fbd9608 0 7  # ply 29 played 1 7 gain +0.001 L1 D0 MrSubZero
+0d78a6d1 7 6  # ply 29 refuted 6 6 alt q 0.109
+0f0819d4 7 0  # ply 29 refuted 8 0 alt q 0.484
+075c4e2a 0 2  # ply 29 refuted 0 1 alt q 0.110
+28370994 6 5  # ply 29 refuted 8 5 alt q 0.106
+01213922 5 5  # ply 29 refuted 3 5 alt q 0.519
+0366d22a 2 5  # ply 29 played 1 5 gain +0.160 L1 D0 flawedaxioms
+146bece3 0 2  # ply 29 played 0 0 gain +0.000 L6 D0 yoch,sZoom
+25f21411 4 1  # ply 29 played 3 0 gain +0.017 L4 D0 sZoom
+2992fb5c 2 0  # ply 29 played 0 0 gain +0.001 L1 D0 zasmu
+397399be 1 6  # ply 30 played 0 8 gain +0.330 L1 D0 MrSubZero
+02121293 5 1  # ply 31 played 4 1 gain +0.000 L1 D0 MrSubZero
+3843ae3e 0 1  # ply 31 played 1 0 gain +0.000 L1 D0 Apostolique
+2e7e731b 3 5  # ply 31 played 5 4 gain +0.032 L1 D0 Daporan
+38999849 7 4  # ply 31 refuted 7 3 alt q 0.158
+171b1e22 6 7  # ply 31 refuted 7 8 alt q 0.127
+30d8a288 5 8  # ply 31 refuted 3 6 alt q 0.138
+32fd809a 1 3  # ply 31 refuted 7 7 alt q 0.126
+0a941e52 2 0  # ply 32 played 0 1 gain +0.094 L0 D1 Apostolique
+0c41cd62 6 6  # ply 32 played 7 6 gain +0.410 L1 D0 RoboStac
+0f906b75 8 6  # ply 32 played 7 6 gain +0.001 L1 D0 RoboStac
+11939e86 8 7  # ply 33 played 8 6 gain +0.000 L4 D0 Vingte
+3eb94696 2 7  # ply 33 played 2 6 gain +0.000 L4 D0 Apostolique
+3bc6a9bd 8 5  # ply 33 played 6 4 gain +0.000 L3 D0 Apostolique
+294bac5f 8 7  # ply 33 refuted 7 6 alt q 0.121
+03bfd7f3 3 7  # ply 33 played 5 6 gain +0.000 L1 D0 Daporan
+1b7b2659 1 0  # ply 33 played 0 2 gain +0.001 L1 D0 Daporan
+276b1377 3 1  # ply 33 played 5 1 gain +0.000 L1 D0 RoboStac
+10b9f56f 0 6  # ply 33 played 2 7 gain +0.001 L1 D0 flawedaxioms
+3011ee85 5 3  # ply 33 played 5 5 gain +0.001 L1 D0 flawedaxioms
+0e083152 4 3  # ply 33 played 3 4 gain +0.001 L4 D0 Vingte
+0e7d52df 8 1  # ply 34 played 8 2 gain +0.161 L0 D1 Apostolique
+03aaa3b4 3 4  # ply 34 played 4 5 gain +0.257 L0 D1 Apostolique
+2124e45e 2 6  # ply 34 refuted 0 6 alt q 0.503
+27eee63a 8 6  # ply 34 refuted 6 7 alt q 0.502
+17b9bdfa 8 5  # ply 35 played 6 4 gain +0.000 L4 D0 Vingte
+29a0bbf0 8 1  # ply 35 played 7 1 gain +0.000 L4 D0 Apostolique
+0577b0f1 0 0  # ply 35 refuted 2 2 alt q 0.127
+07e74261 7 1  # ply 35 played 2 0 gain +0.000 L1 D0 aCat
+315ebfcd 1 0  # ply 35 played 0 2 gain +0.000 L1 D0 flawedaxioms
+257c42d0 3 2  # ply 35 refuted 3 6 alt q 0.107
+1794152c 6 7  # ply 35 played 7 6 gain +0.000 L3 D0 Vingte
+222a0b3a 5 5  # ply 35 refuted 3 4 alt q 0.133
+24e7c387 1 7  # ply 36 played 2 7 gain +0.070 L1 D0 sZoom
+315cdff1 2 4  # ply 36 played 1 3 gain +0.163 L0 D1 Apostolique
+192275ad 7 1  # ply 36 refuted 7 2 alt q 0.388
+22e14977 1 1  # ply 37 refuted 2 0 alt q 0.193
+0368779e 7 7  # ply 37 refuted 8 7 alt q 0.113
+3f571cfb 7 3  # ply 37 played 6 3 gain +0.000 L3 D0 Daporan
+0a3b47ca 7 4  # ply 37 refuted 8 4 alt q 0.125
+2cd1a286 5 6  # ply 38 played 5 7 gain +0.303 L0 D1 Vingte
+12f0470e 2 5  # ply 38 played 2 4 gain +0.240 L0 D1 Apostolique
+0a638d03 7 5  # ply 38 record 7,5:1x1.0 8,3:1x0.0 gain 1.0
+3360e5b7 5 2  # ply 39 played 3 2 gain +0.000 L1 D0 flawedaxioms
+21e36c34 7 1  # ply 40 played 6 1 gain +0.000 L1 D0 sZoom
+14a4f1b3 5 7  # ply 40 played 5 8 gain +0.341 L0 D1 Apostolique
+1a5c635f 6 3  # ply 44 refuted 7 3 alt q 0.256
+23be81dd 1 8  # ply 45 played 1 7 gain +0.000 L1 D0 NinjaDoggy
+2069cac8 1 1  # ply 48 refuted 0 2 alt q 0.500
+1380aca2 0 0  # ply 16 played 2 2 gain +0.102 L2 D0 RoboStac,MrSubZero
+07665368 1 6  # ply 17 played 1 7 gain +0.066 L1 D0 Regulus136
+1c4e1936 8 3  # ply 19 played 8 5 gain +0.024 L1 D0 MrSubZero
+046114a1 1 7  # ply 19 played 0 8 gain +0.032 L1 D0 MrSubZero
+30757435 0 8  # ply 19 played 2 6 gain +0.009 L1 D0 Apostolique
+159b06e9 3 0  # ply 19 played 3 1 gain +0.060 L1 D0 Regulus136
+396201d2 1 6  # ply 20 played 1 8 gain +0.169 L2 D0 RoboStac,MrSubZero
+0aed577b 6 0  # ply 20 played 7 0 gain +0.134 L3 D0 Angecide
+358818e5 3 0  # ply 20 played 4 0 gain +0.099 L0 D1 flawedaxioms
+08d3c855 0 0  # ply 21 played 1 0 gain +0.007 L1 D0 MrSubZero
+095b24f1 1 0  # ply 21 played 2 0 gain +0.003 L1 D0 YurkovAS
+1f443ed5 5 1  # ply 22 played 4 2 gain +0.031 L0 D1 Vingte
+125daa60 6 7  # ply 22 played 7 6 gain +0.126 L3 D0 Angecide
+36ddf93c 6 5  # ply 22 played 7 3 gain +0.095 L0 D1 flawedaxioms
+3b7b879b 2 5  # ply 23 played 2 4 gain +0.053 L1 D0 MrSubZero
+1ef8a032 0 2  # ply 23 played 1 0 gain +0.163 L1 D0 Regulus136
+22b101c8 3 4  # ply 24 played 5 4 gain +0.149 L1 D0 RoboStac
+124e286e 0 6  # ply 24 played 2 6 gain +0.027 L1 D0 RoboStac
+34f711e8 3 2  # ply 24 played 5 0 gain +0.194 L3 D0 Angecide
+023a0b51 7 8  # ply 24 played 6 8 gain +0.075 L0 D1 flawedaxioms
+07c03129 1 3  # ply 25 played 1 4 gain +0.003 L1 D0 MrSubZero
+113e0fb2 3 1  # ply 25 played 5 2 gain +0.002 L1 D0 MrSubZero
+089d737f 3 5  # ply 25 played 5 5 gain +0.182 L1 D0 flawedaxioms
+06497794 4 2  # ply 25 played 5 1 gain +0.000 L1 D0 MrSubZero
+135241dd 2 6  # ply 25 refuted 1 7 alt q 0.405
+0270371a 3 6  # ply 25 played 5 6 gain +0.000 L4 D0 yoch,sZoom
+2b0a215b 0 6  # ply 25 played 2 6 gain +0.023 L1 D0 flawedaxioms
+25493b0a 4 8  # ply 26 played 4 6 gain +0.000 L1 D0 MrSubZero
+03a99a27 0 0  # ply 26 played 2 1 gain +0.182 L1 D0 RoboStac
+19990c39 1 2  # ply 26 played 2 0 gain +0.073 L1 D0 RoboStac
+03af40b2 7 8  # ply 26 played 6 7 gain +0.238 L3 D0 Angecide
+020dc7f7 1 5  # ply 26 played 0 4 gain +0.184 L0 D1 flawedaxioms
+3fc86c8c 0 4  # ply 26 played 1 5 gain +0.033 L0 D1 flawedaxioms
+2c7826f4 6 7  # ply 27 refuted 6 8 alt q 0.117
+2dd896da 7 6  # ply 27 played 8 8 gain +0.000 L1 D0 MrSubZero
+0c81eca3 7 8  # ply 27 refuted 7 6 alt q 0.309
+2c621890 7 5  # ply 27 played 6 3 gain +0.000 L1 D0 MrSubZero
+0cefbb14 1 5  # ply 27 refuted 1 4 alt q 0.119
+1d7c0679 7 6  # ply 27 played 7 7 gain +0.001 L1 D0 Daporan
+2780058d 7 4  # ply 27 refuted 8 4 alt q 0.179
+2dc3fb6f 0 7  # ply 27 played 2 6 gain +0.182 L1 D0 flawedaxioms
+132e024b 7 5  # ply 27 played 8 5 gain +0.087 L1 D0 flawedaxioms
+35a8c11b 7 7  # ply 27 refuted 7 8 alt q 0.102
+17a044c0 5 1  # ply 27 played 4 1 gain +0.059 L1 D0 yoch
+381d6fb1 3 0  # ply 27 played 5 1 gain +0.160 L1 D0 flawedaxioms
+1a2af537 0 0  # ply 27 played 0 1 gain +0.073 L1 D0 flawedaxioms
+2688f51b 3 4  # ply 27 played 3 5 gain +0.125 L1 D0 flawedaxioms
+02c2b136 4 3  # ply 28 played 4 5 gain +0.000 L3 D0 Angecide
+010190ab 5 3  # ply 29 refuted 5 5 alt q 0.102
+285f1b65 2 5  # ply 29 played 1 3 gain +0.001 L1 D0 Apostolique
+355e60c9 7 6  # ply 29 played 8 6 gain +0.000 L1 D0 MrSubZero
+117ae088 1 7  # ply 29 played 2 6 gain +0.001 L1 D0 Daporan
+3e4da094 6 7  # ply 29 played 7 7 gain +0.027 L1 D0 flawedaxioms
+2ee654ec 7 7  # ply 29 played 6 6 gain +0.000 L1 D0 MrSubZero
+1d2cdb4c 0 2  # ply 29 refuted 0 0 alt q 0.119
+393edb47 3 2  # ply 30 played 3 1 gain +0.124 L0 D1 Vingte
+173814bf 3 3  # ply 30 played 6 8 gain +0.227 L0 D1 Vingte
+330bfd79 7 4  # ply 30 played 8 5 gain +0.001 L1 D0 MrSubZero
+066e34c5 1 7  # ply 30 played 1 6 gain +0.004 L3 D0 Angecide
+3e048ef0 1 8  # ply 30 played 2 8 gain +0.327 L0 D1 flawedaxioms
+2c20e3a1 7 1  # ply 31 refuted 7 2 alt q 0.141
+00a790d3 4 7  # ply 31 played 3 6 gain +0.001 L1 D0 MrSubZero
+352dfd40 6 4  # ply 31 played 7 3 gain +0.001 L2 D0 Vingte
+2173d3cc 6 1  # ply 31 refuted 6 2 alt q 0.152
+3fa99423 2 6  # ply 31 played 2 7 gain +0.157 L1 D0 flawedaxioms
+0add9ccf 0 3  # ply 31 refuted 1 5 alt q 0.126
+0e00e0be 0 6  # ply 31 played 0 7 gain +0.000 L1 D0 flawedaxioms
+24bde4ba 1 5  # ply 31 played 2 3 gain +0.001 L1 D0 flawedaxioms
+389301ec 3 0  # ply 32 played 3 2 gain +0.197 L0 D1 Vingte
+09293b60 7 1  # ply 32 played 8 1 gain +0.460 L0 D1 flawedaxioms
+3fd46027 4 1  # ply 33 played 3 2 gain +0.001 L1 D0 NinjaDoggy
+13776612 7 7  # ply 33 refuted 1 8 alt q 0.125
+0002e381 6 6  # ply 33 played 7 6 gain +0.000 L3 D0 Daporan
+2d40af7e 4 1  # ply 33 refuted 3 0 alt q 0.113
+0c4b676a 0 2  # ply 33 refuted 1 0 alt q 0.297
+2e46bef0 1 0  # ply 33 played 2 2 gain +0.000 L1 D0 YurkovAS
+360629f2 2 1  # ply 33 refuted 0 0 alt q 0.499
+29d15507 8 2  # ply 33 played 6 0 gain +0.000 L1 D0 flawedaxioms
+3e3db839 1 1  # ply 34 refuted 1 4 alt q 0.509
+0e386696 5 8  # ply 34 refuted 3 7 alt q 0.808
+10808c2e 2 5  # ply 34 played 2 3 gain +0.041 L3 D0 Angecide
+303e4482 6 7  # ply 35 played 7 6 gain +0.001 L1 D0 MrSubZero
+11618099 2 0  # ply 35 refuted 1 0 alt q 0.110
+3b1340a2 7 8  # ply 35 played 7 6 gain +0.000 L1 D0 flawedaxioms
+13987f9f 2 5  # ply 35 refuted 2 3 alt q 0.101
+20ae5814 6 8  # ply 35 refuted 7 8 alt q 0.149
+0773230e 5 3  # ply 36 refuted 3 3 alt q 0.368
+0cd1331d 0 6  # ply 37 played 2 6 gain +0.000 L1 D0 RoboStac
+1b6e8e9a 7 2  # ply 37 refuted 6 0 alt q 0.137
+37a2039a 6 1  # ply 37 refuted 6 0 alt q 0.157
+18351ba9 8 6  # ply 38 played 3 4 gain +0.398 L0 D1 Vingte
+00699ca3 3 3  # ply 39 refuted 5 3 alt q 0.181
+041f442f 0 1  # ply 41 refuted 2 0 alt q 0.489
+1e672e9b 4 7  # ply 27 pre: short search 3 7 0.163 vs 0.908
+1210da08 6 8  # ply 37 pre: short search 8 7 0.316 vs 0.948
+3379a246 7 2  # ply 27 pre: short search 6 2 0.245 vs 0.871
+04077556 7 1  # ply 33 pre: short search 7 2 0.274 vs 0.899
+18c75515 5 5  # ply 33 pre: short search 5 4 0.276 vs 0.896
+059e5592 5 1  # ply 33 pre: short search 5 2 0.340 vs 0.916
+31d6b656 5 5  # ply 31 pre: short search 5 4 0.178 vs 0.698
+11dba642 4 1  # ply 35 pre: short search 5 1 0.461 vs 0.944
+1ae0d827 6 1  # ply 31 pre: short search 8 2 0.501 vs 0.941
+069aac51 3 3  # ply 30 pre: short search 3 5 0.499 vs 0.936
+2546030e 5 0  # ply 34 pre: short search 7 1 0.540 vs 0.973
+1febc515 8 6  # ply 36 pre: short search 7 7 0.509 vs 0.942
+2ca0a982 8 4  # ply 32 pre: short search 6 5 0.512 vs 0.938
+1257dacb 7 1  # ply 35 pre: short search 8 2 0.521 vs 0.942
+3a1bf5c5 6 3  # ply 40 pre: short search 8 3 0.522 vs 0.940
+33b95df5 4 3  # ply 37 pre: short search 5 3 0.501 vs 0.913
+1a4a0bb4 2 6  # ply 36 pre: short search 2 8 0.509 vs 0.921
+1f7a942a 7 3  # ply 35 pre: short search 8 3 0.157 vs 0.568
+21c9e0ba 7 3  # ply 37 pre: short search 7 5 0.068 vs 0.476
+251bbf4b 1 7  # ply 33 pre: short search 2 6 0.495 vs 0.902
+0efb46de 7 0  # ply 41 pre: short search 2 0 0.092 vs 0.499
+23a13fb5 6 2  # ply 32 pre: short search 6 1 0.522 vs 0.926
+390c63e4 5 3  # ply 35 pre: short search 4 3 0.502 vs 0.904
+1f9b4b9b 8 5  # ply 34 pre: short search 6 5 0.519 vs 0.919
+2ff6175e 3 7  # ply 32 pre: short search 5 7 0.553 vs 0.950
+2c9afdab 1 2  # ply 35 pre: short search 2 2 0.106 vs 0.499
+33e9f083 7 3  # ply 33 pre: short search 7 4 0.054 vs 0.445
+218c55ef 4 0  # ply 34 pre: short search 5 1 0.554 vs 0.945
+0f4c5aba 3 3  # ply 35 pre: short search 4 3 0.500 vs 0.888
+3fed4f29 3 5  # ply 28 pre: short search 3 4 0.503 vs 0.890
+04260634 7 0  # ply 43 pre: short search 6 0 0.110 vs 0.497
+0a36c019 0 8  # ply 32 pre: short search 1 7 0.552 vs 0.939
+0e69089a 8 7  # ply 35 pre: short search 7 7 0.099 vs 0.484
+0b213856 8 1  # ply 31 pre: short search 6 1 0.112 vs 0.496
+2f6a2fa9 4 6  # ply 30 pre: short search 3 8 0.546 vs 0.928
+2462e75c 6 4  # ply 39 pre: short search 6 5 0.118 vs 0.500
+175c22e0 1 1  # ply 35 pre: short search 1 2 0.583 vs 0.965
+23f23e46 5 7  # ply 37 pre: short search 6 8 0.096 vs 0.477
+13291a7f 3 0  # ply 35 pre: short search 5 1 0.115 vs 0.496
+14dfe27b 3 8  # ply 32 pre: short search 5 7 0.553 vs 0.933
+31b9fd0b 6 2  # ply 35 pre: short search 7 2 0.504 vs 0.880
+29e7341e 0 5  # ply 31 pre: short search 2 3 0.498 vs 0.874
+08de4b33 5 3  # ply 39 pre: short search 3 3 0.123 vs 0.499
+2d398899 0 1  # ply 35 pre: short search 1 3 0.113 vs 0.488
+3e4769ae 7 0  # ply 38 pre: short search 7 2 0.573 vs 0.946
+180d34fa 8 3  # ply 33 pre: short search 7 3 0.116 vs 0.489
+3caa7a04 4 5  # ply 25 pre: short search 5 3 0.114 vs 0.486
+01113991 8 6  # ply 34 pre: short search 8 7 0.594 vs 0.965
+1991ac5d 7 2  # ply 33 pre: short search 6 2 0.144 vs 0.514
+1da548e0 7 4  # ply 31 pre: short search 8 3 0.127 vs 0.496
+0c35da91 3 1  # ply 34 pre: short search 3 0 0.560 vs 0.927
+39945292 8 7  # ply 33 pre: short search 2 6 0.125 vs 0.491
+2ce60142 3 2  # ply 33 pre: short search 4 1 0.132 vs 0.497
+2e920f5e 3 0  # ply 35 pre: short search 4 1 0.133 vs 0.497
+1b9faaaa 0 3  # ply 33 pre: short search 1 3 0.133 vs 0.497
+052713dd 5 0  # ply 31 pre: short search 5 3 0.135 vs 0.499
+29069921 3 0  # ply 39 pre: short search 4 1 0.120 vs 0.483
+0c537adc 5 0  # ply 39 pre: short search 3 1 0.132 vs 0.495
+1e6bbe30 8 5  # ply 33 pre: short search 7 5 0.500 vs 0.862
+0f7c5d6c 7 1  # ply 34 pre: short search 6 0 0.587 vs 0.949
+0b75b4c5 5 3  # ply 36 pre: short search 3 5 0.566 vs 0.927
+18775b73 2 0  # ply 36 pre: short search 1 1 0.537 vs 0.898
+2f2f73a2 0 3  # ply 30 pre: short search 2 3 0.581 vs 0.939
+067b7552 6 1  # ply 47 pre: short search 1 3 0.135 vs 0.493
+1765e81e 0 2  # ply 35 pre: short search 0 1 0.140 vs 0.497
+0bd9e4bf 1 0  # ply 31 pre: short search 2 0 0.122 vs 0.479
+1e064fe8 3 1  # ply 33 pre: short search 3 2 0.138 vs 0.494
+07c36a75 8 6  # ply 33 pre: short search 7 6 0.112 vs 0.466
+398bdbc6 6 1  # ply 42 pre: short search 8 0 0.620 vs 0.973
+04b59ee8 1 8  # ply 37 pre: short search 0 6 0.502 vs 0.855
+272f621c 4 3  # ply 33 pre: short search 3 3 0.146 vs 0.498
+388d041d 6 1  # ply 33 pre: short search 8 2 0.135 vs 0.485
+20b9d00a 3 0  # ply 33 pre: short search 4 1 0.134 vs 0.484
+31e27893 3 6  # ply 37 pre: short search 3 7 0.147 vs 0.496
+0677a308 5 6  # ply 31 pre: short search 3 7 0.145 vs 0.494
+35148aed 7 7  # ply 37 pre: short search 5 0 0.152 vs 0.500
+1c278a2e 8 2  # ply 33 pre: short search 7 1 0.143 vs 0.491
+061479fc 7 1  # ply 38 pre: short search 6 0 0.151 vs 0.499
+276fcfa8 0 7  # ply 34 pre: short search 2 6 0.635 vs 0.982
+24a277b6 3 0  # ply 37 pre: short search 5 1 0.148 vs 0.495
+29d28f99 7 3  # ply 43 pre: short search 7 5 0.134 vs 0.480
+22329b95 3 5  # ply 29 pre: short search 3 4 0.227 vs 0.573
+038e25a2 6 8  # ply 31 pre: short search 7 6 0.147 vs 0.493
+1f09b2c1 6 0  # ply 36 pre: short search 6 2 0.598 vs 0.943
+374ae539 7 5  # ply 35 pre: short search 6 4 0.149 vs 0.493
+14e2849e 3 1  # ply 37 pre: short search 3 2 0.143 vs 0.487
+28cefa8d 5 0  # ply 33 pre: short search 5 4 0.154 vs 0.495
+10777cfc 5 3  # ply 31 pre: short search 5 4 0.130 vs 0.471
+2de066d1 2 5  # ply 33 pre: short search 2 4 0.145 vs 0.485
+2ad34a78 0 1  # ply 29 pre: short search 0 2 0.156 vs 0.495
+3b8e2729 3 7  # ply 29 pre: short search 3 8 0.134 vs 0.471
+36e86d13 4 7  # ply 31 pre: short search 5 7 0.152 vs 0.488
+0d08437e 7 6  # ply 33 pre: short search 8 6 0.160 vs 0.496
+382137b0 2 0  # ply 35 pre: short search 2 1 0.166 vs 0.500
+2ba7ee78 5 6  # ply 29 pre: short search 3 6 0.163 vs 0.497
+3a3c375b 7 7  # ply 33 pre: short search 6 7 0.157 vs 0.490
+35f553b9 3 7  # ply 39 pre: short search 3 6 0.143 vs 0.476
+10ace647 4 2  # ply 29 pre: short search 4 1 0.130 vs 0.462
+20a79b4d 4 3  # ply 37 pre: short search 5 4 0.165 vs 0.495
+18343779 4 5  # ply 36 pre: short search 4 3 0.628 vs 0.958
+03e62b67 1 4  # ply 31 pre: short search 2 4 0.156 vs 0.486
+1e57c55c 7 5  # ply 31 pre: short search 7 3 0.161 vs 0.490
+308c7f91 8 1  # ply 40 pre: short search 8 2 0.573 vs 0.900
+10380717 2 7  # ply 34 pre: short search 1 8 0.585 vs 0.911
+0204a4aa 5 6  # ply 33 pre: short search 5 7 0.172 vs 0.498
+0a6afd1e 1 3  # ply 35 pre: short search 0 3 0.163 vs 0.489
+23af8fba 1 0  # ply 39 pre: short search 1 1 0.172 vs 0.496
+1636ca3f 2 8  # ply 35 pre: short search 2 7 0.165 vs 0.488
+1594f350 2 1  # ply 30 pre: short search 0 2 0.524 vs 0.847
+3e06e451 5 1  # ply 34 pre: short search 5 2 0.575 vs 0.897
+367fe266 5 6  # ply 35 pre: short search 3 8 0.177 vs 0.499
+3ae5b7b9 3 3  # ply 33 pre: short search 5 3 0.183 vs 0.504
+1d0e1c3a 3 0  # ply 39 pre: short search 3 2 0.172 vs 0.493
+004a3652 1 0  # ply 34 pre: short search 2 2 0.562 vs 0.879
+0b7bae94 5 6  # ply 37 pre: short search 3 7 0.624 vs 0.940
+01091a52 1 4  # ply 36 pre: short search 2 5 0.633 vs 0.949
+3f5bee16 0 5  # ply 35 pre: short search 2 3 0.184 vs 0.498
+3e0dbec3 5 6  # ply 35 pre: short search 5 7 0.186 vs 0.500
+2cd06938 6 7  # ply 41 pre: short search 6 8 0.180 vs 0.494
+133dbda2 1 5  # ply 35 pre: short search 1 3 0.178 vs 0.492
+26b96240 2 5  # ply 31 pre: short search 1 3 0.160 vs 0.473
+01716a98 4 3  # ply 32 pre: short search 5 5 0.607 vs 0.917
+22d8702d 8 5  # ply 31 pre: short search 8 3 0.183 vs 0.493
+054af5cb 3 6  # ply 30 pre: short search 4 8 0.638 vs 0.947
+2cbde3e2 6 6  # ply 33 pre: short search 7 6 0.148 vs 0.456
+3e17f66f 3 6  # ply 37 pre: short search 5 6 0.182 vs 0.490
+23d5f70b 2 3  # ply 35 pre: short search 1 3 0.188 vs 0.496
+11381826 8 7  # ply 45 pre: short search 7 7 0.185 vs 0.493
+1c1b0ccf 5 1  # ply 33 pre: short search 4 2 0.173 vs 0.480
+05c3afb8 1 8  # ply 29 pre: short search 2 7 0.184 vs 0.491
+1feea255 7 2  # ply 32 pre: short search 8 1 0.574 vs 0.879
+0e4346bc 5 1  # ply 34 pre: short search 5 0 0.185 vs 0.490
+2b3daa8c 3 0  # ply 33 pre: short search 5 2 0.168 vs 0.473
+1fbb5b56 6 8  # ply 36 pre: short search 8 7 0.651 vs 0.956
+2ea200b6 1 3  # ply 35 pre: short search 1 5 0.073 vs 0.377
+0fb300a6 1 7  # ply 39 pre: short search 0 6 0.193 vs 0.497
+3d5bbc4f 3 4  # ply 35 pre: short search 3 3 0.101 vs 0.404
+1dbff288 3 4  # ply 28 pre: short search 3 5 0.628 vs 0.931
+0b4c1bd9 5 1  # ply 31 pre: short search 4 1 0.167 vs 0.470
+29647c7e 2 3  # ply 32 pre: short search 2 4 0.611 vs 0.913
+35b5cfcf 5 3  # ply 31 pre: short search 4 3 0.160 vs 0.461
+16f6b489 3 2  # ply 29 pre: short search 5 1 0.198 vs 0.499
+087252aa 6 3  # ply 35 pre: short search 7 3 0.182 vs 0.482
+035d5886 6 1  # ply 33 pre: short search 7 1 0.171 vs 0.470
+27a2a726 1 4  # ply 37 pre: short search 0 3 0.203 vs 0.501
+32e46b3f 8 4  # ply 27 pre: short search 7 3 0.185 vs 0.482
+1df8e547 1 5  # ply 31 pre: short search 0 3 0.194 vs 0.491
+3e20d91a 0 3  # ply 41 pre: short search 2 3 0.202 vs 0.497
+1a40e55f 5 1  # ply 35 pre: short search 5 2 0.199 vs 0.494
+04b9498b 7 3  # ply 32 pre: short search 7 4 0.648 vs 0.943
+20aededb 1 3  # ply 29 pre: short search 1 5 0.204 vs 0.497
+0d298325 3 2  # ply 35 pre: short search 4 1 0.189 vs 0.482
+37c2bce6 1 4  # ply 31 pre: short search 0 3 0.207 vs 0.499
+09c41e3b 8 7  # ply 31 pre: short search 5 5 0.181 vs 0.473
+07fc9374 4 1  # ply 35 pre: short search 4 2 0.187 vs 0.479
+0039d164 7 4  # ply 29 pre: short search 7 5 0.190 vs 0.482
+3790acb3 4 7  # ply 40 pre: short search 3 8 0.640 vs 0.931
+30097775 5 5  # ply 39 pre: short search 5 3 0.204 vs 0.495
+3f412393 8 1  # ply 29 pre: short search 6 1 0.208 vs 0.498
+09b9bba4 2 0  # ply 37 pre: short search 0 1 0.210 vs 0.500
+0847abca 7 4  # ply 35 pre: short search 7 3 0.200 vs 0.490
+2b2bd96a 2 3  # ply 35 pre: short search 1 3 0.151 vs 0.440
+16c79d39 8 7  # ply 33 pre: short search 7 8 0.199 vs 0.488
+03674659 0 5  # ply 34 pre: short search 2 3 0.663 vs 0.952
+3e3e5e7f 6 5  # ply 28 pre: short search 8 3 0.603 vs 0.891
+155b1d38 6 5  # ply 29 pre: short search 6 4 0.174 vs 0.462
+2ca43709 2 5  # ply 37 pre: short search 0 4 0.201 vs 0.488
+2b868df4 5 7  # ply 29 pre: short search 3 6 0.127 vs 0.414
+27ae28b3 3 1  # ply 36 pre: short search 4 1 0.656 vs 0.943
+3f26c474 3 1  # ply 34 pre: short search 5 2 0.606 vs 0.890
+3116bc3c 0 1  # ply 33 pre: short search 2 2 0.119 vs 0.403
+3463fe27 1 2  # ply 29 pre: short search 0 0 0.214 vs 0.497
+32d734a3 8 7  # ply 26 pre: short search 6 8 0.598 vs 0.880
+03c00861 0 2  # ply 30 pre: short search 1 1 0.601 vs 0.883
+1b4920e6 1 2  # ply 37 pre: short search 2 2 0.188 vs 0.470
+2447ef16 2 4  # ply 29 pre: short search 1 5 0.217 vs 0.498
+2df27226 2 5  # ply 37 pre: short search 2 3 0.221 vs 0.500
+2a6ad209 0 3  # ply 33 pre: short search 1 5 0.185 vs 0.464
+1f7143cc 4 5  # ply 30 pre: short search 3 4 0.668 vs 0.947
+01321ea3 8 3  # ply 32 pre: short search 6 5 0.672 vs 0.951
+28e4634d 2 3  # ply 37 pre: short search 1 4 0.213 vs 0.491
+3d9c01e4 2 7  # ply 34 pre: short search 0 7 0.615 vs 0.892
+3b958de5 8 2  # ply 41 pre: short search 8 1 0.223 vs 0.500
+03a354f3 8 6  # ply 35 pre: short search 7 6 0.217 vs 0.494
+2602697d 2 3  # ply 35 pre: short search 1 5 0.218 vs 0.494
+1639a769 5 8  # ply 29 pre: short search 5 6 0.219 vs 0.495
+01f4b4a2 6 2  # ply 25 pre: short search 7 1 0.166 vs 0.442
+3f6ac481 7 2  # ply 35 pre: short search 6 2 0.169 vs 0.444
+39e2dd54 1 0  # ply 33 pre: short search 2 0 0.187 vs 0.462
+30489d99 5 3  # ply 33 pre: short search 5 5 0.189 vs 0.464
+167d05f0 8 5  # ply 35 pre: short search 7 4 0.198 vs 0.473
+387cc76c 6 7  # ply 32 pre: short search 8 7 0.678 vs 0.953
+0e1ba6cb 0 2  # ply 29 pre: short search 1 0 0.218 vs 0.492
+0e19d899 1 7  # ply 29 pre: short search 2 7 0.221 vs 0.494
+0210b4d5 6 7  # ply 31 pre: short search 8 6 0.224 vs 0.497
+16840e9d 3 8  # ply 30 pre: short search 4 7 0.677 vs 0.950
+3bc3d1c9 8 3  # ply 29 pre: short search 7 5 0.215 vs 0.487
+1ae12d6d 1 6  # ply 31 pre: short search 0 6 0.219 vs 0.491
+165c8434 5 7  # ply 38 pre: short search 5 8 0.664 vs 0.936
+136114ea 8 7  # ply 29 pre: short search 6 6 0.226 vs 0.498
+0edff7d7 1 0  # ply 39 pre: short search 2 0 0.234 vs 0.506
+074fee57 0 1  # ply 36 pre: short search 2 2 0.659 vs 0.931
+070aefee 5 1  # ply 33 pre: short search 4 2 0.221 vs 0.493
+32ff6029 7 0  # ply 29 pre: short search 6 0 0.205 vs 0.476
+30e3bdec 2 5  # ply 39 pre: short search 0 5 0.228 vs 0.499
+233f6a92 4 2  # ply 29 pre: short search 3 0 0.191 vs 0.462
+09d22428 2 0  # ply 31 pre: short search 1 0 0.222 vs 0.493
+01fdce47 6 2  # ply 35 pre: short search 8 1 0.212 vs 0.483
+1c944bc0 6 0  # ply 34 pre: short search 8 1 0.619 vs 0.889
+2d67fea9 2 5  # ply 31 pre: short search 1 3 0.232 vs 0.501
+212afb32 1 8  # ply 35 pre: short search 0 6 0.231 vs 0.500
+133f725c 7 2  # ply 43 pre: short search 7 1 0.228 vs 0.496
+09b53ec2 3 2  # ply 27 pre: short search 5 2 0.222 vs 0.490
+0798a8b9 6 8  # ply 31 pre: short search 7 7 0.226 vs 0.493
+065d8a4b 1 3  # ply 35 pre: short search 2 5 0.201 vs 0.468
+00411c72 5 0  # ply 34 pre: short search 3 1 0.661 vs 0.928
+32d786f3 1 3  # ply 37 pre: short search 1 4 0.141 vs 0.407
+06e64dbf 2 0  # ply 33 pre: short search 1 1 0.225 vs 0.491
+3a917a4d 5 4  # ply 26 pre: short search 3 3 0.619 vs 0.884
+3a1213ac 5 8  # ply 31 pre: short search 5 7 0.201 vs 0.466
+34b67913 5 8  # ply 31 pre: short search 5 7 0.211 vs 0.476
+20d25114 4 1  # ply 30 pre: short search 5 2 0.511 vs 0.776
+1e895235 4 3  # ply 31 pre: short search 3 3 0.228 vs 0.493
+162bf5a5 0 2  # ply 37 pre: short search 1 1 0.233 vs 0.498
+12d94346 5 4  # ply 25 pre: short search 3 5 0.206 vs 0.471
+3a0106f1 8 3  # ply 35 pre: short search 7 3 0.239 vs 0.503
+2c9a3d4a 1 0  # ply 27 pre: short search 0 2 0.217 vs 0.481
+02c0205e 2 5  # ply 29 pre: short search 1 4 0.216 vs 0.480
+06d907fb 7 6  # ply 33 pre: short search 6 7 0.161 vs 0.424
+3ec169c3 2 7  # ply 33 pre: short search 0 8 0.204 vs 0.466
+3bc6b7e6 5 7  # ply 37 pre: short search 6 8 0.215 vs 0.477
+27a420f3 7 3  # ply 31 pre: short search 6 4 0.236 vs 0.498
+0d4a5b9b 7 6  # ply 35 pre: short search 6 7 0.165 vs 0.427
+04b2d782 7 5  # ply 32 pre: short search 6 5 0.564 vs 0.826
+3384e1a1 2 2  # ply 29 pre: short search 0 1 0.243 vs 0.504
+33123179 1 6  # ply 33 pre: short search 1 7 0.217 vs 0.478
+1f62ffec 2 3  # ply 24 pre: short search 2 4 0.605 vs 0.866
+31a1e114 0 2  # ply 32 pre: short search 1 1 0.713 vs 0.973
+3032f474 4 5  # ply 28 pre: short search 3 3 0.677 vs 0.937
+045594b1 5 8  # ply 31 pre: short search 5 7 0.181 vs 0.441
+32d333ac 6 3  # ply 32 pre: short search 6 4 0.676 vs 0.935
+2d05d159 3 0  # ply 33 pre: short search 5 2 0.238 vs 0.497
+20b54abf 6 2  # ply 33 pre: short search 7 0 0.220 vs 0.479
+1ad9291a 6 2  # ply 29 pre: short search 6 1 0.241 vs 0.499
+0a5fb856 8 6  # ply 31 pre: short search 7 7 0.227 vs 0.485
+2e8bb1cb 6 4  # ply 30 pre: short search 7 3 0.651 vs 0.908
+166756a9 5 6  # ply 31 pre: short search 5 7 0.215 vs 0.472
+1e31843c 2 5  # ply 34 pre: short search 2 3 0.579 vs 0.835
+28243290 0 6  # ply 31 pre: short search 1 6 0.238 vs 0.493
+29e0f47e 8 1  # ply 30 pre: short search 6 1 0.675 vs 0.929
+12464b53 4 2  # ply 37 pre: short search 4 7 0.238 vs 0.492
+0edd8be2 1 7  # ply 30 pre: short search 2 6 0.659 vs 0.913
+3a4bc272 6 4  # ply 35 pre: short search 7 4 0.214 vs 0.467
+36fd6640 1 4  # ply 31 pre: short search 0 5 0.245 vs 0.498
+2032631e 1 8  # ply 31 pre: short search 0 6 0.242 vs 0.495
+02ed762a 7 6  # ply 36 pre: short search 7 8 0.668 vs 0.920
+35fa2054 0 5  # ply 33 pre: short search 2 4 0.235 vs 0.486
+21acfba9 3 2  # ply 34 pre: short search 4 1 0.666 vs 0.917
+09fe9506 0 1  # ply 27 pre: short search 2 1 0.214 vs 0.465
+14960ce0 8 5  # ply 30 pre: short search 7 5 0.709 vs 0.959
+160860be 7 0  # ply 31 pre: short search 6 0 0.149 vs 0.398
+2dc148f7 2 6  # ply 29 pre: short search 1 7 0.247 vs 0.496
+0565029c 3 1  # ply 38 pre: short search 4 1 0.700 vs 0.949
+2db66855 7 0  # ply 27 pre: short search 7 1 0.238 vs 0.486
+3c985a6c 7 1  # ply 33 pre: short search 6 0 0.232 vs 0.480
+07cd775c 1 7  # ply 25 pre: short search 0 6 0.233 vs 0.481
+0fe904e3 0 1  # ply 29 pre: short search 1 0 0.207 vs 0.454
+3ef44b9b 3 8  # ply 30 pre: short search 3 6 0.666 vs 0.913
+1c2e92cf 7 8  # ply 28 pre: short search 7 7 0.693 vs 0.940
+10408e65 2 2  # ply 31 pre: short search 2 1 0.214 vs 0.460
+1751b8f5 3 3  # ply 39 pre: short search 4 3 0.249 vs 0.495
+0c43bcdf 8 2  # ply 33 pre: short search 8 1 0.253 vs 0.499
+03ef65f4 8 1  # ply 29 pre: short search 6 1 0.202 vs 0.448
+340f03fe 8 2  # ply 33 pre: short search 7 2 0.501 vs 0.746
+26e549a4 2 8  # ply 27 pre: short search 0 7 0.247 vs 0.492
+03a18239 5 1  # ply 27 pre: short search 3 1 0.240 vs 0.485
+35c8bebc 5 2  # ply 31 pre: short search 4 1 0.245 vs 0.489
+154de806 2 2  # ply 32 pre: short search 2 1 0.667 vs 0.911
+0d0618a8 2 5  # ply 31 pre: short search 1 3 0.263 vs 0.507
+03ff9d39 8 5  # ply 25 pre: short search 7 5 0.231 vs 0.475
+0fd96de0 5 1  # ply 29 pre: short search 4 1 0.213 vs 0.456
+22154001 4 2  # ply 28 pre: short search 3 1 0.644 vs 0.887
+11a38074 4 7  # ply 43 pre: short search 3 8 0.252 vs 0.495
+10bf2776 7 0  # ply 34 pre: short search 6 2 0.724 vs 0.967
+32fa7b88 2 5  # ply 30 pre: short search 1 3 0.668 vs 0.910
+0dc8d64f 8 3  # ply 31 pre: short search 8 4 0.254 vs 0.496
+0c441ce5 7 7  # ply 27 pre: short search 7 6 0.251 vs 0.493
+07abe5ad 0 3  # ply 19 pre: short search 0 4 0.246 vs 0.488
+2fa57239 3 2  # ply 32 pre: short search 5 1 0.689 vs 0.930
+14046954 0 3  # ply 26 pre: short search 2 5 0.691 vs 0.932
+09a9d25f 7 0  # ply 24 pre: short search 6 2 0.707 vs 0.948
+1bab039d 5 3  # ply 31 pre: short search 3 3 0.236 vs 0.476
+03c6f8e1 2 6  # ply 31 pre: short search 0 7 0.260 vs 0.500
+0feb268b 7 4  # ply 33 pre: short search 6 3 0.260 vs 0.499
+01cdd0c7 5 2  # ply 27 pre: short search 4 0 0.260 vs 0.499
+196f096a 0 7  # ply 33 pre: short search 1 8 0.229 vs 0.467
+05852143 6 1  # ply 32 pre: short search 6 0 0.605 vs 0.843
+2876869b 1 0  # ply 31 pre: short search 0 2 0.283 vs 0.520
+27749d1c 2 4  # ply 29 pre: short search 2 5 0.215 vs 0.452
+1aa8ae61 8 6  # ply 27 pre: short search 7 8 0.230 vs 0.466
+0e4273cf 0 3  # ply 35 pre: short search 2 4 0.228 vs 0.464
+3f63c0b3 5 0  # ply 25 pre: short search 4 0 0.266 vs 0.502
+39e243f9 1 3  # ply 40 pre: short search 2 5 0.715 vs 0.951
+36d3b2b9 2 3  # ply 27 pre: short search 0 3 0.249 vs 0.485
+341ff97b 6 8  # ply 36 pre: short search 8 6 0.713 vs 0.949
+1041a576 1 6  # ply 31 pre: short search 1 7 0.260 vs 0.496
+260c10f3 4 2  # ply 32 pre: short search 3 1 0.691 vs 0.926
+2fd9cc40 1 3  # ply 28 pre: short search 2 3 0.691 vs 0.925
+17218e88 6 4  # ply 29 pre: short search 6 3 0.244 vs 0.476
+162da109 1 1  # ply 29 pre: short search 2 1 0.256 vs 0.488
+140347a5 6 8  # ply 31 pre: short search 7 7 0.267 vs 0.498
+110a7426 2 5  # ply 31 pre: short search 1 5 0.260 vs 0.491
+25c03121 2 3  # ply 33 pre: short search 1 4 0.243 vs 0.473
+301e4c72 2 4  # ply 30 pre: short search 1 4 0.661 vs 0.890
+1fbc86f1 1 4  # ply 27 pre: short search 0 5 0.258 vs 0.487
+1b23734f 1 6  # ply 36 pre: short search 2 8 0.724 vs 0.953
+38ca3c70 5 4  # ply 25 pre: short search 5 3 0.245 vs 0.473
+33fbbea9 3 2  # ply 38 pre: short search 3 1 0.744 vs 0.972
+03184f18 5 7  # ply 33 pre: short search 3 7 0.186 vs 0.414
+311a846b 5 2  # ply 29 pre: short search 3 0 0.255 vs 0.482
+146a4447 2 1  # ply 31 pre: short search 0 1 0.266 vs 0.493
+0d98981d 6 3  # ply 26 pre: short search 7 5 0.674 vs 0.901
+0adc976e 8 5  # ply 35 pre: short search 7 3 0.268 vs 0.494
+098fb326 5 0  # ply 30 pre: short search 3 2 0.676 vs 0.902
+3b7abbe6 1 5  # ply 32 pre: short search 0 3 0.692 vs 0.916
+2e18a4e6 6 1  # ply 38 pre: short search 7 1 0.703 vs 0.927
+3a02d08e 8 3  # ply 33 pre: short search 8 4 0.213 vs 0.437
+3b07e2a2 8 7  # ply 32 pre: short search 8 6 0.715 vs 0.939
+38b4d3a4 6 2  # ply 27 pre: short search 8 2 0.254 vs 0.478
+35516e9f 3 3  # ply 33 pre: short search 5 5 0.267 vs 0.491
+2bb12baa 2 0  # ply 28 pre: short search 0 2 0.711 vs 0.934
+378ae4da 4 7  # ply 40 pre: short search 3 7 0.721 vs 0.944
+0e717a30 1 7  # ply 39 pre: short search 1 8 0.273 vs 0.496
+06c315d3 5 3  # ply 35 pre: short search 4 3 0.273 vs 0.496
+2cfa4cf5 0 7  # ply 28 pre: short search 1 6 0.706 vs 0.928
+188ff674 3 4  # ply 38 pre: short search 4 5 0.711 vs 0.933
+173d827e 2 5  # ply 32 pre: short search 2 3 0.712 vs 0.934
+2e60f7e3 0 6  # ply 32 pre: short search 2 7 0.735 vs 0.957
+28d54381 6 3  # ply 35 pre: short search 8 3 0.277 vs 0.499
+1e855a0f 6 6  # ply 41 pre: short search 7 8 0.110 vs 0.331
+084bbd88 6 3  # ply 35 pre: short search 8 4 0.212 vs 0.433
+3e02fa9c 0 5  # ply 34 pre: short search 2 3 0.718 vs 0.939
+32688388 3 4  # ply 39 pre: short search 5 4 0.274 vs 0.494
+29c6e4cf 5 0  # ply 27 pre: short search 5 2 0.274 vs 0.494
+25be0215 1 6  # ply 29 pre: short search 0 6 0.273 vs 0.493
+1b7acfce 1 6  # ply 34 pre: short search 2 8 0.643 vs 0.863
+220878f7 3 1  # ply 30 pre: short search 5 0 0.690 vs 0.908
+06743f1c 1 2  # ply 31 pre: short search 2 0 0.282 vs 0.499
+1e688433 4 2  # ply 29 pre: short search 4 1 0.233 vs 0.450
+394b29ba 7 5  # ply 37 pre: short search 8 5 0.268 vs 0.485
+0c09867e 1 7  # ply 27 pre: short search 2 6 0.273 vs 0.490
+319f1b8f 1 5  # ply 31 pre: short search 1 3 0.281 vs 0.496
+2c2b1a52 3 2  # ply 29 pre: short search 5 2 0.278 vs 0.493
+251c349f 6 8  # ply 32 pre: short search 7 6 0.621 vs 0.836
+1811631a 2 8  # ply 28 pre: short search 0 6 0.666 vs 0.881
+06f815fe 1 3  # ply 27 pre: short search 1 4 0.231 vs 0.445
+0529d584 8 6  # ply 23 pre: short search 8 7 0.224 vs 0.438
+248f0724 7 2  # ply 35 pre: short search 7 0 0.280 vs 0.493
+115eec4c 2 0  # ply 30 pre: short search 1 2 0.680 vs 0.893
+0dcdfae1 3 3  # ply 36 pre: short search 5 5 0.750 vs 0.963
+39d6548f 3 6  # ply 27 pre: short search 5 6 0.257 vs 0.469
+26bf6417 3 6  # ply 27 pre: short search 4 7 0.195 vs 0.407
+14d7c2e2 3 3  # ply 26 pre: short search 5 4 0.622 vs 0.834
+228b4f73 1 1  # ply 35 pre: short search 0 1 0.252 vs 0.463
+28dba141 3 3  # ply 28 pre: short search 3 5 0.675 vs 0.886
+0b8dd066 6 2  # ply 29 pre: short search 8 1 0.261 vs 0.472
+20e3d720 6 2  # ply 32 pre: short search 7 1 0.711 vs 0.921
+25e49fef 6 5  # ply 27 pre: short search 7 4 0.208 vs 0.418
+3db5bc77 8 2  # ply 26 pre: short search 6 1 0.666 vs 0.876
+3b4f4893 3 6  # ply 35 pre: short search 5 7 0.267 vs 0.477
+0e3b8cc2 5 1  # ply 27 pre: short search 4 0 0.237 vs 0.446
+1fbabe04 5 5  # ply 31 pre: short search 3 5 0.279 vs 0.488
+0c70936c 3 5  # ply 32 pre: short search 4 3 0.679 vs 0.888
+30c3d2b6 1 3  # ply 29 pre: short search 2 3 0.287 vs 0.495
+1a02646d 5 5  # ply 33 pre: short search 4 3 0.289 vs 0.497
+3fe99f78 4 5  # ply 25 pre: short search 5 3 0.261 vs 0.469
+122b0a9a 0 5  # ply 37 pre: short search 1 5 0.285 vs 0.492
+3f52039d 2 1  # ply 27 pre: short search 2 2 0.268 vs 0.475
+3bb6408e 8 1  # ply 27 pre: short search 6 2 0.271 vs 0.478
+016be613 1 7  # ply 32 pre: short search 2 6 0.608 vs 0.815
+3370a75d 8 3  # ply 28 pre: short search 8 5 0.711 vs 0.917
+00a4c898 1 5  # ply 32 pre: short search 2 4 0.692 vs 0.898
+3644ceb2 1 0  # ply 27 pre: short search 0 1 0.243 vs 0.448
+05678aa6 7 7  # ply 29 pre: short search 6 6 0.292 vs 0.497
+1f55fb1a 1 2  # ply 28 pre: short search 0 2 0.663 vs 0.868
+1db05ad0 6 4  # ply 28 pre: short search 7 5 0.639 vs 0.844
+0b305186 1 7  # ply 26 pre: short search 0 7 0.671 vs 0.876
+05d96061 7 3  # ply 27 pre: short search 7 5 0.281 vs 0.486
+1d61cbaf 5 2  # ply 32 pre: short search 3 2 0.750 vs 0.954
+1ace1a4e 6 6  # ply 26 pre: short search 7 8 0.720 vs 0.923
+1a748cb4 7 1  # ply 31 pre: short search 7 2 0.298 vs 0.501
+0ba39fe5 3 3  # ply 25 pre: short search 3 5 0.179 vs 0.382
+09f7fb24 8 3  # ply 33 pre: short search 7 3 0.295 vs 0.498
+080d38d1 5 5  # ply 27 pre: short search 3 3 0.245 vs 0.448
+192c6615 4 2  # ply 39 pre: short search 3 0 0.287 vs 0.489
+2d221c3c 7 7  # ply 31 pre: short search 6 7 0.281 vs 0.483
+0dfcfeda 8 6  # ply 37 pre: short search 8 8 0.278 vs 0.480
+3fb58b6d 7 8  # ply 33 pre: short search 7 7 0.354 vs 0.555
+0cb8d281 5 4  # ply 31 pre: short search 3 5 0.185 vs 0.386
+281c369e 6 7  # ply 32 pre: short search 7 8 0.744 vs 0.945
+37439dfb 2 2  # ply 27 pre: short search 1 0 0.250 vs 0.450
+304d7e89 6 7  # ply 40 pre: short search 7 7 0.299 vs 0.499
+2b594534 1 4  # ply 41 pre: short search 2 5 0.300 vs 0.500
+22c2e779 4 7  # ply 27 pre: short search 3 8 0.286 vs 0.486
+0c3264c1 2 6  # ply 23 pre: short search 0 7 0.236 vs 0.436
+3421c940 4 7  # ply 34 pre: short search 5 8 0.759 vs 0.959
+246f9605 3 7  # ply 25 pre: short search 5 8 0.269 vs 0.469
+38791bb1 1 3  # ply 30 pre: short search 1 4 0.727 vs 0.926
+1ce36dae 4 7  # ply 34 pre: short search 5 7 0.736 vs 0.935
+36631ddd 7 1  # ply 37 pre: short search 8 0 0.301 vs 0.500
+222b0738 6 0  # ply 31 pre: short search 7 0 0.284 vs 0.483
+10c3ff75 5 2  # ply 31 pre: short search 4 1 0.254 vs 0.453
+0bb17b32 7 3  # ply 41 pre: short search 8 3 0.302 vs 0.501
+35331615 2 5  # ply 32 pre: short search 2 3 0.739 vs 0.937
+2c9ec904 7 0  # ply 35 pre: short search 6 0 0.183 vs 0.381
+2b3ba17a 1 5  # ply 31 pre: short search 2 5 0.288 vs 0.486
+07528963 1 4  # ply 25 pre: short search 1 5 0.242 vs 0.440
+31c305a5 0 2  # ply 28 pre: short search 1 0 0.674 vs 0.872
+03c007c0 5 6  # ply 26 pre: short search 3 8 0.731 vs 0.928
+3f08ef78 8 5  # ply 37 pre: short search 8 3 0.300 vs 0.497
+188bed0b 6 5  # ply 25 pre: short search 7 5 0.198 vs 0.395
+3b604cef 3 6  # ply 36 pre: short search 5 7 0.783 vs 0.980
+0df0cca6 3 6  # ply 27 pre: short search 5 6 0.278 vs 0.475
+19cb69d3 3 1  # ply 28 pre: short search 5 1 0.701 vs 0.897
+2e582c59 3 2  # ply 33 pre: short search 4 1 0.306 vs 0.502
+28955ec7 0 5  # ply 31 pre: short search 0 4 0.296 vs 0.492
+27dab852 5 8  # ply 29 pre: short search 3 8 0.293 vs 0.489
+36093be6 0 5  # ply 34 pre: short search 2 3 0.737 vs 0.932
+16967351 6 0  # ply 28 pre: short search 8 1 0.718 vs 0.913
+3d7850dd 8 4  # ply 27 pre: short search 8 3 0.202 vs 0.397
+2ee7bd25 3 1  # ply 31 pre: short search 4 2 0.303 vs 0.498
+2c2ba601 7 3  # ply 23 pre: short search 8 4 0.184 vs 0.379
+02d286f6 7 7  # ply 29 pre: short search 7 8 0.274 vs 0.469
+20040267 7 2  # ply 26 pre: short search 8 2 0.614 vs 0.808
+109709a7 0 1  # ply 25 pre: short search 0 2 0.267 vs 0.461
+07074a5f 2 3  # ply 25 pre: short search 1 5 0.289 vs 0.483
+38ef44b2 3 5  # ply 33 pre: short search 5 4 0.275 vs 0.468
+1d6c0307 8 5  # ply 29 pre: short search 6 5 0.294 vs 0.487
+19df5a06 4 6  # ply 32 pre: short search 3 7 0.766 vs 0.959
+1f0d072d 2 5  # ply 38 pre: short search 1 5 0.583 vs 0.775
+330e814c 8 3  # ply 27 pre: short search 7 3 0.267 vs 0.459
+1f7b7fdd 8 3  # ply 31 pre: short search 7 3 0.275 vs 0.467
+162da8a8 6 8  # ply 25 pre: short search 6 7 0.186 vs 0.378
+32a88309 8 3  # ply 38 pre: short search 7 4 0.766 vs 0.958
+383eb8f2 8 6  # ply 29 pre: short search 7 6 0.177 vs 0.368
+01f6d55f 8 5  # ply 27 pre: short search 7 3 0.243 vs 0.434
+0f230b5b 1 7  # ply 38 pre: short search 0 7 0.763 vs 0.954
+3bf88e0f 7 5  # ply 32 pre: short search 6 5 0.734 vs 0.924
+219832c5 0 7  # ply 25 pre: short search 2 7 0.211 vs 0.401
+31c9f328 6 6  # ply 29 pre: short search 6 7 0.292 vs 0.482
+2c4a89ff 1 5  # ply 40 pre: short search 1 3 0.310 vs 0.500
+07517579 8 8  # ply 35 pre: short search 8 6 0.274 vs 0.464
+3832b46d 2 5  # ply 28 pre: short search 1 3 0.778 vs 0.968
+25cd6fc1 3 6  # ply 28 pre: short search 4 7 0.714 vs 0.903
+1d4cec18 4 2  # ply 32 pre: short search 5 1 0.711 vs 0.900
+364dfdba 7 4  # ply 27 pre: short search 6 5 0.303 vs 0.492
+32339ad8 5 3  # ply 33 pre: short search 5 4 0.309 vs 0.498
+2cb4a5ac 7 1  # ply 29 pre: short search 7 0 0.278 vs 0.467
+22e2f7b0 3 6  # ply 39 pre: short search 5 7 0.113 vs 0.302
+1f8b1b87 5 7  # ply 35 pre: short search 3 6 0.238 vs 0.427
+16ee78f0 6 2  # ply 39 pre: short search 8 2 0.298 vs 0.487
+24cc93f6 4 6  # ply 26 pre: short search 3 8 0.678 vs 0.867
+20e6c394 7 8  # ply 30 pre: short search 8 6 0.657 vs 0.846
+066c4226 7 1  # ply 35 pre: short search 7 2 0.260 vs 0.448
+3a1b608d 1 0  # ply 26 pre: short search 0 2 0.720 vs 0.907
+2c7ad457 7 4  # ply 26 pre: short search 6 4 0.709 vs 0.896
+0963dcf1 3 5  # ply 33 pre: short search 3 4 0.310 vs 0.497
+33c6b8bb 7 0  # ply 28 pre: short search 6 0 0.594 vs 0.780
+1a7eb1b3 5 3  # ply 26 pre: short search 7 8 0.701 vs 0.887
+24750f11 3 2  # ply 27 pre: short search 3 0 0.254 vs 0.440
+19edd909 5 3  # ply 39 pre: short search 5 4 0.313 vs 0.499
+170116b3 7 4  # ply 27 pre: short search 8 5 0.173 vs 0.359
+22332479 5 7  # ply 30 pre: short search 5 6 0.636 vs 0.822
+3156aed8 8 3  # ply 24 pre: short search 8 5 0.731 vs 0.916
+3c034f49 2 5  # ply 31 pre: short search 1 5 0.277 vs 0.462
+3948b3e5 3 5  # ply 37 pre: short search 5 5 0.302 vs 0.487
+13f75beb 8 0  # ply 19 pre: short search 8 1 0.248 vs 0.433
+035ed8d8 6 4  # ply 29 pre: short search 6 5 0.284 vs 0.469
+17dd2bf4 1 6  # ply 26 pre: short search 1 8 0.722 vs 0.906
+01503fc1 8 6  # ply 32 pre: short search 6 6 0.676 vs 0.860
+1c66f5d4 5 0  # ply 33 pre: short search 5 1 0.216 vs 0.399
+0b0a44e4 5 1  # ply 31 pre: short search 5 2 0.315 vs 0.498
+05c88648 2 3  # ply 31 pre: short search 1 4 0.240 vs 0.423
+23cc8158 4 6  # ply 32 pre: short search 4 8 0.766 vs 0.949
+12ad52d0 7 5  # ply 36 pre: short search 8 5 0.677 vs 0.860
+3506c28d 1 6  # ply 32 pre: short search 2 6 0.702 vs 0.884
+08c1cdad 4 2  # ply 25 pre: short search 5 2 0.261 vs 0.443
+35b4c835 6 3  # ply 34 pre: short search 7 5 0.763 vs 0.945
+3d1f97ea 3 4  # ply 30 pre: short search 4 5 0.737 vs 0.918
+0bbe5a89 1 5  # ply 30 pre: short search 2 5 0.695 vs 0.876
+3a8c5480 7 1  # ply 29 pre: short search 7 0 0.292 vs 0.473
+0f941b2c 5 0  # ply 25 pre: short search 3 0 0.268 vs 0.449
+0d9259d0 3 8  # ply 30 pre: short search 4 7 0.795 vs 0.976
+2a55dd47 5 8  # ply 34 pre: short search 4 6 0.754 vs 0.934
+13f5381a 2 7  # ply 28 pre: short search 1 6 0.739 vs 0.919
+2745a0d6 1 0  # ply 31 pre: short search 2 0 0.290 vs 0.470
+10f7eecf 3 4  # ply 29 pre: short search 5 5 0.303 vs 0.483
+055d483e 0 7  # ply 27 pre: short search 0 6 0.263 vs 0.443
+1b26c3be 7 3  # ply 29 pre: short search 7 5 0.299 vs 0.478
+03b24aba 3 1  # ply 27 pre: short search 4 1 0.255 vs 0.434
+03553cbd 2 8  # ply 27 pre: short search 0 6 0.313 vs 0.492
+1f32bcc3 4 7  # ply 32 pre: short search 5 7 0.766 vs 0.945
+1141bcea 0 5  # ply 30 pre: short search 2 5 0.679 vs 0.858
+011d2226 0 5  # ply 28 pre: short search 2 5 0.673 vs 0.852
+3aa4d201 2 7  # ply 38 pre: short search 1 6 0.610 vs 0.788
+00ee7818 3 0  # ply 30 pre: short search 2 7 0.747 vs 0.924
+1491e3ad 3 1  # ply 25 pre: short search 5 2 0.287 vs 0.463
+0e681dc5 7 6  # ply 24 pre: short search 8 6 0.750 vs 0.926
+1756900d 1 3  # ply 41 pre: short search 0 3 0.322 vs 0.498
+1f998bf2 4 7  # ply 38 pre: short search 5 6 0.795 vs 0.971
+0b0ca125 1 4  # ply 24 pre: short search 1 3 0.674 vs 0.849
+2d1500ac 7 6  # ply 33 pre: short search 6 7 0.284 vs 0.458
+1043cbaf 3 6  # ply 28 pre: short search 4 7 0.751 vs 0.925
+3f68e6b5 3 2  # ply 29 pre: short search 4 1 0.150 vs 0.324
+1c33f414 3 8  # ply 23 pre: short search 3 7 0.249 vs 0.423
+19a30a08 8 6  # ply 29 pre: short search 7 7 0.315 vs 0.489
+017b1164 2 4  # ply 23 pre: short search 0 5 0.299 vs 0.473
+09181dfe 0 5  # ply 30 pre: short search 1 5 0.710 vs 0.883
+0879a64f 2 2  # ply 28 pre: short search 0 2 0.697 vs 0.870
+2fbad442 0 3  # ply 33 pre: short search 1 5 0.215 vs 0.388
+3edf76ce 6 6  # ply 27 pre: short search 7 6 0.301 vs 0.474
+3b9cbf44 6 0  # ply 23 pre: short search 8 2 0.198 vs 0.371
+30da18c6 5 1  # ply 30 pre: short search 3 0 0.770 vs 0.943
+24099b0f 3 5  # ply 28 pre: short search 5 4 0.755 vs 0.927
+131b5c57 3 5  # ply 28 pre: short search 3 4 0.596 vs 0.768
+1182af67 2 0  # ply 31 pre: short search 1 1 0.284 vs 0.456
+37d440fe 3 2  # ply 30 pre: short search 5 1 0.693 vs 0.864
+2bcaf435 8 6  # ply 29 pre: short search 6 7 0.297 vs 0.468
+3e744150 1 0  # ply 27 pre: short search 0 1 0.246 vs 0.417
+2b7648fb 7 7  # ply 25 pre: short search 8 8 0.304 vs 0.475
+34f4ff2d 6 0  # ply 32 pre: short search 0 6 0.784 vs 0.955
+2cdbce2b 4 0  # ply 40 pre: short search 4 2 0.795 vs 0.966
+2b498b3b 7 1  # ply 36 pre: short search 6 2 0.795 vs 0.966
+37c155ea 6 7  # ply 27 pre: short search 7 6 0.305 vs 0.475
+348bb5d7 2 1  # ply 31 pre: short search 2 0 0.325 vs 0.495
+22863260 0 6  # ply 33 pre: short search 0 7 0.329 vs 0.499
+1535ea8a 1 2  # ply 27 pre: short search 1 0 0.306 vs 0.476
+3d8b4894 2 5  # ply 28 pre: short search 2 4 0.694 vs 0.863
+01107bb0 4 6  # ply 28 pre: short search 3 7 0.712 vs 0.881
+14bd0979 3 8  # ply 26 pre: short search 5 6 0.656 vs 0.825
+38a0e286 0 3  # ply 25 pre: short search 0 5 0.282 vs 0.450
+3114efa1 0 6  # ply 36 pre: short search 0 7 0.723 vs 0.891
+24d38ad8 4 2  # ply 26 pre: short search 3 0 0.740 vs 0.908
+35e43f00 3 1  # ply 24 pre: short search 5 1 0.667 vs 0.835
+11ebfeb7 0 1  # ply 30 pre: short search 1 2 0.678 vs 0.846
+33a60134 3 6  # ply 31 pre: short search 5 7 0.333 vs 0.500
+171e29b1 5 2  # ply 27 pre: short search 5 1 0.329 vs 0.496
+38f4acd4 2 3  # ply 32 pre: short search 1 5 0.633 vs 0.799
+1ddab40c 4 7  # ply 28 pre: short search 5 6 0.725 vs 0.891
+0ed4d2e8 0 1  # ply 21 pre: short search 1 1 0.289 vs 0.455
+16a0fdc0 5 2  # ply 27 pre: short search 5 0 0.212 vs 0.378
+3ece9b04 2 3  # ply 33 pre: short search 2 5 0.331 vs 0.497
+3aced59f 0 5  # ply 41 pre: short search 2 3 0.330 vs 0.496
+1393ca83 5 2  # ply 31 pre: short search 3 1 0.331 vs 0.497
+24775016 0 1  # ply 28 pre: short search 1 2 0.720 vs 0.885
+1e1eac08 2 4  # ply 28 pre: short search 1 4 0.698 vs 0.863
+115e895b 3 4  # ply 26 pre: short search 3 3 0.739 vs 0.904
+38f06bfe 3 5  # ply 31 pre: short search 5 3 0.320 vs 0.485
+29028c7b 8 1  # ply 35 pre: short search 6 2 0.334 vs 0.499
+1b0600b8 6 4  # ply 29 pre: short search 7 3 0.290 vs 0.454
+04929c2d 3 7  # ply 23 pre: short search 5 7 0.283 vs 0.447
+02ba9af7 8 8  # ply 28 pre: short search 7 6 0.734 vs 0.898
+093706e8 2 2  # ply 25 pre: short search 1 0 0.211 vs 0.375
+27ad2e81 7 8  # ply 29 pre: short search 6 7 0.198 vs 0.362
+139cc03a 5 2  # ply 24 pre: short search 5 1 0.755 vs 0.918
+2000ed41 7 6  # ply 37 pre: short search 6 7 0.338 vs 0.501
+0b0834da 6 1  # ply 25 pre: short search 6 2 0.279 vs 0.442
+327c6415 3 5  # ply 37 pre: short search 5 3 0.335 vs 0.497
+2cf044cd 6 7  # ply 23 pre: short search 7 6 0.263 vs 0.425
+136cbc59 0 3  # ply 25 pre: short search 0 4 0.338 vs 0.500
+06affdc8 2 1  # ply 32 pre: short search 1 0 0.790 vs 0.952
+2b21e3ec 7 5  # ply 24 pre: short search 7 4 0.711 vs 0.872
+1608d1da 1 1  # ply 32 pre: short search 1 2 0.739 vs 0.900
+2b90e7fd 4 1  # ply 25 pre: short search 4 2 0.246 vs 0.406
+18b620c8 6 8  # ply 28 pre: short search 8 6 0.730 vs 0.890
+16cec2d5 5 0  # ply 29 pre: short search 3 2 0.288 vs 0.448
+0caa199e 3 8  # ply 30 pre: short search 4 6 0.697 vs 0.857
+2f837b57 8 6  # ply 27 pre: short search 7 8 0.210 vs 0.370
+2482c529 8 5  # ply 28 pre: short search 8 3 0.659 vs 0.819
+2ff96683 7 6  # ply 28 pre: short search 8 8 0.708 vs 0.867
+0b58987f 7 4  # ply 26 pre: short search 8 5 0.735 vs 0.894
+0803eed8 5 6  # ply 25 pre: short search 3 8 0.293 vs 0.452
+08bd54a4 3 7  # ply 25 pre: short search 3 6 0.213 vs 0.372
+2e7e3dae 3 6  # ply 27 pre: short search 3 8 0.267 vs 0.426
+293291b1 6 0  # ply 23 pre: short search 7 0 0.248 vs 0.407
+048996de 5 7  # ply 29 pre: short search 5 8 0.330 vs 0.489
+0d403dd2 7 8  # ply 28 pre: short search 8 7 0.747 vs 0.905
+00c23de3 3 6  # ply 31 pre: short search 3 7 0.292 vs 0.450
+1784f032 1 0  # ply 29 pre: short search 2 2 0.336 vs 0.494
+3bc4db57 2 6  # ply 23 pre: short search 0 7 0.301 vs 0.458
+37855c0f 7 7  # ply 28 pre: short search 7 8 0.743 vs 0.900
+2da5e17d 4 8  # ply 30 pre: short search 5 8 0.767 vs 0.924
+2c9468d2 5 4  # ply 25 pre: short search 3 5 0.311 vs 0.468
+05e5267e 3 0  # ply 25 pre: short search 4 2 0.305 vs 0.462
+3ed3b497 3 1  # ply 29 pre: short search 4 2 0.333 vs 0.490
+1406d1dc 4 2  # ply 34 pre: short search 5 2 0.729 vs 0.885
+10c4d4ab 0 3  # ply 30 pre: short search 1 4 0.764 vs 0.920
+0d8e32e8 7 3  # ply 35 pre: short search 7 4 0.165 vs 0.321
+226cbfeb 8 6  # ply 33 pre: short search 8 8 0.341 vs 0.497
+26be26e5 5 0  # ply 32 pre: short search 4 2 0.780 vs 0.935
+177c5dc2 5 8  # ply 28 pre: short search 3 8 0.770 vs 0.925
+0577f20e 2 2  # ply 22 pre: short search 2 1 0.731 vs 0.886
+2867c8a7 6 5  # ply 23 pre: short search 8 4 0.257 vs 0.412
+1a197fc3 2 3  # ply 27 pre: short search 0 4 0.258 vs 0.413
+294187a8 4 1  # ply 34 pre: short search 5 1 0.759 vs 0.913
+14266585 0 6  # ply 38 pre: short search 1 8 0.823 vs 0.977
+23d22e35 1 0  # ply 25 pre: short search 0 2 0.298 vs 0.451
+213c1db9 7 8  # ply 26 pre: short search 7 7 0.649 vs 0.802
+0d8722a0 5 7  # ply 29 pre: short search 3 7 0.244 vs 0.397
+09065e1b 7 1  # ply 25 pre: short search 6 1 0.297 vs 0.450
+2bce2521 6 3  # ply 29 pre: short search 6 5 0.157 vs 0.310
+29f30f96 0 6  # ply 26 pre: short search 0 7 0.689 vs 0.841
+2661b6be 2 7  # ply 23 pre: short search 0 8 0.157 vs 0.309
+0fc541d1 6 8  # ply 27 pre: short search 7 8 0.329 vs 0.481
+19bc7e68 7 5  # ply 29 pre: short search 8 3 0.245 vs 0.396
+17df6924 4 5  # ply 30 pre: short search 3 3 0.716 vs 0.867
+3a78739c 5 2  # ply 27 pre: short search 3 2 0.260 vs 0.411
+1a684b5a 0 3  # ply 25 pre: short search 2 5 0.305 vs 0.455
+01dcf65a 5 1  # ply 26 pre: short search 3 0 0.707 vs 0.857
+3a2ea662 7 4  # ply 27 pre: short search 6 5 0.315 vs 0.464
+1e2ca35b 3 1  # ply 32 pre: short search 4 2 0.731 vs 0.880
+1a0b036b 1 3  # ply 30 pre: short search 1 5 0.726 vs 0.875
+0998ce63 6 5  # ply 37 pre: short search 7 3 0.352 vs 0.501
+2db45e2d 3 1  # ply 29 pre: short search 5 1 0.218 vs 0.367
+01ca4758 6 6  # ply 30 pre: short search 6 8 0.806 vs 0.955
+23fc3f45 8 5  # ply 27 pre: short search 6 4 0.293 vs 0.441
+2d0ba399 6 0  # ply 23 pre: short search 8 2 0.267 vs 0.415
+1425a817 5 3  # ply 28 pre: short search 4 3 0.775 vs 0.922
+11c7ff47 0 2  # ply 29 pre: short search 0 0 0.142 vs 0.289
+26e29835 7 8  # ply 27 pre: short search 6 8 0.298 vs 0.444
+134899a1 1 7  # ply 30 pre: short search 2 6 0.703 vs 0.849
+12b40ff6 7 2  # ply 31 pre: short search 6 1 0.149 vs 0.295
+27721269 5 1  # ply 33 pre: short search 5 2 0.355 vs 0.500
+14f941b8 7 1  # ply 34 pre: short search 6 0 0.768 vs 0.913
+2750c008 6 1  # ply 30 pre: short search 6 0 0.651 vs 0.795
+3a4f6b91 6 1  # ply 33 pre: short search 7 1 0.356 vs 0.499
+241e40fc 3 6  # ply 28 pre: short search 4 6 0.769 vs 0.912
+23e98fbd 5 2  # ply 37 pre: short search 5 1 0.359 vs 0.502
+21e47cfa 7 7  # ply 33 pre: short search 8 7 0.321 vs 0.464
+02c2f1de 8 2  # ply 32 pre: short search 6 2 0.739 vs 0.882
+29a4dd8b 0 6  # ply 25 pre: short search 2 6 0.276 vs 0.419
+36b5edc1 7 2  # ply 35 pre: short search 6 0 0.350 vs 0.492
+2ffa0a60 6 3  # ply 29 pre: short search 6 5 0.313 vs 0.455
+222086a4 6 2  # ply 29 pre: short search 7 0 0.289 vs 0.431
+11307ffd 5 2  # ply 30 pre: short search 3 1 0.773 vs 0.915
+075f6715 8 3  # ply 19 pre: short search 7 4 0.264 vs 0.406
+0203245e 6 8  # ply 24 pre: short search 7 8 0.691 vs 0.833
+01c4ca7f 7 3  # ply 34 pre: short search 8 3 0.764 vs 0.906
+002a8ade 0 6  # ply 33 pre: short search 2 7 0.229 vs 0.371
+2c8ab900 3 3  # ply 36 pre: short search 5 4 0.809 vs 0.951
+3b331336 2 3  # ply 31 pre: short search 2 5 0.354 vs 0.495
+2fb3a5a8 5 7  # ply 41 pre: short search 3 8 0.356 vs 0.497
+2ccc72f4 5 2  # ply 30 pre: short search 3 0 0.765 vs 0.906
+29a53096 4 1  # ply 29 pre: short search 3 2 0.305 vs 0.446
+223c3c9d 1 4  # ply 24 pre: short search 2 5 0.751 vs 0.892
+08cc5080 7 5  # ply 24 pre: short search 7 3 0.739 vs 0.880
+062fc14b 4 2  # ply 25 pre: short search 3 1 0.210 vs 0.351
+03f535ae 1 1  # ply 25 pre: short search 2 2 0.266 vs 0.407
+2e303b42 0 2  # ply 29 pre: short search 2 1 0.263 vs 0.403
+1e8b29bb 5 2  # ply 39 pre: short search 5 0 0.358 vs 0.498
+1c5bc492 3 0  # ply 32 pre: short search 3 2 0.762 vs 0.902
+16eeeea4 2 2  # ply 28 pre: short search 1 2 0.755 vs 0.895
+1353da52 2 3  # ply 26 pre: short search 1 3 0.670 vs 0.810
+0cd0125d 6 2  # ply 32 pre: short search 6 1 0.773 vs 0.913
+2c108c5d 0 3  # ply 25 pre: short search 2 5 0.186 vs 0.325
+04396d12 2 5  # ply 30 pre: short search 1 3 0.735 vs 0.874
+2266a79f 1 2  # ply 37 pre: short search 2 0 0.234 vs 0.373
+22763a93 4 5  # ply 34 pre: short search 5 4 0.803 vs 0.942
+2897bce7 2 2  # ply 25 pre: short search 1 0 0.358 vs 0.496
+241f7cf5 3 4  # ply 29 pre: short search 3 5 0.350 vs 0.488
+1bcd6887 7 0  # ply 32 pre: short search 7 2 0.826 vs 0.963
+2c277d02 0 7  # ply 33 pre: short search 0 6 0.214 vs 0.351
+3fa80c04 2 3  # ply 26 pre: short search 1 3 0.780 vs 0.916
+382f8c8b 1 0  # ply 25 pre: short search 2 2 0.369 vs 0.505
+26c0d91b 2 3  # ply 28 pre: short search 1 3 0.699 vs 0.834
+0c30a6d1 1 3  # ply 28 pre: short search 2 3 0.756 vs 0.891
+1a6cde6a 4 7  # ply 25 pre: short search 5 8 0.209 vs 0.344
+35026551 0 1  # ply 26 pre: short search 0 2 0.727 vs 0.861
+2aa662f3 6 0  # ply 36 pre: short search 6 1 0.739 vs 0.873
+1e9fece8 3 3  # ply 26 pre: short search 4 5 0.802 vs 0.936
+163868b6 5 1  # ply 30 pre: short search 5 0 0.527 vs 0.661
+3efd81ca 7 3  # ply 35 pre: short search 8 3 0.352 vs 0.485
+3b263861 6 5  # ply 25 pre: short search 7 3 0.263 vs 0.396
+2eca3317 7 7  # ply 26 pre: short search 7 6 0.800 vs 0.933
+17b58ad5 2 0  # ply 27 pre: short search 0 2 0.126 vs 0.259
+1657138b 3 2  # ply 36 pre: short search 5 2 0.783 vs 0.916
+0b641b83 2 5  # ply 32 pre: short search 2 4 0.782 vs 0.915
+3c8f10fd 0 3  # ply 26 pre: short search 2 5 0.660 vs 0.792
+2bce3355 0 1  # ply 24 pre: short search 0 2 0.748 vs 0.880
+2a37c95c 8 6  # ply 28 pre: short search 8 7 0.768 vs 0.900
+0fb9e8fe 2 1  # ply 30 pre: short search 0 1 0.697 vs 0.829
+0ca5010b 1 6  # ply 27 pre: short search 1 8 0.194 vs 0.326
+3c529c3f 2 5  # ply 32 pre: short search 1 3 0.766 vs 0.897
+39570c49 5 5  # ply 28 pre: short search 3 4 0.680 vs 0.811
+35ea7bae 3 7  # ply 38 pre: short search 5 6 0.507 vs 0.638
+28b5b00f 3 3  # ply 32 pre: short search 5 5 0.737 vs 0.868
+2242afcd 3 0  # ply 24 pre: short search 3 2 0.772 vs 0.903
+0b31815a 4 1  # ply 26 pre: short search 5 0 0.703 vs 0.834
+3802234c 1 0  # ply 34 pre: short search 1 1 0.823 vs 0.953
+23d8c54d 6 8  # ply 20 pre: short search 8 6 0.733 vs 0.863
+1ef6d61d 2 1  # ply 30 pre: short search 1 2 0.728 vs 0.858
+1dcd56c7 1 5  # ply 28 pre: short search 2 3 0.753 vs 0.883
+1c9c0efe 2 2  # ply 24 pre: short search 7 2 0.814 vs 0.944
+1a582e55 2 8  # ply 26 pre: short search 1 6 0.740 vs 0.870
+17d00840 5 5  # ply 30 pre: short search 4 5 0.813 vs 0.943
+379315bb 1 8  # ply 35 pre: short search 2 6 0.368 vs 0.497
+1df8a96b 5 5  # ply 26 pre: short search 3 3 0.736 vs 0.865
+0dcc6023 8 7  # ply 25 pre: short search 7 8 0.247 vs 0.376
+0be177f0 5 3  # ply 29 pre: short search 3 3 0.230 vs 0.359
+3e50f048 6 0  # ply 24 pre: short search 7 1 0.744 vs 0.872
+39a7d9f8 2 3  # ply 28 pre: short search 0 5 0.758 vs 0.886
+2def9750 2 6  # ply 26 pre: short search 0 6 0.741 vs 0.869
+3eb7076c 7 8  # ply 31 pre: short search 8 7 0.217 vs 0.345
+13b01537 0 7  # ply 25 pre: short search 1 8 0.218 vs 0.346
+3b7a627a 1 4  # ply 34 pre: short search 1 3 0.829 vs 0.956
+1c5944b1 5 1  # ply 29 pre: short search 5 2 0.353 vs 0.480
+1346abd2 3 1  # ply 28 pre: short search 4 2 0.730 vs 0.857
+0d2b93c7 6 3  # ply 25 pre: short search 7 5 0.176 vs 0.303
+0354b907 3 6  # ply 31 pre: short search 5 7 0.223 vs 0.350
+29d43263 1 4  # ply 23 pre: short search 1 5 0.204 vs 0.330
+3dc34f46 7 4  # ply 33 pre: short search 6 3 0.500 vs 0.626
+2c67cb0e 6 6  # ply 28 pre: short search 8 8 0.800 vs 0.926
+28553c78 3 2  # ply 24 pre: short search 5 1 0.733 vs 0.859
+2251eb06 5 3  # ply 35 pre: short search 3 3 0.374 vs 0.500
+1022d987 5 2  # ply 45 pre: short search 4 1 0.105 vs 0.231
+05c66ec3 2 4  # ply 29 pre: short search 2 5 0.273 vs 0.399
+34e4cbca 3 8  # ply 23 pre: short search 3 6 0.209 vs 0.334
+02c43dd5 6 6  # ply 29 pre: short search 6 8 0.213 vs 0.338
+0ec4d31d 6 8  # ply 28 pre: short search 8 8 0.776 vs 0.901
+0841f88a 2 6  # ply 25 pre: short search 1 8 0.174 vs 0.299
+0678f465 0 6  # ply 25 pre: short search 1 8 0.356 vs 0.481
+3bf909ed 3 7  # ply 30 pre: short search 4 7 0.696 vs 0.820
+2fa394ab 7 6  # ply 27 pre: short search 8 8 0.274 vs 0.398
+0671bfa2 3 1  # ply 31 pre: short search 4 2 0.220 vs 0.343
+0a2cde5e 1 3  # ply 28 pre: short search 1 5 0.812 vs 0.935
+089302af 7 3  # ply 37 pre: short search 6 3 0.377 vs 0.500
+2b3b8a4a 7 2  # ply 28 pre: short search 6 0 0.730 vs 0.852
+27be2558 2 5  # ply 36 pre: short search 2 3 0.817 vs 0.938
+0d78b3da 6 2  # ply 26 pre: short search 6 0 0.720 vs 0.841
+3ce7b072 3 8  # ply 27 pre: short search 5 6 0.148 vs 0.268
+39520eeb 6 0  # ply 30 pre: short search 8 2 0.852 vs 0.972
+19ad8a32 2 0  # ply 22 pre: short search 2 2 0.740 vs 0.860
+152d4d7f 5 4  # ply 31 pre: short search 5 5 0.375 vs 0.495
+0beddfc2 5 4  # ply 24 pre: short search 3 4 0.794 vs 0.914
+2950edee 2 1  # ply 26 pre: short search 2 0 0.798 vs 0.917
+1c800643 3 6  # ply 25 pre: short search 5 6 0.265 vs 0.384
+1842c937 0 7  # ply 36 pre: short search 1 7 0.837 vs 0.956
+17f3ef40 8 2  # ply 27 pre: short search 6 0 0.193 vs 0.312
+0b41f87b 6 3  # ply 20 pre: short search 6 4 0.706 vs 0.825
+163e381d 3 6  # ply 26 pre: short search 5 6 0.738 vs 0.856
+1294c794 0 6  # ply 33 pre: short search 0 7 0.381 vs 0.499
+03b07fea 3 5  # ply 30 pre: short search 4 5 0.750 vs 0.868
+2c82877f 3 8  # ply 31 pre: short search 5 7 0.284 vs 0.401
+32b44f81 8 7  # ply 28 pre: short search 8 6 0.796 vs 0.913
+1a43cf5f 5 1  # ply 26 pre: short search 5 2 0.705 vs 0.822
+0200f0f7 6 0  # ply 20 pre: short search 7 0 0.783 vs 0.900
+372072bb 0 3  # ply 31 pre: short search 0 5 0.117 vs 0.233
+21451c14 7 3  # ply 26 pre: short search 6 3 0.755 vs 0.871
+11a11442 7 0  # ply 30 pre: short search 1 2 0.866 vs 0.982
+36341145 5 6  # ply 29 pre: short search 5 7 0.324 vs 0.439
+2ccbb6d6 1 0  # ply 25 pre: short search 2 2 0.270 vs 0.385
+24614f4b 1 8  # ply 26 pre: short search 2 7 0.674 vs 0.789
+1ef17fc2 5 1  # ply 23 pre: short search 3 2 0.239 vs 0.354
+3c96888f 7 5  # ply 35 pre: short search 7 4 0.382 vs 0.496
+2bf9354b 2 1  # ply 35 pre: short search 1 0 0.183 vs 0.297
+197ea4a2 0 7  # ply 30 pre: short search 2 6 0.720 vs 0.834
+1384f704 3 0  # ply 26 pre: short search 4 0 0.792 vs 0.906
+229be7c4 7 3  # ply 30 pre: short search 8 3 0.799 vs 0.912
+11e48f0b 3 1  # ply 34 pre: short search 4 2 0.829 vs 0.942
+1fa3922c 3 7  # ply 23 pre: short search 5 6 0.232 vs 0.345
+149bf907 0 5  # ply 25 pre: short search 2 5 0.250 vs 0.362
+0e3c969e 1 1  # ply 19 pre: short search 0 0 0.197 vs 0.309
+0608ce86 7 8  # ply 25 pre: short search 7 7 0.317 vs 0.429
+194b6535 0 3  # ply 28 pre: short search 2 3 0.814 vs 0.925
+3c34b659 3 0  # ply 24 pre: short search 5 0 0.735 vs 0.846
+228517d9 5 1  # ply 28 pre: short search 5 2 0.834 vs 0.945
+22110aca 4 2  # ply 28 pre: short search 5 2 0.804 vs 0.915
+3213db22 1 1  # ply 28 pre: short search 1 2 0.700 vs 0.810
+34c0f6c0 8 5  # ply 24 pre: short search 8 3 0.769 vs 0.879
+173e4b7a 6 8  # ply 22 pre: short search 7 8 0.805 vs 0.915
+14ab1ed9 1 3  # ply 19 pre: short search 1 5 0.329 vs 0.439
+102686db 7 1  # ply 25 pre: short search 6 0 0.341 vs 0.451
+334ec956 1 8  # ply 28 pre: short search 2 8 0.790 vs 0.899
+291a3143 6 8  # ply 24 pre: short search 7 6 0.729 vs 0.838
+1508d144 0 5  # ply 26 pre: short search 0 3 0.754 vs 0.863
+0c0dd86a 4 7  # ply 24 pre: short search 5 7 0.738 vs 0.847
+002d2cd8 4 2  # ply 25 pre: short search 5 0 0.264 vs 0.373
+3ef4f7b9 8 7  # ply 28 pre: short search 6 7 0.805 vs 0.913
+38f56039 4 2  # ply 26 pre: short search 5 1 0.744 vs 0.852
+38f35014 7 5  # ply 31 pre: short search 8 5 0.383 vs 0.491
+334cf0ce 2 4  # ply 34 pre: short search 2 5 0.866 vs 0.974
+243a6bef 7 6  # ply 30 pre: short search 6 7 0.798 vs 0.906
+21654af9 7 7  # ply 39 pre: short search 8 6 0.393 vs 0.501
+1d4c84a3 7 3  # ply 24 pre: short search 6 5 0.731 vs 0.839
+2c7d98a3 6 2  # ply 28 pre: short search 7 1 0.819 vs 0.926
+2d1b88ab 8 7  # ply 25 pre: short search 6 8 0.284 vs 0.391
+30479041 7 5  # ply 27 pre: short search 6 5 0.391 vs 0.498
+0e7f1b76 5 5  # ply 25 pre: short search 3 5 0.212 vs 0.318
+2c255b5e 3 7  # ply 23 pre: short search 3 6 0.241 vs 0.347
+205a4131 4 2  # ply 30 pre: short search 4 0 0.734 vs 0.840
+14003e8f 7 6  # ply 27 pre: short search 8 6 0.278 vs 0.384
+028494d2 8 6  # ply 25 pre: short search 6 7 0.262 vs 0.368
+3b3f7edb 0 1  # ply 30 pre: short search 0 2 0.816 vs 0.921
+39b3a481 6 2  # ply 26 pre: short search 7 0 0.819 vs 0.924
+2af04cfb 0 3  # ply 31 pre: short search 1 4 0.393 vs 0.498
+285d5d7d 3 0  # ply 26 pre: short search 4 0 0.724 vs 0.829
+14d4440b 6 5  # ply 21 pre: short search 7 5 0.361 vs 0.465
+397151c3 2 2  # ply 27 pre: short search 2 1 0.211 vs 0.315
+163535d2 8 3  # ply 23 pre: short search 8 5 0.234 vs 0.338
+116214b4 5 7  # ply 27 pre: short search 3 6 0.229 vs 0.333
+3802b310 3 3  # ply 27 pre: short search 5 5 0.312 vs 0.416
+32c1135c 0 1  # ply 24 pre: short search 1 1 0.785 vs 0.889
+05837e0e 3 0  # ply 38 pre: short search 5 1 0.385 vs 0.489
+379610b4 2 3  # ply 32 pre: short search 1 3 0.837 vs 0.940
+05a2ef20 2 5  # ply 33 pre: short search 1 3 0.315 vs 0.418
+3d0fb72f 7 1  # ply 33 pre: short search 8 2 0.204 vs 0.306
+0f152f3d 7 0  # ply 25 pre: short search 6 2 0.227 vs 0.329
+30c767c2 7 2  # ply 30 pre: short search 7 0 0.790 vs 0.892
+2d8a6378 8 5  # ply 30 pre: short search 6 3 0.849 vs 0.951
+2956a9c7 1 8  # ply 24 pre: short search 2 8 0.695 vs 0.796
+093d8688 7 6  # ply 17 pre: short search 7 7 0.194 vs 0.295
+08858890 2 6  # ply 28 pre: short search 0 6 0.745 vs 0.846
+0fb3e9d9 0 3  # ply 28 pre: short search 2 4 0.826 vs 0.926
+3cd58e62 8 3  # ply 22 pre: short search 7 5 0.779 vs 0.879
+373ebc82 2 8  # ply 24 pre: short search 2 7 0.652 vs 0.752
+36ac2153 2 7  # ply 26 pre: short search 1 7 0.609 vs 0.709
+20bb16da 2 2  # ply 28 pre: short search 0 2 0.796 vs 0.896
+1fe26ee9 5 4  # ply 37 pre: short search 3 5 0.397 vs 0.497
+1e7e5fc2 3 6  # ply 24 pre: short search 3 8 0.756 vs 0.856
+1945d842 2 0  # ply 26 pre: short search 0 2 0.783 vs 0.883
+193f0aa0 2 2  # ply 24 pre: short search 3 3 0.841 vs 0.941
+13143921 0 2  # ply 26 pre: short search 2 2 0.784 vs 0.884
+34a7a66b 1 3  # ply 32 pre: short search 0 3 0.823 vs 0.922
+3f5fbc97 8 0  # ply 27 pre: short search 7 1 0.187 vs 0.286
+328d707c 1 8  # ply 26 pre: short search 1 7 0.722 vs 0.821
+26431d3f 2 3  # ply 25 pre: short search 0 5 0.259 vs 0.358
+09320b90 6 1  # ply 22 pre: short search 7 1 0.772 vs 0.871
+28c84321 6 8  # ply 26 pre: short search 8 7 0.827 vs 0.925
+1848a811 8 4  # ply 23 pre: short search 8 5 0.282 vs 0.380
+1d7498a6 1 3  # ply 26 pre: short search 2 5 0.810 vs 0.908
+107b8e80 3 4  # ply 26 pre: short search 5 4 0.775 vs 0.873
+2d253ce6 0 6  # ply 21 pre: short search 2 8 0.244 vs 0.341
+1c4db286 0 1  # ply 23 pre: short search 2 2 0.205 vs 0.302
+2ff84d7d 6 5  # ply 24 pre: short search 8 4 0.717 vs 0.814
+23e21f04 0 0  # ply 38 pre: short search 1 2 0.399 vs 0.496
+34737a38 5 8  # ply 21 pre: short search 5 6 0.291 vs 0.387
+329250ba 2 8  # ply 27 pre: short search 1 7 0.370 vs 0.466
+0e4f4888 0 3  # ply 27 pre: short search 0 5 0.219 vs 0.315
+3a9746e3 8 2  # ply 32 pre: short search 8 1 0.845 vs 0.941
+352f831d 3 4  # ply 22 pre: short search 4 5 0.774 vs 0.870
+2628ee09 7 6  # ply 29 pre: short search 6 6 0.251 vs 0.347
+118ae3ce 4 3  # ply 26 pre: short search 5 4 0.772 vs 0.868
+33564072 8 3  # ply 26 pre: short search 6 5 0.821 vs 0.916
+2813bfa9 6 3  # ply 27 pre: short search 7 4 0.136 vs 0.231
+1c532817 6 3  # ply 35 pre: short search 8 5 0.225 vs 0.320
+27f6701a 6 5  # ply 27 pre: short search 8 5 0.339 vs 0.434
+0e9842d0 4 6  # ply 26 pre: short search 5 6 0.789 vs 0.884
+27320e05 3 5  # ply 29 pre: short search 5 4 0.249 vs 0.343
+13c3ff1a 5 2  # ply 28 pre: short search 4 2 0.775 vs 0.869
+08a5cbf5 6 6  # ply 27 pre: short search 7 6 0.253 vs 0.347
+3a9ae5fe 2 7  # ply 24 pre: short search 2 8 0.783 vs 0.876
+37c98be7 8 2  # ply 25 pre: short search 8 1 0.251 vs 0.344
+15ced997 0 1  # ply 24 pre: short search 2 2 0.767 vs 0.860
+0e598c7b 6 0  # ply 17 pre: short search 6 1 0.278 vs 0.371
+05b61b90 4 5  # ply 36 pre: short search 3 4 0.398 vs 0.491
+37eaa090 3 2  # ply 29 pre: short search 4 1 0.234 vs 0.326
+2ef13246 1 3  # ply 26 pre: short search 2 4 0.799 vs 0.891
+3efc6264 4 3  # ply 37 pre: short search 3 5 0.407 vs 0.498
+369a3f48 8 3  # ply 25 pre: short search 7 5 0.247 vs 0.338
+025ff3f3 7 7  # ply 31 pre: short search 6 8 0.408 vs 0.499
+181dacbc 3 8  # ply 29 pre: short search 5 6 0.161 vs 0.252
+024d9027 1 0  # ply 25 pre: short search 2 1 0.228 vs 0.319
+085f5378 2 2  # ply 15 pre: short search 2 0 0.177 vs 0.267
+039c45ce 7 3  # ply 25 pre: short search 6 5 0.242 vs 0.332
+20c2a346 5 5  # ply 31 pre: short search 3 5 0.217 vs 0.307
+2da6df11 6 5  # ply 20 pre: short search 8 5 0.767 vs 0.857
+186eb6b1 3 3  # ply 28 pre: short search 5 4 0.777 vs 0.867
+0f29cdf7 5 1  # ply 27 pre: short search 4 1 0.271 vs 0.361
+2435051b 0 6  # ply 34 pre: short search 0 7 0.846 vs 0.935
+2feb6bf0 7 3  # ply 25 pre: short search 8 4 0.350 vs 0.439
+1c9d44f1 7 8  # ply 29 pre: short search 6 8 0.235 vs 0.324
+1706759c 5 3  # ply 29 pre: short search 4 3 0.247 vs 0.336
+30e64e7b 1 4  # ply 17 pre: short search 2 3 0.226 vs 0.315
+370e1048 1 3  # ply 28 pre: short search 2 4 0.768 vs 0.857
+13eddaab 7 5  # ply 27 pre: short search 6 4 0.193 vs 0.282
+0962329f 0 8  # ply 22 pre: short search 1 8 0.807 vs 0.896
+02c3444b 3 1  # ply 28 pre: short search 5 2 0.789 vs 0.878
+054536fc 4 0  # ply 28 pre: short search 5 1 0.817 vs 0.905
+3a29a646 7 0  # ply 23 pre: short search 8 0 0.240 vs 0.328
+30f751a3 0 1  # ply 34 pre: short search 2 2 0.890 vs 0.978
+30e3672e 7 8  # ply 27 pre: short search 6 8 0.264 vs 0.352
+2ec8d967 2 2  # ply 34 pre: short search 2 0 0.854 vs 0.942
+2a328600 3 6  # ply 28 pre: short search 3 7 0.654 vs 0.742
+090115d3 2 5  # ply 26 pre: short search 0 3 0.740 vs 0.828
+0551ac17 2 4  # ply 15 pre: short search 0 3 0.198 vs 0.286
+099c37b2 2 0  # ply 22 pre: short search 1 1 0.842 vs 0.929
+3b80f9b6 0 5  # ply 32 pre: short search 2 5 0.859 vs 0.946
+322c4103 8 1  # ply 38 pre: short search 8 2 0.540 vs 0.627
+3e1c0922 6 6  # ply 32 pre: short search 8 7 0.821 vs 0.907
+23a6c18f 7 3  # ply 28 pre: short search 8 5 0.821 vs 0.907
+1b2ff08c 6 0  # ply 31 pre: short search 7 0 0.157 vs 0.243
+0eaa0d93 2 5  # ply 33 pre: short search 1 5 0.181 vs 0.266
+2f755b5f 0 2  # ply 21 pre: short search 0 0 0.232 vs 0.317
+03a43f2b 2 5  # ply 27 pre: short search 1 3 0.206 vs 0.291
+26d95d12 0 6  # ply 32 pre: short search 1 6 0.891 vs 0.976
+262c0b00 0 7  # ply 30 pre: short search 0 6 0.802 vs 0.887
+25e590a8 0 6  # ply 35 pre: short search 7 0 0.398 vs 0.483
+38c64f12 5 7  # ply 25 pre: short search 5 6 0.194 vs 0.278
+19ec41d2 1 0  # ply 27 pre: short search 0 2 0.253 vs 0.337
+3fa21e4b 2 1  # ply 21 pre: short search 2 0 0.212 vs 0.296
+3cf91c23 0 1  # ply 34 pre: short search 2 2 0.873 vs 0.957
+3b79dcce 3 7  # ply 24 pre: short search 3 6 0.751 vs 0.835
+366af78e 5 8  # ply 24 pre: short search 3 8 0.735 vs 0.819
+3042a91b 7 0  # ply 22 pre: short search 6 1 0.755 vs 0.839
+26a37942 4 8  # ply 22 pre: short search 3 7 0.773 vs 0.857
+1bff68b8 3 1  # ply 30 pre: short search 4 1 0.865 vs 0.949
+03a3d68e 1 8  # ply 32 pre: short search 2 7 0.866 vs 0.950
+365bb6dc 6 1  # ply 32 pre: short search 6 2 0.852 vs 0.935
+33fd4854 2 2  # ply 19 pre: short search 0 1 0.239 vs 0.322
+28022e7d 4 2  # ply 35 pre: short search 5 1 0.306 vs 0.389
+1ffc5ec6 8 3  # ply 19 pre: short search 6 5 0.193 vs 0.276
+10b87235 3 7  # ply 23 pre: short search 5 6 0.192 vs 0.275
+1d3fe122 0 6  # ply 23 pre: short search 1 6 0.117 vs 0.200
+00149569 1 4  # ply 29 pre: short search 2 5 0.210 vs 0.293
+33a5aec7 0 1  # ply 22 pre: short search 0 2 0.765 vs 0.848
+2012dae9 3 1  # ply 22 pre: short search 5 1 0.791 vs 0.874
+17ebd9c3 6 1  # ply 24 pre: short search 8 1 0.769 vs 0.852
+128e0183 6 2  # ply 33 pre: short search 8 1 0.510 vs 0.593
+06ba3a8a 3 6  # ply 30 pre: short search 5 7 0.774 vs 0.857
+38b66f83 3 3  # ply 24 pre: short search 5 4 0.718 vs 0.800
+1aad2f05 8 7  # ply 26 pre: short search 8 6 0.703 vs 0.785
+2e095ed3 3 6  # ply 29 pre: short search 5 6 0.128 vs 0.210
+2409505d 1 5  # ply 26 pre: short search 2 3 0.788 vs 0.870
+302d61f3 6 2  # ply 31 pre: short search 6 0 0.419 vs 0.500
+2b4ad3e9 1 7  # ply 29 pre: short search 0 7 0.180 vs 0.261
+1cca67c2 3 0  # ply 21 pre: short search 4 0 0.249 vs 0.330
+1925aff8 6 8  # ply 29 pre: short search 7 8 0.173 vs 0.254
+1153817f 6 1  # ply 29 pre: short search 6 0 0.121 vs 0.202
+3b22b1d1 5 2  # ply 29 pre: short search 4 2 0.161 vs 0.242
+2e82d8a6 5 1  # ply 26 pre: short search 5 0 0.744 vs 0.825
+2ab54538 7 7  # ply 26 pre: short search 8 7 0.762 vs 0.843
+12b663bf 3 7  # ply 28 pre: short search 5 8 0.815 vs 0.895
+3fa8101a 3 6  # ply 29 pre: short search 5 6 0.251 vs 0.331
+3cdbbd1b 2 4  # ply 31 pre: short search 2 3 0.421 vs 0.501
+16487b98 0 5  # ply 31 pre: short search 1 3 0.189 vs 0.269
+0d24e09d 6 2  # ply 27 pre: short search 7 0 0.167 vs 0.247
+3eb40f10 0 6  # ply 22 pre: short search 0 7 0.750 vs 0.830
+32a9001c 0 2  # ply 24 pre: short search 0 1 0.731 vs 0.810
+29a09636 8 7  # ply 30 pre: short search 6 7 0.816 vs 0.895
+2d282b30 7 7  # ply 25 pre: short search 6 6 0.185 vs 0.264
+11060c3e 2 7  # ply 11 pre: short search 2 6 0.220 vs 0.299
+3c4a8a54 5 4  # ply 28 pre: short search 4 3 0.735 vs 0.814
+294b9a52 1 5  # ply 28 pre: short search 0 4 0.505 vs 0.584
+1b78b9cc 4 3  # ply 26 pre: short search 3 5 0.801 vs 0.880
+35d5908a 5 7  # ply 28 pre: short search 4 6 0.727 vs 0.805
+35e6841d 6 5  # ply 31 pre: short search 7 5 0.420 vs 0.498
+0db4d935 3 6  # ply 31 pre: short search 5 8 0.421 vs 0.499
+0b6a606f 1 5  # ply 29 pre: short search 0 5 0.351 vs 0.429
+0aa925fc 8 5  # ply 31 pre: short search 7 4 0.056 vs 0.134
+3804e93c 7 3  # ply 21 pre: short search 8 3 0.219 vs 0.297
+2ec2ee30 5 4  # ply 29 pre: short search 3 4 0.126 vs 0.204
+0f4df09b 6 8  # ply 17 pre: short search 8 7 0.222 vs 0.300
+07c3bf73 3 1  # ply 31 pre: short search 5 2 0.281 vs 0.359
+274f029a 6 7  # ply 27 pre: short search 6 8 0.222 vs 0.299
+3cee5de7 2 4  # ply 23 pre: short search 2 3 0.276 vs 0.353
+3618b555 1 1  # ply 20 pre: short search 1 2 0.745 vs 0.822
+107d2182 6 6  # ply 28 pre: short search 7 8 0.867 vs 0.944
+3231df4c 2 2  # ply 26 pre: short search 1 0 0.707 vs 0.783
+23054c15 0 8  # ply 21 pre: short search 1 6 0.198 vs 0.274
+131e595f 2 3  # ply 25 pre: short search 1 5 0.177 vs 0.253
+06dfc9e4 2 3  # ply 19 pre: short search 0 5 0.215 vs 0.291
+39c73909 0 4  # ply 30 pre: short search 2 3 0.737 vs 0.813
+29a8a18d 8 5  # ply 32 pre: short search 6 3 0.562 vs 0.638
+1cf0895c 0 2  # ply 23 pre: short search 1 0 0.274 vs 0.350
+02e72ead 0 1  # ply 28 pre: short search 2 2 0.679 vs 0.755
+1fa93b98 1 7  # ply 30 pre: short search 2 7 0.859 vs 0.934
+3ba67eb2 0 3  # ply 31 pre: short search 1 3 0.415 vs 0.490
+24420cf7 7 1  # ply 25 pre: short search 6 2 0.176 vs 0.251
+2a9b5e0e 8 1  # ply 26 pre: short search 7 1 0.803 vs 0.878
+18f53a18 4 5  # ply 20 pre: short search 4 3 0.764 vs 0.839
+02d1835b 4 5  # ply 22 pre: short search 3 5 0.760 vs 0.835
+2c5cdea0 6 1  # ply 31 pre: short search 7 1 0.125 vs 0.199
+11c81b03 5 1  # ply 31 pre: short search 4 0 0.173 vs 0.247
+04b8a4b3 7 2  # ply 27 pre: short search 8 0 0.163 vs 0.237
+2c061770 4 0  # ply 32 pre: short search 3 2 0.874 vs 0.948
+2bb27c8c 6 2  # ply 28 pre: short search 6 0 0.740 vs 0.814
+191b2713 5 4  # ply 20 pre: short search 3 4 0.756 vs 0.830
+0083335b 4 3  # ply 20 pre: short search 5 5 0.750 vs 0.824
+3436c2b1 2 8  # ply 22 pre: short search 1 8 0.732 vs 0.805
+114f5d24 5 6  # ply 24 pre: short search 5 7 0.734 vs 0.807
+371fb4e9 2 4  # ply 29 pre: short search 1 3 0.238 vs 0.311
+20238ed2 4 7  # ply 33 pre: short search 5 6 0.432 vs 0.505
+1e731e0a 3 4  # ply 31 pre: short search 3 5 0.423 vs 0.496
+19339722 2 7  # ply 25 pre: short search 0 8 0.365 vs 0.438
+13deb03b 4 8  # ply 21 pre: short search 3 8 0.172 vs 0.245
+06f7beb3 1 0  # ply 22 pre: short search 2 0 0.772 vs 0.845
+1cecc606 5 2  # ply 23 pre: short search 3 2 0.197 vs 0.269
+0d381a8f 0 4  # ply 11 pre: short search 1 3 0.202 vs 0.274
+3f9018e9 7 2  # ply 17 pre: short search 6 2 0.224 vs 0.296
+3c40b734 2 4  # ply 20 pre: short search 1 5 0.788 vs 0.860
+0c92c019 8 0  # ply 26 pre: short search 8 2 0.780 vs 0.852
+13bc5afb 8 5  # ply 24 pre: short search 8 3 0.861 vs 0.932
+251c0e87 7 0  # ply 21 pre: short search 8 2 0.241 vs 0.312
+0364935b 8 7  # ply 19 pre: short search 7 6 0.186 vs 0.257
+1ab30e93 8 3  # ply 29 pre: short search 7 5 0.214 vs 0.285
+13d11aa0 7 1  # ply 21 pre: short search 7 2 0.227 vs 0.298
+325bc6be 7 4  # ply 18 pre: short search 6 4 0.756 vs 0.827
+0d032324 5 0  # ply 30 pre: short search 4 0 0.876 vs 0.947
+3202c5b5 8 0  # ply 24 pre: short search 7 0 0.742 vs 0.812
+211e1bef 2 4  # ply 22 pre: short search 1 5 0.820 vs 0.890
+2fab09de 3 7  # ply 25 pre: short search 5 8 0.238 vs 0.308
+0a6200dd 7 0  # ply 29 pre: short search 6 1 0.251 vs 0.321
+3335a163 5 7  # ply 31 pre: short search 4 7 0.220 vs 0.290
+12de5c1c 5 1  # ply 29 pre: short search 3 2 0.212 vs 0.282
+30859c06 7 6  # ply 24 pre: short search 6 8 0.812 vs 0.882
+3010dea3 8 5  # ply 34 pre: short search 7 3 0.880 vs 0.950
+09ae5b42 7 2  # ply 23 pre: short search 8 1 0.218 vs 0.287
+0663efd2 2 5  # ply 21 pre: short search 1 5 0.225 vs 0.294
+1d0ebc5c 8 6  # ply 23 pre: short search 7 8 0.248 vs 0.316
+198a05c8 8 8  # ply 15 pre: short search 6 7 0.183 vs 0.251
+3382853d 5 2  # ply 33 pre: short search 5 1 0.220 vs 0.288
+06e62a4b 6 0  # ply 21 pre: short search 7 2 0.215 vs 0.283
+21db6184 1 2  # ply 26 pre: short search 2 2 0.772 vs 0.840
+0bbbf1a5 8 2  # ply 22 pre: short search 7 0 0.785 vs 0.853
+04fba396 4 2  # ply 20 pre: short search 5 2 0.794 vs 0.862
+17594d80 3 8  # ply 24 pre: short search 4 7 0.859 vs 0.926
+368980b2 0 4  # ply 23 pre: short search 0 3 0.257 vs 0.323
+151234df 4 6  # ply 15 pre: short search 5 6 0.177 vs 0.243
+11340d57 6 0  # ply 39 pre: short search 8 2 0.432 vs 0.498
+13441f8d 8 3  # ply 27 pre: short search 6 5 0.281 vs 0.347
+23d9ca22 4 2  # ply 19 pre: short search 3 2 0.204 vs 0.269
+3b623998 8 7  # ply 29 pre: short search 6 7 0.198 vs 0.263
+270e4c97 8 0  # ply 11 pre: short search 6 1 0.193 vs 0.258
+23f488db 3 7  # ply 29 pre: short search 4 7 0.186 vs 0.251
+1c7a06f7 1 1  # ply 15 pre: short search 2 2 0.219 vs 0.284
+1a1e64a7 0 2  # ply 21 pre: short search 0 0 0.233 vs 0.298
+05f912e6 7 3  # ply 24 pre: short search 8 5 0.737 vs 0.801
+326b5fe1 6 1  # ply 13 pre: short search 8 0 0.213 vs 0.277
+1f441b56 5 1  # ply 21 pre: short search 4 1 0.251 vs 0.315
+3f3cc209 5 6  # ply 26 pre: short search 4 6 0.790 vs 0.854
+1258a6e7 5 2  # ply 30 pre: short search 3 2 0.734 vs 0.797
+39fa3841 4 2  # ply 29 pre: short search 4 0 0.255 vs 0.318
+3503f13b 0 8  # ply 19 pre: short search 1 6 0.248 vs 0.311
+1ce16c1d 8 8  # ply 22 pre: short search 6 6 0.762 vs 0.825
+14592c87 5 2  # ply 24 pre: short search 4 2 0.789 vs 0.852
+096c4858 2 2  # ply 22 pre: short search 0 1 0.812 vs 0.875
+2e2d8ed0 0 2  # ply 24 pre: short search 2 0 0.821 vs 0.883
+16c128eb 0 0  # ply 13 pre: short search 2 2 0.218 vs 0.280
+39e1d170 6 5  # ply 19 pre: short search 7 5 0.237 vs 0.299
+368f5124 6 2  # ply 21 pre: short search 6 0 0.235 vs 0.297
+30be17df 2 6  # ply 21 pre: short search 1 8 0.296 vs 0.358
+1a3fc469 3 8  # ply 21 pre: short search 5 6 0.207 vs 0.268
+3e4b4572 6 0  # ply 27 pre: short search 6 1 0.175 vs 0.236
+1ee06c62 5 3  # ply 25 pre: short search 3 5 0.200 vs 0.261
+175c15f7 6 7  # ply 13 pre: short search 7 6 0.196 vs 0.257
+0e2e77ef 2 6  # ply 24 pre: short search 2 8 0.780 vs 0.841
+3904a6c9 6 7  # ply 25 pre: short search 7 7 0.204 vs 0.264
+2016bb94 7 6  # ply 25 pre: short search 7 8 0.212 vs 0.272
+1ca62469 7 7  # ply 25 pre: short search 6 7 0.195 vs 0.255
+18bdc07a 0 5  # ply 36 pre: short search 1 5 0.317 vs 0.377
+04ae8d31 2 1  # ply 42 pre: short search 5 4 0.439 vs 0.499
+156795ec 6 3  # ply 30 pre: short search 6 5 0.901 vs 0.961
+051710cb 5 7  # ply 18 pre: short search 3 8 0.731 vs 0.790
+3c302686 3 5  # ply 21 pre: short search 5 5 0.266 vs 0.325
+3ad0811f 1 2  # ply 37 pre: short search 2 1 0.441 vs 0.500
+2088967c 2 8  # ply 13 pre: short search 2 7 0.197 vs 0.256
+0aacf7dd 3 5  # ply 29 pre: short search 5 5 0.259 vs 0.318
+05a633b5 0 2  # ply 25 pre: short search 1 2 0.231 vs 0.290
+35228070 8 1  # ply 22 pre: short search 7 2 0.775 vs 0.834
+29865905 5 7  # ply 24 pre: short search 3 8 0.758 vs 0.817
+2dd280c9 0 5  # ply 24 pre: short search 2 5 0.753 vs 0.811
+0e9ef999 3 7  # ply 22 pre: short search 5 7 0.740 vs 0.798
+3d1f290e 0 4  # ply 23 pre: short search 2 4 0.249 vs 0.307
+39f209eb 8 4  # ply 23 pre: short search 6 3 0.253 vs 0.311
+0d4b9ffa 0 6  # ply 25 pre: short search 0 7 0.233 vs 0.291
+1ec6d18f 3 5  # ply 16 pre: short search 3 3 0.750 vs 0.807
+2370fb3d 6 3  # ply 9 pre: short search 7 3 0.181 vs 0.238
+0241326a 2 0  # ply 25 pre: short search 1 0 0.247 vs 0.304
+2aaae150 6 0  # ply 24 pre: short search 7 0 0.563 vs 0.619
+2337bec4 8 0  # ply 18 pre: short search 8 2 0.753 vs 0.809
+04b8fe05 6 4  # ply 22 pre: short search 6 5 0.721 vs 0.777
+0cc96dd1 3 1  # ply 25 pre: short search 5 2 0.217 vs 0.273
+31cc2847 1 4  # ply 15 pre: short search 0 3 0.196 vs 0.252
+0ccbeb5f 0 6  # ply 22 pre: short search 0 7 0.685 vs 0.741
+05b6cac4 5 0  # ply 20 pre: short search 5 1 0.783 vs 0.839
+1ac16d9e 8 6  # ply 19 pre: short search 8 8 0.207 vs 0.262
+0de02cd7 2 0  # ply 21 pre: short search 2 2 0.205 vs 0.260
+0c10b77a 1 1  # ply 38 pre: short search 2 1 0.443 vs 0.498
+0a40a9f8 5 6  # ply 27 pre: short search 3 7 0.309 vs 0.364
+1f82e1f4 8 1  # ply 20 pre: short search 6 0 0.747 vs 0.801
+0f89cea8 4 7  # ply 26 pre: short search 5 6 0.729 vs 0.783
+3e1b952e 0 4  # ply 13 pre: short search 1 3 0.217 vs 0.271
+2e28f841 2 0  # ply 21 pre: short search 1 0 0.207 vs 0.261
+008c42e5 3 2  # ply 19 pre: short search 5 2 0.215 vs 0.269
+271b2670 1 8  # ply 36 pre: short search 0 6 0.444 vs 0.498
+1d943fe2 6 6  # ply 23 pre: short search 8 8 0.302 vs 0.356
+19c0299f 2 4  # ply 29 pre: short search 1 5 0.197 vs 0.251
+1424e541 8 1  # ply 21 pre: short search 6 0 0.188 vs 0.242
+0fc13706 3 6  # ply 19 pre: short search 5 8 0.254 vs 0.308
+0c56bdd7 7 8  # ply 19 pre: short search 6 6 0.272 vs 0.326
+119d86a1 3 8  # ply 26 pre: short search 5 8 0.652 vs 0.706
+123f3535 4 0  # ply 28 pre: short search 3 0 0.816 vs 0.869
+3091851d 2 2  # ply 25 pre: short search 2 1 0.298 vs 0.351
+07d513f9 7 1  # ply 23 pre: short search 6 1 0.260 vs 0.313
+2e4fb01f 7 0  # ply 26 pre: short search 8 2 0.896 vs 0.949
+116212f3 5 4  # ply 24 pre: short search 5 5 0.817 vs 0.869
+09ae1125 2 7  # ply 26 pre: short search 0 6 0.848 vs 0.900
+0d67a5f4 7 6  # ply 15 pre: short search 6 8 0.210 vs 0.262
+03bfb2e7 7 2  # ply 29 pre: short search 7 1 0.221 vs 0.273
+3177163f 3 5  # ply 37 pre: short search 3 4 0.445 vs 0.497
+0a527795 1 2  # ply 23 pre: short search 1 0 0.203 vs 0.255
+252e9a7b 5 7  # ply 26 pre: short search 4 7 0.870 vs 0.921
+0bbf3ad4 8 1  # ply 19 pre: short search 7 2 0.347 vs 0.398
+09ef3435 2 5  # ply 15 pre: short search 1 5 0.182 vs 0.233
+32f87e2c 1 3  # ply 27 pre: short search 0 5 0.238 vs 0.289
+384536b7 0 6  # ply 20 pre: short search 0 7 0.756 vs 0.806
+047f0c3a 6 1  # ply 15 pre: short search 8 0 0.182 vs 0.232
+0d1b6fc4 2 6  # ply 17 pre: short search 0 6 0.188 vs 0.238
+03ec7a0b 3 2  # ply 21 pre: short search 5 1 0.236 vs 0.286
+344e90af 2 6  # ply 22 pre: short search 2 7 0.653 vs 0.703
+143a42ae 6 1  # ply 26 pre: short search 7 0 0.804 vs 0.854
+22e8b6a3 6 4  # ply 29 pre: short search 7 5 0.288 vs 0.337
+3214cff1 8 4  # ply 9 pre: short search 7 3 0.184 vs 0.233
+3d7d6b61 5 2  # ply 21 pre: short search 5 0 0.237 vs 0.286
+3a76d2f9 5 2  # ply 19 pre: short search 3 0 0.167 vs 0.216
+2f3687a6 4 0  # ply 25 pre: short search 5 2 0.272 vs 0.321
+239ab2c9 8 3  # ply 17 pre: short search 6 4 0.200 vs 0.249
+02f02fa8 1 4  # ply 25 pre: short search 2 3 0.202 vs 0.251
+2ee0bc71 5 7  # ply 28 pre: short search 4 7 0.813 vs 0.861
+21c8cd40 2 7  # ply 28 pre: short search 2 8 0.817 vs 0.865
+142a985e 7 5  # ply 17 pre: short search 8 3 0.225 vs 0.273
+289756eb 5 6  # ply 17 pre: short search 5 8 0.235 vs 0.283
+0e97d975 7 3  # ply 25 pre: short search 7 5 0.197 vs 0.245
+203635ae 0 7  # ply 22 pre: short search 0 6 0.787 vs 0.835
+12389f57 5 4  # ply 32 pre: short search 5 3 0.936 vs 0.984
+1b03e9f9 0 3  # ply 28 pre: short search 0 5 0.757 vs 0.804
+3f53f712 6 3  # ply 23 pre: short search 7 5 0.173 vs 0.220
+1ff177d3 1 8  # ply 25 pre: short search 1 7 0.116 vs 0.163
+3d96d51c 8 7  # ply 25 pre: short search 6 8 0.240 vs 0.287
+2c4c7c29 0 2  # ply 29 pre: short search 0 1 0.164 vs 0.211
+0546499d 8 4  # ply 23 pre: short search 7 5 0.308 vs 0.355
+2a8b8de7 6 3  # ply 22 pre: short search 7 3 0.708 vs 0.754
+133c2f3f 6 4  # ply 20 pre: short search 7 3 0.749 vs 0.795
+2f48e09f 6 3  # ply 23 pre: short search 8 5 0.206 vs 0.252
+26f75911 6 1  # ply 35 pre: short search 7 1 0.119 vs 0.165
+24b32c8d 1 7  # ply 21 pre: short search 2 8 0.186 vs 0.232
+1d8cdb38 5 4  # ply 19 pre: short search 5 5 0.206 vs 0.252
+1d1fe45b 0 0  # ply 17 pre: short search 0 2 0.231 vs 0.277
+28bf4342 6 7  # ply 21 pre: short search 8 6 0.202 vs 0.248
+23c08eb4 0 5  # ply 31 pre: short search 2 3 0.458 vs 0.504
+15e85456 7 2  # ply 29 pre: short search 8 2 0.126 vs 0.172
+05138657 7 3  # ply 19 pre: short search 6 3 0.190 vs 0.236
+23fc6542 1 3  # ply 28 pre: short search 0 3 0.725 vs 0.770
+12692ca5 1 5  # ply 24 pre: short search 0 3 0.743 vs 0.788
+1c82a8bb 7 4  # ply 23 pre: short search 6 4 0.153 vs 0.198
+2b825ae4 4 7  # ply 29 pre: short search 5 7 0.167 vs 0.212
+1dc9cd72 2 5  # ply 23 pre: short search 0 4 0.191 vs 0.236
+1a5310a5 7 7  # ply 21 pre: short search 6 8 0.252 vs 0.297
+1df430be 1 8  # ply 26 pre: short search 2 6 0.858 vs 0.902
+3f8ef4ec 1 3  # ply 27 pre: short search 2 5 0.214 vs 0.258
+3550d023 5 1  # ply 23 pre: short search 3 2 0.224 vs 0.268
+2c1c9582 7 6  # ply 27 pre: short search 7 8 0.232 vs 0.276
+283026cc 7 2  # ply 11 pre: short search 6 1 0.176 vs 0.220
+16f72ab7 0 8  # ply 23 pre: short search 1 6 0.207 vs 0.251
+1d34209f 8 1  # ply 23 pre: short search 6 1 0.166 vs 0.210
+3d25d6c8 3 1  # ply 31 pre: short search 5 1 0.236 vs 0.279
+33d6f46c 5 1  # ply 23 pre: short search 3 2 0.249 vs 0.292
+27b3cd07 6 0  # ply 33 pre: short search 7 1 0.139 vs 0.182
+19f3f0b2 0 3  # ply 31 pre: short search 2 4 0.170 vs 0.213
+13a4a2da 7 6  # ply 17 pre: short search 6 6 0.257 vs 0.300
+04f8bad0 8 1  # ply 22 pre: short search 8 2 0.784 vs 0.827
+08701d50 6 1  # ply 18 pre: short search 8 0 0.723 vs 0.765
+086fedf5 6 1  # ply 30 pre: short search 7 0 0.832 vs 0.874
+2c024a09 2 3  # ply 9 pre: short search 0 4 0.190 vs 0.232
+18f22a7a 5 6  # ply 29 pre: short search 3 8 0.210 vs 0.252
+02c7feef 2 7  # ply 17 pre: short search 1 8 0.213 vs 0.255
+1871f5f7 1 2  # ply 21 pre: short search 1 1 0.240 vs 0.282
+117a855a 3 5  # ply 25 pre: short search 5 4 0.243 vs 0.285
+07ea3f90 3 8  # ply 23 pre: short search 5 6 0.246 vs 0.288
+1cfd78e8 0 7  # ply 20 pre: short search 0 6 0.793 vs 0.835
+315ee6cd 6 7  # ply 28 pre: short search 7 8 0.825 vs 0.866
+20fd4e3a 7 8  # ply 26 pre: short search 6 8 0.719 vs 0.760
+354174a2 1 1  # ply 23 pre: short search 0 1 0.211 vs 0.252
+1d6892a8 0 6  # ply 29 pre: short search 1 6 0.180 vs 0.221
+153fc6b2 3 2  # ply 37 pre: short search 3 1 0.189 vs 0.230
+31acd5ee 0 0  # ply 13 pre: short search 2 1 0.195 vs 0.236
+26502047 6 8  # ply 21 pre: short search 6 6 0.296 vs 0.336
+3d901fd8 6 7  # ply 19 pre: short search 6 8 0.157 vs 0.197
+244ae7bb 0 1  # ply 27 pre: short search 2 1 0.183 vs 0.223
+16ceea7d 1 3  # ply 31 pre: short search 2 5 0.099 vs 0.139
+12ac4e72 2 4  # ply 13 pre: short search 0 3 0.194 vs 0.234
+07b38b2d 8 5  # ply 23 pre: short search 7 4 0.223 vs 0.263
+046fa2aa 8 3  # ply 9 pre: short search 7 3 0.162 vs 0.202
+0b958ca2 8 5  # ply 23 pre: short search 7 5 0.242 vs 0.282
+065fb8c8 6 1  # ply 20 pre: short search 6 0 0.784 vs 0.824
+307bb0bc 3 2  # ply 24 pre: short search 3 0 0.746 vs 0.785
+1a7c03e2 6 6  # ply 30 pre: short search 7 6 0.850 vs 0.889
+3cde9be6 0 1  # ply 13 pre: short search 0 2 0.177 vs 0.216
+33eae43a 8 7  # ply 17 pre: short search 7 6 0.184 vs 0.223
+20a55d26 1 8  # ply 21 pre: short search 1 7 0.260 vs 0.299
+0d1c547b 2 2  # ply 29 pre: short search 0 1 0.463 vs 0.502
+374f5a65 5 5  # ply 26 pre: short search 3 3 0.680 vs 0.719
+27c757bd 7 6  # ply 25 pre: short search 6 7 0.186 vs 0.224
+0cd5cc8d 5 2  # ply 15 pre: short search 3 0 0.188 vs 0.226
+051b0421 8 0  # ply 23 pre: short search 8 2 0.229 vs 0.267
+0341066d 0 1  # ply 13 pre: short search 2 2 0.187 vs 0.225
+3cd4f6e1 0 4  # ply 21 pre: short search 1 5 0.197 vs 0.235
+3172bca5 0 1  # ply 25 pre: short search 2 0 0.269 vs 0.307
+39d12bd6 6 3  # ply 29 pre: short search 6 5 0.175 vs 0.212
+1e468a38 7 6  # ply 13 pre: short search 8 8 0.231 vs 0.268
+04bdb41e 0 1  # ply 19 pre: short search 2 2 0.213 vs 0.250
+021d3b51 8 4  # ply 13 pre: short search 6 3 0.227 vs 0.264
+2c9c6cd9 2 0  # ply 23 pre: short search 1 1 0.260 vs 0.297
+35659e23 0 6  # ply 18 pre: short search 1 8 0.808 vs 0.845
+344898be 7 8  # ply 18 pre: short search 6 7 0.807 vs 0.844
+27442424 6 6  # ply 36 pre: short search 2 2 0.953 vs 0.989
+34ed6894 5 6  # ply 23 pre: short search 3 7 0.211 vs 0.247
+303a70dc 5 1  # ply 17 pre: short search 5 2 0.213 vs 0.249
+2b2ab142 3 2  # ply 15 pre: short search 5 2 0.224 vs 0.260
+24edb812 3 5  # ply 17 pre: short search 5 5 0.189 vs 0.225
+0f845d69 5 2  # ply 15 pre: short search 3 0 0.195 vs 0.231
+04608809 5 1  # ply 11 pre: short search 4 2 0.179 vs 0.215
+29920e43 6 6  # ply 17 pre: short search 8 7 0.203 vs 0.239
+1c62b9d4 8 4  # ply 7 pre: short search 7 5 0.170 vs 0.206
+1ac3bae7 8 3  # ply 9 pre: short search 6 4 0.202 vs 0.238
+1a08a455 2 3  # ply 32 pre: short search 2 6 0.466 vs 0.502
+38cbd5f1 2 8  # ply 20 pre: short search 2 6 0.788 vs 0.824
+1de1cb57 1 0  # ply 24 pre: short search 2 1 0.892 vs 0.927
+09e17267 1 3  # ply 22 pre: short search 0 5 0.730 vs 0.765
+029da6a3 8 3  # ply 38 pre: short search 7 3 0.421 vs 0.456
+021704b8 5 8  # ply 18 pre: short search 4 6 0.751 vs 0.786
+2e435112 6 6  # ply 27 pre: short search 6 8 0.207 vs 0.242
+211fe175 2 5  # ply 13 pre: short search 1 5 0.215 vs 0.250
+1b7992e2 8 0  # ply 13 pre: short search 7 0 0.197 vs 0.232
+16d05532 2 1  # ply 21 pre: short search 1 1 0.234 vs 0.269
+0893d7ec 6 2  # ply 7 pre: short search 8 2 0.181 vs 0.216
+009c6661 2 1  # ply 37 pre: short search 2 2 0.114 vs 0.149
+25352bef 4 7  # ply 25 pre: short search 5 6 0.201 vs 0.236
+1b84460f 6 6  # ply 25 pre: short search 7 7 0.331 vs 0.366
+01c48dac 5 8  # ply 22 pre: short search 5 6 0.795 vs 0.830
+17d291e6 4 3  # ply 22 pre: short search 5 4 0.763 vs 0.797
+0b549d48 7 6  # ply 18 pre: short search 7 8 0.760 vs 0.794
+12bccdf3 6 6  # ply 13 pre: short search 6 7 0.192 vs 0.226
+0ed3999a 1 0  # ply 23 pre: short search 0 0 0.216 vs 0.250
+050176f9 3 7  # ply 23 pre: short search 3 6 0.215 vs 0.249
+3c6bcfae 0 4  # ply 23 pre: short search 2 3 0.240 vs 0.273
+170b8aa5 7 6  # ply 23 pre: short search 6 7 0.248 vs 0.281
+3b319639 5 1  # ply 19 pre: short search 4 2 0.201 vs 0.234
+28249fa9 5 1  # ply 23 pre: short search 4 2 0.205 vs 0.238
+0f1233d0 5 6  # ply 19 pre: short search 3 6 0.204 vs 0.237
+0b05ff8b 6 3  # ply 25 pre: short search 7 3 0.208 vs 0.241
+09fc696f 0 8  # ply 19 pre: short search 2 6 0.219 vs 0.252
+34c01a5b 3 6  # ply 13 pre: short search 5 6 0.203 vs 0.236
+11a57f2b 5 6  # ply 35 pre: short search 7 1 0.467 vs 0.500
+2ed0e27c 5 7  # ply 34 pre: short search 5 6 0.934 vs 0.967
+3d0b5854 4 8  # ply 16 pre: short search 3 6 0.761 vs 0.793
+1ff744c9 6 5  # ply 11 pre: short search 8 4 0.192 vs 0.224
+16c4cb97 6 3  # ply 15 pre: short search 8 4 0.183 vs 0.215
+11b16c3d 0 3  # ply 15 pre: short search 2 3 0.207 vs 0.239
+0b85b0ae 3 7  # ply 25 pre: short search 5 6 0.181 vs 0.213
+02d0d9cf 5 0  # ply 13 pre: short search 5 1 0.164 vs 0.196
+309bfa9a 7 0  # ply 20 pre: short search 8 0 0.794 vs 0.826
+299a020f 5 8  # ply 19 pre: short search 5 6 0.248 vs 0.279
+3cedb15d 2 5  # ply 19 pre: short search 0 4 0.227 vs 0.258
+359a94fa 3 6  # ply 17 pre: short search 3 7 0.234 vs 0.265
+30a6c364 2 2  # ply 25 pre: short search 1 1 0.168 vs 0.199
+1d3b03e5 8 7  # ply 15 pre: short search 6 7 0.211 vs 0.242
+0eed6f04 1 2  # ply 19 pre: short search 0 2 0.187 vs 0.218
+0d5bd992 4 1  # ply 23 pre: short search 5 2 0.200 vs 0.231
+080241f6 0 6  # ply 37 pre: short search 2 6 0.073 vs 0.104
+38b0998d 2 7  # ply 25 pre: short search 2 6 0.264 vs 0.295
+3f6e3691 7 1  # ply 22 pre: short search 8 1 0.755 vs 0.785
+36a41741 7 5  # ply 25 pre: short search 8 4 0.292 vs 0.322
+155cb69e 2 7  # ply 26 pre: short search 0 6 0.700 vs 0.730
+0244403a 2 5  # ply 31 pre: short search 0 3 0.239 vs 0.269
+3fbd1fb3 3 2  # ply 27 pre: short search 5 1 0.161 vs 0.191
+3a962999 0 4  # ply 13 pre: short search 2 4 0.202 vs 0.232
+0c72bfd8 2 1  # ply 17 pre: short search 1 1 0.202 vs 0.232
+085148cc 2 5  # ply 21 pre: short search 1 5 0.220 vs 0.250
