@@ -18,6 +18,7 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.4 | net n3b: 640 hidden, 151M net self-play positions (v1.0–v1.3), λ 0.75, 20 epochs; accumulator cache; final move by value + 0.02·ln(visits); int8 output layer in the packed net | vs v1.3 at 100 ms: +252 =253 −95, +93 ± 21 (n3a 512: +80, n2c 512: +65) | 31.44 (final) | 14 |
 | v1.5 | net n4a: n3b fine-tuned 8 epochs on 139M unique positions (v1.2–v1.4 self-play); proven-draw contempt (draw worth 0.3 as first player, 0.7 as second); Huffman-coded weights (83.6k chars) | vs v1.4 at 100 ms: +204 =250 −146, +34 ± 21 (n4b from scratch on 186M: +33; no contempt: +25) | ~31.1 at 58% (replaced) | 15 |
 | v1.6 | v1.5 + pondering (search continues during the opponent's turn until its move arrives on stdin; on CG +2.5k–9k iterations per opponent turn vs the default bot) + 11% faster iterations | vs v1.5 at 100 ms (2 cores per game): +261 =229 −110, +89 ± 22 (speedups alone: +24) | 31.41 (final) | 16 |
+| v1.7 | net n7t: n4a widened with 18 small-board threat inputs, fine-tuned 6 epochs on the newest 137M unique positions; proven draws back to 0.5 (contempt lost arena games); pre-game ponder for the second player | n7t vs n4a, same code, no ponder: +202 =258 −140, +36 ± 21 (n6m without threats: +14) | submission 41717561 | |
 
 ## Measurements
 
@@ -64,3 +65,5 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | Threat features (18 inputs: small-board win threats), val loss at 128 hidden, 8M positions | 0.6014 → 0.5920 (val-result 0.5921 → 0.5819) |
 | n7t (n4a widened with threat inputs, same data and recipe as n6m) | val 0.5794 → 0.5769, val-result 0.5674 → 0.5647 |
 | CG CPU | one core per bot (threads give no extra work) |
+| Ponder on CG vs a top bot (Daporan) | ~4–5k iterations per opponent turn (~40 it/ms): the opponent's search takes the CPU; vs the default bot ~158 it/ms |
+| Pre-game work at process start on CG | a 128 MB memset took 2.5 s before the first input was read: removed (first input now awaited 50 ms first) |

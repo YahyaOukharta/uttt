@@ -1173,15 +1173,13 @@ int main() {
         while (sscanf(p, "%d %d%n", &r, &c, &k) == 2) { advance(GRID2M[r * 9 + c]); p += k; }
     }
 #endif
-    bool first = true, prefaulted = false;
+    bool first = true;
     // Second player: the opponent's first turn can take a second. Search the start position
-    // (and fault in the spare pool) until its move arrives.
+    // until its move arrives. (Nothing within 50 ms: we are the second player.)
     if (P_PONDER && fixedIters == 0) {
         struct pollfd pf = {0, POLLIN, 0};
-        if (poll(&pf, 1, 0) == 0) {
+        if (poll(&pf, 1, 50) == 0) {
             const auto tp = Clock::now();
-            memset((void*)pool[cur ^ 1], 0, sizeof(Node) * POOL);
-            prefaulted = true;
             turnStart(rootState.side ^ 1);
             long long pit = 0;
             while (poll(&pf, 1, 0) == 0 && used < POOL / 2 && msSince(tp) < 3000) {
@@ -1223,7 +1221,7 @@ int main() {
         }
         // Fault in the spare pool during the long first turn: compaction on a later turn would
         // otherwise pay for first-touch page faults inside a 100 ms budget.
-        if (first && !prefaulted) memset((void*)pool[cur ^ 1], 0, sizeof(Node) * POOL);
+        if (first) memset((void*)pool[cur ^ 1], 0, sizeof(Node) * POOL);
         if (used > POOL / 2) compact();
         turnStart(rootState.side);
         const double budget = first ? P_FIRST_MS : P_MS;
