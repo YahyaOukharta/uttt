@@ -727,12 +727,13 @@ static inline void cachePut(int idx, const Acc& A) {
 static State pendS[96];
 static int pendI[96];
 #ifdef UT_PROF   // local profiling: cycles per phase of iterateNN
-static unsigned long long profT[4], profN;
+static unsigned long long profT[4], profN, profX, profC, profBig;
 #define PROF_MARK(k) { const unsigned long long t_ = __rdtsc(); profT[k] += t_ - profL; profL = t_; }
 static struct ProfDump { ~ProfDump() {
     const double t = (double)(profT[0] + profT[1] + profT[2] + profT[3]);
-    if (profN) fprintf(stderr, "prof it=%llu cyc/it=%.0f descent %.0f%% acc %.0f%% expand %.0f%% backup %.0f%%\n", profN, t / profN,
-                       100 * profT[0] / t, 100 * profT[1] / t, 100 * profT[2] / t, 100 * profT[3] / t); } } profDump;
+    if (profN) fprintf(stderr, "prof it=%llu cyc/it=%.0f descent %.0f%% acc %.0f%% expand %.0f%% backup %.0f%% exp/it %.2f ch/exp %.1f big %.0f%%\n", profN, t / profN,
+                       100 * profT[0] / t, 100 * profT[1] / t, 100 * profT[2] / t, 100 * profT[3] / t,
+                       (double)profX / profN, (double)profC / max(profX, 1ull), 100.0 * profBig / max(profC, 1ull)); } } profDump;
 #else
 #define PROF_MARK(k)
 #endif
@@ -801,6 +802,9 @@ static void iterateNN() {
     if (P_NNMODE == 1 && !L.proven && !s.result) {
         v = 1.f - nnEval(*Ap, s);
     } else if (!L.proven && !s.result && expand(idx, s) && !L.proven) {
+#ifdef UT_PROF
+        profX++; profC += L.n; if (L.n > 9) profBig += L.n;
+#endif
         float best = -1.f, cvs[81];
         for (int i = 0; i < L.n; i++) {
             Node& ch = P[L.first + i];
@@ -1266,6 +1270,9 @@ int main() {
         fflush(stdout);
 #ifdef LOCAL
         if (checkAcc) fprintf(stderr, "accumulator checks passed: %lld\n", checkCount);
+#endif
+#ifdef UT_PROF
+        profDump.~ProfDump();
 #endif
         fprintf(stderr, "it=%lld root N=%d q=%.3f pr=%d used=%d t=%.1fms\n", it, rn.N,
                 rn.N ? 1.f - rn.W / rn.N : 0.f, rn.proven, used, msSince(t0));

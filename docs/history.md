@@ -70,3 +70,7 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | Phase profile (x86, first turn, 300k iterations, n7t): descent / accumulator replay / expansion with child evaluation / backup | 29–34% / 13–15% / 50–53% / 1–3% of ~4k cycles per iteration; computing each prior's exp once: no change; division-free PUCT comparison: slower |
 | Extra inputs on top of threats, 128 hidden, 8M positions, 10 epochs: open boards each player can still win + dead open boards (27) | val 0.5802 → 0.5793 (macro threats earlier: −0.0011): too small to pay for the code and updates |
 | Arena seat split, v1.7 vs the top 25 (116 games per seat) | first player W 96 D 17 L 3 (90%); second W 3 D 21 L 92 (12%); first-player draws drift from q 0.82 to 0.50 over moves 10–20 without a single blunder |
+| CG CPU (probe) | Intel Haswell VM, AVX2 (no AVX-512, no VNNI), gcc 11.2 |
+| Phase profile on CG (test game, n7t): descent / accumulator replay / expansion / backup | 22–31% / 14–19% / 51–60% / 1%; ~7.5–9k TSC cycles per iteration; 8.3 children scored per expansion |
+| First-layer and output weights stored as int8 (sign-extended on load) instead of int16 | identical results; CG −10% iterations (35.6k → 31.9k per turn), Modal −9%: the evaluation is compute-bound, not cache-bound |
+| n8t (n7t fine-tuned 6 epochs on 211M unique positions incl. g5/g6) vs n7t, same code, no ponder | +172 =275 −153, +11 ± 20 |
