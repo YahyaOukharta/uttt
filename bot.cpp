@@ -332,8 +332,8 @@ static inline int selectChild(int idx) {
             const Node& x = P[ch];
             if (x.proven == PR_LOSS) continue;
             if (x.proven == PR_WIN) return ch;
-            const float n = x.N ? (float)x.N : 1.f;
-            const float v = (x.N ? x.W / n : 0.5f) + c * ((float)x.pad * (1.f / 255.f) + 0.002f) / n;
+            const float u = c * ((float)x.pad * (1.f / 255.f) + 0.002f);
+            const float v = x.N ? (x.W + u) / (float)x.N : 0.5f + u;
             if (v > bv) { bv = v; best = ch; }
         }
         return best < 0 ? nd.first : best;
@@ -424,6 +424,26 @@ static inline void addF2(int16_t* __restrict a, int f, int g) {
     const int16_t* __restrict w = NW[f];
     const int16_t* __restrict x = NW[g];
     for (int i = 0; i < NN_H; i++) a[i] += w[i] + x[i];
+}
+static inline void addFTo(int16_t* __restrict d, const int16_t* __restrict a, int f) {
+    const int16_t* __restrict w = NW[f];
+    for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(a[i] + w[i]);
+}
+static inline void addF2To(int16_t* __restrict d, const int16_t* __restrict a, int f, int g) {
+    const int16_t* __restrict w = NW[f];
+    const int16_t* __restrict x = NW[g];
+    for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(a[i] + w[i] + x[i]);
+}
+// D = S updated for move m (copy and update in one pass).
+static inline void accMoveTo(Acc& D, const Acc& S, const State& before, const State& after, int m) {
+    const int p = before.side, bd = MB[m];
+    if ((after.closed ^ before.closed) >> bd & 1) {
+        if (after.macro[p] >> bd & 1) { addF2To(D.v[p], S.v[p], m, 162 + bd); addF2To(D.v[p ^ 1], S.v[p ^ 1], 81 + m, 171 + bd); }
+        else { addF2To(D.v[p], S.v[p], m, 180 + bd); addF2To(D.v[p ^ 1], S.v[p ^ 1], 81 + m, 180 + bd); }
+    } else {
+        addFTo(D.v[p], S.v[p], m);
+        addFTo(D.v[p ^ 1], S.v[p ^ 1], 81 + m);
+    }
 }
 // Update A for move m that took `before` to `after`.
 static inline void accMove(Acc& A, const State& before, const State& after, int m) {
@@ -572,6 +592,16 @@ static inline float nnEvalMove(const Acc& A, const State& before, const State& a
 #if defined(__x86_64__) && NN_H % 16 == 0
     const __m256i zero = _mm256_setzero_si256(), qa = _mm256_set1_epi16(NQA);
     __m256i acc = zero;
+    if (wq2 == NNZ) {  // no board closed (most moves): skip the zero rows
+        for (int i = 0; i < NN_H; i += 16) {
+            __m256i c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(a + i)), _mm256_load_si256((const __m256i*)(wq1 + i)));
+            c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
+            acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + i))), c));
+            c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(b + i)), _mm256_load_si256((const __m256i*)(wp1 + i)));
+            c = _mm256_min_epi16(_mm256_max_epi16(c, zero), qa);
+            acc = _mm256_add_epi32(acc, _mm256_madd_epi16(_mm256_mullo_epi16(c, _mm256_load_si256((const __m256i*)(o + NN_H + i))), c));
+        }
+    } else
     for (int i = 0; i < NN_H; i += 16) {
         __m256i c = _mm256_add_epi16(_mm256_load_si256((const __m256i*)(a + i)),
                     _mm256_add_epi16(_mm256_load_si256((const __m256i*)(wq1 + i)), _mm256_load_si256((const __m256i*)(wq2 + i))));
@@ -634,9 +664,12 @@ static void iterateNN() {
         s.play(P[idx].move);
         pathBuf[depth++] = idx;
     }
-    Acc A = *base;
+    Acc A;
+    const Acc* Ap = base;  // accumulator of s
     for (int i = 0; i < np; i++) {
-        accMove(A, pendS[i], i + 1 < np ? pendS[i + 1] : s, P[pendI[i]].move);
+        if (i == 0) accMoveTo(A, *base, pendS[0], np > 1 ? pendS[1] : s, P[pendI[0]].move);
+        else accMove(A, pendS[i], i + 1 < np ? pendS[i + 1] : s, P[pendI[i]].move);
+        Ap = &A;
         if (P_CT > 0 && P[pendI[i]].N >= P_CT) cachePut(pendI[i], A);
     }
     float v;
@@ -647,13 +680,14 @@ static void iterateNN() {
             idx = selectChild(idx);
             const State b = s;
             s.play(P[idx].move);
+            if (Ap != &A) { A = *Ap; Ap = &A; }
             accMove(A, b, s, P[idx].move);
             pathBuf[depth++] = idx;
         }
     }
     Node& L = P[idx];
     if (P_NNMODE == 1 && !L.proven && !s.result) {
-        v = 1.f - nnEval(A, s);
+        v = 1.f - nnEval(*Ap, s);
     } else if (!L.proven && !s.result && expand(idx, s) && !L.proven) {
         float best = -1.f;
         for (int i = 0; i < L.n; i++) {
@@ -665,7 +699,7 @@ static void iterateNN() {
                 ch.proven = cs.result == DRAW ? PR_DRAW : (cs.result == WIN0 + s.side ? PR_WIN : PR_LOSS);
                 cv = provenValueM(ch.proven, s.side);
             } else {
-                cv = 1.f - nnEvalMove(A, s, cs, ch.move);
+                cv = 1.f - nnEvalMove(*Ap, s, cs, ch.move);
             }
             ch.N = P_VN;
             ch.W = cv * P_VN;
@@ -697,7 +731,7 @@ static void iterateNN() {
         v = provenValueM(L.proven, s.side ^ 1);
         proof = depth > 1;
     } else {  // pool full: score the leaf itself
-        v = 1.f - nnEval(A, s);
+        v = 1.f - nnEval(*Ap, s);
     }
     for (int i = depth - 1; i >= 0; i--) {
         Node& nd = P[pathBuf[i]];
