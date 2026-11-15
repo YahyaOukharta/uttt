@@ -5,9 +5,11 @@ allows and answer the ones where the long search prefers another move.
 
   book.py positions SUB [SUB ...]          our positions in lost/drawn games -> arena/book_pos.json
   modal run tools/modal_book.py --src out/x.cpp [--iters 4000000]   long searches -> arena/book_an.jsonl
-  book.py build [--gain 0.02] [--draw-gain 0.05]                    -> tools/book.txt (HASH ROW COL)
+  book.py build [--gain 0.02] [--draw-gain 0.05] [--record-gain 1]  -> tools/book.txt (HASH ROW COL)
 
-Positions that occur in a won game of ours, or in a drawn one as the second player, are left alone.
+Positions that occur in a won game of ours, or in a drawn one as the second player, are not changed by the
+long search; but where our own move varied and one move has the better record (gain >= RECORD_GAIN games;
+at least 3 games unless the other moves score <= 25%), the book replays that move unless the long search rates it more than 0.05 below its best.
 Logs of test games (arena/logs/*.log) count as games too (`positions --logs`).
 """
 import collections, glob, json, os, re, sys
@@ -66,6 +68,22 @@ def positions(subs, logs):
             e[g["res"]] += 1
             if g["opp"] not in e["opps"]:
                 e["opps"].append(g["opp"])
+    # Positions where our own move varied (the search is not deterministic) and one move has the better
+    # record: the book can replay it against deterministic opponents, even in won / drawn lines.
+    sc = {"W": 1.0, "D": 0.5, "L": 0.0}
+    st = collections.defaultdict(lambda: collections.defaultdict(list))
+    for g in gs:
+        for i in range(0 if g["first"] else 1, len(g["moves"]), 2):
+            st[" ".join(g["moves"][:i])][g["moves"][i]].append(sc[g["res"]])
+    for pre, mv in st.items():
+        if len(mv) < 2:
+            continue
+        avg = {m: sum(v) / len(v) for m, v in mv.items()}
+        best = max(avg, key=lambda m: (avg[m], len(mv[m])))
+        gain = sum(avg[best] - x for m, v in mv.items() if m != best for x in v)
+        if gain >= 0.5:
+            e = pos.setdefault(pre, {"prefix": pre, "played": collections.Counter(), "L": 0, "D": 0, "opps": []})
+            e["emp"] = {m: [len(v), round(avg[m], 3)] for m, v in mv.items()}
     rows = []
     for e in pos.values():
         e["played"] = dict(e["played"])
@@ -75,7 +93,7 @@ def positions(subs, logs):
     print(f"{len(gs)} games, {sum(g['res'] != 'W' for g in gs)} not won: {len(rows)} positions -> {POS}")
 
 
-def build(gain, dgain):
+def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
     pos = {e["prefix"]: e for e in json.load(open(POS))}
     out, n = [], collections.Counter()
     an = {}
@@ -90,6 +108,21 @@ def build(gain, dgain):
             continue
         ch = {c["move"]: c for c in a["children"]}
         best = a["best"]
+        if "emp" in e:   # replay the move with the better record unless the long search finds it clearly worse
+            emp = e["emp"]
+            eb = max(emp, key=lambda m: (emp[m][1], emp[m][0]))
+            eg = sum(n * (emp[eb][1] - q) for m, (n, q) in emp.items() if m != eb)
+            no = sum(n for m, (n, q) in emp.items() if m != eb)
+            others = sum(n * q for m, (n, q) in emp.items() if m != eb) / no
+            sure = emp[eb][0] >= 3 or others <= 0.25   # few games only against moves that (nearly) always lose
+            if sure and eg >= emp_gain and eb in ch and best in ch and ch[eb]["q"] >= ch[best]["q"] - emp_tol:
+                n["record"] += 1
+                r, c = eb.split()
+                rec = " ".join(f"{m.replace(' ', ',')}:{k}x{q}" for m, (k, q) in emp.items())
+                out.append(f"{a['hash']} {r} {c}  # ply {a['ply']} record {rec} gain {eg:.1f}")
+                continue
+        if not e["played"]:
+            continue
         played = max(e["played"], key=e["played"].get)
         if best == played or played not in ch:
             n["same"] += 1
@@ -103,7 +136,7 @@ def build(gain, dgain):
         r, c = best.split()
         out.append(f"{a['hash']} {r} {c}  # ply {a['ply']} played {played} gain {g:+.3f} L{e['L']} D{e['D']} {','.join(e['opps'][:3])}")
     open(BOOK, "w").write("\n".join(out) + "\n")
-    print(f"{n['book']} entries -> {BOOK} (same move {n['same']}, gain too small {n['small']})")
+    print(f"{n['book'] + n['record']} entries ({n['record']} by record) -> {BOOK} (same move {n['same']}, gain too small {n['small']})")
 
 
 if __name__ == "__main__":
@@ -114,4 +147,5 @@ if __name__ == "__main__":
         args = sys.argv[2:]
         gain = float(args[args.index("--gain") + 1]) if "--gain" in args else 0.02
         dgain = float(args[args.index("--draw-gain") + 1]) if "--draw-gain" in args else 0.05
-        build(gain, dgain)
+        eg = float(args[args.index("--record-gain") + 1]) if "--record-gain" in args else 1.0
+        build(gain, dgain, eg)
