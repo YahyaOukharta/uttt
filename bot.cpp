@@ -914,6 +914,30 @@ static void advance(int m) {
     else root = nr;
 }
 
+// Opening book: positions met in arena games, answered by a long search (tools/book.py).
+// Three 15-bit characters per entry: 30-bit position hash | move << 30.
+//@BOOK_DATA@
+#ifndef BOOK_OFF
+#define BOOK_OFF 0x2100
+static const char16_t BOOK[] = u"";
+#endif
+static u32 posHash(const State& s) {
+    u64 h = 0x9E3779B97F4A7C15ULL ^ (u64)(s.next + 1) * 0x100000001B3ULL ^ (u64)s.side << 40;
+    for (int bd = 0; bd < 9; bd++) {
+        h ^= ((u64)s.b[0][bd] | (u64)s.b[1][bd] << 9 | (u64)bd << 18) * 0xD6E8FEB86659FD93ULL;
+        h = (h ^ (h >> 29)) * 0xBF58476D1CE4E5B9ULL;
+    }
+    return (u32)(h >> 34);
+}
+static int bookMove(const State& s) {
+    const u32 h = posHash(s);
+    for (size_t i = 0; i + 3 < sizeof BOOK / sizeof BOOK[0]; i += 3) {
+        const u64 v = (u64)(BOOK[i] - BOOK_OFF) | (u64)(BOOK[i + 1] - BOOK_OFF) << 15 | (u64)(BOOK[i + 2] - BOOK_OFF) << 30;
+        if ((u32)(v & 0x3FFFFFFF) == h) return (int)(v >> 30);
+    }
+    return -1;
+}
+
 static int bestMove() {
     Node* P = pool[cur];
     const Node& nd = P[root];
@@ -1186,9 +1210,9 @@ int main() {
         vector<pair<int, int>> ch;
         for (int i = 0; i < rn.n; i++) ch.push_back({pool[cur][rn.first + i].N, rn.first + i});
         sort(ch.rbegin(), ch.rend());
-        printf("ply %d side %d iters %lld root q %.3f proven %d best %d %d\n", rootState.ply, rootState.side, n,
-               rn.N ? 1.f - rn.W / rn.N : 0.f, rn.proven, MROW[bestMove()], MCOL[bestMove()]);
-        for (size_t i = 0; i < ch.size() && i < 5; i++) {
+        printf("ply %d side %d iters %lld root q %.3f proven %d best %d %d hash %08x\n", rootState.ply, rootState.side, n,
+               rn.N ? 1.f - rn.W / rn.N : 0.f, rn.proven, MROW[bestMove()], MCOL[bestMove()], posHash(rootState));
+        for (size_t i = 0; i < ch.size() && i < (getenv("UT_ALL") ? ch.size() : 5); i++) {
             const Node& x = pool[cur][ch[i].second];
             printf("  %d %d  N %d  q %.3f  prior %.2f  proven %d\n", MROW[x.move], MCOL[x.move], x.N,
                    x.N ? x.W / x.N : 0.f, x.pad / 255.f, x.proven);
@@ -1261,6 +1285,11 @@ int main() {
         }
         if (pool[cur][root].first < 0) expand(root, rootState);
         int m = bestMove();
+        const int bm = bookMove(rootState);
+        if (bm >= 0 && (valid[bm >> 6] >> (bm & 63) & 1)) {
+            if (bm != m) fprintf(stderr, "book %d %d\n", MROW[bm], MCOL[bm]);
+            m = bm;
+        }
         if (!(valid[m >> 6] >> (m & 63) & 1)) {
             fprintf(stderr, "ILLEGAL choice %d, falling back\n", m);
             m = firstValid;

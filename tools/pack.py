@@ -21,6 +21,7 @@ ap.add_argument("-D", action="append", default=[])
 ap.add_argument("-o", "--out", default="out/submission.cpp")
 ap.add_argument("--keep-comments", action="store_true")
 ap.add_argument("--keep-local", action="store_true", help="keep LOCAL blocks (test the embedded net locally)")
+ap.add_argument("--book", help="opening book: lines 'HASH_HEX ROW COL' (tools/book.py)")
 ap.add_argument("--huff", action="store_true", help="Huffman-code the int8 weights (canonical code, ~6.7 bits each)")
 a = ap.parse_args()
 
@@ -78,7 +79,7 @@ for line in s.split("\n"):
         continue
     out.append(line)
 if not a.keep_comments:
-    out = [re.sub(r"\s*//(?!@NET_DATA@).*$", "", l) for l in out]
+    out = [re.sub(r"\s*//(?!@NET_DATA@|@BOOK_DATA@).*$", "", l) for l in out]
     out = [l.strip() for l in out if l.strip()]
 s = "\n".join(out)
 defs = "".join(f"#define {d.replace('=', ' ', 1)}\n" for d in a.D)
@@ -117,6 +118,18 @@ if a.net:
     net = (f'#define NN_EMBED 1\n' + ('#define NN_HUFF 1\n' if a.huff else '') + ('#define NN_DRAW 1\n' if draw else '') +
            f'#define NN_OFF {OFF}\nstatic const char16_t NN_DATA[] = u"{text}";\n')
     defs = f"#define NN_H {h}\n" + ("#define NN_THR 1\n" if thr else "") + defs
+if a.book:   # three 15-bit characters per entry: 30-bit hash | move << 30 (move = board * 9 + cell)
+    chars = []
+    for l in open(a.book):
+        f = l.split()
+        if len(f) < 3 or f[0].startswith("#"):
+            continue
+        r, c = int(f[1]), int(f[2])
+        v = (int(f[0], 16) & 0x3FFFFFFF) | ((r // 3 * 3 + c // 3) * 9 + (r % 3) * 3 + c % 3) << 30
+        chars += [chr(OFF + (v >> k & 0x7FFF)) for k in (0, 15, 30)]
+    assert s.count("//@BOOK_DATA@") == 1
+    s = s.replace("//@BOOK_DATA@", f'#define BOOK_OFF {OFF}\nstatic const char16_t BOOK[] = u"{"".join(chars)}";')
+    print(f"book: {len(chars) // 3} entries")
 assert s.count("//@NET_DATA@") == 1
 s = s.replace("//@NET_DATA@", net)
 if defs:

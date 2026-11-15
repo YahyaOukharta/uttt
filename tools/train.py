@@ -39,11 +39,13 @@ def syms():
 
 
 class Net(nn.Module):
-    def __init__(self, h, draw=False, nin=NIN):
+    def __init__(self, h, draw=False, nin=NIN, deep=0):
         super().__init__()
         self.h = h
         self.ft = nn.Linear(nin, h)
-        self.out = nn.Linear(2 * h, NB)
+        # deep > 0: a hidden layer of that width before the output (teacher nets only, not exportable)
+        self.l2 = nn.Linear(2 * h, deep) if deep else None
+        self.out = nn.Linear(deep if deep else 2 * h, NB)
         self.dout = nn.Linear(2 * h, NB) if draw else None
         nn.init.uniform_(self.ft.weight, -0.1, 0.1)
         nn.init.constant_(self.ft.bias, 0.05)
@@ -52,6 +54,9 @@ class Net(nn.Module):
         ha = torch.clamp(self.ft(a), 0, 1) ** 2
         hb = torch.clamp(self.ft(b), 0, 1) ** 2
         hc = torch.cat([ha, hb], dim=1)
+        if self.l2 is not None:
+            z = self.out(torch.clamp(self.l2(hc), 0, 1)).gather(1, bucket[:, None]).squeeze(1)
+            return z, None
         z = self.out(hc).gather(1, bucket[:, None]).squeeze(1)
         if self.dout is None:
             return z, None
@@ -87,6 +92,10 @@ def main():
     ap.add_argument("--threats", action="store_true", help="18 extra inputs (small-board win threats per player)")
     ap.add_argument("--mthreats", action="store_true", help="experimental: 18 more inputs (open boards whose capture wins the game, per player)")
     ap.add_argument("--alive", action="store_true", help="experimental: 27 more inputs (open boards each player can still win; dead open boards)")
+    ap.add_argument("--deep", type=int, default=0, help="teacher nets: hidden layer of this width before the output")
+    ap.add_argument("--teacher", help="float checkpoint (.pt) of a teacher net trained on the same files and options: "
+                    "train on its predictions (averaged over the 8 symmetries)")
+    ap.add_argument("--mu", type=float, default=1.0, help="weight of the teacher prediction vs the original target")
     ap.add_argument("--wclip", type=float, default=127 / 255, help="clip first-layer weights and biases (int8 at QA=255)")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else
                     ("mps" if torch.backends.mps.is_available() else "cpu"))
@@ -193,7 +202,28 @@ def main():
         TWB = torch.from_numpy(twb).to(dev)
         # ALV[o] = 1 if some line holds none of the opponent's stones o
         ALV = torch.tensor([float(any((o & l) == 0 for l in LINES)) for o in range(512)], device=dev)
-    model = Net(a.hidden, a.draw > 0, NIN + (18 if a.threats else 0) + (18 if a.mthreats else 0) + (27 if a.alive else 0)).to(dev)
+    nin = NIN + (18 if a.threats else 0) + (18 if a.mthreats else 0) + (27 if a.alive else 0)
+    YT = Y   # training target (the validation loss always uses the original target)
+    if a.teacher:
+        if not os.path.exists(a.teacher):
+            a.teacher = glob.glob("/kaggle/input/**/" + os.path.basename(a.teacher), recursive=True)[0]
+        sd = torch.load(a.teacher, map_location=dev)
+        tm = Net(sd["ft.weight"].shape[0], False, nin, sd["l2.weight"].shape[0] if "l2.weight" in sd else 0).to(dev)
+        tm.load_state_dict({k: v for k, v in sd.items() if not k.startswith("dout")})
+        tm.eval()
+        YT = torch.empty_like(Y)
+        with torch.no_grad():
+            for i in range(0, n, 65536):
+                idx = torch.arange(i, min(i + 65536, n), device=dev)
+                acc = torch.zeros(len(idx), device=dev)
+                for sy in range(8):
+                    s_, o_, k_ = feats(X[idx], torch.full((len(idx),), sy, device=dev, dtype=torch.long))
+                    acc += torch.sigmoid(tm(s_, o_, k_)[0])
+                YT[idx] = a.mu * acc / 8 + (1 - a.mu) * Y[idx]
+        del tm
+        print(f"teacher {a.teacher}: mean target {float(YT.mean()):.3f} vs {float(Y.mean()):.3f}, "
+              f"mean |diff| {float((YT - Y).abs().mean()):.3f} ({time.time() - t0:.0f}s)", flush=True)
+    model = Net(a.hidden, a.draw > 0, nin, a.deep).to(dev)
     if a.init and not os.path.exists(a.init):   # Kaggle: find the checkpoint wherever the dataset is mounted
         a.init = glob.glob("/kaggle/input/**/" + os.path.basename(a.init), recursive=True)[0]
     if a.init:
@@ -238,7 +268,7 @@ def main():
             sym = torch.randint(0, 8, (len(idx),), device=dev)
             s, o, k = feats(X[idx], sym)
             z, zd = model(s, o, k)
-            loss = lossf(z, Y[idx])
+            loss = lossf(z, YT[idx])
             if zd is not None:
                 loss = loss + a.draw * lossf(zd, DT[idx])
             opt.zero_grad(set_to_none=True)
@@ -246,19 +276,21 @@ def main():
             opt.step()
             sched.step()
             with torch.no_grad():
-                model.out.weight.clamp_(-1.98, 1.98)
-                if model.dout is not None:
-                    model.dout.weight.clamp_(-1.98, 1.98)
-                model.ft.weight.clamp_(-a.wclip, a.wclip)
-                model.ft.bias.clamp_(-a.wclip, a.wclip)
+                if not a.deep:   # quantization ranges of the exported net
+                    model.out.weight.clamp_(-1.98, 1.98)
+                    if model.dout is not None:
+                        model.dout.weight.clamp_(-1.98, 1.98)
+                    model.ft.weight.clamp_(-a.wclip, a.wclip)
+                    model.ft.bias.clamp_(-a.wclip, a.wclip)
                 run += loss.detach()
         vl, vr, vd = evaluate()
         print(f"epoch {ep + 1}/{a.epochs} train {float(run) / max(nb, 1):.4f} val {vl:.4f} val-result {vr:.4f} "
               + (f"val-draw {vd:.4f} " if a.draw > 0 else "") +
               f"({time.time() - t0:.0f}s)", flush=True)
         torch.save(model.state_dict(), a.out + ".pt")
-        mw, mo = export(model, a.out)
-    print(f"saved {a.out} (max |W| {mw}, max |O| {mo})")
+        if not a.deep:
+            mw, mo = export(model, a.out)
+    print(f"saved {a.out}" + (f" (max |W| {mw}, max |O| {mo})" if not a.deep else " (.pt only)"))
 
 
 if __name__ == "__main__":

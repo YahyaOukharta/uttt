@@ -6,6 +6,7 @@ opponent plays its current arena code. The suite holds, for each top-N opponent,
 we moved first and one where we moved second.
 
   cg_suite.py build [N]                 pick the battles (top N opponents) -> arena/suite.json
+  cg_suite.py lost N SUB                one non-won battle of submission SUB per (top-N opponent, seat)
   cg_suite.py run SRC LABEL [ROUNDS]    play every battle of the suite ROUNDS times
   cg_suite.py stats [LABEL...]          W/D/L by seat and by opponent
 Results go to arena/suite_results.jsonl. Test games are limited (10 per minute, 80 per hour,
@@ -37,6 +38,25 @@ def build(n):
                     break
     json.dump(suite, open(SUITE, "w"), indent=1)
     print(f"{len(suite)} battles for {len(top)} opponents -> {SUITE}")
+
+
+def build_lost(n, sub):
+    """One non-won game per (top-n opponent, seat) of submission SUB, seats read from the logs."""
+    opps = cg.call(f"/puzzles/{cg.PUZ}/opponents")
+    opps = opps.get("opponents", opps)
+    top = [o["nickname"] for o in opps if not o.get("me")][:n]
+    gs = [json.loads(l) for l in open(os.path.join(ROOT, "arena", "games.jsonl"))]
+    gs = [g for g in gs if g["submission"] == sub and not g["won"]]
+    suite = []
+    for o in top:
+        for first in (True, False):
+            x = [g for g in gs if g["opponent"] == o and g["me_first"] == first]
+            if x:
+                g = max(x, key=lambda g: g["game_id"])
+                suite.append({"opponent": o, "seat": 0 if first else 1, "game_id": g["game_id"],
+                              "was": "D" if g["draw"] else "L"})
+    json.dump(suite, open(SUITE, "w"), indent=1)
+    print(f"{len(suite)} non-won battles vs the top {n} -> {SUITE}")
 
 
 def result(path):
@@ -82,6 +102,8 @@ if __name__ == "__main__":
     c = sys.argv[1]
     if c == "build":
         build(int(sys.argv[2]) if len(sys.argv) > 2 else 10)
+    elif c == "lost":
+        build_lost(int(sys.argv[2]), int(sys.argv[3]))
     elif c == "run":
         run(sys.argv[2], sys.argv[3], int(sys.argv[4]) if len(sys.argv) > 4 else 1)
     elif c == "stats":
