@@ -36,6 +36,7 @@ static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
+static int P_CT = 32;             // cache the accumulator of nodes with at least this many visits (0: off)
 static int P_VN = 4;              // virtual visits given to a child's first net value
 static float P_LEAF = 1.f;        // leaf value: LEAF * best child + (1 - LEAF) * prior-weighted mean
 static int P_NNMODE = 0;          // 0: expand all children and score them, leaf = best child; 1: one eval per leaf
@@ -246,8 +247,11 @@ static float LOGT[1 << 16];
 
 static inline float fastlog(int n) { return n < (1 << 16) ? LOGT[n] : logf((float)n); }
 
+static uint32_t treeGen = 1;  // bumped whenever node indices are reassigned
+
 static inline int newRoot() {
     Node* P = pool[cur];
+    treeGen++;
     used = 0;
     P[0] = Node{-1, 0, 0.f, 0, 0, PR_UNK, 0};
     used = 1;
@@ -550,18 +554,43 @@ static inline float nnEvalMove(const Acc& A, const State& before, const State& a
     const float logit = ((float)sum / NQA + (float)NOB[bk]) / (float)(NQA * NQB);
     return 1.f / (1.f + expf(-logit));
 }
+// Accumulators of frequently visited nodes, direct-mapped by node index. The descent only
+// replays the plies below the deepest cached ancestor.
+static const int ACN = 1 << 13;
+static Acc accCache[ACN];
+static int32_t accKey[ACN];
+static uint32_t accGen[ACN];
+static inline const Acc* cacheGet(int idx) {
+    const int h = idx & (ACN - 1);
+    return accKey[h] == idx && accGen[h] == treeGen ? &accCache[h] : nullptr;
+}
+static inline void cachePut(int idx, const Acc& A) {
+    const int h = idx & (ACN - 1);
+    accKey[h] = idx;
+    accGen[h] = treeGen;
+    accCache[h] = A;
+}
+static State pendS[96];
+static int pendI[96];
+
 static void iterateNN() {
     Node* P = pool[cur];
     State s = rootState;
-    Acc A = rootAcc;
-    int depth = 0, idx = root;
+    const Acc* base = &rootAcc;
+    int depth = 0, idx = root, np = 0;
     pathBuf[depth++] = idx;
     while (P[idx].first >= 0 && !P[idx].proven) {
         idx = selectChild(idx);
-        const State b = s;
+        const Acc* c = P_CT > 0 ? cacheGet(idx) : nullptr;
+        if (c) { base = c; np = 0; }
+        else { pendS[np] = s; pendI[np++] = idx; }
         s.play(P[idx].move);
-        accMove(A, b, s, P[idx].move);
         pathBuf[depth++] = idx;
+    }
+    Acc A = *base;
+    for (int i = 0; i < np; i++) {
+        accMove(A, pendS[i], i + 1 < np ? pendS[i + 1] : s, P[pendI[i]].move);
+        if (P_CT > 0 && P[pendI[i]].N >= P_CT) cachePut(pendI[i], A);
     }
     float v;
     bool proof = false;
@@ -666,6 +695,7 @@ static void compact() {
     }
     cur ^= 1;
     used = n;
+    treeGen++;
     root = 0;
 }
 
@@ -730,6 +760,7 @@ static void parseParams(const char* p) {
             else if (k == "PT") P_PT = v;
             else if (k == "VN") P_VN = (int)v;
             else if (k == "CLIM") P_CLIM = (int)v;
+            else if (k == "CT") P_CT = (int)v;
             else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
