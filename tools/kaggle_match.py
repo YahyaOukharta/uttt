@@ -4,8 +4,9 @@
   kaggle_match.py push NAME [--games 300] [--iters 20000] [--ms 0] [--open 2] A B [A2 B2 ...]
   kaggle_match.py status NAME
   kaggle_match.py fetch NAME
-A and B are bot specs: a source file, optionally followed by '@' and compiler flags, e.g.
-  bot.cpp@-DROLL=2  league/src/legacy.cpp
+A and B are bot specs: a source file, optionally followed by '@' and compiler flags and by '#'
+and runtime parameters (UT_PARAMS), e.g.
+  bot.cpp@-DROLL=2  league/src/legacy.cpp  out/x.cpp#CP=0.8,PONDER=0
 --ms > 0 plays real time (2 games at once on the 4 vCPUs), otherwise fixed iterations.
 Each pairing is one private kernel ut-match-NAME-i. UT_KP=2 selects the second account
 (~/.kaggle/user_2, ~/.kaggle/access_token_2).
@@ -19,7 +20,7 @@ SFX = "" if PROF == "1" else f"_p{PROF}"
 ENV = {**os.environ, "KAGGLE_API_TOKEN": open(os.path.expanduser(f"~/.kaggle/access_token{_SUF}")).read().strip(),
        "PATH": os.path.expanduser("~/.local/bin") + ":" + os.environ["PATH"]}
 SCRIPT = '''import glob, os, subprocess
-A, FA, B, FB, GAMES, ITERS, MS, SEED, OPEN = %r, %r, %r, %r, %d, %d, %d, %d, %d
+A, FA, B, FB, GAMES, ITERS, MS, SEED, OPEN, PA, PB = %r, %r, %r, %r, %d, %d, %d, %d, %d, %r, %r
 d = os.path.dirname(glob.glob("/kaggle/input/**/referee.cpp", recursive=True)[0])
 print(subprocess.run("lscpu | grep -E 'Model name|^CPU\\\\(s\\\\)'", shell=True, capture_output=True, text=True).stdout, flush=True)
 cc = ["g++", "-O3", "-std=c++17", "-march=native", "-DLOCAL"]
@@ -27,8 +28,9 @@ subprocess.check_call(cc + ["-pthread", "-o", "/tmp/referee", d + "/referee.cpp"
 subprocess.check_call(cc + FA.split() + ["-o", "/tmp/a", d + "/" + A])
 subprocess.check_call(cc + FB.split() + ["-o", "/tmp/b", d + "/" + B])
 mode = ["-j", "2", "-n", "0", "-t", str(MS), "-x", "20"] if MS else ["-j", "4", "-n", str(ITERS)]
-out = subprocess.check_output(["/tmp/referee", "/tmp/a", "/tmp/b", "-g", str(GAMES), "-s", str(SEED), "-o", str(OPEN)] + mode, text=True)
-print("RESULT", A + "@" + FA, B + "@" + FB, out.strip().splitlines()[-1], flush=True)
+pp = (["-pa", PA] if PA else []) + (["-pb", PB] if PB else [])
+out = subprocess.check_output(["/tmp/referee", "/tmp/a", "/tmp/b", "-g", str(GAMES), "-s", str(SEED), "-o", str(OPEN)] + mode + pp, text=True)
+print("RESULT", A + "@" + FA + "#" + PA, B + "@" + FB + "#" + PB, out.strip().splitlines()[-1], flush=True)
 '''
 
 
@@ -45,10 +47,11 @@ def push(name, specs, games, iters, ms, opn):
     shutil.copy(os.path.join(ROOT, "tools", "referee.cpp"), d)
     bots = []
     for sp in specs:
+        sp, _, params = sp.partition("#")
         f, _, flags = sp.partition("@")
         dst = name + "_" + os.path.basename(f)
         shutil.copy(f, os.path.join(d, dst))
-        bots.append((dst, flags))
+        bots.append((dst, flags, params))
     r = kg("datasets", "create", "-p", d) if new else kg("datasets", "version", "-p", d, "-m", name)
     print((r.stdout + r.stderr).strip().splitlines()[-1][:120])
     for _ in range(40):
@@ -61,7 +64,8 @@ def push(name, specs, games, iters, ms, opn):
         os.makedirs(k, exist_ok=True)
         seed = 777 + 1000 * (i // 2) + sum(map(ord, name + SFX))
         open(os.path.join(k, "match.py"), "w").write(
-            SCRIPT % (bots[i][0], bots[i][1], bots[i + 1][0], bots[i + 1][1], games, iters, ms, seed, opn))
+            SCRIPT % (bots[i][0], bots[i][1], bots[i + 1][0], bots[i + 1][1], games, iters, ms, seed, opn,
+                      bots[i][2], bots[i + 1][2]))
         json.dump({"id": f"{USER}/ut-match-{name}-{i // 2 + 1}", "title": f"ut-match-{name}-{i // 2 + 1}",
                    "code_file": "match.py", "language": "python", "kernel_type": "script", "is_private": True,
                    "enable_gpu": False, "enable_internet": False, "dataset_sources": [f"{USER}/ut-match"]},
