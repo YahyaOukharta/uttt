@@ -551,7 +551,32 @@ static inline float nnEvalT(const Acc& A, const State& s) {
 #endif
     return nnOut<D>(sum, sumd, bk, stm);
 }
+#ifdef NN_DEEP
+// Hidden layer between the accumulator and the output buckets (2H -> NN_DEEP, CReLU -> 10 buckets).
+// Float test version: DEEP_W2[NN_DEEP][2H], DEEP_B2[NN_DEEP], DEEP_WO[10][NN_DEEP], DEEP_BO[10].
+//@DEEP_DATA@
+static inline float deepEval(const Acc& A, int stm, int bk) {
+    alignas(32) float act[2 * NN_H];
+    const int16_t *a = A.v[stm], *b = A.v[stm ^ 1];
+    for (int i = 0; i < NN_H; i++) {
+        const float x = min(max((int)a[i], 0), NQA) * (1.f / NQA), y = min(max((int)b[i], 0), NQA) * (1.f / NQA);
+        act[i] = x * x;
+        act[NN_H + i] = y * y;
+    }
+    float z = DEEP_BO[bk];
+    for (int j = 0; j < NN_DEEP; j++) {
+        const float* w = DEEP_W2 + j * 2 * NN_H;
+        float h = DEEP_B2[j];
+        for (int i = 0; i < 2 * NN_H; i++) h += w[i] * act[i];
+        z += DEEP_WO[bk * NN_DEEP + j] * min(max(h, 0.f), 1.f);
+    }
+    return 1.f / (1.f + expf(-z));
+}
+#endif
 static inline float nnEval(const Acc& A, const State& s) {
+#ifdef NN_DEEP
+    return deepEval(A, s.side, s.next < 0 ? 9 : s.next);
+#endif
     return useDraw ? nnEvalT<true>(A, s) : nnEvalT<false>(A, s);
 }
 //@NET_DATA@
@@ -706,6 +731,11 @@ static inline float nnEvalMoveT(const Acc& A, const State& before, const State& 
     return nnOut<D>(sum, sumd, bk, p ^ 1);
 }
 static inline float nnEvalMove(const Acc& A, const State& before, const State& after, int m) {
+#ifdef NN_DEEP
+    Acc c;
+    accMoveTo(c, A, before, after, m);
+    return deepEval(c, after.side, after.next < 0 ? 9 : after.next);
+#endif
     return useDraw ? nnEvalMoveT<true>(A, before, after, m) : nnEvalMoveT<false>(A, before, after, m);
 }
 // Accumulators of frequently visited nodes, direct-mapped by node index. The descent only

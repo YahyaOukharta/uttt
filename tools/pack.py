@@ -21,6 +21,7 @@ ap.add_argument("-D", action="append", default=[])
 ap.add_argument("-o", "--out", default="out/submission.cpp")
 ap.add_argument("--keep-comments", action="store_true")
 ap.add_argument("--keep-local", action="store_true", help="keep LOCAL blocks (test the embedded net locally)")
+ap.add_argument("--deep", help="float arrays of a deep head (tools/deep_export.py), test builds")
 ap.add_argument("--no-minify", action="store_true", help="keep line breaks, spaces and identifiers as written")
 ap.add_argument("--book", help="opening book: lines 'HASH_HEX ROW COL' (tools/book.py), most important first")
 ap.add_argument("--max-chars", type=int, default=99400, help="drop book entries from the end of the file to fit")
@@ -157,7 +158,7 @@ for line in s.split("\n"):
         continue
     out.append(line)
 if not a.keep_comments:
-    out = [re.sub(r"\s*//(?!@NET_DATA@|@BOOK_DATA@).*$", "", l) for l in out]
+    out = [re.sub(r"\s*//(?!@NET_DATA@|@BOOK_DATA@|@DEEP_DATA@).*$", "", l) for l in out]
     out = [l.strip() for l in out if l.strip()]
 s = "\n".join(out)
 if not a.no_minify and not a.keep_comments:
@@ -230,6 +231,13 @@ if a.book:   # sorted 30-bit hashes, Rice-coded gaps + 7-bit move (move = board 
     s = s.replace("//@BOOK_DATA@", f'#define BOOK_OFF {OFF}\n#define BOOK_N {len(hs)}\n#define BOOK_K {k}\n'
                                    f'static const char16_t BOOK[] = u"{"".join(chars)}";')
     print(f"book: {len(hs)} entries, {len(chars)} characters (Rice k = {k})")
+if a.deep:
+    import re as _re
+    dh = open(a.deep).read()
+    n = _re.search(r"DEEP_B2\[\] = \{([^}]*)\}", dh).group(1).count(",") + 1
+    assert s.count("//@DEEP_DATA@") == 1
+    s = s.replace("//@DEEP_DATA@", dh)
+    defs = f"#define NN_DEEP {n}\n" + defs
 assert s.count("//@NET_DATA@") == 1
 s = s.replace("//@NET_DATA@", net)
 if defs:
