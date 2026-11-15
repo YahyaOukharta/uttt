@@ -1,7 +1,8 @@
 """Long searches of book positions on Modal (see tools/book.py).
 
-  modal run tools/modal_book.py --src out/x.cpp [--iters 4000000] [--chunk 64]
-Reads arena/book_pos.json, skips prefixes already in arena/book_an.jsonl, appends results there.
+  modal run tools/modal_book.py --src out/x.cpp [--iters 4000000] [--chunk 64] [--min-games 3 --out book_an_deep.jsonl]
+Reads arena/book_pos.json (positions of at least MIN_GAMES non-won games), skips prefixes already in
+arena/OUT (default book_an.jsonl), appends results there. book.py build prefers book_an_deep.jsonl.
 The source must embed its net and keep LOCAL blocks (pack.py --keep-local).
 """
 import json, os
@@ -12,8 +13,8 @@ app = modal.App("ut-book")
 image = modal.Image.debian_slim().apt_install("g++")
 
 
-@app.function(image=image, cpu=8, memory=16384, timeout=3600)
-def analyze(src: str, prefixes: list, iters: int):
+@app.function(image=image, cpu=8, memory=36864, timeout=3600)
+def analyze(src: str, prefixes: list, iters: int, pool: int = 1 << 26):
     import re, subprocess
     from concurrent.futures import ThreadPoolExecutor
     open("/tmp/a.cpp", "w").write(src)
@@ -21,7 +22,7 @@ def analyze(src: str, prefixes: list, iters: int):
 
     def one(pre):
         env = {**os.environ, "UT_ANALYZE": pre if pre else " ", "UT_FIRST_ITERS": str(iters), "UT_ALL": "1",
-               "UT_POOL": str(1 << 26), "UT_PARAMS": "PONDER=0"}
+               "UT_POOL": str(pool), "UT_PARAMS": "PONDER=0"}
         out = subprocess.run(["/tmp/a"], env=env, capture_output=True, text=True).stdout
         h = re.search(r"ply (\d+) side (\d) iters \d+ root q ([\d.]+) proven (\d) best (\d) (\d) hash ([0-9a-f]+)", out)
         if not h:
@@ -36,9 +37,9 @@ def analyze(src: str, prefixes: list, iters: int):
 
 
 @app.local_entrypoint()
-def main(src: str, iters: int = 4000000, chunk: int = 64):
-    pos = json.load(open(os.path.join(ROOT, "arena", "book_pos.json")))
-    path = os.path.join(ROOT, "arena", "book_an.jsonl")
+def main(src: str, iters: int = 4000000, chunk: int = 64, min_games: int = 0, out: str = "book_an.jsonl"):
+    pos = [e for e in json.load(open(os.path.join(ROOT, "arena", "book_pos.json"))) if e["L"] + e["D"] >= min_games]
+    path = os.path.join(ROOT, "arena", out)
     done = set()
     if os.path.exists(path):
         for l in open(path):
@@ -49,7 +50,8 @@ def main(src: str, iters: int = 4000000, chunk: int = 64):
     chunks = [todo[i:i + chunk] for i in range(0, len(todo), chunk)]
     n = 0
     with open(path, "a") as f:
-        for res in analyze.map([s] * len(chunks), chunks, [iters] * len(chunks)):
+        pool = 1 << 26 if iters <= 6000000 else 1 << 27   # ~8 children per iteration
+        for res in analyze.map([s] * len(chunks), chunks, [iters] * len(chunks), [pool] * len(chunks)):
             for r in res:
                 if "error" in r:
                     print("error", r["prefix"], r["error"][-120:])

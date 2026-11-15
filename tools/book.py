@@ -15,6 +15,7 @@ import collections, glob, json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POS = os.path.join(ROOT, "arena", "book_pos.json")
 AN = os.path.join(ROOT, "arena", "book_an.jsonl")
+AN_DEEP = os.path.join(ROOT, "arena", "book_an_deep.jsonl")   # longer searches of frequent positions, preferred
 BOOK = os.path.join(ROOT, "tools", "book.txt")
 
 
@@ -77,8 +78,13 @@ def positions(subs, logs):
 def build(gain, dgain):
     pos = {e["prefix"]: e for e in json.load(open(POS))}
     out, n = [], collections.Counter()
-    for l in open(AN):
-        a = json.loads(l)
+    an = {}
+    for f in (AN, AN_DEEP):
+        if os.path.exists(f):
+            for l in open(f):
+                a = json.loads(l)
+                an[a["prefix"]] = a
+    for a in an.values():
         e = pos.get(a["prefix"])
         if not e or a.get("proven") or not a["children"]:
             continue

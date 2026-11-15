@@ -7,7 +7,7 @@ we moved first and one where we moved second.
 
   cg_suite.py build [N]                 pick the battles (top N opponents) -> arena/suite.json
   cg_suite.py lost N SUB                one non-won battle of submission SUB per (top-N opponent, seat)
-  cg_suite.py run SRC LABEL [ROUNDS]    play every battle of the suite ROUNDS times
+  cg_suite.py run SRC LABEL [ROUNDS]    play every battle of the suite ROUNDS times (UT_SKIP=K: start at battle K)
   cg_suite.py stats [LABEL...]          W/D/L by seat and by opponent
 Results go to arena/suite_results.jsonl. Test games are limited (10 per minute, 80 per hour,
 600 per day): one round of a top-10 suite is 20 games.
@@ -74,13 +74,17 @@ def result(path):
 def run(src, label, rounds):
     suite = json.load(open(SUITE))
     for k in range(rounds):
-        for e in suite:
+        for e in suite[int(os.environ.get("UT_SKIP", "0")) if k == 0 else 0:]:
             t = time.time()
-            path = cg.test(src, replay=e["game_id"])
+            try:
+                path = cg.test(src, replay=e["game_id"])
+            except (Exception, SystemExit) as ex:   # e.g. the opponent resubmitted: its old agent is no longer testable
+                print(f"round {k + 1}: {e['opponent']:<14} skipped: {str(ex)[:120]}", flush=True)
+                continue
             seat, r = result(path)
             with open(RES, "a") as f:
                 f.write(json.dumps({"label": label, "opponent": e["opponent"], "seat": seat, "result": r,
-                                    "log": os.path.basename(path), "t": int(time.time())}) + "\n")
+                                    "log": os.path.basename(path), "game_id": e["game_id"], "t": int(time.time())}) + "\n")
             print(f"round {k + 1}: {e['opponent']:<14} seat {seat}: {r}", flush=True)
             time.sleep(max(0.0, 40.0 - (time.time() - t)))   # test games: 30 per 15 min, 80 per hour
 

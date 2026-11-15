@@ -1,6 +1,6 @@
 """Self-play data generation on Modal.
 
-  modal run tools/modal_gen.py --workers 2 --iters 4000 --seed 50000 --hours 1.5 --tag g0m [--net tools/nets/X.bin --hid 256]
+  modal run tools/modal_gen.py --workers 2 --iters 4000 --seed 50000 --hours 1.5 --tag g0m [--hid 256] [--flags "-DNN_THR=1"]  (net: UT_MODAL_NET=tools/nets/X.bin)
 Each worker is one container; it compiles the engine and runs one generator per hardware
 thread, appending to the Modal volume "ut-data" under /<tag>/ (committed every 90 s, so a
 stopped container loses little). Download:  modal volume get ut-data /<tag> data/
@@ -18,9 +18,9 @@ vol = modal.Volume.from_name("ut-data", create_if_missing=True)
 
 
 @app.function(image=image, cpu=8, memory=8192, timeout=4 * 3600, volumes={"/out": vol})
-def gen(seed: int, iters: int, hours: float, tag: str, hid: int = 0):
+def gen(seed: int, iters: int, hours: float, tag: str, hid: int = 0, extra: str = ""):
     import glob, signal, subprocess, time
-    flags = [f"-DNN_H={hid}"] if hid else []
+    flags = ([f"-DNN_H={hid}"] if hid else []) + extra.split()
     subprocess.check_call(["g++", "-O3", "-std=c++17", "-march=native", "-DLOCAL"] + flags + ["-o", "/tmp/bot", "/src/bot.cpp"])
     n = len(os.sched_getaffinity(0))
     os.makedirs(f"/out/{tag}", exist_ok=True)
@@ -48,8 +48,8 @@ def gen(seed: int, iters: int, hours: float, tag: str, hid: int = 0):
 
 
 @app.local_entrypoint()
-def main(workers: int = 1, iters: int = 4000, seed: int = 50000, hours: float = 1.0, tag: str = "test", hid: int = 0):
-    args = [(seed + 100 * w, iters, hours, tag, hid) for w in range(workers)]
+def main(workers: int = 1, iters: int = 4000, seed: int = 50000, hours: float = 1.0, tag: str = "test", hid: int = 0, flags: str = ""):
+    args = [(seed + 100 * w, iters, hours, tag, hid, flags) for w in range(workers)]
     tot = 0
     for r in gen.starmap(args, return_exceptions=True):
         print(r, flush=True)
