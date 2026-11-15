@@ -36,8 +36,8 @@ static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
-static float P_DX = 0.3f, P_DO = 0.7f;
-static float P_DE = 0.f;   // scale of the draw-head contempt in evaluations (needs a net with a draw head)  // value of a proven draw for us as first / second player
+static float P_DX = 0.3f, P_DO = 0.7f;  // value of a proven draw for us as first / second player
+static float P_DE = 0.f;   // scale of the draw-head contempt in evaluations (needs a net with a draw head)
 static float P_FK = 0.02f;         // final move: 0 = most visits; > 0: value + FK * ln(visits)
 static int P_CT = 32;             // cache the accumulator of nodes with at least this many visits (0: off)
 static int P_VN = 4;              // virtual visits given to a child's first net value
