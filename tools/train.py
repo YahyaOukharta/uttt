@@ -86,6 +86,7 @@ def main():
     ap.add_argument("--draw", type=float, default=0, help="train a draw-probability head with this loss weight")
     ap.add_argument("--threats", action="store_true", help="18 extra inputs (small-board win threats per player)")
     ap.add_argument("--mthreats", action="store_true", help="experimental: 18 more inputs (open boards whose capture wins the game, per player)")
+    ap.add_argument("--alive", action="store_true", help="experimental: 27 more inputs (open boards each player can still win; dead open boards)")
     ap.add_argument("--wclip", type=float, default=127 / 255, help="clip first-layer weights and biases (int8 at QA=255)")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else
                     ("mps" if torch.backends.mps.is_available() else "cpu"))
@@ -160,16 +161,17 @@ def main():
         if a.threats:   # a player threatens a small board: two in a line, third cell empty, board open
             open_ = ((own | opp) != 511).float() * (1 - wo) * (1 - wp)
             to, tp = THR[own, opp] * open_, THR[opp, own] * open_
+            stm, oth = [co, cp, wo, wp, drawn, to, tp], [cp, co, wp, wo, drawn, tp, to]
             if a.mthreats:   # board bd is open and winning it completes a line of won boards
                 p2 = 2 ** torch.arange(9, device=dev)
                 mo, mp = (wo.long() * p2).sum(1), (wp.long() * p2).sum(1)
                 mto, mtp = bits[TWB[mo]] * open_, bits[TWB[mp]] * open_
-                stm = torch.cat([co, cp, wo, wp, drawn, to, tp, mto, mtp], dim=1)
-                oth = torch.cat([cp, co, wp, wo, drawn, tp, to, mtp, mto], dim=1)
-                return stm, oth, nxt
-            stm = torch.cat([co, cp, wo, wp, drawn, to, tp], dim=1)
-            oth = torch.cat([cp, co, wp, wo, drawn, tp, to], dim=1)
-            return stm, oth, nxt
+                stm, oth = stm + [mto, mtp], oth + [mtp, mto]
+            if a.alive:   # open board a player can still win (a line free of opponent stones); dead open boards
+                ao, ap_ = ALV[opp] * open_, ALV[own] * open_
+                dead = open_ * (1 - ao) * (1 - ap_)
+                stm, oth = stm + [ao, ap_, dead], oth + [ap_, ao, dead]
+            return torch.cat(stm, dim=1), torch.cat(oth, dim=1), nxt
         stm = torch.cat([co, cp, wo, wp, drawn], dim=1)
         oth = torch.cat([cp, co, wp, wo, drawn], dim=1)
         return stm, oth, nxt
@@ -189,7 +191,9 @@ def main():
                 if not (m >> c) & 1 and any(((m | 1 << c) & l) == l for l in LINES):
                     twb[m] |= 1 << c
         TWB = torch.from_numpy(twb).to(dev)
-    model = Net(a.hidden, a.draw > 0, NIN + (18 if a.threats else 0) + (18 if a.mthreats else 0)).to(dev)
+        # ALV[o] = 1 if some line holds none of the opponent's stones o
+        ALV = torch.tensor([float(any((o & l) == 0 for l in LINES)) for o in range(512)], device=dev)
+    model = Net(a.hidden, a.draw > 0, NIN + (18 if a.threats else 0) + (18 if a.mthreats else 0) + (27 if a.alive else 0)).to(dev)
     if a.init and not os.path.exists(a.init):   # Kaggle: find the checkpoint wherever the dataset is mounted
         a.init = glob.glob("/kaggle/input/**/" + os.path.basename(a.init), recursive=True)[0]
     if a.init:
