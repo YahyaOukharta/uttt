@@ -93,3 +93,20 @@
 {"label": "v18book", "opponent": "JOiy", "seat": 1, "result": "W", "log": "test-921842539.log", "t": 1794746927}
 {"label": "v18book", "opponent": "Minuet", "seat": 1, "result": "L", "log": "test-921842692.log", "t": 1794746968}
 {"label": "v18book", "opponent": "jacek", "seat": 1, "result": "L", "log": "test-921842870.log", "t": 1794747004}
+{"label": "v19", "opponent": "Daporan", "seat": 0, "result": "D", "log": "test-921876670.log", "t": 1794752742}
+{"label": "v19", "opponent": "Daporan", "seat": 1, "result": "L", "log": "test-921878025.log", "t": 1794752779}
+{"label": "v19", "opponent": "Vingte", "seat": 0, "result": "D", "log": "test-921879306.log", "t": 1794752819}
+{"label": "v19", "opponent": "Vingte", "seat": 1, "result": "L", "log": "test-921880619.log", "t": 1794752868}
+{"label": "v19", "opponent": "Apostolique", "seat": 0, "result": "L", "log": "test-921881854.log", "t": 1794752899}
+{"label": "v19", "opponent": "Apostolique", "seat": 1, "result": "L", "log": "test-921882764.log", "t": 1794752938}
+{"label": "v19", "opponent": "sZoom", "seat": 0, "result": "W", "log": "test-921883785.log", "t": 1794752985}
+{"label": "v19", "opponent": "sZoom", "seat": 1, "result": "L", "log": "test-921885002.log", "t": 1794753017}
+{"label": "v19", "opponent": "AllanB", "seat": 1, "result": "L", "log": "test-921886233.log", "t": 1794753057}
+{"label": "v19", "opponent": "SupSon", "seat": 1, "result": "L", "log": "test-921887352.log", "t": 1794753103}
+{"label": "v19", "opponent": "RoboStac", "seat": 0, "result": "W", "log": "test-921890263.log", "game_id": 921849810, "t": 1794753211}
+{"label": "v19", "opponent": "RoboStac", "seat": 1, "result": "L", "log": "test-921891591.log", "game_id": 921851314, "t": 1794753240}
+{"label": "v19", "opponent": "MrSubZero", "seat": 0, "result": "W", "log": "test-921892842.log", "game_id": 921848285, "t": 1794753280}
+{"label": "v19", "opponent": "MrSubZero", "seat": 1, "result": "L", "log": "test-921893931.log", "game_id": 921848761, "t": 1794753319}
+{"label": "v19", "opponent": "flawedaxioms", "seat": 1, "result": "L", "log": "test-921895136.log", "game_id": 921851466, "t": 1794753361}
+{"label": "v19", "opponent": "yoch", "seat": 1, "result": "L", "log": "test-921896492.log", "game_id": 921850459, "t": 1794753406}
+{"label": "v19", "opponent": "NinjaDoggy", "seat": 1, "result": "L", "log": "test-921897754.log", "game_id": 921845979, "t": 1794753439}

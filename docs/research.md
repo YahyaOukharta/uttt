@@ -91,3 +91,18 @@ opponent to a board they can win, or to a closed board, unless the move wins.
 
 Measured here: accumulator cache +9% speed at 512 hidden; final move by value + 0.02·ln(visits)
 **+39 Elo** over most-visits.
+
+## Checked against our own measurements (2026-11-15)
+
+- **Pondering does work on CodinGame now**: the process keeps running after printing its move; v1.6 gained
+  2.5k–9k extra iterations per opponent turn and +89 Elo locally (with speedups), the arena score did not drop.
+- **Opening books do help here**, against "books don't really help": the arena is close to deterministic
+  (v1.7 as second player vs the top 25: 113 / 116 games opened the same way, many opponents repeat whole
+  games), so a book that answers the positions of our lost games changes those games. v1.8 (book only)
+  32.19 → 32.77.
+- **Seat split at the top**: v1.7 vs the top 25 scored 90% as first player and 12% as second, close to
+  the self-play figures above (X 73% wins, O 3.5%). Rank is decided by first-player conversions and
+  second-player draws.
+- **CodinGame CPU**: Intel Haswell VM, AVX2 only (no AVX-512 / VNNI), gcc 11.2. Evaluation is
+  compute-bound: int8 weight storage was 10% slower than int16.
+
