@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Long searches of book positions on Kaggle CPU kernels (free; see tools/book.py, tools/modal_book.py).
 
-  kaggle_book.py push TAG N --src out/c24_n8t.cpp [--iters 4000000] [--min-games 0] [--out book_an.jsonl]
+  kaggle_book.py push TAG N --src out/c24_n8t.cpp [--iters 4000000] [--min-games 0] [--out book_an.jsonl] [--kernels 1-3]
   kaggle_book.py status TAG N
   kaggle_book.py fetch TAG N [--out book_an.jsonl]
 push splits the positions of arena/book_pos.json not yet in arena/OUT over N kernels ut-TAG-1..N (the source,
@@ -58,7 +58,9 @@ def push(tag, n, args):
     if not todo:
         return
     src = base64.b64encode(zlib.compress(open(opt(args, "--src", "out/c24_n8t.cpp"), "rb").read(), 9)).decode()
-    for i in range(1, n + 1):
+    only = opt(args, "--kernels", "")   # e.g. 1-3: push only these of the n kernels (the rest from the other account)
+    lo, hi = (int(x) for x in only.split("-")) if only else (1, n)
+    for i in range(lo, hi + 1):
         part = todo[i - 1::n]
         d = os.path.join(ROOT, "kaggle", f"b{K.SFX}_{tag}_{i}")
         os.makedirs(d, exist_ok=True)

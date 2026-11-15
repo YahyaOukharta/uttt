@@ -203,9 +203,16 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
             r, c = b.split()
             pre.append((ch[b] - ch[fb], f"{a['hash']} {r} {c}  # ply {a['ply']} pre: short search {fb} {ch[fb]:.3f} vs {ch[b]:.3f}"))
     out += [l for g, l in sorted(pre, reverse=True)]   # largest gains first: pack.py drops from the end if too long
+    # Probed lines (tools/probe.py): forced moves of second-player games that drew or won against a top
+    # bot's deterministic play. First, so they take precedence and are never trimmed.
+    pb = os.path.join(ROOT, "tools", "probe_book.txt")
+    if os.path.exists(pb):
+        probe = [l.strip() for l in open(pb) if l.strip() and not l.startswith("#")]
+        n["probe"] = len(probe)
+        out = probe + out
     open(BOOK, "w").write("\n".join(out) + "\n")
     print(f"{n['book'] + n['record'] + n['refuted'] + n['pre']} entries ({n['record']} by record, {n['refuted']} refuted, "
-          f"{n['pre']} pre-emptive) -> {BOOK} "
+          f"{n['pre']} pre-emptive, {n['probe']} probed) -> {BOOK} "
           f"(same move {n['same']}, gain too small {n['small']})")
 
 
