@@ -33,6 +33,8 @@ typedef uint64_t u64;
 static float P_C = 0.55f;         // UCT exploration constant (values in [0,1])
 static bool netOn = false;        // a value net is loaded
 static float P_CN = 0.2f;         // exploration constant with the net
+static int P_NNSEL = 0;           // 1: PUCT with priors = softmax of the children's first net values
+static float P_CP = 1.5f, P_PT = 0.1f;
 static int P_NNMODE = 0;          // 0: expand all children and score them, leaf = best child; 1: one eval per leaf
 static float P_FPU = 0.8f;        // value of unvisited children (< 0: visit every child first)
 static int P_ROLL = 1;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
@@ -305,6 +307,21 @@ static inline bool tryProve(int idx) {
 static inline int selectChild(int idx) {
     Node* P = pool[cur];
     const Node& nd = P[idx];
+    if (netOn && P_NNSEL) {
+        const float c = P_CP * sqrtf((float)nd.N);
+        int best = -1;
+        float bv = -1e30f;
+        for (int i = 0; i < nd.n; i++) {
+            const int ch = nd.first + i;
+            const Node& x = P[ch];
+            if (x.proven == PR_LOSS) continue;
+            if (x.proven == PR_WIN) return ch;
+            const float n = x.N ? (float)x.N : 1.f;
+            const float v = (x.N ? x.W / n : 0.5f) + c * ((float)x.pad * (1.f / 255.f) + 0.002f) / n;
+            if (v > bv) { bv = v; best = ch; }
+        }
+        return best < 0 ? nd.first : best;
+    }
     const float c = (netOn ? P_CN : P_C) * sqrtf(fastlog(nd.N));
     int best = -1;
     float bv = -1e30f;
@@ -575,6 +592,15 @@ static void iterateNN() {
             ch.W = cv;
             if (cv > best) best = cv;
         }
+        if (P_NNSEL) {  // priors: softmax of first values over siblings, stored in pad (1/255 units)
+            float sum = 0.f;
+            for (int i = 0; i < L.n; i++) sum += expf((P[L.first + i].W - best) / P_PT);
+            const float inv = 255.f / sum;
+            for (int i = 0; i < L.n; i++) {
+                Node& ch = P[L.first + i];
+                ch.pad = (u8)min(255.f, expf((ch.W - best) / P_PT) * inv + 0.5f);
+            }
+        }
         tryProve(idx);
         v = L.proven ? provenValue(L.proven) : 1.f - best;
         proof = L.proven && depth > 1;
@@ -687,6 +713,9 @@ static void parseParams(const char* p) {
             else if (k == "FPU") P_FPU = v;
             else if (k == "CN") P_CN = v;
             else if (k == "NNMODE") P_NNMODE = (int)v;
+            else if (k == "NNSEL") P_NNSEL = (int)v;
+            else if (k == "CP") P_CP = v;
+            else if (k == "PT") P_PT = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
             else fprintf(stderr, "unknown param %s\n", k.c_str());
