@@ -153,7 +153,7 @@ for line in s.split("\n"):
         if re.match(r"#\s*if", t): skip += 1
         elif re.match(r"#\s*endif", t): skip -= 1
         continue
-    if t == "#ifdef LOCAL" and not a.keep_local:
+    if (t == "#ifdef LOCAL" and not a.keep_local) or (t == "#ifdef NN_DEEP" and not a.deep):
         skip = 1
         continue
     out.append(line)
