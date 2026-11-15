@@ -7,8 +7,8 @@ allows and answer the ones where the long search prefers another move.
   modal run tools/modal_book.py --src out/x.cpp [--iters 4000000]   long searches -> arena/book_an.jsonl
   book.py build [--gain 0.02] [--draw-gain 0.05] [--record-gain 1]  -> tools/book.txt (HASH ROW COL)
 
-Positions that occur in a won game of ours, or in a drawn one as the second player, are not changed by the
-long search; but where our own move varied and one move has the better record (gain >= RECORD_GAIN games;
+Positions that occur in a won game of ours, or in a drawn one as the second player, are changed by the long
+search only for a gain of at least 0.03 (and left alone if they occur in no other game); but where our own move varied and one move has the better record (gain >= RECORD_GAIN games;
 at least 3 games unless the other moves score <= 25%), the book replays that move unless the long search rates it more than 0.05 below its best.
 Logs of test games (arena/logs/*.log) count as games too (`positions --logs`).
 """
@@ -23,9 +23,12 @@ GAMES = os.path.join(ROOT, "arena", "book_games.json")   # the games behind book
 
 
 def games(subs, logs):
-    out = []
+    out, seen = [], set()
     for l in open(os.path.join(ROOT, "arena", "games.jsonl")):
         g = json.loads(l)
+        if g["game_id"] in seen:   # two downloads may have appended the same game
+            continue
+        seen.add(g["game_id"])
         if g["submission"] in subs:
             out.append({"moves": g["moves"], "first": g["me_first"],
                         "res": "W" if g["won"] else "D" if g["draw"] else "L", "opp": g["opponent"]})
@@ -48,24 +51,23 @@ def games(subs, logs):
 def positions(subs, logs):
     gs = games(subs, logs)
     json.dump([{"moves": g["moves"], "first": g["first"], "res": g["res"]} for g in gs], open(GAMES, "w"))
-    # Positions of ours in won games, and in drawn games as the second player (a good result
-    # against the top), are left to the search.
+    # Positions of ours in won games, and in drawn games as the second player (a good result against
+    # the top), are left to the search. A position that also occurs in a non-won game is "mixed": the
+    # book may change it, but only for a clearly better move (build: MIXED_GAIN).
     def kept(g):
         return g["res"] == "W" or (g["res"] == "D" and not g["first"])
-    won = set()
+    won = collections.Counter()
     for g in gs:
         if kept(g):
             for i in range(0 if g["first"] else 1, len(g["moves"]), 2):
-                won.add(" ".join(g["moves"][:i]))
+                won[" ".join(g["moves"][:i])] += 1
     pos = {}
     for g in gs:
         if kept(g):
             continue
         for i in range(0 if g["first"] else 1, len(g["moves"]), 2):
             pre = " ".join(g["moves"][:i])
-            if pre in won:
-                continue
-            e = pos.setdefault(pre, {"prefix": pre, "played": collections.Counter(), "L": 0, "D": 0, "opps": []})
+            e = pos.setdefault(pre, {"prefix": pre, "played": collections.Counter(), "L": 0, "D": 0, "K": won[pre], "opps": []})
             e["played"][g["moves"][i]] += 1
             e[g["res"]] += 1
             if g["opp"] not in e["opps"]:
@@ -96,6 +98,7 @@ def positions(subs, logs):
 
 
 LOST_Q = 0.1   # below this long-search value a position counts as lost
+MIXED_GAIN = 0.03   # positions that also occur in won games / second-player draws
 
 
 def losing_moves(an, lost_q):
@@ -172,6 +175,8 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
             continue
         g = ch[best]["q"] - ch[played]["q"]
         need = gain if e["L"] >= e["D"] else dgain   # drawn lines: only clear improvements
+        if e.get("K"):                               # also on a won line: change it only for a clear gain
+            need = max(need, MIXED_GAIN)
         if g < need:
             n["small"] += 1
             continue

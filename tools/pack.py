@@ -118,18 +118,30 @@ if a.net:
     net = (f'#define NN_EMBED 1\n' + ('#define NN_HUFF 1\n' if a.huff else '') + ('#define NN_DRAW 1\n' if draw else '') +
            f'#define NN_OFF {OFF}\nstatic const char16_t NN_DATA[] = u"{text}";\n')
     defs = f"#define NN_H {h}\n" + ("#define NN_THR 1\n" if thr else "") + defs
-if a.book:   # three 15-bit characters per entry: 30-bit hash | move << 30 (move = board * 9 + cell)
-    chars = []
+if a.book:   # sorted 30-bit hashes, Rice-coded gaps + 7-bit move (move = board * 9 + cell), 15 bits per character
+    ent = {}
     for l in open(a.book):
         f = l.split()
         if len(f) < 3 or f[0].startswith("#"):
             continue
         r, c = int(f[1]), int(f[2])
-        v = (int(f[0], 16) & 0x3FFFFFFF) | ((r // 3 * 3 + c // 3) * 9 + (r % 3) * 3 + c % 3) << 30
-        chars += [chr(OFF + (v >> k & 0x7FFF)) for k in (0, 15, 30)]
+        ent.setdefault(int(f[0], 16) & 0x3FFFFFFF, (r // 3 * 3 + c // 3) * 9 + (r % 3) * 3 + c % 3)
+    hs = sorted(ent)
+    def rice(k):
+        out, prev = [], 0
+        for hh in hs:
+            d = hh - prev
+            prev = hh
+            out += [1] * (d >> k) + [0] + [d >> b & 1 for b in range(k)] + [ent[hh] >> b & 1 for b in range(7)]
+        return out
+    k = min(range(8, 28), key=lambda k: len(rice(k)))
+    bits = rice(k)
+    bits += [0] * (-len(bits) % 15)
+    chars = [chr(OFF + sum(bits[i + b] << b for b in range(15))) for i in range(0, len(bits), 15)]
     assert s.count("//@BOOK_DATA@") == 1
-    s = s.replace("//@BOOK_DATA@", f'#define BOOK_OFF {OFF}\nstatic const char16_t BOOK[] = u"{"".join(chars)}";')
-    print(f"book: {len(chars) // 3} entries")
+    s = s.replace("//@BOOK_DATA@", f'#define BOOK_OFF {OFF}\n#define BOOK_N {len(hs)}\n#define BOOK_K {k}\n'
+                                   f'static const char16_t BOOK[] = u"{"".join(chars)}";')
+    print(f"book: {len(hs)} entries, {len(chars)} characters (Rice k = {k})")
 assert s.count("//@NET_DATA@") == 1
 s = s.replace("//@NET_DATA@", net)
 if defs:

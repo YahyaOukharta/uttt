@@ -919,6 +919,8 @@ static void advance(int m) {
 //@BOOK_DATA@
 #ifndef BOOK_OFF
 #define BOOK_OFF 0x2100
+#define BOOK_N 0
+#define BOOK_K 20
 static const char16_t BOOK[] = u"";
 #endif
 static u32 posHash(const State& s) {
@@ -929,11 +931,35 @@ static u32 posHash(const State& s) {
     }
     return (u32)(h >> 34);
 }
+// Book: entries sorted by 30-bit position hash; a bit stream (15 bits per character) of Rice-coded hash
+// gaps (unary quotient, BOOK_K low bits) each followed by the 7-bit move. Decoded once.
+static u32 bookH[BOOK_N + 1];
+static u8 bookM[BOOK_N + 1];
 static int bookMove(const State& s) {
+    static bool ready = false;
+    if (!ready) {
+        ready = true;
+        size_t pos = 0;
+        auto bits = [&](int n) {
+            u32 v = 0;
+            for (int b = 0; b < n; b++, pos++) v |= (u32)((BOOK[pos / 15] - BOOK_OFF) >> (pos % 15) & 1) << b;
+            return v;
+        };
+        u32 h = 0;
+        for (int i = 0; i < BOOK_N; i++) {
+            u32 q = 0;
+            while (bits(1)) q++;
+            h += q << BOOK_K | bits(BOOK_K);
+            bookH[i] = h;
+            bookM[i] = (u8)bits(7);
+        }
+    }
     const u32 h = posHash(s);
-    for (size_t i = 0; i + 3 < sizeof BOOK / sizeof BOOK[0]; i += 3) {
-        const u64 v = (u64)(BOOK[i] - BOOK_OFF) | (u64)(BOOK[i + 1] - BOOK_OFF) << 15 | (u64)(BOOK[i + 2] - BOOK_OFF) << 30;
-        if ((u32)(v & 0x3FFFFFFF) == h) return (int)(v >> 30);
+    int lo = 0, hi = BOOK_N - 1;
+    while (lo <= hi) {
+        const int mid = (lo + hi) / 2;
+        if (bookH[mid] == h) return bookM[mid];
+        if (bookH[mid] < h) lo = mid + 1; else hi = mid - 1;
     }
     return -1;
 }
