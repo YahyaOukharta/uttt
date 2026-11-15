@@ -36,6 +36,7 @@ static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
+static float P_DX = 0.5f, P_DO = 0.5f;  // value of a proven draw for us as first / second player
 static float P_FK = 0.02f;         // final move: 0 = most visits; > 0: value + FK * ln(visits)
 static int P_CT = 32;             // cache the accumulator of nodes with at least this many visits (0: off)
 static int P_VN = 4;              // virtual visits given to a child's first net value
@@ -294,6 +295,13 @@ static inline bool expand(int idx, const State& s) {
 }
 
 static inline float provenValue(int p) { return p == PR_WIN ? 1.f : (p == PR_DRAW ? 0.5f : 0.f); }
+// Proven-draw contempt: a draw is worth P_DX to us when we move first, P_DO when we move second.
+static int rootSide = 0;
+static inline float provenValueM(int p, int mover) {
+    if (p != PR_DRAW) return p == PR_WIN ? 1.f : 0.f;
+    const float d = rootSide == 0 ? P_DX : P_DO;
+    return mover == rootSide ? d : 1.f - d;
+}
 
 // Re-check the proof status of node idx from its children (children moved by the opponent of
 // idx's mover). Returns true if idx became proven.
@@ -617,7 +625,7 @@ static void iterateNN() {
             float cv;  // value for the player who made the move (s.side)
             if (cs.result) {
                 ch.proven = cs.result == DRAW ? PR_DRAW : (cs.result == WIN0 + s.side ? PR_WIN : PR_LOSS);
-                cv = provenValue(ch.proven);
+                cv = provenValueM(ch.proven, s.side);
             } else {
                 cv = 1.f - nnEvalMove(A, s, cs, ch.move);
             }
@@ -641,14 +649,14 @@ static void iterateNN() {
             lv = P_LEAF * best + (1.f - P_LEAF) * (wsum / sum);
         }
         tryProve(idx);
-        v = L.proven ? provenValue(L.proven) : 1.f - lv;
+        v = L.proven ? provenValueM(L.proven, s.side ^ 1) : 1.f - lv;
         proof = L.proven && depth > 1;
     } else if (L.proven || s.result) {
         if (!L.proven) {
             const int mover = s.side ^ 1;
             L.proven = s.result == DRAW ? PR_DRAW : (s.result == WIN0 + mover ? PR_WIN : PR_LOSS);
         }
-        v = provenValue(L.proven);
+        v = provenValueM(L.proven, s.side ^ 1);
         proof = depth > 1;
     } else {  // pool full: score the leaf itself
         v = 1.f - nnEval(A, s);
@@ -671,6 +679,7 @@ static inline void searchStep() {
 }
 static inline void turnStart() {
 #if NN_H
+    rootSide = rootState.side;
     if (netOn) accRefresh(rootAcc, rootState);
 #endif
 }
@@ -764,6 +773,8 @@ static void parseParams(const char* p) {
             else if (k == "CLIM") P_CLIM = (int)v;
             else if (k == "CT") P_CT = (int)v;
             else if (k == "FK") P_FK = v;
+            else if (k == "DX") P_DX = v;
+            else if (k == "DO") P_DO = v;
             else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
