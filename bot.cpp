@@ -18,6 +18,7 @@
 #include <cstring>
 #include <string>
 #include <vector>
+#include <poll.h>
 using namespace std;
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -37,6 +38,7 @@ static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the childr
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
 static float P_DX = 0.3f, P_DO = 0.7f;  // value of a proven draw for us as first / second player
+static int P_PONDER = 1;           // search during the opponent's turn
 static float P_DE = 0.f;   // scale of the draw-head contempt in evaluations (needs a net with a draw head)
 static float P_FK = 0.02f;         // final move: 0 = most visits; > 0: value + FK * ln(visits)
 static int P_CT = 32;             // cache the accumulator of nodes with at least this many visits (0: off)
@@ -783,9 +785,9 @@ static inline void searchStep() {
 #endif
     iterate();
 }
-static inline void turnStart() {
+static inline void turnStart(int us) {
 #if NN_H
-    rootSide = rootState.side;
+    rootSide = us;
     drawK[rootSide] = P_DE * ((rootSide == 0 ? P_DX : P_DO) - 0.5f);
     drawK[rootSide ^ 1] = -drawK[rootSide];
     useDraw = hasDraw && drawK[0] != 0.f;
@@ -885,6 +887,7 @@ static void parseParams(const char* p) {
             else if (k == "DX") P_DX = v;
             else if (k == "DO") P_DO = v;
             else if (k == "DE") P_DE = v;
+            else if (k == "PONDER") P_PONDER = (int)v;
             else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
@@ -956,7 +959,7 @@ static int runGen(const char* spec) {
         const int sampleUntil = rootState.ply + 10;
         while (!rootState.result) {
             if (used > POOL / 2) compact();
-            turnStart();
+            turnStart(rootState.side);
             const bool full = pFull >= 1.f || rng.below(1 << 20) < (u32)(pFull * (1 << 20));
             const long budget = full ? iters : fastIters;
             for (long it = 0; it < budget && !pool[cur][root].proven; it++) searchStep();
@@ -1119,7 +1122,7 @@ int main() {
         // otherwise pay for first-touch page faults inside a 100 ms budget.
         if (first) memset((void*)pool[cur ^ 1], 0, sizeof(Node) * POOL);
         if (used > POOL / 2) compact();
-        turnStart();
+        turnStart(rootState.side);
         const double budget = first ? P_FIRST_MS : P_MS;
         const long long iters = first ? fixedFirstIters : fixedIters;
         long long it = 0;
@@ -1145,5 +1148,19 @@ int main() {
                 rn.N ? 1.f - rn.W / rn.N : 0.f, rn.proven, used, msSince(t0));
         advance(m);
         first = false;
+        // Ponder: keep searching (from the opponent's side of the tree) until their move arrives.
+        if (P_PONDER && iters == 0 && !rootState.result && !pool[cur][root].proven) {
+            if (used > POOL / 2) compact();
+            turnStart(rootState.side ^ 1);
+            const auto tp = Clock::now();
+            long long pit = 0;
+            struct pollfd pf = {0, POLLIN, 0};
+            while (!pool[cur][root].proven && used < POOL - (1 << 16) && msSince(tp) < 3000) {
+                for (int k = 0; k < 4; k++) searchStep();
+                pit += 4;
+                if (poll(&pf, 1, 0) > 0) break;
+            }
+            fprintf(stderr, "ponder it=%lld t=%.1fms\n", pit, msSince(tp));
+        }
     }
 }

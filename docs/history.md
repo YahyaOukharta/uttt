@@ -16,7 +16,8 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.2 | net n1d (68M positions, 30 epochs) + PUCT selection: priors = softmax(first child values / 0.1), c = 1.0 | vs v1.1 at 100 ms: +186 =82 −32, +196 ± 36 | 31.13 (final) | 15 |
 | v1.3 | net n1f (91M positions, λ 0.75), 4 virtual visits per first net value, compaction bounded to 2M nodes (fixes rare second-turn timeouts), first turn 920 ms | vs v1.2 at 100 ms: +200 =287 −113, +51 ± 20; 0 timeouts in 600 games | 31.43 (final) | 13 |
 | v1.4 | net n3b: 640 hidden, 151M net self-play positions (v1.0–v1.3), λ 0.75, 20 epochs; accumulator cache; final move by value + 0.02·ln(visits); int8 output layer in the packed net | vs v1.3 at 100 ms: +252 =253 −95, +93 ± 21 (n3a 512: +80, n2c 512: +65) | 31.44 (final) | 14 |
-| v1.5 | net n4a: n3b fine-tuned 8 epochs on 139M unique positions (v1.2–v1.4 self-play); proven-draw contempt (draw worth 0.3 as first player, 0.7 as second); Huffman-coded weights (83.6k chars) | vs v1.4 at 100 ms: +204 =250 −146, +34 ± 21 (n4b from scratch on 186M: +33; no contempt: +25) | submission 41717369 | |
+| v1.5 | net n4a: n3b fine-tuned 8 epochs on 139M unique positions (v1.2–v1.4 self-play); proven-draw contempt (draw worth 0.3 as first player, 0.7 as second); Huffman-coded weights (83.6k chars) | vs v1.4 at 100 ms: +204 =250 −146, +34 ± 21 (n4b from scratch on 186M: +33; no contempt: +25) | ~31.1 at 58% (replaced) | 15 |
+| v1.6 | v1.5 + pondering (search continues during the opponent's turn until its move arrives on stdin; on CG +2.5k–9k iterations per opponent turn vs the default bot) + 11% faster iterations | vs v1.5 at 100 ms (2 cores per game): +261 =229 −110, +89 ± 22 (speedups alone: +24) | submission 41717417 | |
 
 ## Measurements
 
@@ -55,3 +56,4 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | n4d (768 hidden, 194M unique, 16 epochs) vs n4b (640), same code | +6 ± 22 (no gain: capacity offset by speed) |
 | Draw head (n4a fine-tuned 4 epochs with draw loss 0.5) vs v1.5: eval contempt DE 0 / 1 / 2 | −13 / −54 / −104 (eval contempt hurts; draw loss also costs the value head) |
 | Arena, v1.2–v1.4 vs the top 16 | as first player 0 losses (~88% wins), as second player 0 wins (~10–19% draws): rank is decided by draw rates |
+| Pondering vs v1.5 (Modal, 4 games on 8 CPUs) | +89 ± 22; without pondering +24 ± 21 |
