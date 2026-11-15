@@ -138,7 +138,10 @@ def run(maxn, net):
     print(f"{len(pl)} probes", flush=True)
     src = os.path.join(ROOT, "out", "probe.cpp")
     bk = "/tmp/ut_probe_book.txt"
+    dead = set()   # opponents whose battles can no longer be replayed (they resubmitted)
     for p in pl:
+        if p["opp"] in dead:
+            continue
         t = time.time()
         ms = p["moves"][:p["ply"]] + [p["move"]]
         ent = forced_entries(ms, p["ply"], False)
@@ -151,6 +154,8 @@ def run(maxn, net):
             path = cg.test(src, replay=p["game_id"])
         except (Exception, SystemExit) as ex:
             print(f"{p['opp']:<12} {p['dev']:<8} skipped: {str(ex)[:100]}", flush=True)
+            if "404" in str(ex):
+                dead.add(p["opp"])
             time.sleep(40)
             continue
         seat, r = cg_suite.result(path)
@@ -163,15 +168,21 @@ def run(maxn, net):
             f.write(json.dumps(rec) + "\n")
         print(f"{p['opp']:<12} ply {p['ply']:>2} {p['move']} (q {p['q']:.2f}/{p['best_q']:.2f}): {r}"
               + ("" if follow else "  (line not followed)"), flush=True)
-        if r in ("W", "D") and seat == 1 and follow:   # keep: force every move of ours in this game
-            reach = json.load(open(os.path.join(ROOT, "arena", "probe_reach.json")))
-            last = len(played) - 1 if (len(played) - 1) % 2 == 1 else len(played) - 2
-            keep = [e for i, e in zip(range(1, last + 1, 2), forced_entries(played, last, False))
-                    if "*scored*" not in reach.get(" ".join(played[:i]), [])]
-            with open(PBOOK, "a") as f:
-                f.write(f"# {p['opp']} {r} {p['dev']} {os.path.basename(path)}\n" + "\n".join(keep) + "\n")
-            print(f"  KEPT {len(keep)} entries -> {PBOOK}", flush=True)
+        if r in ("W", "D") and seat == 1:   # keep: force every move of ours in this game (even off the planned line)
+            keep_game(played, f"{p['opp']} {r} {p['dev']} {os.path.basename(path)}")
         time.sleep(max(0.0, 40.0 - (time.time() - t)))
+
+
+def keep_game(played, note):
+    """Force our (second-player) moves of a drawn / won test game, except at positions where some arena
+    game of ours scored (those stay as they are for every opponent)."""
+    reach = json.load(open(os.path.join(ROOT, "arena", "probe_reach.json")))
+    last = len(played) - 1 if (len(played) - 1) % 2 == 1 else len(played) - 2
+    keep = [e for i, e in zip(range(1, last + 1, 2), forced_entries(played, last, False))
+            if "*scored*" not in reach.get(" ".join(played[:i]), [])]
+    with open(PBOOK, "a") as f:
+        f.write(f"# {note}\n" + "\n".join(keep) + "\n")
+    print(f"  KEPT {len(keep)} entries -> {PBOOK}", flush=True)
 
 
 def stats():
@@ -188,6 +199,9 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if a[0] == "plan":
         plan([int(x) for x in a[1:] if x.isdigit() and len(x) > 6], opt(a, "--top", 6), opt(a, "--window", 8), opt(a, "--delta", 0.06))
+    elif a[0] == "keep":   # keep LOG NOTE: force the moves of a drawn / won second-player test game
+        import re
+        keep_game(re.findall(r"stdout: (\d \d)", open(os.path.join(ROOT, "arena", "logs", a[1])).read()), " ".join(a[2:]) + " " + a[1])
     elif a[0] == "run":
         run(opt(a, "--max", 80), opt(a, "--net", os.path.join(ROOT, "tools", "nets", "n7t640.bin")))
     else:
