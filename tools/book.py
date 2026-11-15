@@ -131,9 +131,32 @@ def losing_moves(an, lost_q):
     return bad
 
 
+TRUNK_N, TRUNK_SCORE = 30, 0.3   # positions of ours with this many games whose usual move scores this well
+
+
+def trunk():
+    """{prefix: usual move} for frequent positions where the usual move does well: the book leaves them alone
+    (an entry there reshuffles every game through it, e.g. v1.18's first reply as second player)."""
+    if not os.path.exists(GAMES):
+        return {}
+    sc = {"W": 1.0, "D": 0.5, "L": 0.0}
+    st = collections.defaultdict(lambda: collections.defaultdict(list))
+    for g in json.load(open(GAMES)):
+        for i in range(0 if g["first"] else 1, len(g["moves"]), 2):
+            st[" ".join(g["moves"][:i])][g["moves"][i]].append(sc[g["res"]])
+    out = {}
+    for pre, mv in st.items():
+        if sum(len(v) for v in mv.values()) >= TRUNK_N:
+            top = max(mv, key=lambda m: len(mv[m]))
+            if sum(mv[top]) / len(mv[top]) >= TRUNK_SCORE:
+                out[pre] = top
+    return out
+
+
 def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
     pos = {e["prefix"]: e for e in json.load(open(POS))}
     out, n = [], collections.Counter()
+    tr = trunk()
     an = {}
     for f in (AN, AN_DEEP):
         if os.path.exists(f):
@@ -142,6 +165,9 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
                 an[a["prefix"]] = a
     bad = losing_moves(an, LOST_Q)
     for a in an.values():
+        if a["prefix"] in tr:
+            n["trunk"] += 1
+            continue
         e = pos.get(a["prefix"])
         if not a.get("proven") and a["children"] and a["prefix"] in bad:
             # A move of ours that the opponents' actual replies refuted: play the best other move.
@@ -163,6 +189,10 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
             no = sum(n for m, (n, q) in emp.items() if m != eb)
             others = sum(n * q for m, (n, q) in emp.items() if m != eb) / no
             sure = emp[eb][0] >= 3 or others <= 0.25   # few games only against moves that (nearly) always lose
+            # and the difference must be clear given the numbers of games: a few lucky games of a rare move
+            # must not replace a move with hundreds of games (v1.18: 4 games of 4 3 vs 1447 of 4 5 at ply 1)
+            if no >= 20:
+                sure = sure and emp[eb][1] - 1 / emp[eb][0] ** 0.5 > others + 1 / no ** 0.5
             if sure and eb not in bad.get(a["prefix"], ()) and eg >= emp_gain and eb in ch and best in ch and ch[eb]["q"] >= ch[best]["q"] - emp_tol:
                 n["record"] += 1
                 r, c = eb.split()
@@ -192,7 +222,7 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
     if os.path.exists(PRE):
         for l in open(PRE):
             a = json.loads(l)
-            if a["hash"] in have or a.get("proven") or not a["children"] or not a.get("fast_best"):
+            if a["hash"] in have or a.get("proven") or not a["children"] or not a.get("fast_best") or a["prefix"] in tr:
                 continue
             ch = {c["move"]: c["q"] for c in a["children"]}
             fb, b = a["fast_best"], a["best"]
@@ -213,7 +243,7 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
     open(BOOK, "w").write("\n".join(out) + "\n")
     print(f"{n['book'] + n['record'] + n['refuted'] + n['pre']} entries ({n['record']} by record, {n['refuted']} refuted, "
           f"{n['pre']} pre-emptive, {n['probe']} probed) -> {BOOK} "
-          f"(same move {n['same']}, gain too small {n['small']})")
+          f"(same move {n['same']}, gain too small {n['small']}, trunk kept {n['trunk']})")
 
 
 if __name__ == "__main__":
