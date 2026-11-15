@@ -12,7 +12,8 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v0.2 | c = 0.55, rollouts take a game-winning move | vs legacy at 100 ms: +166 =56 −78, +105 ± 37 | (not submitted) | |
 | v0.3 | + expansion keeps only a game-winning child, FPU 0.8 | vs legacy at 100 ms: +197 =54 −49, +187 ± 40 | 22.6 at 84% (stopped) | ~92 |
 | v1.0 | value net n1a (189→256×2, 10 buckets, 5.2M positions of 4k-iteration rollout self-play), expand-all search, c = 0.3 | vs v0.3 at 100 ms: +194 =46 −60, +166 ± 40 | 23.82 at 62% (replaced) | 63 |
-| v1.1 | net n1b (256 hidden, 41M positions: 39M rollout self-play + 2M n1a self-play, 10 epochs on an A10G), c = 0.2, fused child evaluation (+44% iterations on CG), spare pool prefaulted (fixes rare second-turn timeouts) | vs v1.0 at 100 ms: +426 =135 −39, +266 ± 29 | submission 41716853 | |
+| v1.1 | net n1b (256 hidden, 41M positions: 39M rollout self-play + 2M n1a self-play, 10 epochs on an A10G), c = 0.2, fused child evaluation (+44% iterations on CG), spare pool prefaulted (fixes rare second-turn timeouts) | vs v1.0 at 100 ms: +426 =135 −39, +266 ± 29 | 27.89 at 70% (replaced) | 36 |
+| v1.2 | net n1d (68M positions, 30 epochs) + PUCT selection: priors = softmax(first child values / 0.1), c = 1.0 | vs v1.1 at 100 ms: +186 =82 −32, +196 ± 36 | submission 41716925 | |
 
 ## Measurements
 
@@ -33,4 +34,7 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | n1a, one net evaluation per leaf instead of scoring all children | +15 / +24 vs v0.3 (expand-all: +166) |
 | Fused child evaluation vs accumulator copy (same net, 600 games) | +6 ± 16; CG iterations 308k → 443k first turn, 40k → 58k per turn |
 | n1c (512 hidden) vs v1.0 | +259 ± 31 (n1b 256: +266 ± 29) |
+| n1d (68M, 30 epochs) / n1e (λ 0.25) vs n1b (v1.1) | +25 ± 19 / −16 ± 19 |
+| PUCT with value priors, n1b, vs UCT (v1.1): c 1.5 / 3 / 6 at T 0.1; c 3 at T 0.05 | **+144** / +64 / −50; +84 (control UCT: −6) |
+| PUCT, n1d, vs v1.1: c 1.5 / 1.0 / 0.7 at T 0.1; c 1.0 at T 0.2 / 0.05; c 1.5 at T 0.2 | +156 / **+196** / +179; +132 / +171; +151 |
 | Pilot net: 128 hidden, 443k positions (4k-iteration rollout self-play), expand-all search | 9 −84 =7 vs v0.3 at 100 ms (net too weak; 75k vs 60k iterations per turn) |

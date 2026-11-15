@@ -33,8 +33,8 @@ typedef uint64_t u64;
 static float P_C = 0.55f;         // UCT exploration constant (values in [0,1])
 static bool netOn = false;        // a value net is loaded
 static float P_CN = 0.2f;         // exploration constant with the net
-static int P_NNSEL = 0;           // 1: PUCT with priors = softmax of the children's first net values
-static float P_CP = 1.5f, P_PT = 0.1f;
+static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
+static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_NNMODE = 0;          // 0: expand all children and score them, leaf = best child; 1: one eval per leaf
 static float P_FPU = 0.8f;        // value of unvisited children (< 0: visit every child first)
 static int P_ROLL = 1;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
