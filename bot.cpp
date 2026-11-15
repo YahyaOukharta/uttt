@@ -35,11 +35,13 @@ static bool netOn = false;        // a value net is loaded
 static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
+static int P_VN = 1;              // virtual visits given to a child's first net value
+static float P_LEAF = 1.f;        // leaf value: LEAF * best child + (1 - LEAF) * prior-weighted mean
 static int P_NNMODE = 0;          // 0: expand all children and score them, leaf = best child; 1: one eval per leaf
 static float P_FPU = 0.8f;        // value of unvisited children (< 0: visit every child first)
 static int P_ROLL = 1;            // rollout policy bits: 1 game win, 2 avoid sending to a game win, 4 board win, 8 board block
 static float P_MS = 95.0f;        // per-turn budget, ms
-static float P_FIRST_MS = 960.0f; // first-turn budget, ms
+static float P_FIRST_MS = 920.0f; // first-turn budget, ms
 
 // ------------------------------------------------------------------------------------------
 // Tables
@@ -588,21 +590,27 @@ static void iterateNN() {
             } else {
                 cv = 1.f - nnEvalMove(A, s, cs, ch.move);
             }
-            ch.N = 1;
-            ch.W = cv;
+            ch.N = P_VN;
+            ch.W = cv * P_VN;
             if (cv > best) best = cv;
         }
+        float lv = best;
         if (P_NNSEL) {  // priors: softmax of first values over siblings, stored in pad (1/255 units)
-            float sum = 0.f;
-            for (int i = 0; i < L.n; i++) sum += expf((P[L.first + i].W - best) / P_PT);
+            float sum = 0.f, wsum = 0.f;
+            for (int i = 0; i < L.n; i++) {
+                const float cv = P[L.first + i].W / P_VN, e = expf((cv - best) / P_PT);
+                sum += e;
+                wsum += e * cv;
+            }
             const float inv = 255.f / sum;
             for (int i = 0; i < L.n; i++) {
                 Node& ch = P[L.first + i];
-                ch.pad = (u8)min(255.f, expf((ch.W - best) / P_PT) * inv + 0.5f);
+                ch.pad = (u8)min(255.f, expf((ch.W / P_VN - best) / P_PT) * inv + 0.5f);
             }
+            lv = P_LEAF * best + (1.f - P_LEAF) * (wsum / sum);
         }
         tryProve(idx);
-        v = L.proven ? provenValue(L.proven) : 1.f - best;
+        v = L.proven ? provenValue(L.proven) : 1.f - lv;
         proof = L.proven && depth > 1;
     } else if (L.proven || s.result) {
         if (!L.proven) {
@@ -716,6 +724,8 @@ static void parseParams(const char* p) {
             else if (k == "NNSEL") P_NNSEL = (int)v;
             else if (k == "CP") P_CP = v;
             else if (k == "PT") P_PT = v;
+            else if (k == "VN") P_VN = (int)v;
+            else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
             else fprintf(stderr, "unknown param %s\n", k.c_str());
