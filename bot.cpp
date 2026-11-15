@@ -35,7 +35,8 @@ static bool netOn = false;        // a value net is loaded
 static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
-static int P_VN = 1;              // virtual visits given to a child's first net value
+static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
+static int P_VN = 4;              // virtual visits given to a child's first net value
 static float P_LEAF = 1.f;        // leaf value: LEAF * best child + (1 - LEAF) * prior-weighted mean
 static int P_NNMODE = 0;          // 0: expand all children and score them, leaf = best child; 1: one eval per leaf
 static float P_FPU = 0.8f;        // value of unvisited children (< 0: visit every child first)
@@ -648,12 +649,15 @@ static inline void turnStart() {
 static void compact() {
     Node* S = pool[cur];
     Node* D = pool[cur ^ 1];
-    // BFS copy; D[h] is the copy of S[cq[h]], so the queue is implicit in the copy order
+    // BFS copy (the queue is implicit in the copy order). At most P_CLIM nodes are kept so the
+    // copy stays well inside a turn; deeper nodes keep their statistics but lose their children
+    // and are expanded again when the search reaches them.
     D[0] = S[root];
     int n = 1;
     for (int h = 0; h < n; h++) {
         Node& d = D[h];
         if (d.first >= 0) {
+            if (n + d.n > P_CLIM && !d.proven) { d.first = -1; continue; }
             const int f = d.first;
             memcpy(D + n, S + f, sizeof(Node) * d.n);
             d.first = n;
@@ -725,6 +729,7 @@ static void parseParams(const char* p) {
             else if (k == "CP") P_CP = v;
             else if (k == "PT") P_PT = v;
             else if (k == "VN") P_VN = (int)v;
+            else if (k == "CLIM") P_CLIM = (int)v;
             else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
