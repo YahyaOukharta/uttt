@@ -726,8 +726,22 @@ static inline void cachePut(int idx, const Acc& A) {
 }
 static State pendS[96];
 static int pendI[96];
+#ifdef UT_PROF   // local profiling: cycles per phase of iterateNN
+static unsigned long long profT[4], profN;
+#define PROF_MARK(k) { const unsigned long long t_ = __rdtsc(); profT[k] += t_ - profL; profL = t_; }
+static struct ProfDump { ~ProfDump() {
+    const double t = (double)(profT[0] + profT[1] + profT[2] + profT[3]);
+    if (profN) fprintf(stderr, "prof it=%llu cyc/it=%.0f descent %.0f%% acc %.0f%% expand %.0f%% backup %.0f%%\n", profN, t / profN,
+                       100 * profT[0] / t, 100 * profT[1] / t, 100 * profT[2] / t, 100 * profT[3] / t); } } profDump;
+#else
+#define PROF_MARK(k)
+#endif
 
 static void iterateNN() {
+#ifdef UT_PROF
+    unsigned long long profL = __rdtsc();
+    profN++;
+#endif
     Node* P = pool[cur];
     State s = rootState;
     const Acc* base = &rootAcc;
@@ -741,6 +755,7 @@ static void iterateNN() {
         s.play(P[idx].move);
         pathBuf[depth++] = idx;
     }
+    PROF_MARK(0)
     Acc A;
     const Acc* Ap = base;  // accumulator of s
     for (int i = 0; i < np; i++) {
@@ -749,6 +764,7 @@ static void iterateNN() {
         Ap = &A;
         if (P_CT > 0 && P[pendI[i]].N >= P_CT) cachePut(pendI[i], A);
     }
+    PROF_MARK(1)
 #ifdef LOCAL
     if (checkAcc && !s.result) {   // debug: incremental accumulator and fused child eval vs refresh
         Acc R;
@@ -785,7 +801,7 @@ static void iterateNN() {
     if (P_NNMODE == 1 && !L.proven && !s.result) {
         v = 1.f - nnEval(*Ap, s);
     } else if (!L.proven && !s.result && expand(idx, s) && !L.proven) {
-        float best = -1.f;
+        float best = -1.f, cvs[81];
         for (int i = 0; i < L.n; i++) {
             Node& ch = P[L.first + i];
             State cs = s;
@@ -799,21 +815,20 @@ static void iterateNN() {
             }
             ch.N = P_VN;
             ch.W = cv * P_VN;
+            cvs[i] = ch.W / P_VN;
             if (cv > best) best = cv;
         }
         float lv = best;
         if (P_NNSEL) {  // priors: softmax of first values over siblings, stored in pad (1/255 units)
             float sum = 0.f, wsum = 0.f;
             for (int i = 0; i < L.n; i++) {
-                const float cv = P[L.first + i].W / P_VN, e = expf((cv - best) / P_PT);
+                const float cv = cvs[i], e = expf((cv - best) / P_PT);
+                cvs[i] = e;
                 sum += e;
                 wsum += e * cv;
             }
             const float inv = 255.f / sum;
-            for (int i = 0; i < L.n; i++) {
-                Node& ch = P[L.first + i];
-                ch.pad = (u8)min(255.f, expf((ch.W / P_VN - best) / P_PT) * inv + 0.5f);
-            }
+            for (int i = 0; i < L.n; i++) P[L.first + i].pad = (u8)min(255.f, cvs[i] * inv + 0.5f);
             lv = P_LEAF * best + (1.f - P_LEAF) * (wsum / sum);
         }
         tryProve(idx);
@@ -829,6 +844,7 @@ static void iterateNN() {
     } else {  // pool full: score the leaf itself
         v = 1.f - nnEval(*Ap, s);
     }
+    PROF_MARK(2)
     for (int i = depth - 1; i >= 0; i--) {
         Node& nd = P[pathBuf[i]];
         nd.N++;
@@ -836,6 +852,7 @@ static void iterateNN() {
         v = 1.f - v;
         if (proof && i < depth - 1) proof = tryProve(pathBuf[i]);
     }
+    PROF_MARK(3)
 }
 #endif
 

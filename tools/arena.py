@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Archive our CodinGame Ultimate Tic-Tac-Toe arena battles (the API only exposes games we played in).
 
-  arena.py fetch [--logs]   list battles of every submission -> arena/battles.jsonl;
-                            with --logs also download each game's moves -> arena/games.jsonl
+  arena.py fetch [--logs [SUB_ID]]
+                            list battles of every submission -> arena/battles.jsonl;
+                            with --logs also download each game's moves (of one submission) -> arena/games.jsonl
   arena.py stats [SUB_ID]   win rate per opponent (and per colour when logs are present)
 Respects the API rate limit (about 100 requests/minute).
 """
@@ -48,7 +49,7 @@ def save(path, d):
             f.write(json.dumps(d[k]) + "\n")
 
 
-def fetch(logs):
+def fetch(logs, only=None):
     battles = load(BATTLES, "game_id")
     subs = get(f"/puzzles/{PUZ}/submissions")
     subs = subs.get("submissions", subs)
@@ -72,7 +73,7 @@ def fetch(logs):
     if not logs:
         return
     games = load(GAMES, "game_id")
-    todo = [g for g in sorted(battles, reverse=True) if g not in games]
+    todo = [g for g in sorted(battles, reverse=True) if g not in games and (not only or battles[g]["submission"] == only)]
     print(f"{len(todo)} game logs to download", flush=True)
     with open(GAMES, "a") as f:
         for i, gid in enumerate(todo):
@@ -119,6 +120,7 @@ def stats(sub):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "fetch":
-        fetch("--logs" in sys.argv)
+        i = sys.argv.index("--logs") if "--logs" in sys.argv else -1
+        fetch(i >= 0, int(sys.argv[i + 1]) if 0 <= i < len(sys.argv) - 1 else None)
     else:
         stats(sys.argv[2] if len(sys.argv) > 2 else None)

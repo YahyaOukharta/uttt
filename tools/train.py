@@ -223,11 +223,14 @@ def main():
 
     print(f"loaded in {time.time() - t0:.0f}s, training on {a.device}", flush=True)
     t0 = time.time()
+    perm = None
     for ep in range(a.epochs):
-        perm = (torch.randperm(n - nval, device=dev) + nval)
+        del perm   # int32 on the device, shuffled on the host: 200M+ positions fit beside the data
+        perm = torch.randperm(n - nval).to(torch.int32).to(dev)
+        perm += nval
         run = torch.zeros((), device=dev)
         for i in range(nb):
-            idx = perm[i * a.batch:(i + 1) * a.batch]
+            idx = perm[i * a.batch:(i + 1) * a.batch].long()
             sym = torch.randint(0, 8, (len(idx),), device=dev)
             s, o, k = feats(X[idx], sym)
             z, zd = model(s, o, k)
