@@ -7,7 +7,7 @@ allows and answer the ones where the long search prefers another move.
   modal run tools/modal_book.py --src out/x.cpp [--iters 4000000]   long searches -> arena/book_an.jsonl
   book.py build [--gain 0.02] [--draw-gain 0.05]                    -> tools/book.txt (HASH ROW COL)
 
-Positions that occur in a won game of ours are left alone.
+Positions that occur in a won game of ours, or in a drawn one as the second player, are left alone.
 Logs of test games (arena/logs/*.log) count as games too (`positions --logs`).
 """
 import collections, glob, json, os, re, sys
@@ -43,14 +43,18 @@ def games(subs, logs):
 
 def positions(subs, logs):
     gs = games(subs, logs)
-    won = set()                      # positions of ours in won games: left to the search
+    # Positions of ours in won games, and in drawn games as the second player (a good result
+    # against the top), are left to the search.
+    def kept(g):
+        return g["res"] == "W" or (g["res"] == "D" and not g["first"])
+    won = set()
     for g in gs:
-        if g["res"] == "W":
+        if kept(g):
             for i in range(0 if g["first"] else 1, len(g["moves"]), 2):
                 won.add(" ".join(g["moves"][:i]))
     pos = {}
     for g in gs:
-        if g["res"] == "W":
+        if kept(g):
             continue
         for i in range(0 if g["first"] else 1, len(g["moves"]), 2):
             pre = " ".join(g["moves"][:i])
