@@ -1173,6 +1173,28 @@ int main() {
         while (sscanf(p, "%d %d%n", &r, &c, &k) == 2) { advance(GRID2M[r * 9 + c]); p += k; }
     }
 #endif
+#ifdef LOCAL
+    if (const char* an = getenv("UT_ANALYZE")) {  // "r c r c ...": play the moves, search, print the root
+        int r, c, k;
+        const char* p = an;
+        while (sscanf(p, "%d %d%n", &r, &c, &k) == 2) { advance(GRID2M[r * 9 + c]); p += k; }
+        turnStart(rootState.side);
+        const long long n = fixedFirstIters > 0 ? fixedFirstIters : 1000000;
+        for (long long i = 0; i < n && !pool[cur][root].proven; i++) searchStep();
+        const Node& rn = pool[cur][root];
+        vector<pair<int, int>> ch;
+        for (int i = 0; i < rn.n; i++) ch.push_back({pool[cur][rn.first + i].N, rn.first + i});
+        sort(ch.rbegin(), ch.rend());
+        printf("ply %d side %d iters %lld root q %.3f proven %d best %d %d\n", rootState.ply, rootState.side, n,
+               rn.N ? 1.f - rn.W / rn.N : 0.f, rn.proven, MROW[bestMove()], MCOL[bestMove()]);
+        for (size_t i = 0; i < ch.size() && i < 5; i++) {
+            const Node& x = pool[cur][ch[i].second];
+            printf("  %d %d  N %d  q %.3f  prior %.2f  proven %d\n", MROW[x.move], MCOL[x.move], x.N,
+                   x.N ? x.W / x.N : 0.f, x.pad / 255.f, x.proven);
+        }
+        return 0;
+    }
+#endif
     bool first = true;
     // Second player: the opponent's first turn can take a second. Search the start position
     // until its move arrives. (Nothing within 50 ms: we are the second player.)

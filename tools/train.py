@@ -84,7 +84,8 @@ def main():
     ap.add_argument("--max", type=int, default=0, help="use at most this many positions")
     ap.add_argument("--init", help="float checkpoint (.pt) to continue from")
     ap.add_argument("--draw", type=float, default=0, help="train a draw-probability head with this loss weight")
-    ap.add_argument("--threats", action="store_true", help="experimental: 18 extra inputs (small-board win threats per player)")
+    ap.add_argument("--threats", action="store_true", help="18 extra inputs (small-board win threats per player)")
+    ap.add_argument("--mthreats", action="store_true", help="experimental: 18 more inputs (open boards whose capture wins the game, per player)")
     ap.add_argument("--wclip", type=float, default=127 / 255, help="clip first-layer weights and biases (int8 at QA=255)")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else
                     ("mps" if torch.backends.mps.is_available() else "cpu"))
@@ -159,6 +160,13 @@ def main():
         if a.threats:   # a player threatens a small board: two in a line, third cell empty, board open
             open_ = ((own | opp) != 511).float() * (1 - wo) * (1 - wp)
             to, tp = THR[own, opp] * open_, THR[opp, own] * open_
+            if a.mthreats:   # board bd is open and winning it completes a line of won boards
+                p2 = 2 ** torch.arange(9, device=dev)
+                mo, mp = (wo.long() * p2).sum(1), (wp.long() * p2).sum(1)
+                mto, mtp = bits[TWB[mo]] * open_, bits[TWB[mp]] * open_
+                stm = torch.cat([co, cp, wo, wp, drawn, to, tp, mto, mtp], dim=1)
+                oth = torch.cat([cp, co, wp, wo, drawn, tp, to, mtp, mto], dim=1)
+                return stm, oth, nxt
             stm = torch.cat([co, cp, wo, wp, drawn, to, tp], dim=1)
             oth = torch.cat([cp, co, wp, wo, drawn, tp, to], dim=1)
             return stm, oth, nxt
@@ -175,7 +183,13 @@ def main():
                 e = 511 & ~(m | o)
                 thr[m, o] = float(any(bin(m & l).count("1") == 2 and (e & l) for l in LINES))
         THR = torch.from_numpy(thr).to(dev)
-    model = Net(a.hidden, a.draw > 0, NIN + (18 if a.threats else 0)).to(dev)
+        twb = np.zeros(512, dtype=np.int64)   # cells that complete a line for this mask
+        for m in range(512):
+            for c in range(9):
+                if not (m >> c) & 1 and any(((m | 1 << c) & l) == l for l in LINES):
+                    twb[m] |= 1 << c
+        TWB = torch.from_numpy(twb).to(dev)
+    model = Net(a.hidden, a.draw > 0, NIN + (18 if a.threats else 0) + (18 if a.mthreats else 0)).to(dev)
     if a.init and not os.path.exists(a.init):   # Kaggle: find the checkpoint wherever the dataset is mounted
         a.init = glob.glob("/kaggle/input/**/" + os.path.basename(a.init), recursive=True)[0]
     if a.init:
