@@ -485,6 +485,43 @@ static inline float nnEval(const Acc& A, const State& s) {
 //@NET_DATA@
 #ifdef NN_EMBED
 // Embedded net: a bit stream at 15 bits per character; first layer and biases int8, output int16.
+#ifdef NN_HUFF
+static void loadEmbedded() {  // canonical Huffman-coded int8 weights (see tools/pack.py)
+    const char16_t* p = NN_DATA;
+    u32 acc = 0;
+    int nb = 0;
+    auto bit = [&]() -> int {
+        if (!nb) { acc = (u32)(*p++ - NN_OFF); nb = 15; }
+        const int b = (int)(acc & 1);
+        acc >>= 1;
+        nb--;
+        return b;
+    };
+    auto bits = [&](int n) { int v = 0; for (int i = 0; i < n; i++) v |= bit() << i; return v; };
+    for (int k = 0; k < 10; k++) { const u32 hi = (u32)bits(16); NOB[k] = (int32_t)(hi << 16 | (u32)bits(16)); }
+    int len[256], cnt[32] = {0}, pos[33] = {0}, sym[256];
+    for (int i = 0; i < 256; i++) cnt[len[i] = bits(5)]++;
+    cnt[0] = 0;
+    for (int l = 1; l < 32; l++) pos[l + 1] = pos[l] + cnt[l];
+    for (int i = 0; i < 256; i++) if (len[i]) sym[pos[len[i]]++] = i;
+    auto dec = [&]() -> int8_t {
+        int code = 0, first = 0, index = 0;
+        for (int l = 1; l < 32; l++) {
+            code |= bit();
+            if (code - first < cnt[l]) return (int8_t)sym[index + code - first];
+            index += cnt[l];
+            first = (first + cnt[l]) << 1;
+            code <<= 1;
+        }
+        return 0;
+    };
+    for (int f = 0; f < NIN; f++)
+        for (int i = 0; i < NN_H; i++) NW[f][i] = dec();
+    for (int i = 0; i < NN_H; i++) NBIAS[i] = dec();
+    for (int k = 0; k < 10; k++)
+        for (int i = 0; i < 2 * NN_H; i++) NO[k][i] = dec();
+}
+#else
 static void loadEmbedded() {
     const char16_t* p = NN_DATA;
     u32 acc = 0;
@@ -504,6 +541,7 @@ static void loadEmbedded() {
         for (int i = 0; i < 2 * NN_H; i++) NO[k][i] = (int8_t)byte();
     for (int k = 0; k < 10; k++) { const u32 hi = (u32)word(); NOB[k] = (int32_t)(hi << 16 | (u32)word()); }
 }
+#endif
 #endif
 static bool loadNet(const char* path) {
     FILE* f = fopen(path, "rb");

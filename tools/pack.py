@@ -21,7 +21,49 @@ ap.add_argument("-D", action="append", default=[])
 ap.add_argument("-o", "--out", default="out/submission.cpp")
 ap.add_argument("--keep-comments", action="store_true")
 ap.add_argument("--keep-local", action="store_true", help="keep LOCAL blocks (test the embedded net locally)")
+ap.add_argument("--huff", action="store_true", help="Huffman-code the int8 weights (canonical code, ~6.7 bits each)")
 a = ap.parse_args()
+
+def huff_stream(w, words):
+    """Bits (LSB-first per field): output-bias words (16 bits each), 256 code lengths (5 bits each,
+    symbol = int8 value as a byte), then each weight's canonical Huffman code, most significant bit first."""
+    import heapq
+    sym = w.view(np.uint8).astype(np.int64)
+    freq = np.bincount(sym, minlength=256)
+    heap = [(int(f), i, (i,)) for i, f in enumerate(freq) if f]
+    heapq.heapify(heap)
+    length = np.zeros(256, dtype=np.int64)
+    uid = 256
+    while len(heap) > 1:
+        f1, _, s1 = heapq.heappop(heap)
+        f2, _, s2 = heapq.heappop(heap)
+        for x in s1 + s2:
+            length[x] += 1
+        heapq.heappush(heap, (f1 + f2, uid, s1 + s2))
+        uid += 1
+    if len(heap) == 1 and length.max() == 0:
+        length[heap[0][2][0]] = 1
+    assert length.max() <= 31, "code too long"
+    code = np.zeros(256, dtype=np.int64)          # canonical: by (length, symbol)
+    c, prev = 0, 0
+    for x in sorted((int(length[i]), i) for i in range(256) if length[i]):
+        c <<= x[0] - prev
+        prev = x[0]
+        code[x[1]] = c
+        c += 1
+    def lsb(v, n):
+        return [(int(v) >> i) & 1 for i in range(n)]
+    head = []
+    for x in words:
+        head += lsb(x, 16)
+    for i in range(256):
+        head += lsb(length[i], 5)
+    table = [np.array([(int(code[i]) >> (int(length[i]) - 1 - k)) & 1 for k in range(int(length[i]))], dtype=np.uint8)
+             for i in range(256)]
+    body = np.concatenate([table[x] for x in sym.tolist()])
+    print(f"huffman: {len(sym)} weights, {len(body) / len(sym):.2f} bits each")
+    return np.concatenate([np.array(head, dtype=np.uint8), body])
+
 
 s = open(a.src, encoding="utf-8").read()
 out, skip = [], 0
@@ -53,12 +95,16 @@ if a.net:
     clipped = int((np.abs(w8) > 127).sum())
     if clipped:
         print(f"warning: {clipped} weights outside int8, clipped (train with --wclip)")
-    data = np.clip(w8, -127, 127).astype(np.int8).tobytes() + (rest & 0xFFFF).astype("<u2").tobytes()
-    bits = np.unpackbits(np.frombuffer(data, dtype=np.uint8), bitorder="little")
+    if a.huff:
+        bits = huff_stream(np.clip(w8, -127, 127).astype(np.int8), rest & 0xFFFF)
+    else:
+        data = np.clip(w8, -127, 127).astype(np.int8).tobytes() + (rest & 0xFFFF).astype("<u2").tobytes()
+        bits = np.unpackbits(np.frombuffer(data, dtype=np.uint8), bitorder="little")
     bits = np.concatenate([bits, np.zeros((-len(bits)) % 15, dtype=np.uint8)]).reshape(-1, 15)
     codes = (bits * (1 << np.arange(15))).sum(1) + OFF
     text = "".join(map(chr, codes.tolist()))
-    net = f'#define NN_EMBED 1\n#define NN_OFF {OFF}\nstatic const char16_t NN_DATA[] = u"{text}";\n'
+    net = (f'#define NN_EMBED 1\n' + ('#define NN_HUFF 1\n' if a.huff else '') +
+           f'#define NN_OFF {OFF}\nstatic const char16_t NN_DATA[] = u"{text}";\n')
     defs = f"#define NN_H {h}\n" + defs
 assert s.count("//@NET_DATA@") == 1
 s = s.replace("//@NET_DATA@", net)
