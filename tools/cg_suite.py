@@ -40,14 +40,15 @@ def build(n):
 
 
 def result(path):
+    """(our seat, W/D/L) from a test-game log; agent 0 moves first."""
     log = open(path).read()
     me = re.search(r"^\s+(\d) \S+ \(me", log, re.M)
     sc = re.search(r"scores: 0=(-?\d+) 1=(-?\d+)", log)
     if not me or not sc:
-        return None
+        return None, None
     a, b = int(sc.group(1)), int(sc.group(2))
     mine, theirs = (a, b) if me.group(1) == "0" else (b, a)
-    return "W" if mine > theirs else ("D" if mine == theirs else "L")
+    return int(me.group(1)), "W" if mine > theirs else ("D" if mine == theirs else "L")
 
 
 def run(src, label, rounds):
@@ -56,12 +57,12 @@ def run(src, label, rounds):
         for e in suite:
             t = time.time()
             path = cg.test(src, replay=e["game_id"])
-            r = result(path)
+            seat, r = result(path)
             with open(RES, "a") as f:
-                f.write(json.dumps({"label": label, "opponent": e["opponent"], "seat": e["seat"], "result": r,
+                f.write(json.dumps({"label": label, "opponent": e["opponent"], "seat": seat, "result": r,
                                     "log": os.path.basename(path), "t": int(time.time())}) + "\n")
-            print(f"round {k + 1}: {e['opponent']:<14} seat {e['seat']}: {r}", flush=True)
-            time.sleep(max(0.0, 7.0 - (time.time() - t)))   # at most ~8 games per minute
+            print(f"round {k + 1}: {e['opponent']:<14} seat {seat}: {r}", flush=True)
+            time.sleep(max(0.0, 40.0 - (time.time() - t)))   # test games: 30 per 15 min, 80 per hour
 
 
 def stats(labels):

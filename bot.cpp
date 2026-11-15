@@ -1156,8 +1156,8 @@ int main() {
             long long pit = 0;
             struct pollfd pf = {0, POLLIN, 0};
             while (!pool[cur][root].proven && used < POOL - (1 << 16) && msSince(tp) < 3000) {
-                for (int k = 0; k < 4; k++) searchStep();
-                pit += 4;
+                for (int k = 0; k < 32; k++) searchStep();  // poll() is a syscall: not too often
+                pit += 32;
                 if (poll(&pf, 1, 0) > 0) break;
             }
             fprintf(stderr, "ponder it=%lld t=%.1fms\n", pit, msSince(tp));
