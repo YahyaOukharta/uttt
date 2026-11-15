@@ -38,6 +38,10 @@ static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the childr
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
 static float P_DX = 0.3f, P_DO = 0.7f;  // value of a proven draw for us as first / second player
+#ifdef LOCAL
+static bool checkAcc = false;     // debug: verify incremental accumulators against a refresh
+static long long checkCount = 0;
+#endif
 static int P_PONDER = 1;           // search during the opponent's turn
 static float P_DE = 0.f;   // scale of the draw-head contempt in evaluations (needs a net with a draw head)
 static float P_FK = 0.02f;         // final move: 0 = most visits; > 0: value + FK * ln(visits)
@@ -410,8 +414,15 @@ static void iterate() {
 #define NN_H 0
 #endif
 #if NN_H
+#ifdef NN_THR
+static const int NQA = 255, NQB = 64, NIN = 207;  // + 18 inputs: small-board win threats
+#else
 static const int NQA = 255, NQB = 64, NIN = 189;
+#endif
 alignas(32) static int16_t NW[NIN][NN_H];
+#ifdef NN_THR
+alignas(32) static int16_t NWN[18][NN_H];  // negated threat rows (a lost threat is added as a row)
+#endif
 alignas(32) static int16_t NBIAS[NN_H];
 alignas(32) static int16_t NNZ[NN_H];
 alignas(32) static int16_t NO[10][2 * NN_H];
@@ -432,6 +443,25 @@ static inline void addF2(int16_t* __restrict a, int f, int g) {
     const int16_t* __restrict x = NW[g];
     for (int i = 0; i < NN_H; i++) a[i] += w[i] + x[i];
 }
+#ifdef NN_THR
+// Player q threatens board bd: two in a line with the third cell empty, board still open.
+static inline int thr(const State& s, int q, int bd) {
+    return !(s.closed >> bd & 1) && (TW[s.b[q][bd]] & s.empty(bd)) ? 1 : 0;
+}
+static inline void subF(int16_t* __restrict a, int f) {
+    const int16_t* __restrict w = NW[f];
+    for (int i = 0; i < NN_H; i++) a[i] -= w[i];
+}
+// Threat changes on the board of move m (perspective P: 189 + bd = own threat, 198 + bd = opponent's).
+static inline void accThreats(Acc& A, const State& before, const State& after, int m) {
+    const int bd = MB[m];
+    for (int q = 0; q < 2; q++) {
+        const int d = thr(after, q, bd) - thr(before, q, bd);
+        if (d > 0) { addF(A.v[q], 189 + bd); addF(A.v[q ^ 1], 198 + bd); }
+        else if (d < 0) { subF(A.v[q], 189 + bd); subF(A.v[q ^ 1], 198 + bd); }
+    }
+}
+#endif
 static inline void addFTo(int16_t* __restrict d, const int16_t* __restrict a, int f) {
     const int16_t* __restrict w = NW[f];
     for (int i = 0; i < NN_H; i++) d[i] = (int16_t)(a[i] + w[i]);
@@ -451,6 +481,9 @@ static inline void accMoveTo(Acc& D, const Acc& S, const State& before, const St
         addFTo(D.v[p], S.v[p], m);
         addFTo(D.v[p ^ 1], S.v[p ^ 1], 81 + m);
     }
+#ifdef NN_THR
+    accThreats(D, before, after, m);
+#endif
 }
 // Update A for move m that took `before` to `after`.
 static inline void accMove(Acc& A, const State& before, const State& after, int m) {
@@ -462,6 +495,9 @@ static inline void accMove(Acc& A, const State& before, const State& after, int 
         addF(A.v[p], m);
         addF(A.v[p ^ 1], 81 + m);
     }
+#ifdef NN_THR
+    accThreats(A, before, after, m);
+#endif
 }
 static void accRefresh(Acc& A, const State& s) {
     for (int P = 0; P < 2; P++) {
@@ -473,6 +509,10 @@ static void accRefresh(Acc& A, const State& s) {
                 if (s.macro[q] >> bd & 1) addF(A.v[P], (q == P ? 162 : 171) + bd);
             }
             if ((s.closed >> bd & 1) && !((s.macro[0] | s.macro[1]) >> bd & 1)) addF(A.v[P], 180 + bd);
+#ifdef NN_THR
+            for (int q = 0; q < 2; q++)
+                if (thr(s, q, bd)) addF(A.v[P], (q == P ? 189 : 198) + bd);
+#endif
         }
     }
 }
@@ -603,6 +643,12 @@ static void loadEmbedded() {
 }
 #endif
 #endif
+static void finishNet() {
+#ifdef NN_THR
+    for (int k = 0; k < 9; k++)
+        for (int i = 0; i < NN_H; i++) { NWN[k][i] = (int16_t)-NW[189 + k][i]; NWN[9 + k][i] = (int16_t)-NW[198 + k][i]; }
+#endif
+}
 static bool loadNet(const char* path) {
     FILE* f = fopen(path, "rb");
     if (!f) return false;
@@ -626,6 +672,14 @@ static inline float nnEvalMoveT(const Acc& A, const State& before, const State& 
         if (after.macro[p] >> bd & 1) { wp2 = NW[162 + bd]; wq2 = NW[171 + bd]; }
         else { wp2 = NW[180 + bd]; wq2 = NW[180 + bd]; }
     }
+    const int16_t *wp3 = NNZ, *wq3 = NNZ, *wp4 = NNZ, *wq4 = NNZ;
+#ifdef NN_THR
+    {   // threat changes: rows for perspective p (wp*) and p ^ 1 (wq*)
+        const int dp = thr(after, p, bd) - thr(before, p, bd), dq = thr(after, p ^ 1, bd) - thr(before, p ^ 1, bd);
+        if (dp) { wp3 = dp > 0 ? NW[189 + bd] : NWN[bd]; wq3 = dp > 0 ? NW[198 + bd] : NWN[9 + bd]; }
+        if (dq) { wq4 = dq > 0 ? NW[189 + bd] : NWN[bd]; wp4 = dq > 0 ? NW[198 + bd] : NWN[9 + bd]; }
+    }
+#endif
     const int bk = after.next < 0 ? 9 : after.next;
     const int16_t* __restrict o = NO[bk];
     const int16_t* __restrict od = ND[bk];
@@ -635,7 +689,14 @@ static inline float nnEvalMoveT(const Acc& A, const State& before, const State& 
 #if defined(__x86_64__) && NN_H % 16 == 0
     const __m256i zero = _mm256_setzero_si256(), qa = _mm256_set1_epi16(NQA);
     __m256i acc = zero, accd = zero;
-    if (wq2 == NNZ) {  // no board closed (most moves): skip the zero rows
+    if (wp3 != NNZ || wp4 != NNZ) {  // a threat changed: up to four rows per perspective
+        for (int i = 0; i < NN_H; i += 16) {
+            UT_STEP(_mm256_add_epi16(_mm256_add_epi16(UT_LD(a + i), UT_LD(wq1 + i)),
+                    _mm256_add_epi16(UT_LD(wq2 + i), _mm256_add_epi16(UT_LD(wq3 + i), UT_LD(wq4 + i)))), i)
+            UT_STEP(_mm256_add_epi16(_mm256_add_epi16(UT_LD(b + i), UT_LD(wp1 + i)),
+                    _mm256_add_epi16(UT_LD(wp2 + i), _mm256_add_epi16(UT_LD(wp3 + i), UT_LD(wp4 + i)))), NN_H + i)
+        }
+    } else if (wq2 == NNZ) {  // no board closed (most moves): skip the zero rows
         for (int i = 0; i < NN_H; i += 16) {
             UT_STEP(_mm256_add_epi16(UT_LD(a + i), UT_LD(wq1 + i)), i)
             UT_STEP(_mm256_add_epi16(UT_LD(b + i), UT_LD(wp1 + i)), NN_H + i)
@@ -650,13 +711,13 @@ static inline float nnEvalMoveT(const Acc& A, const State& before, const State& 
     if (D) sumd = hsum8(accd);
 #else
     for (int i = 0; i < NN_H; i++) {
-        const int16_t v = (int16_t)(a[i] + (int16_t)(wq1[i] + wq2[i]));
+        const int16_t v = (int16_t)(a[i] + (int16_t)(wq1[i] + wq2[i] + wq3[i] + wq4[i]));
         const int16_t c = (int16_t)min(max((int)v, 0), NQA);
         sum += (int32_t)(int16_t)(c * o[i]) * c;
         if (D) sumd += (int32_t)(int16_t)(c * od[i]) * c;
     }
     for (int i = 0; i < NN_H; i++) {
-        const int16_t v = (int16_t)(b[i] + (int16_t)(wp1[i] + wp2[i]));
+        const int16_t v = (int16_t)(b[i] + (int16_t)(wp1[i] + wp2[i] + wp3[i] + wp4[i]));
         const int16_t c = (int16_t)min(max((int)v, 0), NQA);
         sum += (int32_t)(int16_t)(c * o[NN_H + i]) * c;
         if (D) sumd += (int32_t)(int16_t)(c * od[NN_H + i]) * c;
@@ -708,6 +769,25 @@ static void iterateNN() {
         Ap = &A;
         if (P_CT > 0 && P[pendI[i]].N >= P_CT) cachePut(pendI[i], A);
     }
+#ifdef LOCAL
+    if (checkAcc && !s.result) {   // debug: incremental accumulator and fused child eval vs refresh
+        Acc R;
+        accRefresh(R, s);
+        if (memcmp(&R, Ap, sizeof R)) { fprintf(stderr, "ACC MISMATCH ply %d\n", s.ply); exit(5); }
+        u8 mv[81];
+        const int n = s.gen(mv);
+        for (int i = 0; i < n; i++) {
+            State cs = s;
+            cs.play(mv[i]);
+            if (cs.result) continue;
+            Acc C;
+            accRefresh(C, cs);
+            const float f = nnEvalMove(*Ap, s, cs, mv[i]), g = nnEval(C, cs);
+            if (fabsf(f - g) > 1e-6f) { fprintf(stderr, "EVALMOVE MISMATCH %f %f ply %d\n", f, g, s.ply); exit(6); }
+        }
+        checkCount++;
+    }
+#endif
     float v;
     bool proof = false;
     if (P_NNMODE == 1 && !P[idx].proven && !s.result && (P[idx].N > 0 || idx == root)) {
@@ -888,6 +968,9 @@ static void parseParams(const char* p) {
             else if (k == "DO") P_DO = v;
             else if (k == "DE") P_DE = v;
             else if (k == "PONDER") P_PONDER = (int)v;
+#ifdef LOCAL
+            else if (k == "CHECK") checkAcc = v != 0;
+#endif
             else if (k == "LEAF") P_LEAF = v;
             else if (k == "MS") P_MS = v;
             else if (k == "FMS") P_FIRST_MS = v;
@@ -1014,6 +1097,7 @@ int main() {
     loadEmbedded();
     netOn = true;
 #endif
+    finishNet();
     for (int i = 1; i < (1 << 16); i++) LOGT[i] = logf((float)i);
     LOGT[0] = 0;
     rootState.reset();
@@ -1037,6 +1121,7 @@ int main() {
 #if NN_H
     if (getenv("UT_NET")) {
         netOn = loadNet(getenv("UT_NET"));
+        finishNet();
         if (!netOn) { fprintf(stderr, "cannot load net %s\n", getenv("UT_NET")); return 1; }
     }
 #endif
@@ -1044,7 +1129,7 @@ int main() {
     if (getenv("UT_EVAL")) {  // print the net's value of the first records of a data file
         FILE* f = fopen(getenv("UT_EVAL"), "rb");
         GenRec r;
-        for (int k = 0; k < 20 && f && fread(&r, sizeof r, 1, f) == 1; k++) {
+        for (int k = 0; k < (getenv("UT_EVALN") ? atoi(getenv("UT_EVALN")) : 20) && f && fread(&r, sizeof r, 1, f) == 1; k++) {
             State s;
             s.reset();
             s.side = r.side;
@@ -1076,6 +1161,7 @@ int main() {
         return 0;
     }
     if (getenv("UT_POOL")) POOL = atoi(getenv("UT_POOL"));  // small pools exercise compaction
+    if (getenv("UT_CHECKACC")) checkAcc = true;
 #endif
     pool[0] = (Node*)malloc(sizeof(Node) * POOL);
     pool[1] = (Node*)malloc(sizeof(Node) * POOL);
@@ -1161,6 +1247,9 @@ int main() {
         const Node& rn = pool[cur][root];
         printf("%d %d\n", MROW[m], MCOL[m]);
         fflush(stdout);
+#ifdef LOCAL
+        if (checkAcc) fprintf(stderr, "accumulator checks passed: %lld\n", checkCount);
+#endif
         fprintf(stderr, "it=%lld root N=%d q=%.3f pr=%d used=%d t=%.1fms\n", it, rn.N,
                 rn.N ? 1.f - rn.W / rn.N : 0.f, rn.proven, used, msSince(t0));
         advance(m);

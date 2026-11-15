@@ -86,9 +86,14 @@ net = ""
 if a.net:
     h = a.hidden
     raw = open(a.net, "rb").read()
-    n16 = NIN * h + h + NB * 2 * h
-    base, dsz = n16 * 2 + 4 * NB, NB * 2 * h * 2 + 4 * NB
+    dsz = NB * 2 * h * 2 + 4 * NB
+    for nin in (NIN, NIN + 18):                 # 207 inputs = with small-board threat features
+        n16 = nin * h + h + NB * 2 * h
+        base = n16 * 2 + 4 * NB
+        if len(raw) in (base, base + dsz):
+            break
     assert len(raw) in (base, base + dsz), f"net size mismatch for hidden={h}"
+    thr = nin > NIN
     draw = len(raw) == base + dsz               # second head: P(draw)
     v = np.frombuffer(raw[:n16 * 2], dtype="<i2").astype(np.int64)
     ob = np.frombuffer(raw[n16 * 2:base], dtype="<i4").astype(np.int64)
@@ -111,7 +116,7 @@ if a.net:
     text = "".join(map(chr, codes.tolist()))
     net = (f'#define NN_EMBED 1\n' + ('#define NN_HUFF 1\n' if a.huff else '') + ('#define NN_DRAW 1\n' if draw else '') +
            f'#define NN_OFF {OFF}\nstatic const char16_t NN_DATA[] = u"{text}";\n')
-    defs = f"#define NN_H {h}\n" + defs
+    defs = f"#define NN_H {h}\n" + ("#define NN_THR 1\n" if thr else "") + defs
 assert s.count("//@NET_DATA@") == 1
 s = s.replace("//@NET_DATA@", net)
 if defs:

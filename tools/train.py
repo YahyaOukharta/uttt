@@ -39,10 +39,10 @@ def syms():
 
 
 class Net(nn.Module):
-    def __init__(self, h, draw=False):
+    def __init__(self, h, draw=False, nin=NIN):
         super().__init__()
         self.h = h
-        self.ft = nn.Linear(NIN, h)
+        self.ft = nn.Linear(nin, h)
         self.out = nn.Linear(2 * h, NB)
         self.dout = nn.Linear(2 * h, NB) if draw else None
         nn.init.uniform_(self.ft.weight, -0.1, 0.1)
@@ -84,6 +84,7 @@ def main():
     ap.add_argument("--max", type=int, default=0, help="use at most this many positions")
     ap.add_argument("--init", help="float checkpoint (.pt) to continue from")
     ap.add_argument("--draw", type=float, default=0, help="train a draw-probability head with this loss weight")
+    ap.add_argument("--threats", action="store_true", help="experimental: 18 extra inputs (small-board win threats per player)")
     ap.add_argument("--wclip", type=float, default=127 / 255, help="clip first-layer weights and biases (int8 at QA=255)")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else
                     ("mps" if torch.backends.mps.is_available() else "cpu"))
@@ -155,15 +156,35 @@ def main():
         wo, wp = win[own], win[opp]                           # (B, 9) won boards
         drawn = ((own | opp) == 511).float() * (1 - wo) * (1 - wp)
         co, cp = bits[own].reshape(-1, 81), bits[opp].reshape(-1, 81)
+        if a.threats:   # a player threatens a small board: two in a line, third cell empty, board open
+            open_ = ((own | opp) != 511).float() * (1 - wo) * (1 - wp)
+            to, tp = THR[own, opp] * open_, THR[opp, own] * open_
+            stm = torch.cat([co, cp, wo, wp, drawn, to, tp], dim=1)
+            oth = torch.cat([cp, co, wp, wo, drawn, tp, to], dim=1)
+            return stm, oth, nxt
         stm = torch.cat([co, cp, wo, wp, drawn], dim=1)
         oth = torch.cat([cp, co, wp, wo, drawn], dim=1)
         return stm, oth, nxt
 
-    model = Net(a.hidden, a.draw > 0).to(dev)
+    if a.threats:
+        thr = np.zeros((512, 512), dtype=np.float32)
+        for m in range(512):
+            for o in range(512):
+                if m & o:
+                    continue
+                e = 511 & ~(m | o)
+                thr[m, o] = float(any(bin(m & l).count("1") == 2 and (e & l) for l in LINES))
+        THR = torch.from_numpy(thr).to(dev)
+    model = Net(a.hidden, a.draw > 0, NIN + (18 if a.threats else 0)).to(dev)
     if a.init and not os.path.exists(a.init):   # Kaggle: find the checkpoint wherever the dataset is mounted
         a.init = glob.glob("/kaggle/input/**/" + os.path.basename(a.init), recursive=True)[0]
     if a.init:
-        missing = model.load_state_dict(torch.load(a.init, map_location=dev), strict=False).missing_keys
+        sd = torch.load(a.init, map_location=dev)
+        w = sd["ft.weight"]
+        if w.shape[1] < model.ft.weight.shape[1]:   # widen: new inputs start with zero weights
+            print(f"init: inputs {w.shape[1]} -> {model.ft.weight.shape[1]} (new weights 0)", flush=True)
+            sd["ft.weight"] = torch.cat([w, torch.zeros(w.shape[0], model.ft.weight.shape[1] - w.shape[1], device=dev)], 1)
+        missing = model.load_state_dict(sd, strict=False).missing_keys
         if missing:
             print(f"init: new parameters {missing}", flush=True)
     opt = torch.optim.Adam(model.parameters(), lr=a.lr)
