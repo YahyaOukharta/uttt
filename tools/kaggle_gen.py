@@ -7,6 +7,7 @@
   kaggle_gen.py status TAG N
   kaggle_gen.py fetch TAG N                       finished outputs -> data/TAG_<seed>.bin
 UT_KP=2 selects the second account (~/.kaggle/user_2, ~/.kaggle/access_token_2).
+UT_KGPU=1 runs the kernels in GPU sessions (their own CPU cores and session limit; the GPU idles).
 """
 import glob, json, os, re, shutil, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -65,7 +66,8 @@ def push(tag, n, iters, seed, hours, flags="", net=""):
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "gen.py"), "w").write(KERNEL % (iters, seed + 100 * i, hours, flags, net))
         json.dump({"id": f"{USER}/ut-{tag}-{i}", "title": f"ut-{tag}-{i}", "code_file": "gen.py", "language": "python",
-                   "kernel_type": "script", "is_private": True, "enable_gpu": False, "enable_internet": False,
+                   "kernel_type": "script", "is_private": True, "enable_gpu": os.environ.get("UT_KGPU") == "1",
+                   "enable_internet": False,
                    "dataset_sources": [f"{USER}/ut-engine"]}, open(os.path.join(d, "kernel-metadata.json"), "w"))
         r = kg("kernels", "push", "-p", d)
         print(i, (r.stdout + r.stderr).strip().splitlines()[-1][:110], flush=True)
