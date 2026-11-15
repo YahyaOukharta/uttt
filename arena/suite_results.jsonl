@@ -279,3 +279,7 @@
 {"label": "loop1", "opponent": "morph", "seat": 1, "result": "D", "log": "test-922048443.log", "game_id": 922033105, "t": 1794769447}
 {"label": "loop1", "opponent": "aCat", "seat": 1, "result": "W", "log": "test-922048688.log", "game_id": 922032567, "t": 1794769485}
 {"label": "loop1", "opponent": "Regulus136", "seat": 1, "result": "L", "log": "test-922048934.log", "game_id": 922032663, "t": 1794769524}
+{"label": "loop1", "opponent": "Vingte", "seat": 0, "result": "W", "log": "test-922054014.log", "game_id": 922048046, "t": 1794770306}
+{"label": "loop1", "opponent": "Vingte", "seat": 1, "result": "L", "log": "test-922054271.log", "game_id": 922048160, "t": 1794770338}
+{"label": "loop1", "opponent": "Daporan", "seat": 1, "result": "L", "log": "test-922054492.log", "game_id": 922049070, "t": 1794770378}
+{"label": "loop1", "opponent": "Apostolique", "seat": 1, "result": "L", "log": "test-922054851.log", "game_id": 922047998, "t": 1794770418}

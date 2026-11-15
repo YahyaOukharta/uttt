@@ -26,7 +26,10 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.12 | book 754 entries; **refuted moves**: a move of ours whose every observed opponent reply led to a position the long search proves lost is marked losing, propagated from the deepest positions up; the book plays the best other move (216 entries, 193 as second player, plies 20–40) | local sanity only | 33.79 (final); vs the top 25: first 90%, second 10% | 7 |
 | v1.13 | book 1068 entries; positions that also occur in won games / second-player draws ("mixed") may change for a long-search gain ≥ 0.03 (e.g. vs Vingte as first player: 7 draws through a ply-24 move the search rates 0.08 worse) | local sanity only | submission 41720690 | |
 | v1.14 | book 1638 entries: + 456 pre-emptive (opponent's likely replies to book moves, where a 35k-iteration search misplays) | 34.42, rank 5 / Legend (submission 41720886) |
-| v1.15 | minified packing (90.6k chars); book 2549 entries (1279 pre-emptive from 4 rounds, 322 refuted, 47 by record) | placing (submission 41721094) |
+| v1.15 | minified packing (90.6k chars); book 2549 entries (1279 pre-emptive from 4 rounds, 322 refuted, 47 by record) | **34.49, rank 4** (submission 41721094) |
+| v1.16 | book 3146 entries (5 pre-emptive rounds: 1876) | 34.35, rank 6 (41721330) |
+| v1.17 | book 3338 (+ v1.16 games, analysis on Kaggle after the Modal workspace paused) | 34.34, rank 7 (41721543) |
+| v1.18 | + probed second-player lines (Apostolique win, Daporan draw: 37 forced entries) | placing (41721785) |
 
 ## Measurements
 
@@ -100,3 +103,5 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | Loss report (`tools/losses.py`), v1.12's 129 non-won games vs the top 25: value drop split into our errors (long-search best − our move) and surprises (opponent reply better than the long search expected) | errors 20.3, surprises 100.2. Second player: start at 0.09–0.18 after 4 4 and slide to 0 by surprises (our errors ~0.05–0.13 per game): no blunders, the first player is just stronger. First player: real blunders at plies 18–38 (67 moves ≥ 0.15 in v1.10–v1.12, e.g. Daporan ply 38: 0.60 vs 0.98), none a proven win (no tactical solver would find them), all now answered by the book |
 | Pre-emptive book (`tools/modal_pre.py`), round 1: for the 1,068 book moves, the opponent's 2 most likely replies (1M-iteration search) → 2,020 positions searched 4M and 35k iterations (~one turn of ours) | the short search picks another move in 692 (34%), worse by ≥ 0.03 in 209 and by ≥ 0.1 in 114: these become book entries before any arena game reaches them |
 | Minified packing (`pack.py`, default): whitespace between tokens dropped where the tokens stay apart, code lines joined, frequent long identifiers replaced by two-character macros | 97,883 → 89,019 characters (−8.9k, ~4,500 more book entries); assembly identical to the unminified build (same md5); compiles and plays on CodinGame |
+| Deep head, val loss at 60M positions / 10 epochs (Modal A10G, ~3 min per run) | from n8t: plain 0.5601, deep-16 0.5582, deep-32 0.5567; from scratch: plain 0.5634, deep-8 0.5619, deep-16 0.5610, deep-32 0.5599. Clear capacity gain, but dense inference costs ~3-4x per child evaluation |
+| Second-seat probing (`tools/probe.py`), first 45 test games vs the top 6 | W1 D2: deviations at positions only reached in lost games; kept lines forced in the book. Angecide's old battles unreplayable (resubmits); Vingte / Daporan often leave the old line |
