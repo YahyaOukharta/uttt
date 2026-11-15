@@ -51,3 +51,7 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | n4b (from scratch, 186M unique, 16 epochs) vs v1.4 / vs n4a | +33 / −9 |
 | Trainer: 64-bit hash dedup, int16 inputs | load 3.8 → 1.0 s per million positions; 186M positions fit an A10G |
 | Huffman-coded int8 weights | 6.73 bits per weight; 640 hidden 99.6k → 84.2k chars; 768 projected 96.4k |
+| Search speed (x86, 300k first-turn iterations): fused accumulator copy + child eval without zero rows / + one division in PUCT | 0.531 s → 0.499 s → 0.473 s (−11%), same moves |
+| n4d (768 hidden, 194M unique, 16 epochs) vs n4b (640), same code | +6 ± 22 (no gain: capacity offset by speed) |
+| Draw head (n4a fine-tuned 4 epochs with draw loss 0.5) vs v1.5: eval contempt DE 0 / 1 / 2 | −13 / −54 / −104 (eval contempt hurts; draw loss also costs the value head) |
+| Arena, v1.2–v1.4 vs the top 16 | as first player 0 losses (~88% wins), as second player 0 wins (~10–19% draws): rank is decided by draw rates |
