@@ -1,13 +1,14 @@
 """Pre-emptive book on Modal: answer the opponent's likely replies to our book moves before the arena does.
 
-  modal run tools/modal_pre.py --src out/c24_n8t.cpp [--replies 2] [--iters 4000000] [--fast 35000] [--chunk 16]
+  modal run tools/modal_pre.py --src out/c24_n8t.cpp [--replies 2] [--iters 4000000] [--fast 35000] [--chunk 48] [--deeper 1]
 
 For every book entry (tools/book.txt: position P, our move m) whose prefix is known (arena/book_an*.jsonl),
 the position after m is searched (1M iterations, opponent to move) for its most visited replies r; each
 position P+m+r is then searched long (ITERS) and short (FAST, about one turn of ours on CodinGame). Results go
 to arena/book_pre.jsonl; book.py build adds an entry where the short search's move is worse than the long
 search's best by >= 0.03. Each run also expands the long search's move in the positions found so far
-(replies with at least 20% of the top reply's visits), so repeated runs go one turn deeper.
+(replies with at least 20% of the top reply's visits), so repeated runs go one turn deeper; --deeper 0
+expands only book moves not yet covered.
 """
 import json, os
 import modal
@@ -62,7 +63,7 @@ def run(src: str, jobs: list, replies: int, iters: int, fast: int):
 
 
 @app.local_entrypoint()
-def main(src: str, replies: int = 2, iters: int = 4000000, fast: int = 35000, chunk: int = 48):
+def main(src: str, replies: int = 2, iters: int = 4000000, fast: int = 35000, chunk: int = 48, deeper: int = 1):
     an = {}
     for f in ("book_an.jsonl", "book_an_deep.jsonl", "book_pre.jsonl"):
         p = os.path.join(ROOT, "arena", f)
@@ -85,7 +86,7 @@ def main(src: str, replies: int = 2, iters: int = 4000000, fast: int = 35000, ch
         pm = (pre + " " if pre else "") + f"{f[1]} {f[2]}"
         if pm not in done:
             jobs.append(pm)
-    if os.path.exists(path):   # one turn deeper: the move we will play in each covered position
+    if deeper and os.path.exists(path):   # one turn deeper: the move we will play in each covered position
         for l in open(path):
             a = json.loads(l)
             if a.get("proven") or not a["children"] or a.get("reply_share", 1) < 0.2:
