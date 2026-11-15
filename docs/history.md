@@ -29,7 +29,9 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.15 | minified packing (90.6k chars); book 2549 entries (1279 pre-emptive from 4 rounds, 322 refuted, 47 by record) | **34.49, rank 4** (submission 41721094) |
 | v1.16 | book 3146 entries (5 pre-emptive rounds: 1876) | 34.35, rank 6 (41721330) |
 | v1.17 | book 3338 (+ v1.16 games, analysis on Kaggle after the Modal workspace paused) | 34.34, rank 7 (41721543) |
-| v1.18 | + probed second-player lines (Apostolique win, Daporan draw: 37 forced entries) | placing (41721785) |
+| v1.18 | + probed second-player lines (Apostolique win, Daporan draw: 37 forced entries) | **32.55, rank 11** (41721785): a record entry changed our first reply as second player (4 3 for 4 5 after 4 4, from 4 probe games vs 1447) and reshuffled every second-player game; mid-table draws lost (SupSon 0/9, RoboStac 0/7) |
+| v1.19–v1.21 | same + record-margin fix (v1.20) + trunk protection (v1.21) | replaced within minutes |
+| v1.15 again | user: keep the best rank unless sure | resubmitted 23:01 (41721991) |
 
 ## Measurements
 
