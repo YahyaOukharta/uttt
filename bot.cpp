@@ -36,7 +36,7 @@ static float P_CN = 0.2f;         // exploration constant with the net
 static int P_NNSEL = 1;           // 1: PUCT with priors = softmax of the children's first net values
 static float P_CP = 1.0f, P_PT = 0.1f;
 static int P_CLIM = 1 << 21;      // compaction keeps at most this many nodes
-static float P_DX = 0.5f, P_DO = 0.5f;  // value of a proven draw for us as first / second player
+static float P_DX = 0.3f, P_DO = 0.7f;  // value of a proven draw for us as first / second player
 static float P_FK = 0.02f;         // final move: 0 = most visits; > 0: value + FK * ln(visits)
 static int P_CT = 32;             // cache the accumulator of nodes with at least this many visits (0: off)
 static int P_VN = 4;              // virtual visits given to a child's first net value
@@ -824,6 +824,7 @@ static int runGen(const char* spec) {
         }
     }
     rng = Rng(seed * 0x9E3779B97F4A7C15ULL + 12345);
+    P_DX = P_DO = 0.5f;  // self-play: both sides use the same tree, so no side-dependent draw value
     POOL = 1 << 21;
     pool[0] = (Node*)malloc(sizeof(Node) * POOL);
     pool[1] = (Node*)malloc(sizeof(Node) * POOL);
