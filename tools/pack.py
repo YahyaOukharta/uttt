@@ -21,7 +21,8 @@ ap.add_argument("-D", action="append", default=[])
 ap.add_argument("-o", "--out", default="out/submission.cpp")
 ap.add_argument("--keep-comments", action="store_true")
 ap.add_argument("--keep-local", action="store_true", help="keep LOCAL blocks (test the embedded net locally)")
-ap.add_argument("--book", help="opening book: lines 'HASH_HEX ROW COL' (tools/book.py)")
+ap.add_argument("--book", help="opening book: lines 'HASH_HEX ROW COL' (tools/book.py), most important first")
+ap.add_argument("--max-chars", type=int, default=99400, help="drop book entries from the end of the file to fit")
 ap.add_argument("--huff", action="store_true", help="Huffman-code the int8 weights (canonical code, ~6.7 bits each)")
 a = ap.parse_args()
 
@@ -119,13 +120,21 @@ if a.net:
            f'#define NN_OFF {OFF}\nstatic const char16_t NN_DATA[] = u"{text}";\n')
     defs = f"#define NN_H {h}\n" + ("#define NN_THR 1\n" if thr else "") + defs
 if a.book:   # sorted 30-bit hashes, Rice-coded gaps + 7-bit move (move = board * 9 + cell), 15 bits per character
-    ent = {}
+    lines = []
     for l in open(a.book):
         f = l.split()
         if len(f) < 3 or f[0].startswith("#"):
             continue
         r, c = int(f[1]), int(f[2])
-        ent.setdefault(int(f[0], 16) & 0x3FFFFFFF, (r // 3 * 3 + c // 3) * 9 + (r % 3) * 3 + c % 3)
+        lines.append((int(f[0], 16) & 0x3FFFFFFF, (r // 3 * 3 + c // 3) * 9 + (r % 3) * 3 + c % 3))
+    # room for the book: the limit minus the rest of the file (about 1.9 characters per entry)
+    room = a.max_chars - len(s) - len(net) - len(defs) - 200
+    keep = min(len(lines), max(0, int(room / 1.95)))
+    if keep < len(lines):
+        print(f"book: {len(lines) - keep} entries dropped to fit {a.max_chars} characters")
+    ent = {}
+    for hh, mv in lines[:keep]:
+        ent.setdefault(hh, mv)
     hs = sorted(ent)
     def rice(k):
         out, prev = [], 0

@@ -188,6 +188,7 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
     # Pre-emptive entries: positions after the opponent's likely replies to our book moves, where a short
     # search (about one of our turns) picks a move clearly worse than the long search's best.
     have = {l.split()[0] for l in out}
+    pre = []
     if os.path.exists(PRE):
         for l in open(PRE):
             a = json.loads(l)
@@ -200,7 +201,8 @@ def build(gain, dgain, emp_gain=1.0, emp_tol=0.05):
             have.add(a["hash"])
             n["pre"] += 1
             r, c = b.split()
-            out.append(f"{a['hash']} {r} {c}  # ply {a['ply']} pre: short search {fb} {ch[fb]:.3f} vs {ch[b]:.3f}")
+            pre.append((ch[b] - ch[fb], f"{a['hash']} {r} {c}  # ply {a['ply']} pre: short search {fb} {ch[fb]:.3f} vs {ch[b]:.3f}"))
+    out += [l for g, l in sorted(pre, reverse=True)]   # largest gains first: pack.py drops from the end if too long
     open(BOOK, "w").write("\n".join(out) + "\n")
     print(f"{n['book'] + n['record'] + n['refuted'] + n['pre']} entries ({n['record']} by record, {n['refuted']} refuted, "
           f"{n['pre']} pre-emptive) -> {BOOK} "
