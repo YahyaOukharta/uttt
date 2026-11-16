@@ -8,6 +8,8 @@ Started at rank 195 in Legend (score 20.23) with an older MCTS bot (`league/src/
 baseline). Current: v1.27, **36.18, rank 2 / ~490 Legend** (2026-11-16). Per-version results and every
 measurement: [docs/history.md](docs/history.md).
 
+![Legend leaderboard, 2026-11-16: rank 2](docs/leaderboard_2026-11-16.png)
+
 ### Path so far
 
 | Stage | Score | Rank |
