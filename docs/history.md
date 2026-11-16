@@ -31,7 +31,10 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.17 | book 3338 (+ v1.16 games, analysis on Kaggle after the Modal workspace paused) | 34.34, rank 7 (41721543) |
 | v1.18 | + probed second-player lines (Apostolique win, Daporan draw: 37 forced entries) | **32.55, rank 11** (41721785): a record entry changed our first reply as second player (4 3 for 4 5 after 4 4, from 4 probe games vs 1447) and reshuffled every second-player game; mid-table draws lost (SupSon 0/9, RoboStac 0/7) |
 | v1.19–v1.21 | same + record-margin fix (v1.20) + trunk protection (v1.21) | replaced within minutes |
-| v1.15 again | user: keep the best rank unless sure | resubmitted 23:01 (41721991) |
+| v1.15 again | user: keep the best rank unless sure | resubmitted (41721991): 34.20 at placement, 33.28 rank 8 the next morning after the top bots resubmitted (book lines stale) |
+| v1.22 | v1.15's book + 133 entries, only at positions where v1.15 lost every arena game (`tools/refresh.py`), guard 0 | 34.75, rank 5 (41724565) |
+| v1.23 | v1.22 + 85 (refresh loop, cycle 1) | 34.57, rank 7 (41724801); Angecide / Daporan resubmitted meanwhile |
+| v1.24 | v1.23 + 116 (cycle 2) | **35.23, rank 3** (41725060), best so far |
 
 ## Measurements
 
@@ -108,3 +111,5 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | Deep head, val loss at 60M positions / 10 epochs (Modal A10G, ~3 min per run) | from n8t: plain 0.5601, deep-16 0.5582, deep-32 0.5567; from scratch: plain 0.5634, deep-8 0.5619, deep-16 0.5610, deep-32 0.5599. Clear capacity gain, but dense inference costs ~3-4x per child evaluation |
 | Second-seat probing (`tools/probe.py`), first 45 test games vs the top 6 | W1 D2: deviations at positions only reached in lost games; kept lines forced in the book. Angecide's old battles unreplayable (resubmits); Vingte / Daporan often leave the old line |
 | Deep head in the engine (float test version, NN_DEEP) | 20k iterations 6.3 s vs 0.08 s plain: every game of the Kaggle equal-iteration match faulted on time. Integer estimate on Haswell (vpmaddwd on one port): deep-32 scoring every child ~3x per iteration and +18k chars (over the limit); deep-16 on the expanded node only ~15-30% slower and +9k chars for a val gain worth maybe +10-20 Elo. Parked |
+| Replay check of the probed lines (`probe.py verify`): the battle of every kept probe line replayed with the candidate | Apostolique W → L, Daporan D ×3 → L ×3: the top bots repeat their openings but not whole games, so a single probe result does not reproduce. Probed lines are not used for submits |
+| Book refresh after opponent resubmits (`tools/refresh.py`, `tools/refresh_loop.sh`) | v1.15 dropped 34.49 → 33.28 overnight with no change of ours (opponents resubmitted). Refreshing only positions the live version lost every game in: v1.22 34.75, v1.24 35.23 (rank 3). v1.15 vs the top 6: first player 0.83, second 0.01; vs the rest: 0.97 / 0.45 |
