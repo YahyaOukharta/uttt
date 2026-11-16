@@ -113,19 +113,18 @@
 1f9a9da3 6 5  # ply 3 played 8 4 gain +0.024 L1 D0 NinjaDoggy
 330f9238 0 8  # ply 5 played 1 6 gain +0.032 L1 D0 NinjaDoggy
 088a91c1 5 0  # ply 7 played 4 2 gain +0.034 L1 D0 NinjaDoggy
-0dbd0d8e 2 8  # ply 7 played 2 7 gain +0.043 L81 D0 Apostolique,abrl
+0dbd0d8e 2 8  # ply 7 played 2 7 gain +0.043 L85 D0 Apostolique,abrl
 05ae1796 3 7  # ply 9 played 5 8 gain +0.034 L1 D0 NinjaDoggy
-0c9bb5a4 0 3  # ply 9 record 2,3:4x0.0 0,3:3x0.333 gain 1.3
+0c9bb5a4 0 3  # ply 9 record 2,3:4x0.0 0,3:6x0.25 gain 1.0
 0f79eea8 6 4  # ply 9 played 8 4 gain +0.033 L18 D0 Apostolique,Daporan,TomAlard
-1798bed3 1 5  # ply 10 record 0,4:8x0.188 1,5:11x0.545 gain 2.9
+1798bed3 1 5  # ply 10 record 0,4:8x0.188 1,5:14x0.643 gain 3.6
 1b720ed1 2 5  # ply 11 played 0 4 gain +0.021 L1 D0 NinjaDoggy
 10275a71 3 6  # ply 11 played 3 8 gain +0.022 L7 D0 Apostolique,TomAlard,Daporan
 3498ddee 1 2  # ply 13 played 0 0 gain +0.031 L1 D0 NinjaDoggy
-03314275 4 2  # ply 14 record 4,0:9x0.556 4,2:15x0.867 gain 2.8
+03314275 4 2  # ply 14 record 4,0:9x0.556 4,2:20x0.9 gain 3.1
 2fa3162c 1 8  # ply 16 played 0 8 gain +0.052 L1 D1 RoboStac
 3e528eab 8 6  # ply 16 played 7 6 gain +0.072 L2 D0 Daporan,RoboStac
 21d5bede 6 7  # ply 17 played 6 8 gain +0.009 L1 D0 MrSubZero
-1ce5131b 5 6  # ply 17 played 3 6 gain +0.070 L2 D0 MrSubZero
 044e9354 7 8  # ply 17 played 7 7 gain +0.026 L1 D0 MrSubZero
 3a1e3841 7 3  # ply 17 played 6 4 gain +0.040 L1 D0 sZoom
 26b289e6 0 3  # ply 18 played 0 5 gain +0.022 L1 D0 RoboStac
@@ -147,7 +146,7 @@
 1edc7726 8 0  # ply 21 played 6 1 gain +0.000 L3 D0 Apostolique,TomAlard
 365e77a9 1 1  # ply 21 played 2 1 gain +0.039 L1 D0 sZoom
 072a7c0d 8 5  # ply 22 played 7 5 gain +0.039 L0 D1 Daporan
-24a35305 5 1  # ply 22 played 5 0 gain +0.087 L0 D6 Vingte
+24a35305 5 1  # ply 22 record 5,0:8x0.75 5,1:8x0.875 gain 1.0
 110d3df7 5 7  # ply 23 played 5 6 gain +0.001 L4 D0 Leonard.,TomAlard,sZoom
 3bec66f8 2 0  # ply 23 played 1 0 gain +0.015 L1 D0 reCurse
 3acabafb 0 1  # ply 23 played 1 0 gain +0.002 L1 D0 NinjaDoggy
@@ -161,8 +160,8 @@
 0fba3011 2 3  # ply 23 played 1 5 gain +0.000 L2 D0 Daporan
 3f52bb08 4 2  # ply 23 played 3 1 gain +0.001 L1 D0 sZoom
 007ee461 6 8  # ply 23 played 6 7 gain +0.001 L3 D0 Apostolique
-3280a5ad 7 4  # ply 23 record 7,5:7x0.0 7,4:14x0.393 gain 2.8
-182c375e 6 6  # ply 23 record 7,8:15x0.0 6,7:3x0.0 6,6:91x0.154 gain 2.8
+3280a5ad 7 4  # ply 23 record 7,5:7x0.0 7,4:17x0.382 gain 2.7
+182c375e 6 6  # ply 23 record 7,8:15x0.0 6,7:3x0.0 6,6:117x0.132 gain 2.4
 2e17cda1 0 7  # ply 24 played 1 7 gain +0.106 L0 D1 Daporan
 20b362c5 7 7  # ply 24 record 6,8:4x0.5 7,7:4x1.0 gain 2.0
 17faa66e 5 4  # ply 24 played 3 5 gain +0.000 L1 D0 Daporan
@@ -247,7 +246,7 @@
 01cf9098 7 0  # ply 33 played 6 0 gain +0.000 L6 D0 TomAlard
 36fee179 7 5  # ply 33 played 7 3 gain +0.231 L1 D0 RoboStac
 063fb486 2 1  # ply 33 played 1 1 gain +0.000 L15 D0 RoboStac
-39b9ce0d 4 1  # ply 33 refuted 0 6,1 2,2 0,2 6,3 0,5 6 alt q 0.126
+39b9ce0d 5 2  # ply 33 refuted 0 6,1 1,1 2,2 0,2 6,3 0,4 1,5 6 alt q 0.121
 1686fadc 4 2  # ply 33 played 3 0 gain +0.000 L6 D0 Fancheng
 31baca8e 1 7  # ply 33 played 2 6 gain +0.000 L2 D0 Babebibobu
 3fbf41be 4 1  # ply 33 refuted 3 2 alt q 0.160
@@ -257,7 +256,7 @@
 1e2ac9de 5 3  # ply 35 refuted 3 4 alt q 0.106
 36656e5f 4 3  # ply 35 played 5 5 gain +0.001 L1 D0 AllanB
 332dcf4c 6 2  # ply 35 played 6 1 gain +0.000 L6 D0 TomAlard
-0adc976e 8 5  # ply 35 record 6,3:5x0.5 8,5:6x0.75 gain 1.2
+0adc976e 8 5  # ply 35 record 6,3:5x0.5 8,5:8x0.812 gain 1.6
 2d009b2e 4 2  # ply 35 refuted 3 2 alt q 0.498
 004e63bb 7 5  # ply 35 played 6 3 gain +0.413 L1 D0 flawedaxioms
 0b1135dd 7 0  # ply 36 played 7 1 gain +0.149 L0 D1 RoboStac
@@ -285,8 +284,8 @@
 27daa5e9 7 3  # ply 9 played 8 3 gain +0.035 L7 D0 SupSon,sZoom,RoboStac
 084a983f 5 7  # ply 11 played 5 8 gain +0.048 L1 D0 zasmu
 2afd454b 4 6  # ply 11 played 5 7 gain +0.024 L2 D0 Apostolique,zasmu
-014453c7 6 4  # ply 12 record 8,4:2x0.0 6,4:14x0.75 gain 1.5
-12b02be3 2 5  # ply 14 record 2,5:4x1.0 0,5:3x0.833 0,3:1x0.5 gain 1.0
+014453c7 6 4  # ply 12 record 8,4:2x0.0 6,4:17x0.794 gain 1.6
+12b02be3 2 5  # ply 14 record 2,5:6x1.0 0,5:3x0.833 0,3:1x0.5 gain 1.0
 1dc4c9e8 2 2  # ply 15 played 0 0 gain +0.043 L1 D0 MrSubZero
 2e37c221 0 8  # ply 15 played 1 8 gain +0.013 L1 D0 Apostolique
 0549306c 6 3  # ply 17 played 6 4 gain +0.002 L1 D0 MrSubZero
@@ -405,7 +404,7 @@
 1d2e8d6a 5 8  # ply 15 played 5 6 gain +0.021 L1 D0 Daporan
 134237e5 7 3  # ply 16 played 8 5 gain +0.023 L0 D1 Daporan
 129ef2d8 2 2  # ply 16 played 0 0 gain +0.015 L1 D0 Daporan
-2e679bd1 6 8  # ply 16 record 6,7:1x0.0 6,8:5x1.0 gain 1.0
+2e679bd1 6 8  # ply 16 record 6,7:1x0.0 6,8:7x1.0 gain 1.0
 3ef5cdab 3 8  # ply 17 played 5 6 gain +0.005 L5 D0 Apostolique
 1dcf5c4b 8 1  # ply 18 played 8 0 gain +0.096 L2 D0 Apostolique
 0e707c65 6 1  # ply 18 played 8 0 gain +0.006 L1 D0 Daporan
@@ -428,7 +427,7 @@
 36060ef4 3 5  # ply 21 played 3 3 gain +0.000 L1 D0 Daporan
 008c0003 4 2  # ply 21 played 3 0 gain +0.000 L1 D0 Apostolique
 154cb03e 1 1  # ply 21 played 2 0 gain +0.001 L1 D0 MrSubZero
-0bb86d45 1 2  # ply 21 played 0 0 gain +0.059 L4 D0 flawedaxioms
+0bb86d45 1 2  # ply 21 record 0,0:3x0.0 1,2:3x0.5 gain 1.5
 25a229cf 5 8  # ply 22 played 5 7 gain +0.078 L0 D2 Daporan
 20600c9a 4 5  # ply 22 played 4 3 gain +0.107 L2 D0 Apostolique
 2ae47ed1 7 1  # ply 22 played 7 0 gain +0.082 L1 D0 MrSubZero
@@ -473,7 +472,7 @@
 3514d735 3 7  # ply 29 played 3 6 gain +0.001 L1 D0 Babebibobu
 384ae9fe 7 8  # ply 29 played 8 7 gain +0.187 L1 D0 flawedaxioms
 2b016a76 4 2  # ply 29 played 3 6 gain +0.000 L1 D0 Apostolique
-0ceb1bfb 8 1  # ply 29 played 6 1 gain +0.000 L1 D0 Apostolique
+0ceb1bfb 8 1  # ply 29 played 6 1 gain +0.000 L2 D0 Apostolique
 3902937e 7 6  # ply 29 refuted 6 7 alt q 0.118
 1ee693aa 3 0  # ply 29 played 5 2 gain +0.001 L1 D0 Daporan
 31bb143d 3 3  # ply 29 played 0 3 gain +0.000 L1 D0 MrSubZero
@@ -540,7 +539,6 @@
 3c5ca541 7 2  # ply 19 played 8 1 gain +0.032 L1 D0 MrSubZero
 35ac8be2 2 0  # ply 19 played 2 1 gain +0.093 L2 D0 Daporan
 32e7a8df 4 0  # ply 20 record 3,1:11x0.727 4,0:3x1.0 gain 3.0
-29e5d963 2 2  # ply 21 played 1 0 gain +0.038 L2 D0 MrSubZero
 143e6de4 2 2  # ply 21 played 0 2 gain +0.000 L3 D0 MrSubZero
 3d2a1fa4 8 2  # ply 21 played 6 1 gain +0.080 L1 D0 MrSubZero
 151f2583 0 4  # ply 21 played 1 5 gain +0.012 L1 D0 MrSubZero
@@ -587,7 +585,7 @@
 082e5d31 7 6  # ply 29 played 8 7 gain +0.001 L12 D0 Daporan,TomAlard
 226b11fc 5 2  # ply 29 refuted 3 2 alt q 0.359
 0f81d53b 2 5  # ply 29 refuted 0 3 alt q 0.120
-38745707 5 5  # ply 29 record 3,5:3x0.0 5,5:16x0.5 gain 1.5
+38745707 5 5  # ply 29 record 3,5:3x0.0 5,5:18x0.5 gain 1.5
 3ea51a36 8 2  # ply 29 played 7 0 gain +0.000 L21 D0 Vingte
 03e5f2c1 6 6  # ply 29 played 6 7 gain +0.002 L1 D0 zasmu
 3ed678b1 7 6  # ply 30 played 6 6 gain +0.117 L0 D1 Daporan
@@ -642,7 +640,7 @@
 2760ae67 0 2  # ply 25 refuted 0 0 alt q 0.114
 1dd76c0e 5 7  # ply 25 played 3 7 gain +0.000 L1 D0 Apostolique
 2bceac06 5 5  # ply 25 refuted 3 5 alt q 0.159
-1ee07936 1 0  # ply 26 record 2,0:2x0.25 1,0:5x1.0 gain 1.5
+1ee07936 1 0  # ply 26 record 2,0:2x0.25 1,0:7x1.0 gain 1.5
 2729f578 2 3  # ply 26 played 2 4 gain +0.117 L0 D1 flawedaxioms
 21654b99 6 2  # ply 27 refuted 6 1 alt q 0.141
 3b07e83f 7 7  # ply 27 played 7 8 gain +0.001 L1 D0 zasmu
@@ -654,7 +652,7 @@
 23d421d1 6 0  # ply 27 refuted 6 1 alt q 0.122
 18b292b9 1 0  # ply 27 played 0 1 gain +0.000 L1 D0 Vingte
 11c793d8 2 6  # ply 28 played 2 7 gain +0.128 L1 D1 Vingte
-2830f8e2 0 2  # ply 28 record 0,0:3x0.5 0,2:6x1.0 gain 1.5
+2830f8e2 0 2  # ply 28 record 0,0:3x0.5 0,2:9x1.0 gain 1.5
 3428e3de 3 7  # ply 29 refuted 5 6 alt q 0.101
 0e7d6ce8 0 5  # ply 29 refuted 0 3 alt q 0.232
 0b637890 2 8  # ply 29 played 1 6 gain +0.017 L1 D0 Apostolique
@@ -706,7 +704,7 @@
 26fca99a 2 4  # ply 39 refuted 1 3 alt q 0.113
 32746a4f 1 6  # ply 41 played 0 6 gain +0.000 L5 D0 TomAlard
 269e344b 3 2  # ply 50 refuted 1 7 alt q 0.500
-23266097 6 7  # ply 16 record 6,7:7x1.0 7,8:1x0.0 6,6:1x0.5 gain 1.5
+23266097 6 7  # ply 16 record 6,7:9x1.0 7,8:1x0.0 6,6:1x0.5 gain 1.5
 1f2e51d9 1 5  # ply 17 played 2 3 gain +0.030 L1 D0 MrSubZero
 0243cf6e 3 6  # ply 21 played 5 6 gain +0.054 L6 D0 Daporan
 39bb83e8 3 3  # ply 23 refuted 4 5 alt q 0.134
@@ -725,7 +723,7 @@
 12bb13bc 6 6  # ply 32 record 6,6:6x1.0 6,8:10x0.5 gain 5.0
 2b3754ce 7 1  # ply 32 played 7 2 gain +0.228 L0 D21 Babebibobu
 26036395 2 5  # ply 37 played 1 4 gain +0.000 L1 D0 Apostolique
-38294e76 6 4  # ply 23 record 8,5:6x0.0 6,4:15x0.433 gain 2.6
+38294e76 6 4  # ply 23 record 8,5:6x0.0 6,4:16x0.438 gain 2.6
 0f039e2b 8 5  # ply 24 played 7 3 gain +0.213 L0 D5 Babebibobu
 37468790 2 4  # ply 25 refuted 0 3,1 3 alt q 0.128
 136c61f6 5 2  # ply 26 played 3 0 gain +0.363 L0 D5 Babebibobu
@@ -737,12 +735,12 @@
 3bf3b16e 3 3  # ply 37 refuted 5 4 alt q 0.112
 088338a9 1 2  # ply 17 played 0 1 gain +0.004 L3 D0 Apostolique
 249de5bd 8 1  # ply 18 played 7 0 gain +0.031 L0 D1 Daporan
-0b7f9811 1 0  # ply 19 played 2 0 gain +0.000 L1 D0 MrSubZero
+0b7f9811 1 0  # ply 19 played 2 0 gain +0.000 L2 D0 MrSubZero
 21f3dbbf 4 2  # ply 20 played 3 0 gain +0.112 L0 D1 Daporan
-323fed8a 7 5  # ply 20 played 6 4 gain +0.044 L0 D1 Apostolique
+323fed8a 7 5  # ply 20 played 6 4 gain +0.044 L0 D2 Apostolique
 09c10783 8 5  # ply 20 played 6 4 gain +0.056 L1 D0 Apostolique
-0fd0fa44 3 6  # ply 20 record 3,6:10x1.0 5,7:1x0.0 gain 1.0
-04fc53d9 0 3  # ply 20 record 0,5:1x0.0 0,3:3x1.0 gain 1.0
+0fd0fa44 3 6  # ply 20 record 3,6:11x1.0 5,7:1x0.0 gain 1.0
+04fc53d9 0 3  # ply 20 record 0,5:1x0.0 0,3:4x1.0 gain 1.0
 229793dd 2 7  # ply 22 played 1 8 gain +0.061 L0 D1 Daporan
 1f0d3911 4 3  # ply 22 played 3 4 gain +0.000 L1 D0 Daporan
 0353aa05 2 8  # ply 23 played 0 7 gain +0.000 L2 D0 Daporan
@@ -819,7 +817,7 @@
 15f85f95 7 4  # ply 19 played 7 5 gain +0.041 L1 D0 sZoom
 1855291c 4 2  # ply 23 played 5 1 gain +0.007 L1 D0 sZoom
 172dd646 1 2  # ply 23 played 1 1 gain +0.095 L1 D0 MrSubZero
-00aff187 5 8  # ply 25 played 3 6 gain +0.000 L3 D0 flawedaxioms
+00aff187 5 8  # ply 25 played 3 6 gain +0.000 L4 D0 flawedaxioms
 10eb883f 1 2  # ply 25 played 0 0 gain +0.231 L1 D0 flawedaxioms
 118f4c22 1 8  # ply 27 refuted 0 6 alt q 0.126
 1518904b 1 6  # ply 27 refuted 1 7 alt q 0.100
@@ -848,32 +846,34 @@
 15a436da 2 3  # ply 17 played 0 4 gain +0.034 L1 D0 ninnghazad
 0a67262f 1 8  # ply 35 refuted 2 7 alt q 0.500
 0f6e6bb7 4 0  # ply 9 played 3 1 gain +0.039 L1 D0 zasmu
+2544f40a 2 1  # ply 9 record 2,1:13x0.154 0,0:19x0.079 gain 1.4
 21042a18 6 2  # ply 9 played 6 0 gain +0.036 L1 D0 MrSubZero
 2bc3ffc8 4 2  # ply 10 played 5 2 gain +0.031 L2 D2 Daporan,Regulus136,Apostolique
 39b8c100 6 4  # ply 11 played 6 3 gain +0.056 L4 D0 MrSubZero
 14f292f4 2 1  # ply 11 played 0 1 gain +0.036 L1 D0 Apostolique
 315c1f26 0 6  # ply 11 played 2 7 gain +0.024 L1 D0 MrSubZero
-32a99b55 5 6  # ply 12 record 3,7:1x0.0 5,6:4x1.0 gain 1.0
-08db03ad 5 2  # ply 12 record 3,0:8x0.812 5,2:9x0.944 gain 1.1
+32a99b55 5 6  # ply 12 record 3,7:1x0.0 5,6:5x1.0 gain 1.0
+08db03ad 5 2  # ply 12 record 3,0:8x0.812 5,2:14x0.964 gain 1.2
+22cfa0cc 4 0  # ply 12 record 4,0:20x0.95 4,2:3x0.5 gain 1.3
 06e905fe 8 5  # ply 13 played 7 5 gain +0.044 L1 D0 zasmu
 2966d975 4 6  # ply 14 played 3 6 gain +0.075 L1 D1 Vingte
-0179479e 8 4  # ply 14 record 8,4:12x0.833 6,4:3x0.0 gain 2.5
+0179479e 8 4  # ply 14 record 8,4:23x0.913 6,4:3x0.0 gain 2.7
 07a9ac41 5 0  # ply 14 played 4 2 gain +0.038 L0 D1 flawedaxioms
 1a2b2f77 5 7  # ply 15 played 5 6 gain +0.047 L2 D0 MrSubZero
 35c2a029 8 5  # ply 15 played 6 5 gain +0.043 L1 D0 MrSubZero
 130b5e79 2 6  # ply 15 played 0 7 gain +0.019 L1 D0 MrSubZero
 18d54f85 6 4  # ply 16 played 7 4 gain +0.042 L0 D10 sZoom
 2123035c 2 8  # ply 16 played 2 7 gain +0.070 L0 D2 RoboStac,Daporan
-3114902d 0 7  # ply 16 played 0 6 gain +0.044 L0 D11 Fancheng
+3114902d 0 7  # ply 16 record 0,6:12x0.542 0,7:4x1.0 gain 5.5
 2d9bda88 2 7  # ply 17 played 1 6 gain +0.000 L2 D0 MrSubZero
 0e18184a 7 0  # ply 17 played 6 1 gain +0.074 L1 D0 MrSubZero
-2876e17a 0 1  # ply 17 played 0 2 gain +0.054 L1 D0 MrSubZero
-1842de79 1 2  # ply 17 record 0,0:5x0.0 1,2:6x0.333 gain 1.7
+2876e17a 0 1  # ply 17 played 0 2 gain +0.054 L2 D0 MrSubZero
+1842de79 1 2  # ply 17 record 0,0:5x0.0 1,2:13x0.577 gain 2.9
 18fad51a 7 7  # ply 17 played 6 8 gain +0.049 L2 D0 MrSubZero
 18b7513d 1 0  # ply 17 played 2 2 gain +0.014 L1 D0 MrSubZero
 17ff1ad3 5 7  # ply 18 played 3 6 gain +0.105 L0 D2 RoboStac,Daporan
 09affcd9 8 5  # ply 18 played 8 3 gain +0.035 L0 D1 Apostolique
-102d1cb6 1 4  # ply 18 record 0,4:6x0.333 1,4:4x0.75 gain 2.5
+102d1cb6 1 4  # ply 18 record 0,4:6x0.333 1,4:7x0.857 gain 3.1
 05e808b2 0 7  # ply 18 played 0 8 gain +0.052 L1 D0 Daporan
 0cabca54 5 8  # ply 18 played 4 8 gain +0.038 L0 D1 Fancheng
 25273c71 8 6  # ply 18 played 6 7 gain +0.082 L0 D11 Fancheng
@@ -889,7 +889,6 @@
 0f9aa75b 3 7  # ply 20 record 5,8:1x0.0 3,7:1x1.0 gain 1.0
 03acf31d 3 4  # ply 20 played 5 4 gain +0.102 L0 D12 zasmu
 071132b2 0 4  # ply 20 played 2 5 gain +0.063 L0 D1 flawedaxioms
-01422bfc 3 1  # ply 20 record 3,1:1x1.0 4,0:1x0.0 gain 1.0
 133282fb 8 8  # ply 21 refuted 6 8 alt q 0.117
 1e603762 0 2  # ply 21 played 2 2 gain +0.001 L1 D0 MrSubZero
 18a14090 5 1  # ply 21 played 3 2 gain +0.000 L1 D0 MrSubZero
@@ -906,7 +905,7 @@
 036c8b8e 3 2  # ply 22 played 3 1 gain +0.098 L0 D1 sZoom
 016d2ab0 5 2  # ply 22 played 3 2 gain +0.128 L0 D10 sZoom
 34d63b83 5 1  # ply 22 played 5 0 gain +0.100 L0 D1 Apostolique
-331c347a 3 7  # ply 22 record 3,7:9x1.0 3,8:2x0.0 gain 2.0
+331c347a 3 7  # ply 22 record 3,7:16x1.0 3,8:2x0.0 gain 2.0
 0b88b838 5 7  # ply 23 played 3 8 gain +0.001 L2 D0 MrSubZero
 3323c221 7 6  # ply 23 played 6 6 gain +0.000 L1 D0 MrSubZero
 2b3464ac 3 8  # ply 23 refuted 3 6 alt q 0.118
@@ -926,7 +925,7 @@
 3f393f36 5 2  # ply 24 played 3 2 gain +0.068 L0 D1 sZoom
 26318118 7 1  # ply 24 played 8 2 gain +0.165 L0 D10 sZoom
 175bace0 2 1  # ply 24 played 2 0 gain +0.057 L2 D0 Vingte
-365dd4bd 5 6  # ply 24 record 3,6:6x0.833 5,6:13x1.0 gain 1.0
+365dd4bd 5 6  # ply 24 record 3,6:6x0.833 5,6:17x1.0 gain 1.0
 2392371f 3 2  # ply 24 played 3 0 gain +0.073 L1 D0 Vingte
 256ec5b4 3 8  # ply 24 played 4 6 gain +0.052 L0 D1 flawedaxioms
 125010bf 8 2  # ply 25 played 6 2 gain +0.148 L1 D0 NinjaDoggy
@@ -1116,11 +1115,11 @@
 34c1a419 0 4  # ply 17 played 1 5 gain +0.049 L1 D0 MrSubZero
 3fc7a2ab 2 4  # ply 18 played 1 4 gain +0.049 L0 D1 MrSubZero
 04468c98 7 3  # ply 19 played 7 5 gain +0.099 L1 D0 MrSubZero
-3b59c840 4 7  # ply 20 record 5,8:1x0.0 4,7:3x1.0 gain 1.0
+3b59c840 4 7  # ply 20 record 5,8:1x0.0 4,7:5x1.0 gain 1.0
 3d4501de 7 8  # ply 20 played 7 7 gain +0.029 L0 D1 Vingte
 2f7844fb 1 2  # ply 20 played 1 0 gain +0.031 L0 D1 MrSubZero
 25c5d512 6 5  # ply 21 refuted 7 5 alt q 0.207
-24585c3d 1 1  # ply 21 record 1,0:2x0.0 1,1:4x0.5 gain 1.0
+24585c3d 1 1  # ply 21 record 1,0:2x0.0 1,1:11x0.682 gain 1.4
 2f6ea73b 7 1  # ply 21 played 6 1 gain +0.002 L1 D0 MrSubZero
 35fae533 0 6  # ply 21 played 1 6 gain +0.062 L1 D0 zasmu
 23d6bac2 5 0  # ply 22 played 3 0 gain +0.101 L1 D0 MrSubZero
@@ -1130,9 +1129,8 @@
 26857ec2 6 7  # ply 23 played 8 6 gain +0.000 L1 D0 MrSubZero
 08eb2383 3 7  # ply 23 refuted 5 6 alt q 0.132
 24002142 5 1  # ply 23 played 3 1 gain +0.007 L1 D0 MrSubZero
-158aa096 1 3  # ply 23 record 2,4:11x0.0 1,3:92x0.109 gain 1.2
+158aa096 1 3  # ply 23 record 2,4:11x0.0 1,3:130x0.138 gain 1.5
 356a569a 1 5  # ply 24 played 0 5 gain +0.041 L1 D0 sZoom
-29c7636c 8 1  # ply 24 played 7 1 gain +0.065 L0 D1 Apostolique
 31c9998f 8 0  # ply 24 played 7 1 gain +0.105 L0 D1 Vingte
 37879623 2 3  # ply 24 played 1 3 gain +0.170 L1 D0 MrSubZero
 2ac62c38 2 2  # ply 24 played 1 2 gain +0.072 L0 D1 MrSubZero
@@ -1234,15 +1232,14 @@
 125daa60 6 7  # ply 22 played 7 6 gain +0.126 L3 D0 Angecide
 36ddf93c 6 5  # ply 22 played 7 3 gain +0.095 L0 D1 flawedaxioms
 3b7b879b 2 5  # ply 23 played 2 4 gain +0.053 L1 D0 MrSubZero
+32b8e6cf 5 5  # ply 23 record 5,5:11x0.273 3,5:4x0.0 gain 1.1
 1ef8a032 0 2  # ply 23 played 1 0 gain +0.163 L1 D0 Regulus136
 22b101c8 3 4  # ply 24 played 5 4 gain +0.149 L1 D0 RoboStac
-124e286e 0 6  # ply 24 record 2,6:1x0.0 0,6:3x1.0 gain 1.0
+124e286e 0 6  # ply 24 record 2,6:1x0.0 0,6:4x1.0 gain 1.0
 34f711e8 3 2  # ply 24 played 5 0 gain +0.194 L3 D0 Angecide
 023a0b51 7 8  # ply 24 played 6 8 gain +0.075 L0 D1 flawedaxioms
-07c03129 1 3  # ply 25 played 1 4 gain +0.003 L1 D0 MrSubZero
 113e0fb2 3 1  # ply 25 played 5 2 gain +0.002 L1 D0 MrSubZero
 089d737f 3 5  # ply 25 played 5 5 gain +0.182 L1 D0 flawedaxioms
-135241dd 2 6  # ply 25 refuted 1 7 alt q 0.405
 2b0a215b 0 6  # ply 25 played 2 6 gain +0.023 L2 D0 flawedaxioms
 25493b0a 4 8  # ply 26 played 4 6 gain +0.000 L1 D0 MrSubZero
 03a99a27 0 0  # ply 26 played 2 1 gain +0.182 L1 D0 RoboStac
@@ -1315,7 +1312,7 @@
 14390410 8 7  # ply 25 refuted 6 6 alt q 0.124
 0f45bbac 3 7  # ply 27 played 5 7 gain +0.008 L1 D0 MrSubZero
 3a2c6fd0 1 4  # ply 27 played 1 3 gain +0.221 L1 D0 flawedaxioms
-2bf8a75e 4 8  # ply 28 played 3 6 gain +0.088 L0 D18 Angecide
+2bf8a75e 4 8  # ply 28 played 3 6 gain +0.088 L0 D19 Angecide
 2d73a85a 3 4  # ply 29 refuted 3 5 alt q 0.106
 36b072e0 0 6  # ply 29 played 1 6 gain +0.001 L16 D0 Apostolique
 26ca3248 6 2  # ply 31 played 6 1 gain +0.000 L1 D0 MrSubZero
@@ -1334,12 +1331,12 @@
 258c9ec3 3 1  # ply 30 refuted 3 2 alt q 0.512
 3aa9d249 5 8  # ply 35 refuted 3 8 alt q 0.259
 2f46133c 4 7  # ply 37 played 3 8 gain +0.001 L6 D0 Daporan
-0adf3cb1 3 0  # ply 41 refuted 3 1,3 2 alt q 0.128
+0adf3cb1 4 2  # ply 41 refuted 3 0,3 1,3 2 alt q 0.106
 34180c0d 4 3  # ply 41 refuted 3 3 alt q 0.498
 0d575718 5 0  # ply 22 played 3 2 gain +0.078 L5 D2 RoboStac
 2898b528 4 1  # ply 24 played 5 1 gain +0.052 L5 D2 RoboStac
 2b1a0802 1 5  # ply 25 played 2 3 gain +0.000 L1 D0 Apostolique
-0cf87779 8 6  # ply 27 played 8 8 gain +0.001 L3 D0 MrSubZero
+0cf87779 8 6  # ply 27 played 8 8 gain +0.001 L4 D0 MrSubZero
 0c45a4f3 6 8  # ply 27 refuted 6 7 alt q 0.102
 08437c76 8 3  # ply 27 played 7 3 gain +0.016 L5 D0 Angecide
 1ce54d87 8 6  # ply 30 played 8 7 gain +0.133 L0 D1 MrSubZero
@@ -1350,31 +1347,31 @@
 194ac41b 7 0  # ply 36 played 7 2 gain +0.000 L5 D0 RoboStac
 019dc0ae 3 3  # ply 41 refuted 3 4 alt q 0.497
 3fc85ee2 7 2  # ply 15 played 8 2 gain +0.000 L5 D0 Apostolique
-0f7ced87 7 2  # ply 19 played 8 0 gain +0.034 L4 D0 MrSubZero
+0f7ced87 7 2  # ply 19 played 8 0 gain +0.034 L5 D0 MrSubZero
 112eab88 0 0  # ply 24 played 2 1 gain +0.057 L2 D1 RoboStac
 189d5925 2 5  # ply 25 played 1 5 gain +0.004 L11 D0 Daporan
 375e158d 2 8  # ply 26 played 1 6 gain +0.080 L0 D1 MrSubZero
 39eebe33 4 0  # ply 27 refuted 5 0 alt q 0.430
 3e850ace 1 7  # ply 28 played 0 6 gain +0.106 L1 D0 Apostolique
 134c5c07 5 6  # ply 29 played 5 7 gain +0.001 L1 D0 MrSubZero
-07f0e32f 0 2  # ply 29 refuted 1 0,2 0 alt q 0.116
+07f0e32f 1 2  # ply 29 refuted 0 2,1 0,2 0,2 2 alt q 0.115
 295202a9 4 2  # ply 31 refuted 5 5 alt q 0.112
-22da90d0 6 6  # ply 31 refuted 6 7,8 6,8 7,8 8 alt q 0.101
 2d9c134b 0 7  # ply 31 played 1 7 gain +0.127 L1 D0 flawedaxioms
 21047fc7 5 3  # ply 32 played 5 5 gain +0.322 L0 D2 RoboStac
-168e1e33 7 3  # ply 33 played 7 5 gain +0.000 L1 D0 MrSubZero
+168e1e33 7 3  # ply 33 played 7 5 gain +0.000 L2 D0 MrSubZero
 1366d58e 6 3  # ply 33 played 8 3 gain +0.000 L1 D0 MrSubZero
-18b41d31 2 3  # ply 33 played 2 4 gain +0.001 L15 D0 sZoom
+18b41d31 2 3  # ply 33 played 2 4 gain +0.001 L23 D0 sZoom
 2303c7ed 4 3  # ply 35 played 3 3 gain +0.001 L1 D0 flawedaxioms
 0e578124 6 8  # ply 37 refuted 6 7 alt q 0.496
 179c6b2c 3 7  # ply 39 played 3 8 gain +0.283 L1 D0 flawedaxioms
-15076949 8 1  # ply 20 played 6 2 gain +0.060 L2 D1 MrSubZero
+15076949 8 1  # ply 20 played 6 2 gain +0.060 L3 D1 MrSubZero
 375223c5 1 3  # ply 21 played 2 4 gain +0.118 L2 D0 flawedaxioms
 10d6f61f 6 5  # ply 23 played 6 4 gain +0.111 L1 D0 MrSubZero
 37e0744b 0 6  # ply 24 played 0 7 gain +0.080 L3 D0 Vingte
 3c2a58eb 4 1  # ply 26 played 3 0 gain +0.086 L5 D2 RoboStac
-2dc06639 0 2  # ply 27 record 2,1:17x0.0 0,2:9x1.0 gain 17.0
+2dc06639 0 2  # ply 27 record 2,1:17x0.0 0,2:16x1.0 gain 17.0
 0429ec9c 2 3  # ply 28 played 0 5 gain +0.057 L0 D1 MrSubZero
+00f754e2 5 6  # ply 29 refuted 3 7,4 7 alt q 0.104
 39779008 0 5  # ply 31 played 1 3 gain +0.000 L4 D0 Apostolique
 0ab030d3 0 6  # ply 33 refuted 0 7 alt q 0.256
 29bff22d 6 6  # ply 34 played 7 8 gain +0.262 L0 D1 MrSubZero
@@ -1396,7 +1393,7 @@
 15664bae 7 4  # ply 39 refuted 6 5 alt q 0.501
 091cb158 2 7  # ply 18 played 1 8 gain +0.003 L3 D0 Vingte
 2b66bffb 3 8  # ply 21 played 5 6 gain +0.037 L1 D0 MrSubZero
-28b35edb 0 4  # ply 23 played 2 4 gain +0.018 L1 D0 MrSubZero
+28b35edb 0 4  # ply 23 played 2 4 gain +0.018 L2 D0 MrSubZero
 19c03405 2 6  # ply 23 played 1 7 gain +0.001 L2 D0 N3l
 029f761c 5 4  # ply 25 played 5 5 gain +0.002 L1 D0 MrSubZero
 18e5949c 6 7  # ply 25 played 6 8 gain +0.182 L2 D0 flawedaxioms
@@ -1411,14 +1408,14 @@
 17dc0259 7 8  # ply 31 refuted 6 6 alt q 0.498
 160f35cb 1 7  # ply 33 refuted 0 6 alt q 0.116
 38b1dc36 7 1  # ply 33 refuted 8 0 alt q 0.106
-01fc49ea 1 1  # ply 34 played 1 0 gain +0.084 L5 D0 RoboStac
+01fc49ea 1 1  # ply 34 record 1,0:5x0.0 1,1:1x1.0 gain 5.0
 394c1e41 8 2  # ply 35 played 6 0 gain +0.001 L15 D0 Vingte
 0e389017 3 3  # ply 35 played 5 3 gain +0.065 L1 D0 flawedaxioms
 0146d65b 6 2  # ply 39 played 8 1 gain +0.001 L1 D0 MrSubZero
 2f3e1891 5 0  # ply 39 refuted 5 2 alt q 0.213
 15159755 3 0  # ply 19 played 5 1 gain +0.032 L1 D0 Apostolique
-06c16eac 5 6  # ply 23 played 5 8 gain +0.022 L3 D0 MrSubZero
-02c94435 6 3  # ply 25 played 7 5 gain +0.144 L1 D0 flawedaxioms
+06c16eac 5 6  # ply 23 played 5 8 gain +0.022 L5 D0 MrSubZero
+02c94435 6 3  # ply 25 played 7 5 gain +0.144 L2 D0 flawedaxioms
 30d10a6b 1 2  # ply 28 played 2 1 gain +0.000 L1 D0 Vingte
 2995bed0 0 1  # ply 29 refuted 2 2 alt q 0.103
 3a07205b 3 2  # ply 29 played 4 1 gain +0.000 L1 D0 Apostolique
@@ -1428,16 +1425,16 @@
 1f0b9c41 4 2  # ply 33 played 5 2 gain +0.001 L1 D0 Apostolique
 1dc88afd 7 6  # ply 33 refuted 6 7 alt q 0.209
 1ebb085b 1 4  # ply 37 refuted 1 0 alt q 0.181
-1cf24dcc 1 4  # ply 37 refuted 1 3,2 4 alt q 0.105
+1cf24dcc 2 5  # ply 37 refuted 1 3,1 4,2 3,2 4 alt q 0.103
 20a4ab17 7 1  # ply 39 played 6 2 gain +0.000 L1 D0 MrSubZero
 0dc8cdcf 3 3  # ply 46 refuted 5 5 alt q 0.414
 31487ea4 6 5  # ply 21 played 6 3 gain +0.074 L1 D0 flawedaxioms
-3cf288fe 8 5  # ply 24 played 7 5 gain +0.162 L0 D4 sZoom
+3cf288fe 8 5  # ply 24 played 7 5 gain +0.162 L0 D9 sZoom
 0427484f 6 0  # ply 25 played 6 1 gain +0.067 L1 D0 therealbeef
 2e32b394 6 8  # ply 27 played 6 3 gain +0.409 L1 D0 therealbeef
 1c33c870 5 8  # ply 29 refuted 5 6 alt q 0.103
-07da2395 2 6  # ply 30 played 1 6 gain +0.037 L0 D4 sZoom
-22c9ed33 3 0  # ply 31 refuted 4 1,4 2 alt q 0.139
+07da2395 2 6  # ply 30 played 1 6 gain +0.037 L0 D9 sZoom
+22c9ed33 5 2  # ply 31 refuted 3 0,4 1,4 2 alt q 0.138
 2ff2f842 7 0  # ply 33 refuted 7 2 alt q 0.101
 2b1199eb 1 4  # ply 33 played 0 3 gain +0.282 L8 D0 AllanB
 20740b7f 7 8  # ply 34 played 6 8 gain +0.396 L0 D1 flawedaxioms
@@ -1449,6 +1446,7 @@
 1d418e9a 6 0  # ply 25 played 7 1 gain +0.001 L1 D0 MrSubZero
 26bd7e98 1 5  # ply 27 played 2 4 gain +0.003 L1 D0 Apostolique
 2903e715 7 6  # ply 27 played 8 6 gain +0.001 L1 D0 MrSubZero
+3c82ba40 4 5  # ply 30 record 5,5:54x0.25 4,5:9x0.944 gain 37.5
 01006193 0 5  # ply 31 played 1 5 gain +0.000 L1 D0 Apostolique
 09c4b90b 3 1  # ply 33 played 4 2 gain +0.001 L1 D0 Apostolique
 1ca72cbb 5 2  # ply 38 played 4 2 gain +0.198 L1 D0 yoch
@@ -1458,11 +1456,11 @@
 3cdfa0d2 4 1  # ply 29 refuted 5 2 alt q 0.100
 133bbb77 3 0  # ply 31 played 3 1 gain +0.000 L1 D0 MrSubZero
 3892452a 4 1  # ply 33 refuted 3 0 alt q 0.106
-19fff0e9 3 1  # ply 16 played 5 2 gain +0.044 L0 D5 sZoom
+19fff0e9 3 1  # ply 16 played 5 2 gain +0.044 L0 D10 sZoom
 08d156b1 8 1  # ply 22 played 8 0 gain +0.075 L1 D0 yoch
 27fdba54 4 2  # ply 27 played 5 2 gain +0.194 L1 D0 Apostolique
 11064a31 3 2  # ply 29 played 3 0 gain +0.001 L1 D0 therealbeef
-3ea5ab6c 0 3  # ply 31 refuted 0 5,1 3 alt q 0.100
+3ea5ab6c 1 3  # ply 31 played 0 3 gain +0.000 L22 D0 Vingte
 186ebc90 5 3  # ply 33 played 3 6 gain +0.000 L1 D0 Daporan
 2528d075 5 6  # ply 33 played 4 7 gain +0.000 L4 D0 Vingte
 175bcb98 0 0  # ply 35 refuted 2 0 alt q 0.114
@@ -1470,17 +1468,18 @@
 0efe135e 6 6  # ply 37 played 7 7 gain +0.000 L1 D0 Apostolique
 38fc7403 0 7  # ply 41 refuted 0 6 alt q 0.261
 030e60bf 3 7  # ply 21 played 5 7 gain +0.020 L1 D0 Daporan
-153865e7 7 5  # ply 22 played 6 5 gain +0.051 L0 D4 sZoom
+153865e7 7 5  # ply 22 played 6 5 gain +0.051 L0 D9 sZoom
 3b69fbdc 3 1  # ply 29 played 3 2 gain +0.000 L1 D0 MrSubZero
 370af5aa 4 2  # ply 33 played 3 0 gain +0.000 L4 D0 Daporan
 308cee1e 8 5  # ply 35 played 7 3 gain +0.000 L1 D0 Vingte
 18f96ecc 2 5  # ply 35 played 6 2 gain +0.000 L1 D0 Daporan
 1a0b17fd 7 0  # ply 27 played 6 0 gain +0.000 L1 D0 Daporan
+2df5fad4 7 0  # ply 29 refuted 8 2 alt q 0.109
 0514ef6b 8 1  # ply 31 refuted 7 0 alt q 0.113
 3f35f325 1 5  # ply 35 played 2 5 gain +0.000 L1 D0 Vingte
 1c2a84b2 2 5  # ply 37 played 1 4 gain +0.000 L1 D0 Daporan
 07f433b2 3 7  # ply 23 played 5 6 gain +0.001 L1 D0 Daporan
-00067667 5 3  # ply 24 played 4 3 gain +0.092 L1 D1 Daporan
+00067667 5 3  # ply 24 record 4,3:2x0.25 5,3:1x1.0 gain 1.5
 385fbd4d 1 7  # ply 27 refuted 0 7 alt q 0.101
 26272e66 4 6  # ply 28 played 3 7 gain +0.133 L0 D1 flawedaxioms
 311f26b4 1 7  # ply 29 refuted 2 6 alt q 0.118
@@ -1501,10 +1500,10 @@
 2d53e074 8 3  # ply 36 played 8 5 gain +0.140 L1 D0 yoch
 0264c244 7 2  # ply 37 played 8 2 gain +0.003 L1 D0 Vingte
 25eaa614 3 8  # ply 39 refuted 5 6 alt q 0.103
-08e5dcd9 5 5  # ply 17 played 3 5 gain +0.045 L1 D0 Apostolique
+08e5dcd9 5 5  # ply 17 played 3 5 gain +0.045 L2 D0 Apostolique
 3f9bc6be 1 0  # ply 25 played 0 1 gain +0.001 L1 D0 Vingte
 2021244f 8 5  # ply 27 refuted 6 3 alt q 0.104
-073a8003 5 6  # ply 29 played 5 8 gain +0.060 L4 D0 Apostolique
+073a8003 5 6  # ply 29 played 5 8 gain +0.060 L6 D0 Apostolique
 20cac937 5 8  # ply 30 played 4 7 gain +0.235 L2 D0 Vingte
 1e831a1c 7 2  # ply 31 refuted 6 2 alt q 0.129
 240c294c 3 1  # ply 31 refuted 5 0 alt q 0.176
@@ -1513,7 +1512,7 @@
 30b0e93e 7 0  # ply 35 refuted 1 3 alt q 0.252
 2f3c85d7 8 7  # ply 35 played 8 8 gain +0.000 L1 D0 Daporan
 07eccc48 7 6  # ply 37 refuted 6 6 alt q 0.102
-3d25ceb5 3 7  # ply 39 played 5 6 gain +0.000 L1 D0 Daporan
+3d25ceb5 3 7  # ply 39 played 5 6 gain +0.000 L2 D0 Daporan
 00b0a6ef 7 0  # ply 41 played 6 0 gain +0.000 L1 D0 Daporan
 23213959 8 7  # ply 21 played 7 7 gain +0.210 L1 D0 N3l
 0aec50f8 3 5  # ply 27 refuted 3 4 alt q 0.113
@@ -1533,7 +1532,7 @@
 2180a328 6 0  # ply 28 played 7 0 gain +0.145 L2 D0 Vingte
 125c9384 5 7  # ply 32 played 3 6 gain +0.002 L2 D0 Vingte
 12931236 8 3  # ply 35 refuted 7 3 alt q 0.485
-10c11025 3 6  # ply 38 refuted 4 6,4 7,5 8 alt q 0.372
+10c11025 5 8  # ply 38 played 3 6 gain +0.126 L40 D0 Angecide
 35d1d661 4 2  # ply 7 played 3 1 gain +0.038 L1 D0 krunx
 22f9e393 7 5  # ply 21 played 8 5 gain +0.011 L1 D0 Angecide
 07a038d9 1 6  # ply 23 played 0 8 gain +0.000 L1 D0 Angecide
@@ -1549,7 +1548,6 @@
 1817c87a 8 6  # ply 37 refuted 6 7 alt q 0.155
 0f604518 3 1  # ply 37 played 4 2 gain +0.000 L1 D0 AllanB
 1e7671d8 8 2  # ply 37 played 3 5 gain +0.000 L1 D0 Vingte
-0a14e054 7 6  # ply 39 refuted 8 7 alt q 0.127
 01e86278 2 7  # ply 41 played 2 6 gain +0.237 L1 D0 Daporan
 2882b1d6 7 6  # ply 43 refuted 8 7 alt q 0.109
 1ea2dd5f 3 0  # ply 47 played 5 2 gain +0.001 L1 D0 Daporan
@@ -1565,6 +1563,7 @@
 3cad98ac 4 2  # ply 33 refuted 3 1 alt q 0.106
 24c69fe7 7 2  # ply 35 played 6 1 gain +0.001 L1 D0 krunx
 0906fe2d 6 8  # ply 35 played 7 7 gain +0.001 L6 D0 Apostolique
+29d48ece 2 8  # ply 36 refuted 0 7 alt q 0.498
 11706997 1 3  # ply 37 refuted 2 5 alt q 0.495
 3c3074fa 3 7  # ply 37 played 5 6 gain +0.000 L2 D0 AllanB
 13052198 1 8  # ply 41 played 2 7 gain +0.001 L1 D0 AllanB
@@ -1578,21 +1577,19 @@
 1e3f6949 4 3  # ply 37 played 3 3 gain +0.000 L2 D0 AllanB
 3d801640 8 6  # ply 45 refuted 6 6 alt q 0.500
 234f40c5 0 8  # ply 17 played 2 7 gain +0.024 L1 D0 Angecide
-3b4874ff 0 4  # ply 19 played 2 3 gain +0.022 L2 D0 MrSubZero
-28b9aa46 0 5  # ply 21 played 2 4 gain +0.090 L1 D0 Apostolique
+3b4874ff 0 4  # ply 19 played 2 3 gain +0.022 L3 D0 MrSubZero
+28b9aa46 0 5  # ply 21 played 2 4 gain +0.090 L2 D0 Apostolique
 2a5f3dbd 5 0  # ply 25 played 3 2 gain +0.008 L1 D0 Angecide
-1f6fd97c 3 2  # ply 29 played 5 0 gain +0.001 L1 D0 Apostolique
+1f6fd97c 3 2  # ply 29 played 5 0 gain +0.001 L2 D0 Apostolique
 2899a49e 2 3  # ply 29 played 2 5 gain +0.001 L1 D0 AllanB
 356a3e1a 6 7  # ply 29 played 7 8 gain +0.000 L1 D0 N3l
 17474798 0 2  # ply 31 played 1 1 gain +0.001 L1 D0 Apostolique
 3175815e 3 4  # ply 33 played 3 5 gain +0.002 L2 D0 Daporan
-3ae193c5 1 4  # ply 35 played 0 3 gain +0.000 L1 D0 Apostolique
 3ecb82b4 1 4  # ply 35 refuted 0 3 alt q 0.493
 0413d707 7 2  # ply 35 played 7 0 gain +0.001 L2 D0 AllanB
 157a6e6a 1 7  # ply 39 refuted 4 2 alt q 0.105
 3d4b964a 6 7  # ply 57 refuted 7 7 alt q 0.500
 39b0d17d 3 6  # ply 21 played 5 6 gain +0.020 L3 D0 Apostolique
-1fe5359b 8 3  # ply 25 played 7 5 gain +0.000 L1 D0 krunx
 2ef3de1e 4 7  # ply 27 played 3 6 gain +0.118 L1 D0 Vingte
 1e3752b2 1 1  # ply 29 played 2 0 gain +0.001 L1 D0 Apostolique
 16325845 2 7  # ply 29 refuted 0 7 alt q 0.103
@@ -1718,7 +1715,7 @@
 2c1d0391 5 8  # ply 33 refuted 5 7 alt q 0.182
 34c7f53c 5 8  # ply 33 played 2 8 gain +0.000 L1 D0 MSmits
 019ded4e 0 5  # ply 33 refuted 1 5 alt q 0.150
-0eaa0d93 2 3  # ply 33 refuted 2 5 alt q 0.182
+0eaa0d93 1 5  # ply 33 refuted 2 3,2 5 alt q 0.181
 1b984650 5 0  # ply 35 played 5 1 gain +0.000 L1 D0 flawedaxioms
 02c279be 0 7  # ply 36 played 0 6 gain +0.000 L1 D0 Daporan
 17b39a7b 7 1  # ply 36 refuted 8 2 alt q 0.500
@@ -1738,7 +1735,7 @@
 3a4f7c2c 5 8  # ply 23 played 3 6 gain +0.001 L1 D0 Apostolique
 2a11c1f1 7 8  # ply 23 played 8 6 gain +0.000 L1 D0 MrSubZero
 217979ce 0 8  # ply 23 played 2 6 gain +0.001 L1 D0 Vingte
-1c8d8ac5 5 8  # ply 24 played 3 8 gain +0.064 L0 D1 yoch
+1c8d8ac5 5 8  # ply 24 played 3 8 gain +0.064 L0 D2 yoch
 2ca5074c 6 0  # ply 25 played 8 2 gain +0.001 L7 D0 Babebibobu
 0e25909b 5 1  # ply 25 played 3 2 gain +0.064 L1 D0 flawedaxioms
 19582646 7 3  # ply 25 played 6 5 gain +0.000 L1 D0 sZoom
@@ -1746,7 +1743,7 @@
 2f44c067 7 0  # ply 25 played 6 1 gain +0.001 L1 D0 Daporan
 1706d597 8 3  # ply 27 refuted 6 4 alt q 0.217
 3d52e57c 0 6  # ply 27 played 0 8 gain +0.000 L1 D0 Apostolique
-18a25789 6 7  # ply 28 played 8 7 gain +0.328 L0 D1 yoch
+18a25789 6 7  # ply 28 played 8 7 gain +0.328 L0 D2 yoch
 01a6248d 3 2  # ply 29 played 5 1 gain +0.001 L3 D0 SupSon
 2c77ebc5 5 5  # ply 29 played 3 5 gain +0.000 L4 D0 RoboStac
 2507e0d1 5 6  # ply 29 refuted 3 7 alt q 0.117
@@ -1767,7 +1764,7 @@
 2d3332e2 7 0  # ply 33 refuted 8 0 alt q 0.205
 003e964b 7 2  # ply 35 refuted 8 2 alt q 0.500
 38a602f5 7 4  # ply 35 refuted 7 5 alt q 0.280
-1b8cb4a5 1 3  # ply 36 played 0 5 gain +0.156 L0 D1 sZoom
+1b8cb4a5 1 3  # ply 36 played 0 5 gain +0.156 L0 D3 sZoom
 2c444b67 3 1  # ply 37 played 4 1 gain +0.000 L1 D0 Angecide
 1ebbdbaa 2 2  # ply 37 played 0 1 gain +0.000 L1 D0 Apostolique
 364957b9 1 6  # ply 37 played 0 7 gain +0.000 L1 D0 Apostolique
@@ -1777,8 +1774,7 @@
 3a697c41 1 1  # ply 42 played 2 2 gain +0.004 L1 D0 flawedaxioms
 0179dbf6 5 5  # ply 45 refuted 3 5 alt q 0.481
 08bee648 3 2  # ply 15 played 3 0 gain +0.014 L1 D0 flawedaxioms
-01ef7d5a 2 2  # ply 16 played 0 0 gain +0.021 L0 D1 yoch
-0345e2bd 5 7  # ply 17 played 3 8 gain +0.039 L2 D0 MrSubZero
+01ef7d5a 2 2  # ply 16 played 0 0 gain +0.021 L0 D2 yoch
 386ecc55 5 1  # ply 18 played 3 2 gain +0.051 L1 D0 MrSubZero
 3a6d469d 6 8  # ply 19 played 8 8 gain +0.040 L1 D0 Apostolique
 038b4e80 0 7  # ply 20 played 0 6 gain +0.039 L1 D1 Vingte
@@ -1817,13 +1813,13 @@
 1facca25 7 4  # ply 39 played 8 5 gain +0.001 L1 D0 Angecide
 05832a08 5 1  # ply 5 played 3 1 gain +0.032 L3 D0 zasmu
 3eb468ed 5 2  # ply 15 played 3 2 gain +0.002 L1 D0 krunx
-19749f20 7 6  # ply 18 record 7,6:7x1.0 8,7:5x0.7 gain 1.5
+19749f20 7 6  # ply 18 record 7,6:8x1.0 8,7:9x0.833 gain 1.5
 1f67c5cd 2 0  # ply 19 played 0 2 gain +0.003 L1 D0 Leonard.
 0e0fa83c 5 4  # ply 21 played 3 3 gain +0.016 L2 D0 N3l
 0944abe1 7 3  # ply 21 played 6 3 gain +0.000 L7 D0 TomAlard
 3a2827ae 0 3  # ply 21 played 2 3 gain +0.001 L1 D0 Apostolique
 151bce5c 2 8  # ply 21 played 1 7 gain +0.003 L1 D0 Vingte
-16babb9b 6 1  # ply 22 played 7 0 gain +0.051 L0 D1 sZoom
+16babb9b 6 1  # ply 22 played 7 0 gain +0.051 L0 D3 sZoom
 275259be 6 0  # ply 23 played 7 0 gain +0.005 L1 D0 FrancoisB
 26e415cd 2 1  # ply 23 played 1 1 gain +0.001 L11 D0 yoch,Minuet,MSmits
 24b857b0 5 5  # ply 23 played 3 5 gain +0.013 L2 D0 Daporan
@@ -1880,20 +1876,20 @@
 37a82779 3 7  # ply 33 refuted 5 6 alt q 0.154
 1d82e48e 6 6  # ply 33 refuted 6 8,8 6 alt q 0.118
 12c78bf9 2 2  # ply 33 refuted 1 0 alt q 0.105
-15c7e84e 0 3  # ply 34 played 1 5 gain +0.213 L0 D1 sZoom
+15c7e84e 0 3  # ply 34 played 1 5 gain +0.213 L0 D3 sZoom
 0cb8bbb2 2 1  # ply 35 played 1 2 gain +0.000 L1 D0 jacek
 242c9e4b 5 2  # ply 35 played 4 2 gain +0.000 L1 D0 Vingte
 054ce972 7 3  # ply 35 played 8 3 gain +0.000 L8 D0 Apostolique
 0187379b 8 2  # ply 35 played 6 1 gain +0.000 L1 D0 Daporan
 07070038 3 3  # ply 38 played 3 4 gain +0.234 L1 D0 MrSubZero
-0247395f 3 0  # ply 39 refuted 3 1,5 2 alt q 0.157
+0247395f 5 1  # ply 39 refuted 3 0,3 1,3 2,5 2 alt q 0.116
 244c2ced 3 3  # ply 39 refuted 5 5 alt q 0.103
-0956493f 3 2  # ply 40 played 4 1 gain +0.346 L0 D1 sZoom
+0956493f 3 2  # ply 40 played 4 1 gain +0.346 L0 D3 sZoom
 1bd212f4 2 0  # ply 15 played 0 1 gain +0.052 L3 D0 zasmu
 2ed0246a 7 5  # ply 15 played 8 5 gain +0.042 L2 D0 RoboStac
 0515631b 0 5  # ply 15 played 2 3 gain +0.014 L1 D0 Leonard.
 18ac8c86 5 7  # ply 17 played 3 7 gain +0.001 L1 D0 krunx
-20fdebc2 8 6  # ply 18 played 8 8 gain +0.054 L0 D1 sZoom
+20fdebc2 8 6  # ply 18 played 8 8 gain +0.054 L0 D3 sZoom
 02c7ee24 7 6  # ply 19 played 6 7 gain +0.077 L1 D0 flawedaxioms
 2df60e1d 8 0  # ply 19 played 7 2 gain +0.006 L2 D0 MrSubZero
 0adc3d55 5 5  # ply 21 played 3 5 gain +0.042 L1 D0 MrSubZero
@@ -1902,7 +1898,7 @@
 373c1eef 6 5  # ply 23 played 8 4 gain +0.002 L1 D0 Apostolique
 3af34b4b 0 3  # ply 25 played 1 4 gain +0.003 L2 D0 RoboStac
 312f6805 3 4  # ply 25 refuted 3 5 alt q 0.191
-3b1ccd0f 4 5  # ply 26 played 3 5 gain +0.181 L0 D1 yoch
+3b1ccd0f 4 5  # ply 26 played 3 5 gain +0.181 L0 D2 yoch
 1c51c9de 5 6  # ply 27 played 4 7 gain +0.000 L10 D0 yoch,Minuet
 0a66d5b9 7 3  # ply 27 played 8 3 gain +0.000 L2 D0 RoboStac
 1acc195d 8 3  # ply 27 played 7 3 gain +0.001 L1 D0 krunx
@@ -1960,7 +1956,7 @@
 1dd7cdfe 0 1  # ply 33 played 2 1 gain +0.000 L1 D0 flawedaxioms
 113bcaac 2 8  # ply 35 refuted 0 4 alt q 0.403
 3b246615 8 1  # ply 40 refuted 8 2 alt q 0.500
-3696f746 6 4  # ply 19 played 6 5 gain +0.000 L1 D0 MrSubZero
+3696f746 6 4  # ply 19 played 6 5 gain +0.000 L2 D0 MrSubZero
 07606ff8 5 8  # ply 21 played 3 6 gain +0.025 L1 D0 MrSubZero
 1b21ff46 8 3  # ply 22 played 7 5 gain +0.045 L1 D0 Daporan
 1210da9d 3 7  # ply 23 played 5 6 gain +0.045 L1 D0 Daporan
@@ -2006,7 +2002,7 @@
 1608b97d 7 7  # ply 32 refuted 7 8 alt q 0.416
 1dd29ef4 0 8  # ply 33 refuted 0 6 alt q 0.116
 1725a1cc 6 4  # ply 35 played 8 3 gain +0.216 L1 D0 MrSubZero
-306ef8cb 3 8  # ply 35 refuted 4 7 alt q 0.105
+306ef8cb 5 6  # ply 35 refuted 3 6,3 8,4 7 alt q 0.103
 28913ff7 5 4  # ply 35 played 4 3 gain +0.001 L1 D0 flawedaxioms
 02d5f9cc 3 0  # ply 40 refuted 3 2 alt q 0.500
 3380bfb1 2 5  # ply 41 refuted 7 0 alt q 0.175
@@ -2037,7 +2033,7 @@
 31dbde68 8 1  # ply 23 played 6 0 gain +0.018 L1 D0 MrSubZero
 2ee20668 6 3  # ply 24 played 8 3 gain +0.035 L0 D1 Daporan
 032fcd8b 6 8  # ply 29 played 7 7 gain +0.000 L1 D0 MrSubZero
-2d72fc20 2 7  # ply 29 refuted 0 7 alt q 0.111
+2d72fc20 1 6  # ply 29 refuted 0 7,2 7 alt q 0.110
 3bee6901 7 2  # ply 30 played 8 1 gain +0.177 L1 D0 MrSubZero
 3fe54328 4 3  # ply 31 played 5 4 gain +0.094 L1 D0 RoboStac
 0e6351eb 7 7  # ply 33 refuted 7 8 alt q 0.494
@@ -2092,6 +2088,197 @@
 106f3f5a 3 7  # ply 35 played 4 7 gain +0.001 L1 D0 MrSubZero
 375a456e 8 7  # ply 39 played 7 6 gain +0.001 L1 D0 Daporan
 05fdae5b 4 3  # ply 41 played 3 3 gain +0.000 L1 D0 flawedaxioms
+323525fb 7 7  # ply 19 played 7 8 gain +0.004 L1 D0 MrSubZero
+1cd5aae1 2 8  # ply 23 played 0 8 gain +0.001 L1 D0 MrSubZero
+1236d622 2 2  # ply 25 refuted 0 2 alt q 0.119
+05bd4d73 5 1  # ply 26 played 3 1 gain +0.022 L1 D0 MrSubZero
+2cfd255c 5 1  # ply 28 played 3 1 gain +0.000 L1 D0 Daporan
+36c1e752 7 7  # ply 32 refuted 8 6 alt q 0.502
+3d41ff46 2 5  # ply 35 played 0 5 gain +0.002 L2 D0 MrSubZero
+084ffa4c 0 7  # ply 35 played 2 7 gain +0.000 L10 D0 Vingte
+2e3e7049 5 6  # ply 17 played 3 6 gain +0.005 L1 D0 kempusss
+0d915465 2 6  # ply 19 played 1 8 gain +0.051 L1 D0 MrSubZero
+0e9ed504 7 4  # ply 23 played 6 5 gain +0.000 L1 D0 MrSubZero
+1bf4a72c 7 8  # ply 25 played 8 7 gain +0.004 L1 D0 MrSubZero
+2c57a75d 5 5  # ply 29 played 5 4 gain +0.008 L1 D0 RoboStac
+18bc8097 2 1  # ply 31 played 2 0 gain +0.000 L1 D0 MrSubZero
+09606f2f 7 2  # ply 35 played 6 2 gain +0.001 L1 D0 RoboStac
+3a2e0392 7 7  # ply 37 played 8 7 gain +0.001 L1 D0 MrSubZero
+2eed81c5 6 3  # ply 13 played 8 5 gain +0.015 L1 D0 MrSubZero
+2d9180c3 7 4  # ply 19 played 7 5 gain +0.000 L1 D0 kempusss
+15555f0e 3 6  # ply 21 played 5 6 gain +0.001 L1 D0 MrSubZero
+312f0faa 4 8  # ply 22 played 5 7 gain +0.038 L0 D4 RoboStac
+1048697a 1 0  # ply 24 played 0 2 gain +0.138 L1 D0 Daporan
+1868db3a 6 8  # ply 25 refuted 7 7 alt q 0.118
+00ed884e 3 3  # ply 26 played 5 4 gain +0.043 L1 D0 MrSubZero
+35367efb 3 3  # ply 27 refuted 3 5 alt q 0.111
+108940de 3 5  # ply 28 refuted 5 4 alt q 0.491
+2161fb5b 2 0  # ply 29 refuted 1 1 alt q 0.107
+087e3cdc 1 6  # ply 31 played 2 6 gain +0.000 L1 D0 MrSubZero
+1022c8c8 7 7  # ply 33 played 6 7 gain +0.002 L1 D0 kempusss
+11d17048 6 5  # ply 34 played 8 5 gain +0.370 L0 D1 Vingte
+06b0a9e0 0 5  # ply 35 refuted 0 4 alt q 0.330
+06947c42 0 1  # ply 45 played 2 0 gain +0.000 L6 D0 AllanB
+320c47cf 2 4  # ply 18 played 2 3 gain +0.046 L1 D0 MrSubZero
+17a3faa6 0 1  # ply 20 played 0 2 gain +0.006 L1 D0 Daporan
+236d24b2 3 4  # ply 29 played 3 5 gain +0.001 L2 D0 MrSubZero
+337cfe78 2 8  # ply 29 refuted 2 6 alt q 0.197
+39749efd 6 6  # ply 37 played 7 7 gain +0.001 L8 D0 sZoom
+2e465ff4 2 2  # ply 25 played 1 0 gain +0.105 L1 D0 MrSubZero
+1bd35e4e 4 1  # ply 25 played 3 2 gain +0.001 L1 D0 MrSubZero
+24c8cbbc 1 5  # ply 31 played 1 4 gain +0.001 L1 D0 Apostolique
+3f144f1f 6 5  # ply 33 played 6 3 gain +0.000 L2 D0 MrSubZero
+0386a676 7 8  # ply 34 refuted 7 7 alt q 0.498
+0c016c30 2 4  # ply 37 played 0 3 gain +0.001 L8 D0 Apostolique
+3a00201e 3 4  # ply 45 refuted 3 5 alt q 0.404
+3bb14579 6 4  # ply 19 played 8 4 gain +0.051 L3 D0 MrSubZero
+0815a679 6 1  # ply 25 played 8 0 gain +0.000 L1 D0 MrSubZero
+0ab8d36c 5 4  # ply 25 refuted 3 5 alt q 0.157
+1e78da3c 1 1  # ply 27 refuted 8 0 alt q 0.159
+206be465 8 2  # ply 28 played 6 2 gain +0.000 L1 D0 Daporan
+20186e55 1 5  # ply 29 played 0 4 gain +0.001 L1 D0 MrSubZero
+1c582e58 3 7  # ply 33 played 3 6 gain +0.001 L1 D0 MrSubZero
+3e54cf0c 5 4  # ply 33 refuted 7 1 alt q 0.108
+38b7067b 6 8  # ply 34 played 8 7 gain +0.393 L0 D1 Apostolique
+12ae839b 0 0  # ply 37 refuted 1 0 alt q 0.243
+3ee24e4b 1 2  # ply 37 refuted 0 0,2 0 alt q 0.109
+1427ecbc 1 6  # ply 39 played 1 7 gain +0.000 L32 D0 AllanB
+1449be8d 1 1  # ply 41 played 1 0 gain +0.000 L1 D0 MrSubZero
+0e740a40 1 6  # ply 19 played 0 7 gain +0.084 L1 D0 MrSubZero
+1da4a759 8 5  # ply 26 played 6 5 gain +0.018 L1 D0 Daporan
+39f83b29 8 6  # ply 28 played 8 7 gain +0.124 L0 D1 Vingte
+2b68ec9c 2 0  # ply 29 refuted 2 1 alt q 0.101
+0c63a54b 1 0  # ply 33 played 0 1 gain +0.000 L2 D0 MrSubZero
+332d8b94 1 7  # ply 35 played 0 7 gain +0.001 L1 D0 MrSubZero
+00ed1eeb 5 1  # ply 37 played 3 2 gain +0.001 L1 D0 Daporan
+31661787 1 5  # ply 17 played 2 5 gain +0.048 L1 D0 MrSubZero
+02c9c82e 3 6  # ply 21 played 5 6 gain +0.032 L1 D0 MrSubZero
+1df152af 2 8  # ply 23 played 2 7 gain +0.000 L3 D0 MrSubZero
+16f7a6c6 5 0  # ply 24 played 3 2 gain +0.107 L1 D0 MrSubZero
+17b8be3b 3 7  # ply 27 refuted 5 8 alt q 0.134
+0d2d6422 6 7  # ply 31 refuted 7 7 alt q 0.327
+3217c62d 5 2  # ply 33 refuted 3 2 alt q 0.500
+3a747716 6 2  # ply 24 played 6 1 gain +0.079 L0 D1 MrSubZero
+30083d0c 6 2  # ply 25 played 8 1 gain +0.065 L1 D0 MrSubZero
+3c6ffc42 6 1  # ply 26 played 6 0 gain +0.105 L1 D0 flawedaxioms
+08371f3d 0 2  # ply 33 played 2 0 gain +0.000 L1 D0 karliso
+3da649a6 0 5  # ply 35 played 2 5 gain +0.000 L1 D0 MrSubZero
+3b200e53 0 8  # ply 18 played 1 6 gain +0.050 L1 D0 flawedaxioms
+09cda874 5 7  # ply 24 played 5 8 gain +0.063 L1 D0 Daporan
+291a3a5d 6 0  # ply 25 played 7 1 gain +0.088 L1 D0 MrSubZero
+2e06d3ce 1 0  # ply 33 refuted 0 1 alt q 0.178
+2d3ab7e3 4 2  # ply 35 refuted 4 1 alt q 0.122
+05c2f7c4 3 3  # ply 36 refuted 5 5 alt q 0.501
+17ce3705 8 7  # ply 37 played 7 8 gain +0.001 L1 D0 Apostolique
+3ac61a3f 7 3  # ply 21 played 7 4 gain +0.001 L1 D0 MrSubZero
+29525da5 7 2  # ply 27 played 6 0 gain +0.000 L1 D0 MrSubZero
+2076be1b 2 2  # ply 29 refuted 1 1 alt q 0.124
+34f198a0 3 4  # ply 32 played 5 3 gain +0.241 L0 D1 MrSubZero
+159f667b 1 6  # ply 33 played 2 6 gain +0.000 L1 D0 flawedaxioms
+10d465db 6 6  # ply 35 played 6 0 gain +0.095 L1 D0 Fancheng
+00605331 1 1  # ply 39 refuted 8 5 alt q 0.133
+373d40f2 6 2  # ply 45 refuted 6 1 alt q 0.501
+2dc15a26 3 4  # ply 33 played 5 3 gain +0.003 L1 D0 Apostolique
+07e7fc6d 2 1  # ply 37 refuted 1 2 alt q 0.195
+22da9e25 3 4  # ply 41 played 3 3 gain +0.021 L1 D0 flawedaxioms
+215a637a 2 2  # ply 21 played 1 1 gain +0.155 L1 D0 MrSubZero
+1df65dba 6 2  # ply 23 played 7 2 gain +0.159 L1 D0 MrSubZero
+08c40a15 5 0  # ply 25 played 5 2 gain +0.006 L1 D0 MrSubZero
+1671ecfa 8 5  # ply 27 played 6 5 gain +0.001 L1 D0 MrSubZero
+065f87ac 3 5  # ply 30 refuted 4 5 alt q 0.962
+2273983e 5 7  # ply 31 refuted 3 7 alt q 0.105
+15018cc8 8 2  # ply 33 played 6 2 gain +0.000 L1 D0 MrSubZero
+1775c6ee 3 0  # ply 34 played 3 2 gain +0.338 L0 D1 MrSubZero
+10963399 8 0  # ply 13 played 6 2 gain +0.053 L1 D0 MrSubZero
+3eccb139 2 8  # ply 19 played 1 7 gain +0.026 L1 D0 MrSubZero
+10397fd7 4 2  # ply 22 played 5 1 gain +0.073 L1 D0 Daporan
+2f9c65ee 6 2  # ply 27 played 7 1 gain +0.001 L1 D0 MrSubZero
+1f2cd5fb 3 3  # ply 31 played 3 4 gain +0.000 L1 D0 MrSubZero
+15367ce5 0 7  # ply 33 played 2 7 gain +0.001 L1 D0 MrSubZero
+10ce8e09 4 0  # ply 35 refuted 4 2 alt q 0.129
+06ea1c23 3 6  # ply 37 played 5 7 gain +0.001 L1 D0 MrSubZero
+21f3f7f7 1 4  # ply 26 played 1 5 gain +0.141 L1 D0 Daporan
+2c73666c 3 8  # ply 27 refuted 5 7 alt q 0.185
+367bc0cb 2 5  # ply 28 played 0 3 gain +0.170 L1 D0 flawedaxioms
+04e5d17f 5 0  # ply 31 refuted 4 1 alt q 0.103
+100c71f8 6 1  # ply 35 played 7 1 gain +0.001 L1 D0 Apostolique
+014a34fd 7 6  # ply 36 played 6 7 gain +0.259 L0 D2 Apostolique
+0a5ff3f2 5 0  # ply 22 played 3 2 gain +0.073 L1 D0 flawedaxioms
+37a6444f 2 8  # ply 26 played 1 6 gain +0.099 L0 D1 flawedaxioms
+29578091 8 4  # ply 29 refuted 7 3 alt q 0.100
+23b7dc4c 5 4  # ply 31 refuted 3 4 alt q 0.110
+061dad51 7 8  # ply 31 refuted 7 7 alt q 0.110
+15c161a1 1 0  # ply 37 played 0 2 gain +0.001 L1 D0 MrSubZero
+1ea93e55 2 5  # ply 37 refuted 0 3 alt q 0.383
+3561b193 8 3  # ply 17 played 7 5 gain +0.039 L1 D0 aivarsliepa
+05073d26 6 7  # ply 21 played 6 8 gain +0.001 L1 D0 MrSubZero
+32e4cfed 1 4  # ply 21 played 1 5 gain +0.006 L1 D0 aivarsliepa
+006aa07b 5 5  # ply 23 played 3 5 gain +0.000 L1 D0 MrSubZero
+30da4efd 8 8  # ply 25 refuted 7 7 alt q 0.158
+27381b5f 1 5  # ply 27 refuted 1 4 alt q 0.154
+3d084618 7 3  # ply 29 played 7 5 gain +0.001 L1 D0 Apostolique
+249b29f9 6 1  # ply 31 played 8 1 gain +0.001 L1 D0 MrSubZero
+1a724771 7 7  # ply 33 refuted 6 6 alt q 0.122
+2a87cfb8 5 0  # ply 34 played 5 1 gain +0.259 L0 D1 Angecide
+32a5e436 5 3  # ply 35 played 4 3 gain +0.000 L2 D0 Apostolique
+3b974bd2 3 1  # ply 35 refuted 3 0 alt q 0.303
+24be3734 2 8  # ply 38 played 2 7 gain +0.319 L1 D0 Daporan
+11c122bd 5 2  # ply 24 played 3 2 gain +0.131 L1 D0 MrSubZero
+225cda6e 7 0  # ply 25 played 7 1 gain +0.004 L1 D0 Apostolique
+30a7000a 0 6  # ply 29 played 2 4 gain +0.000 L1 D0 MrSubZero
+19f272c0 3 7  # ply 33 played 3 6 gain +0.090 L1 D0 flawedaxioms
+1bcb0f22 0 8  # ply 36 played 2 6 gain +0.000 L1 D0 yoch
+309d8c79 0 5  # ply 18 played 0 3 gain +0.006 L1 D0 Daporan
+1a005629 6 7  # ply 19 played 7 7 gain +0.010 L1 D0 MrSubZero
+39d1df52 0 3  # ply 23 played 1 4 gain +0.034 L1 D0 MrSubZero
+0eb053a0 7 7  # ply 26 played 8 6 gain +0.138 L1 D0 MrSubZero
+254f6369 7 5  # ply 27 played 7 3 gain +0.000 L1 D0 MrSubZero
+12c46ba0 3 3  # ply 27 refuted 5 5 alt q 0.112
+0bc27de7 2 5  # ply 29 refuted 0 3 alt q 0.102
+2be02c3a 5 5  # ply 31 refuted 3 5 alt q 0.228
+2fa653aa 6 8  # ply 37 played 0 2 gain +0.000 L3 D0 Vingte
+1a3e9bc5 5 7  # ply 39 refuted 4 7 alt q 0.161
+10d7bf46 5 2  # ply 40 played 5 1 gain +0.000 L1 D0 Daporan
+2f8498ed 1 4  # ply 21 played 0 3 gain +0.006 L1 D0 MrSubZero
+2f591123 3 7  # ply 25 refuted 5 6 alt q 0.113
+087d9295 7 4  # ply 25 played 7 3 gain +0.000 L1 D0 MrSubZero
+24f326b4 8 3  # ply 27 played 8 5 gain +0.000 L1 D0 Apostolique
+27ef7323 8 3  # ply 32 played 7 5 gain +0.164 L1 D0 Daporan
+1f66da64 3 4  # ply 33 played 3 5 gain +0.000 L5 D0 Vingte
+20de91b1 5 5  # ply 35 played 3 5 gain +0.000 L3 D0 yoch
+3ffce594 2 8  # ply 38 refuted 0 7 alt q 0.515
+0f81a31e 2 5  # ply 42 played 0 5 gain +0.000 L1 D0 Daporan
+3ff96a11 8 1  # ply 18 played 6 0 gain +0.060 L1 D0 Daporan
+03e26566 8 8  # ply 21 played 8 6 gain +0.007 L1 D0 MrSubZero
+3100bf7b 7 4  # ply 27 refuted 8 5 alt q 0.109
+04a91a8f 5 2  # ply 33 played 5 0 gain +0.000 L1 D0 MrSubZero
+3d40b3f2 5 1  # ply 35 played 3 0 gain +0.001 L6 D0 Vingte
+280a7683 8 7  # ply 37 played 8 6 gain +0.331 L1 D0 flawedaxioms
+1fc1a4f1 7 1  # ply 39 refuted 2 4 alt q 0.144
+181c4798 4 8  # ply 42 played 4 7 gain +0.000 L1 D0 Daporan
+3d11c9bb 5 2  # ply 20 played 3 0 gain +0.006 L1 D0 Daporan
+3d013c48 5 3  # ply 27 played 3 4 gain +0.000 L1 D0 MrSubZero
+0889af0c 0 3  # ply 29 played 2 3 gain +0.000 L1 D0 flawedaxioms
+0b5446af 7 1  # ply 35 played 7 2 gain +0.138 L1 D0 flawedaxioms
+3e96ff3c 4 3  # ply 44 refuted 5 5 alt q 0.501
+070cf592 8 8  # ply 13 played 6 7 gain +0.058 L1 D0 aivarsliepa
+18558af1 8 3  # ply 20 record 8,3:4x1.0 6,5:1x0.0 gain 1.0
+02b78c77 6 2  # ply 27 refuted 7 1 alt q 0.164
+37e81f26 7 6  # ply 29 refuted 8 7 alt q 0.135
+1f42e73f 2 3  # ply 31 played 2 4 gain +0.000 L3 D0 yoch
+1e4fbf6a 7 5  # ply 33 refuted 7 3 alt q 0.119
+3ee8d4e4 1 7  # ply 34 refuted 2 4 alt q 0.500
+2e0b756d 2 5  # ply 35 refuted 1 3 alt q 0.173
+1942c7df 8 6  # ply 39 played 7 8 gain +0.000 L5 D0 Vingte
+1a333f85 0 6  # ply 17 played 1 6 gain +0.082 L1 D0 MrSubZero
+2887c1e2 7 7  # ply 20 played 7 6 gain +0.047 L1 D0 Daporan
+16279c69 1 2  # ply 27 refuted 0 1 alt q 0.150
+295202a9 4 2  # ply 31 refuted 5 5 alt q 0.112
+3f193890 4 2  # ply 33 refuted 4 1 alt q 0.109
+2b799c93 7 7  # ply 33 played 6 6 gain +0.000 L3 D0 yoch
+08d54e98 2 4  # ply 37 played 0 3 gain +0.001 L4 D0 Apostolique
+3e73f3ae 2 8  # ply 38 refuted 1 8 alt q 0.500
+0ff970ef 7 4  # ply 46 refuted 8 5 alt q 0.500
 1e672e9b 4 7  # ply 27 pre: short search 3 7 0.163 vs 0.908
 1210da08 6 8  # ply 37 pre: short search 8 7 0.316 vs 0.948
 3379a246 7 2  # ply 27 pre: short search 6 2 0.245 vs 0.871

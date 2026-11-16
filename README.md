@@ -5,8 +5,21 @@ in one C++ file: bitboard engine, Monte Carlo tree search with a solver, an NNUE
 opening book built from arena games.
 
 Started at rank 195 in Legend (score 20.23) with an older MCTS bot (`league/src/legacy.cpp`, the first
-baseline). Current: v1.8 finished **32.77, rank 10 / 492 Legend**; v1.9 placing. Per-version results and
-every measurement: [docs/history.md](docs/history.md).
+baseline). Current: v1.27, **36.18, rank 2 / ~490 Legend** (2026-11-16). Per-version results and every
+measurement: [docs/history.md](docs/history.md).
+
+### Path so far
+
+| Stage | Score | Rank |
+|---|---|---|
+| legacy bot | 20.23 | 195 |
+| v1.0–v1.3: MCTS-Solver + value net + PUCT | 23.8 → 31.4 | 63 → 13 |
+| v1.4–v1.7: bigger nets, threat inputs, pondering | 31.4 → 32.2 | 11 |
+| v1.8–v1.15: opening book from our lost arena games (long offline searches, record / refuted / pre-emptive entries) | 32.8 → 34.5 | 10 → 4 |
+| v1.22–v1.27: book refresh after the opponents resubmit (only positions the live version lost every game in) | 33.3 → 36.18 | 8 → 2 |
+
+Engine and net are unchanged since v1.7 (n7t); every gain since then is the book. Self-play gains of the
+search parameters, contempt and deeper nets did not carry over (see Measurements in the history).
 
 ## How the bot works
 
@@ -45,7 +58,10 @@ python3 tools/cg.py submit out/sub.cpp        # arena submit + IDE mirror
 | `tools/cg.py` | CodinGame API: test games (incl. replays of arena battles), submit + IDE mirror, progress, leaderboard |
 | `tools/arena.py` | Downloads our arena battles and game logs (`arena/battles.jsonl`, `arena/games.jsonl`), stats by opponent |
 | `tools/cg_suite.py` | Replays a suite of our lost battles against the opponents' current code (test games) |
-| `tools/book.py`, `tools/modal_book.py` | Opening book: positions of non-won games → long searches on Modal → `tools/book.txt` |
+| `tools/book.py`, `tools/modal_book.py`, `tools/kaggle_book.py` | Opening book: positions of non-won games → long searches on Modal / Kaggle → `tools/book.txt` |
+| `tools/modal_pre.py` | Pre-emptive book: the opponent's likely replies to book moves, answered before the arena reaches them |
+| `tools/refresh.py`, `tools/refresh_loop.sh`, `tools/book_guard.py` | Safe book refresh against the opponents' current code; guard against changing frequent well-scoring lines |
+| `tools/probe.py`, `tools/losses.py` | Probing alternatives in replays of lost battles; loss report (our errors vs opponent surprises) |
 | `tools/nets/` | Trained nets (`.bin` for the engine, `.pt` for fine-tuning) |
 | `versions/` | Every submitted source |
 | `docs/history.md` | Versions, gates, arena results, all measurements (positive and negative) |
@@ -63,6 +79,25 @@ modal run tools/modal_book.py --src out/c24_n8t.cpp --iters 16000000 --chunk 24 
 python3 tools/book.py build --gain 0.0 --draw-gain 0.02       # -> tools/book.txt
 python3 tools/cg_suite.py lost 25 SUB && python3 tools/cg_suite.py run out/sub.cpp LABEL   # replay lost battles
 ```
+
+### Refresh loop (current method)
+
+The top bots resubmit daily, which makes book lines stale (v1.15: 34.49 → 33.28 overnight). Each cycle
+(`tools/refresh_loop.sh N`, ~45 min, state in `$SC`): wait for the placement, fetch its games, analyse the
+new positions on Kaggle (both accounts, `tools/kaggle_book.py`), rebuild the book, keep only entries at
+positions where the live version lost every game (`tools/refresh.py`), check `tools/book_guard.py`
+(no change to frequent well-scoring lines), pack, submit; resubmit the previous version if the new one
+places more than 0.2 below it.
+
+```sh
+python3 tools/refresh.py SUB --base BOOK_OF_SUB --out /tmp/next_book.txt
+python3 tools/book_guard.py --book /tmp/next_book.txt --base BOOK_OF_SUB
+SC=/path/to/state tools/refresh_loop.sh 12
+```
+
+Things that did not work: entries from one or two probe test games (`tools/probe.py`): wins and draws
+against the top bots do not replay (4 / 4 lost on re-test), and one such entry at ply 1 cost 2 points
+(v1.18).
 
 The analysis source must embed its net and keep the `LOCAL` blocks (`pack.py --keep-local`). Positions
 that occur in a won game, or in a second-player draw, are never changed. Test-game logs count as games,

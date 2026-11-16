@@ -34,7 +34,10 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | v1.15 again | user: keep the best rank unless sure | resubmitted (41721991): 34.20 at placement, 33.28 rank 8 the next morning after the top bots resubmitted (book lines stale) |
 | v1.22 | v1.15's book + 133 entries, only at positions where v1.15 lost every arena game (`tools/refresh.py`), guard 0 | 34.75, rank 5 (41724565) |
 | v1.23 | v1.22 + 85 (refresh loop, cycle 1) | 34.57, rank 7 (41724801); Angecide / Daporan resubmitted meanwhile |
-| v1.24 | v1.23 + 116 (cycle 2) | **35.23, rank 3** (41725060), best so far |
+| v1.24 | v1.23 + 116 (cycle 2) | **35.23, rank 3** (41725060) |
+| v1.25 | v1.24 + 77 (cycle 4; cycle 3 lost its game download) | 34.68 (41725318): > 0.2 below v1.24, the loop resubmitted v1.24 (41725483: 34.93, rank 4: the same code, 0.3 lower, placement noise plus Angecide's rise) |
+| v1.26 | v1.24 + 79 (cycle 6) | 35.23, rank 3 (41725730) |
+| v1.27 | v1.26 + 81 (cycle 7) | **36.18, rank 2** (41726015); loop stopped here at the user's request |
 
 ## Measurements
 
@@ -113,3 +116,5 @@ or real time (100 ms) on Kaggle CPUs. Self-play Elo overstates arena gains.
 | Deep head in the engine (float test version, NN_DEEP) | 20k iterations 6.3 s vs 0.08 s plain: every game of the Kaggle equal-iteration match faulted on time. Integer estimate on Haswell (vpmaddwd on one port): deep-32 scoring every child ~3x per iteration and +18k chars (over the limit); deep-16 on the expanded node only ~15-30% slower and +9k chars for a val gain worth maybe +10-20 Elo. Parked |
 | Replay check of the probed lines (`probe.py verify`): the battle of every kept probe line replayed with the candidate | Apostolique W → L, Daporan D ×3 → L ×3: the top bots repeat their openings but not whole games, so a single probe result does not reproduce. Probed lines are not used for submits |
 | Book refresh after opponent resubmits (`tools/refresh.py`, `tools/refresh_loop.sh`) | v1.15 dropped 34.49 → 33.28 overnight with no change of ours (opponents resubmitted). Refreshing only positions the live version lost every game in: v1.22 34.75, v1.24 35.23 (rank 3). v1.15 vs the top 6: first player 0.83, second 0.01; vs the rest: 0.97 / 0.45 |
+| Results vs the top 3 after their resubmits (v1.24 / v1.26 arena games, 2026-11-16) | Angecide (37.3, +1.5 that day): as first player W12 D2 L16, as second L30. Daporan: W27 L5 / D1 L31. Vingte: W33 D1 / L34. Angecide now wins as second player against us: an engine gap the book cannot close |
+| Placement noise | the same code (v1.24) placed 35.23 and 34.93 two hours apart; a single placement is about ±0.3, so one placement decides little between book versions |
