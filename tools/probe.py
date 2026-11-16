@@ -185,6 +185,34 @@ def keep_game(played, note):
     print(f"  KEPT {len(keep)} entries -> {PBOOK}", flush=True)
 
 
+def verify(src):
+    """Replay the battle of every kept line with the candidate SRC (tools/candidate.sh): does it repeat?"""
+    res = {r["log"]: r for r in map(json.loads, open(RES))}
+    out = os.path.join(ROOT, "arena", "probe_verify.jsonl")
+    vdone = {json.loads(x)["line"] for x in open(out)} if os.path.exists(out) else set()
+    for l in open(PBOOK):
+        if not l.startswith("#"):
+            continue
+        log = l.split()[-1]
+        p = res.get(log)
+        if log in vdone:
+            continue
+        if not p:
+            continue
+        t = time.time()
+        try:
+            path = cg.test(src, replay=p["game_id"])
+        except (Exception, SystemExit) as ex:
+            print(f"{p['opp']:<12} {log}: skipped {str(ex)[:80]}", flush=True)
+            continue
+        seat, r = cg_suite.result(path)
+        with open(out, "a") as f:
+            f.write(json.dumps({"line": log, "opp": p["opp"], "probe": p["result"], "verify": r, "seat": seat,
+                                "log": os.path.basename(path), "t": int(time.time())}) + "\n")
+        print(f"{p['opp']:<12} line {log} (probe {p['result']}): replay {r}", flush=True)
+        time.sleep(max(0.0, 40.0 - (time.time() - t)))
+
+
 def stats():
     rows = [json.loads(l) for l in open(RES)] if os.path.exists(RES) else []
     import collections
@@ -202,6 +230,8 @@ if __name__ == "__main__":
     elif a[0] == "keep":   # keep LOG NOTE: force the moves of a drawn / won second-player test game
         import re
         keep_game(re.findall(r"stdout: (\d \d)", open(os.path.join(ROOT, "arena", "logs", a[1])).read()), " ".join(a[2:]) + " " + a[1])
+    elif a[0] == "verify":
+        verify(a[1] if len(a) > 1 else os.path.join(ROOT, "out", "cand.cpp"))
     elif a[0] == "run":
         run(opt(a, "--max", 80), opt(a, "--net", os.path.join(ROOT, "tools", "nets", "n7t640.bin")))
     else:

@@ -48,7 +48,10 @@ def test(src, opp="default", replay=None, ide=False):
     else:
         body["opponents"] = [int(opp) if opp.isdigit() else opp]
     r = call(f"/puzzles/{PUZ}/test-games?wait=30", body)
+    t0 = time.time()
     while r.get("status") == "running":
+        if time.time() - t0 > 300:   # a stuck test game: give up after 5 minutes
+            sys.exit(f"test game {r.get('test_game_id')} still running after 5 min")
         r = call(f"/test-games/{r['test_game_id']}?wait=30&format=json")
     if r.get("status") != "done":
         sys.exit(json.dumps(r)[:600])
